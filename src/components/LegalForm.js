@@ -20,7 +20,7 @@ function LegalForm({ contactMethod, setContactMethod, contactInfo, setContactInf
           <option value="Institución">Institución</option>
         </Form.Select>
       </Form.Group>
-      <Form.Group className='mt-2' controlId="formBasicCategory">
+      <Form.Group className='mt-2 mb-2' controlId="formBasicCategory">
         <Form.Label>Rubro</Form.Label>
         <Form.Control type="text" placeholder="Rubro" />
       </Form.Group>

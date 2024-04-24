@@ -6,14 +6,16 @@ import UTNlogo from '../assets/logos/utn.svg';
 import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import LoginModal from './LoginModal';
+import MapApp from './MapApp';
 function NavApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showMap, setShowMap] = useState(false);
   const handleLoginClick = () => {
     setShowModal(true);
   };
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleMapClick = () => {
+    setShowMap(true);
   };
   return (
     <>
@@ -52,7 +54,7 @@ function NavApp() {
                   />{' Ingresar'}
                 </Nav.Link>
               )}
-              <Nav.Link href="#home">
+              <Nav.Link href="#home" onClick={handleMapClick}>
                 <img
                   alt=""
                   src={IcoHeladera}
@@ -66,6 +68,7 @@ function NavApp() {
         </Container>
       </Navbar>
       <LoginModal show={showModal} onHide={() => setShowModal(false)} />
+      {showMap && <MapApp />}
     </>
   );
 }

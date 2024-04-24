@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { ModalFooter } from 'react-bootstrap';
-import ContactMethod from './ContactMethod'; // Asumiendo que 'Contact' es el nombre correcto del archivo
-
+import ContactMethod from './ContactMethod';
 function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInfo }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [birthdate, setBirthdate] = useState('');
@@ -46,8 +45,8 @@ function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInf
       </Form.Group>
       <Form.Group controlId="formBasicHelp">
         <Form.Label>Formas de Contribuir</Form.Label>
-        <Form.Select aria-label="Default select example" onChange={handleHelpMethodChange} value={helpMethod}>
-          <option>Seleccione...</option>
+        <Form.Select  aria-label='Formas de ayudar' onChange={handleHelpMethodChange} value={helpMethod}>
+          <option default value=''>Seleccione...</option>
           <option value="Donación de dinero">Donación de dinero</option>
           <option value="Donación de vianda">Donación de vianda</option>
           <option value="Distribución de viandas">Distribución de "viandas"</option>
@@ -61,18 +60,16 @@ function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInf
           </div>
         ))}
       </div>
-      <div className="d-flex justify-content-around align-items-center">
-        <ModalFooter>
+        <ModalFooter fluid className='d-flex justify-content-around flex-nowrap'>
           <Form.Group controlId="formBasicBirthdate">
             <Form.Label>Fecha de Nacimiento (opcional)</Form.Label>
             <Form.Control type="date" value={birthdate} onChange={handleBirthdateChange} />
           </Form.Group>
           <Form.Group controlId="formBasicAddress">
-            <Form.Label>Dirección (opcional)</Form.Label>
+            <Form.Label>Dirección<br/> (opcional)</Form.Label>
             <Form.Control type="text" placeholder="Ingrese su dirección" value={address} onChange={handleAddressChange} />
           </Form.Group>
-        </ModalFooter>
-      </div>
+        </ModalFooter>     
     </>
   );
 }
