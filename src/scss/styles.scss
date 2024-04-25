@@ -1,0 +1,32 @@
+
+
+// Aca los estilos personalizados de la aplicacion
+
+
+/** Base **/
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/mixins';
+@import 'base/globales';
+@import 'base/utilidades';
+@import 'base/botones';
+
+/** UI **/
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/navegacion';
+
+
+
+/** Paginas Internas **/
+
+//Aca irian los import de los estilos de paginas internas
+
+//-----------------------------------------------------------------------------
+
+$primary: #79bd67;
+$primary-100: #69ad58;
+$primary-200: #589d49;
+
+
+@import "~bootstrap/scss/bootstrap.scss";
