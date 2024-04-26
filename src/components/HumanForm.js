@@ -88,7 +88,11 @@ function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInf
             <Form.Label>Dirección<br/> (opcional)</Form.Label>
             <Form.Control type="text" placeholder="Ingrese su dirección" value={address} onChange={handleAddressChange} />
           </Form.Group>
-        </ModalFooter>     
+        </ModalFooter>
+        <Form.Group className='mb-3'controlId="formBasicPassword">
+            <Form.Label>Ingrese una Contraseña</Form.Label>
+            <Form.Control type="password" placeholder=""/>
+          </Form.Group>    
     </>
   );
 }
