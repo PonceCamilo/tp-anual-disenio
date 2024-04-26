@@ -19,30 +19,30 @@
   }
   
   .food1 {
-    background-image: url('../assets/imgs/taco.png');
+    background-image: url('../../assets/imgs/taco.png');
     background-size: contain;
     background-repeat: no-repeat;
   }
   
   .food2 {
-    background-image: url('../assets/imgs/papas.png');
+    background-image: url('../../assets/imgs/papas.png');
     background-size: contain;
     background-repeat: no-repeat;
   }
   .food3 {
-    background-image: url('../assets/imgs/hamburguesa.png');
+    background-image: url('../../assets/imgs/hamburguesa.png');
     background-size: contain;
     background-repeat: no-repeat;
   }
   .food4 {
-    background-image: url('../assets/imgs/pancho.png');
+    background-image: url('../../assets/imgs/pancho.png');
     background-size: contain;
     background-repeat: no-repeat;
   }
   .box {
     width: 420px; 
     height: 300px; 
-    background-image: url('../assets/imgs/main.jpg');
+    background-image: url('../../assets/imgs/main.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
@@ -70,7 +70,7 @@
     background-size:cover;
     background-repeat: no-repeat;
     position: relative;
-    background-image: url('../assets/imgs/cajacomida.jpg'); 
+    background-image: url('../../assets/imgs/cajacomida.jpg'); 
     animation: grow 3s forwards; 
   }
   

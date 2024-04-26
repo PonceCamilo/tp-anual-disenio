@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './FoodAnimation.css';
+import './css/FoodAnimation.css';
 
 const FoodAnimation = () => {
     useEffect(() => {

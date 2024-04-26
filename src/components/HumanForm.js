@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { ModalFooter } from 'react-bootstrap';
 import ContactMethod from './ContactMethod';
 function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInfo }) {
