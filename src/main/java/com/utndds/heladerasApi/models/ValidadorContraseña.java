@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class ValidadorContraseña {
 
     private static final int LONGITUD_MINIMA_CONTRASEÑA = 8;
-    private static final String CARACTERES_ESPECIALES = "!@#$%^&*()_+{}[]";
+    private static final String CARACTERES_ESPECIALES = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
     private static final String RUTA_PEORES_CONTRASEÑAS = "/peoresContraseñas.txt";
 
     public static boolean esDebil(String contraseña) {
