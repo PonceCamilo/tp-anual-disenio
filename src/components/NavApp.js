@@ -10,13 +10,10 @@ import MapApp from './MapApp';
 function NavApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showMap, setShowMap] = useState(false);
   const handleLoginClick = () => {
     setShowModal(true);
   };
-  const handleMapClick = () => {
-    setShowMap(true);
-  };
+
   return (
     <>
       <Navbar expand="lg" fixed="top" bg="primary" data-bs-theme="primary">
@@ -54,7 +51,7 @@ function NavApp() {
                   />{' Ingresar'}
                 </Nav.Link>
               )}
-              <Nav.Link href="#home" onClick={handleMapClick}>
+              <Nav.Link href="#home">
                 <img
                   alt=""
                   src={IcoHeladera}
@@ -68,7 +65,6 @@ function NavApp() {
         </Container>
       </Navbar>
       <LoginModal show={showModal} onHide={() => setShowModal(false)} />
-      {showMap && <MapApp />}
     </>
   );
 }

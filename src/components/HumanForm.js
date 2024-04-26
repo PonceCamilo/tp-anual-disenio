@@ -7,7 +7,9 @@ function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInf
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [birthdate, setBirthdate] = useState('');
   const [address, setAddress] = useState('');
-  const [helpMethod, setHelpMethod] = useState('Seleccione...');
+  const [donationChecked, setDonationChecked] = useState(false);
+  const [foodDonationChecked, setFoodDonationChecked] = useState(false);
+  const [mealDistributionChecked, setMealDistributionChecked] = useState(false);
   const handleBirthdateChange = (event) => {
     setBirthdate(event.target.value);
   };
@@ -19,10 +21,21 @@ function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInf
   const handleAddressChange = (event) => {
     setAddress(event.target.value);
   };
-  const handleHelpMethodChange = (event) => {
-    const option = event.target.value;
-    setHelpMethod(option);
-    setSelectedOptions([...selectedOptions, option]);
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    switch (name) {
+      case 'donation':
+        setDonationChecked(checked);
+        break;
+      case 'foodDonation':
+        setFoodDonationChecked(checked);
+        break;
+      case 'mealDistribution':
+        setMealDistributionChecked(checked);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -43,22 +56,29 @@ function HumanForm({ contactMethod, setContactMethod, contactInfo, setContactInf
           setContactInfo={setContactInfo}
         />
       </Form.Group>
-      <Form.Group controlId="formBasicHelp">
-        <Form.Label>Formas de Contribuir</Form.Label>
-        <Form.Select  aria-label='Formas de ayudar' onChange={handleHelpMethodChange} value={helpMethod}>
-          <option default value=''>Seleccione...</option>
-          <option value="Donación de dinero">Donación de dinero</option>
-          <option value="Donación de vianda">Donación de vianda</option>
-          <option value="Distribución de viandas">Distribución de "viandas"</option>
-        </Form.Select>
-      </Form.Group>
-      <div className='mt-3'>
-        {selectedOptions.map((option, index) => (
-          <div key={index} className="d-flex justify-content-between align-items-center mb-2">
-            <span className="mr-2">{option}</span>
-            <Button variant="outline-black" size="sm" onClick={() => handleRemoveOption(option)}>Eliminar</Button>
-          </div>
-        ))}
+      <Form.Label>Formas de Contribuir</Form.Label>
+     <div className='d-flex'>
+        <Form.Check
+        type='checkbox'
+        label='Donación de dinero'
+        name='donation'
+        checked={donationChecked}
+        onChange={handleCheckboxChange}
+      />
+      <Form.Check
+        type='checkbox'
+        label='Donación de vianda'
+        name='foodDonation'
+        checked={foodDonationChecked}
+        onChange={handleCheckboxChange}
+      />
+      <Form.Check
+        type='checkbox'
+        label='Distribución de "viandas"'
+        name='mealDistribution'
+        checked={mealDistributionChecked}
+        onChange={handleCheckboxChange}
+      />
       </div>
         <ModalFooter fluid className='d-flex justify-content-around flex-nowrap'>
           <Form.Group controlId="formBasicBirthdate">
