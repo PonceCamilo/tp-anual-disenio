@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,7 +7,6 @@ import UTNlogo from '../assets/logos/utn.svg';
 import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import LoginModal from './LoginModal';
-import MapApp from './MapApp';
 function NavApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +18,7 @@ function NavApp() {
     <>
       <Navbar expand="lg" fixed="top" bg="primary" data-bs-theme="primary">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand as={Link} to="/">
             <img
               alt=""
               src={UTNlogo}
@@ -51,7 +51,7 @@ function NavApp() {
                   />{' Ingresar'}
                 </Nav.Link>
               )}
-              <Nav.Link href="#home">
+              <Nav.Link as={Link} to="/map">
                 <img
                   alt=""
                   src={IcoHeladera}

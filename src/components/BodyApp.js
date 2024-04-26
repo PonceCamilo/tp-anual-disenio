@@ -1,8 +1,6 @@
 import Container from 'react-bootstrap/Container';
-import Image from 'react-bootstrap/Image'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import MainImg from '../assets/imgs/main.jpg'
 import FoodAnimation from './FoodAnimation'
 function BodyApp() {
   return (

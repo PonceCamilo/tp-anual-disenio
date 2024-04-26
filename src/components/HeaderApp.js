@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import BodyApp from './BodyApp'
 
 
 function HeaderApp() {
@@ -17,6 +18,7 @@ function HeaderApp() {
         Doná
         </Button>
     </Container>
+    <BodyApp />
     </div>
   )
 }
