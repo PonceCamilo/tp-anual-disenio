@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import com.utndds.heladerasApi.models.ValidadorContraseña;
 
+
 @CrossOrigin(origins = "*") 
 @RestController
 public class ControladorPrueba {
    @GetMapping("/validar-contraseña")
+   
    public String validarContraseña(@RequestParam String contraseña) {
        
     boolean esDebil = ValidadorContraseña.esDebil(contraseña);
