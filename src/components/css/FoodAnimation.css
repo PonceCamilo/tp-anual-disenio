@@ -12,8 +12,8 @@
   }
   
   .food {
-    width: 50px; /* Ajusta el tamaño de los alimentos según sea necesario */
-    height: 50px; /* Ajusta el tamaño de los alimentos según sea necesario */
+    width: 50px;
+    height: 50px; 
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -71,7 +71,8 @@
     background-repeat: no-repeat;
     position: relative;
     background-image: url('../../assets/imgs/cajacomida.jpg'); 
-    animation: grow 3s forwards; 
+    animation: grow 3s forwards;
+    top:-50px; 
   }
   
   @keyframes grow {
