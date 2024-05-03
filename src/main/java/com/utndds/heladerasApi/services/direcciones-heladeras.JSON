@@ -1,0 +1,24 @@
+[
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-24.7825, -65.4232]
+    },
+    "properties": {
+      "nombre": "Heladera de Salta",
+      "provincia": "Salta"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-25.123, -65.456]
+    },
+    "properties": {
+      "nombre": "Otra Heladera",
+      "provincia": "Otra Provincia"
+    }
+  }
+]
