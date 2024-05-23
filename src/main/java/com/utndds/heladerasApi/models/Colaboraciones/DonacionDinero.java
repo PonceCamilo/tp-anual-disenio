@@ -1,8 +1,8 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
-import com.utndds.heladerasApi.models.Colaboradores.Colaborador;
-
 import java.time.LocalDate;
+
+import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
 
 public class DonacionDinero extends Colaboracion {
     double monto;
@@ -16,6 +16,25 @@ public class DonacionDinero extends Colaboracion {
 
     @Override
     public void realizar() {
-        System.out.println("COMPLETAR LA DONACION DINERO");
+        System.out.println("SE REALIZO LA DONACION DE DINERO");
+    }
+
+    @Override
+    public double puntosGanados() {
+        return this.monto * this.obtenerCoeficiente();
+    }
+
+    @Override
+    protected double obtenerCoeficiente() {
+        System.out.println("COMPLETAR COMO OBTENER COEFICIENTE");
+        return 23;
+    }
+
+    public static void main(String[] args) {
+        LocalDate fecha = LocalDate.of(2024, 5, 25);
+
+        Colaborador colaborador = new Colaborador(null, "hola", null);
+        DonacionDinero donacion = new DonacionDinero(fecha, colaborador, 2, 2);
+        System.out.println(donacion.obtenerCoeficiente());
     }
 }

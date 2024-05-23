@@ -2,21 +2,31 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import java.time.LocalDate;
 
-import com.utndds.heladerasApi.models.Heladera;
-import com.utndds.heladerasApi.models.PersonaVulnerable;
-import com.utndds.heladerasApi.models.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Persona.PersonaVulnerable;
+import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
 
 public class RegistroPersonaVulnerable extends Colaboracion {
     PersonaVulnerable personaVuln;
 
-    public RegistroPersonaVulnerable(LocalDate fecha, Colaborador colaborador, Heladera heladera) {
+    public RegistroPersonaVulnerable(LocalDate fecha, Colaborador colaborador, PersonaVulnerable personaVuln) {
         super(fecha, colaborador);
-        this.heladera = heladera;
+        this.personaVuln = personaVuln;
     }
 
     @Override
     public void realizar() {
-        System.out.println("COMPLETAR EL REGISTRO PERSONA VULNERABLE");
+        System.out.println("SE REALIZO EL REGISTRO DE PERSONA VULNERABLE");
+    }
+
+    @Override
+    public double puntosGanados() {
+        System.out.println("CORREGIR PUNTOS GANADOS");
+        return this.obtenerCoeficiente();
+    }
+
+    @Override
+    protected double obtenerCoeficiente() {
+        return 23;
     }
 
 }

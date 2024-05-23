@@ -2,6 +2,8 @@ package com.utndds.heladerasApi.models;
 
 import java.time.LocalDate;
 
+import com.utndds.heladerasApi.models.Heladera.Heladera;
+
 public class UsoTarjeta {
     Heladera heladera;
     LocalDate fecha;

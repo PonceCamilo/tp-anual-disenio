@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Heladera;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -87,6 +87,10 @@ public class Heladera {
         this.estado = estado;
     }
 
+    public boolean getEstado() {
+        return estado;
+    }
+
     public void extraerVianda() {
         if (this.hayFraude()) {
             sensorMov.alertar();
@@ -111,7 +115,7 @@ public class Heladera {
     }
 
     public static void main(String[] args) {
-        Connection con = ConexionBD.getConnection();
+        // Connection con = ConexionBD.getConnection();
     }
 
 }

@@ -1,6 +1,8 @@
-package com.utndds.heladerasApi.models.Colaboradores;
+package com.utndds.heladerasApi.models.Persona.Colaboradores;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
+import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

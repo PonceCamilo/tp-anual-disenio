@@ -1,8 +1,9 @@
-package com.utndds.heladerasApi.models.Colaboradores;
+package com.utndds.heladerasApi.models.Persona.Colaboradores;
 
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
+import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 public class PersonaJuridica extends Colaborador {
 
