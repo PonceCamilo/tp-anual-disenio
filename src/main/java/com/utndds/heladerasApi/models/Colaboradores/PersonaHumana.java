@@ -1,4 +1,5 @@
 package com.utndds.heladerasApi.models.Colaboradores;
+
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,10 +9,11 @@ public class PersonaHumana extends Colaborador {
     String nombre;
     String apellido;
     Date fechaDeNacimiento;
-    List<Colaboracion> posiblesColaboraciones = new ArrayList<Colaboracion>();
+    List<Colaboracion> posiblesColaboraciones = new ArrayList<>();
 
-    public PersonaHumana(String direccion, String nombre, String apellido, Date fechaDeNacimiento) {
-        super(direccion);
+    public PersonaHumana(List<Contacto> mediosDeContacto, String direccion, List<Colaboracion> colaboraciones,
+            String nombre, String apellido, Date fechaDeNacimiento) {
+        super(mediosDeContacto, direccion, colaboraciones);
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaDeNacimiento = fechaDeNacimiento;
