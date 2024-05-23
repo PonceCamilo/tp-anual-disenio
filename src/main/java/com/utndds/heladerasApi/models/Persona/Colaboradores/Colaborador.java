@@ -1,9 +1,10 @@
-package com.utndds.heladerasApi.models.Colaboradores;
+package com.utndds.heladerasApi.models.Persona.Colaboradores;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
+import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 public class Colaborador {
     List<Contacto> mediosDeContacto = new ArrayList<>();
@@ -21,7 +22,7 @@ public class Colaborador {
     }
 
     public void baja() {
-        System.out.println("\"se dio de baja el colaborador");
+        System.out.println("se dio de baja el colaborador");
     }
 
     public void modificar() {
@@ -35,6 +36,15 @@ public class Colaborador {
 
     public void notificar() {
         System.out.println("se notifico al colaborador");
+    }
+
+    public double puntosActuales() {
+        double puntos = 0;
+        for (Colaboracion colaboracion : colaboraciones) {
+            puntos += colaboracion.puntosGanados();
+        }
+
+        return puntos;
     }
 
 }

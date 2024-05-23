@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Heladera;
 
 public class SensorMovimiento {
     public void alertar() {

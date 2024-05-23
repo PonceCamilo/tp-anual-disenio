@@ -1,10 +1,10 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
-import com.utndds.heladerasApi.models.Colaboradores.Colaborador;
-
 import java.time.LocalDate;
 
-public class Colaboracion {
+import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+
+public abstract class Colaboracion {
     LocalDate fecha;
     Colaborador colaborador;
 
@@ -13,10 +13,18 @@ public class Colaboracion {
         this.colaborador = colaborador;
     }
 
-    public void realizar() {
-    }
+    public abstract void realizar();
 
-    private void notificarColaborador() {
+    protected void notificarColaborador() {
         colaborador.notificar();
-    }
+    };
+
+    public double puntosGanados() {
+        return 0;
+    };
+
+    protected double obtenerCoeficiente() {
+        return 0;
+    };
+
 }

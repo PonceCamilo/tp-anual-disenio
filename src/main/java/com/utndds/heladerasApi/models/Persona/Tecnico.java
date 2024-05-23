@@ -1,9 +1,9 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Persona;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Colaboradores.Contacto;
+import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 public class Tecnico {
     String nombre;
