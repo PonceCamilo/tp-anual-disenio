@@ -47,4 +47,8 @@ public class Colaborador {
         return puntos;
     }
 
+    public void hola() {
+        System.out.println(this.colaboraciones);
+    }
+
 }

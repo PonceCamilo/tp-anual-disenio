@@ -1,8 +1,13 @@
 package com.utndds.heladerasApi.models.Persona;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.utndds.heladerasApi.models.UsoTarjeta;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
@@ -16,6 +21,8 @@ public class PersonaVulnerable {
     Documento documento;
     int cantMenoresAcargo;
     List<UsoTarjeta> usosTarjeta = new ArrayList<>();
+    int cantUsosHoy = 0;
+    Timer temporizador = new Timer(true); // Hilo de demonio
 
     public PersonaVulnerable(
             String nombre,
@@ -34,18 +41,20 @@ public class PersonaVulnerable {
         this.documento = documento;
         this.cantMenoresAcargo = cantMenoresAcargo;
         this.usosTarjeta = usosTarjeta;
+
+        programarReinicioDeUsos();
     }
 
     public void alta() {
-        System.out.println("Se realizo alta de la personaVulnerable: " + this.nombre);
+        System.out.println("Se realizó el alta de la persona vulnerable: " + this.nombre);
     }
 
     public void usarHeladera(Heladera heladera) {
         if (heladera.cantViandasDentro() > 0) {
             if (this.puedeUsarTarjeta()) {
-
-                System.out.println("La personaVulnerable: " + this.nombre + " sacó una vianda");
+                System.out.println("La persona vulnerable: " + this.nombre + " sacó una vianda");
                 this.usosTarjeta.add(new UsoTarjeta(heladera, LocalDate.now()));
+                this.cantUsosHoy++;
             } else {
                 System.out.println("No puede usar la tarjeta (exceso de usos diarios)");
             }
@@ -55,22 +64,32 @@ public class PersonaVulnerable {
     }
 
     private boolean puedeUsarTarjeta() {
-        return this.cantUsosHoy() < this.cantUsosDiariosPermitidos();
-    }
-
-    private int cantUsosHoy() {
-        int cantUsos = 0;
-        LocalDate hoy = LocalDate.now();
-
-        for (UsoTarjeta uso : usosTarjeta) {
-            if (uso.getFecha().equals(hoy)) {
-                cantUsos++;
-            }
-        }
-        return cantUsos;
+        return this.cantUsosHoy < this.cantUsosDiariosPermitidos();
     }
 
     private int cantUsosDiariosPermitidos() {
         return 4 + 2 * this.cantMenoresAcargo;
+    }
+
+    private void reiniciarUsosPermitidos() {
+        this.cantUsosHoy = 0;
+        System.out.println("Se reinició el contador de usos diarios a las 00:00.");
+    }
+
+    private void programarReinicioDeUsos() {
+        TimerTask tareaReinicio = new TimerTask() {
+            @Override
+            public void run() {
+                reiniciarUsosPermitidos();
+            }
+        };
+
+        // Calcular el tiempo hasta la próxima medianoche
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime proximaMedianoche = LocalDateTime.of(ahora.toLocalDate().plusDays(1), LocalTime.MIDNIGHT);
+        long retrasoInicial = Duration.between(ahora, proximaMedianoche).toMillis();
+
+        // Programar la tarea para que se ejecute a medianoche todos los días
+        temporizador.scheduleAtFixedRate(tareaReinicio, retrasoInicial, 24 * 60 * 60 * 1000);
     }
 }

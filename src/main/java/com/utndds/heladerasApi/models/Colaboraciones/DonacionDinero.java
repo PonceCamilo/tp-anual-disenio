@@ -1,6 +1,8 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
 
@@ -32,9 +34,10 @@ public class DonacionDinero extends Colaboracion {
 
     public static void main(String[] args) {
         LocalDate fecha = LocalDate.of(2024, 5, 25);
-
-        Colaborador colaborador = new Colaborador(null, "hola", null);
+        List<Colaboracion> colaboraciones = new ArrayList<>();
+        Colaborador colaborador = new Colaborador(null, "hola", colaboraciones);
         DonacionDinero donacion = new DonacionDinero(fecha, colaborador, 2, 2);
-        System.out.println(donacion.obtenerCoeficiente());
+        colaborador.realizarColaboracion(donacion);
+        colaborador.hola();
     }
 }

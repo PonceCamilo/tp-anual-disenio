@@ -51,4 +51,3 @@ public class UbicacionGoogleMaps {
         this.provincia = provincia;
     }
 }
-
