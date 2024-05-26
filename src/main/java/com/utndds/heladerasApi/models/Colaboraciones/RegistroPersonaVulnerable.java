@@ -1,7 +1,12 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
 import com.utndds.heladerasApi.models.Persona.personaVulnerable.PersonaVulnerable;
 
@@ -26,7 +31,19 @@ public class RegistroPersonaVulnerable extends Colaboracion {
 
     @Override
     protected double obtenerCoeficiente() {
-        return 23;
+        try {
+            String projectDir = Paths.get("").toAbsolutePath().toString();
+            String jsonFilePath = projectDir + "/src/main/resources/coeficientes.json";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode rootNode = mapper.readTree(new File(jsonFilePath));
+            JsonNode coeficientesNode = rootNode.path("coeficientes");
+            return coeficientesNode.path("TARJETAS_REPARTIDAS").asDouble();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Maneja la excepción, aquí puedes lanzar una excepción personalizada si es
+            // necesario
+            return 0;
+        }
     }
 
 }
