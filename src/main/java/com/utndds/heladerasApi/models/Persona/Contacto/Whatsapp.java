@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
-public class Whatsapp {
+public class Whatsapp extends Contacto{
     String numero;
 
     public Whatsapp(String numero) {

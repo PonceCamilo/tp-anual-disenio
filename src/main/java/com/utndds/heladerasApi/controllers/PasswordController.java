@@ -1,14 +1,16 @@
 package com.utndds.heladerasApi.controllers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.utndds.heladerasApi.models.Validadores.ValidadorContraseña;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import com.utndds.heladerasApi.models.ValidadorContraseña;
 
 
 @CrossOrigin(origins = "*") 
 @RestController
-public class ControladorPrueba {
+public class PasswordController {
    @GetMapping("/validar-contraseña")
    
    public String validarContraseña(@RequestParam String contraseña) {

@@ -25,19 +25,10 @@ public class GoogleMapsService {
             for (UbicacionGoogleMaps ubicacion : ubicacionesArray) {
                 ubicaciones.add(ubicacion);
             }
-
-            System.out.println("Contenido de la lista de ubicaciones:");
-            for (UbicacionGoogleMaps ubicacion : ubicaciones) {
-                System.out.println("Nombre: " + ubicacion.getNombre());
-
-                System.out.println("Provincia: " + ubicacion.getProvincia());
-                System.out.println("--------------------------------------");
-            }
         } catch (IOException e) {
 
             e.printStackTrace();
         }
-
         return ubicaciones;
     }
 }

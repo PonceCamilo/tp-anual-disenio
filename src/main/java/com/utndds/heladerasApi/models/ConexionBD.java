@@ -49,7 +49,7 @@ public class ConexionBD {
             System.out.println("Error al insertar usuario: " + e.getMessage());
         }
     }
-
+    //PRUEBA PARA SABER QUE LA CONEXION FUNCIONA Y SE AGREGAN USUARIOS
     public static void main(String[] args) {
         Connection con = getConnection();
         if (con != null) {

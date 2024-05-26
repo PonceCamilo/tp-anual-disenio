@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
-public class Email {
+public class Email extends Contacto{
     String email;
 
     public Email(String email) {
