@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Persona;
+package com.utndds.heladerasApi.models.Persona.personaVulnerable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.utndds.heladerasApi.models.UsoTarjeta;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
+import com.utndds.heladerasApi.models.Persona.Documento;
 
 public class PersonaVulnerable {
     String nombre;

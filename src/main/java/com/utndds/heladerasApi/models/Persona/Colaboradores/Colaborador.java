@@ -10,7 +10,8 @@ public class Colaborador {
     List<Contacto> mediosDeContacto = new ArrayList<>();
     String direccion;
     List<Colaboracion> colaboraciones = new ArrayList<>();
-
+    public Colaborador() {
+    }
     public Colaborador(List<Contacto> mediosDeContacto, String direccion, List<Colaboracion> colaboraciones) {
         this.direccion = direccion;
         this.mediosDeContacto = mediosDeContacto;
@@ -46,9 +47,11 @@ public class Colaborador {
 
         return puntos;
     }
-
-    public void hola() {
-        System.out.println(this.colaboraciones);
+    public void setColaboraciones(List<Colaboracion> colaboraciones) {
+        this.colaboraciones = colaboraciones;
+    }
+    public void setMediosDeContacto(List<Contacto> mediosDeContacto) {
+        this.mediosDeContacto = mediosDeContacto;
     }
 
 }

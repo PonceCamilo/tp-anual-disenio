@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Persona.personaVulnerable;
 
 import java.time.LocalDate;
 

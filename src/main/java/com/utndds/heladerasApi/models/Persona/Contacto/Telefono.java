@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
-public class Telefono {
+public class Telefono extends Contacto{
     String numero;
 
     public Telefono(String numero) {

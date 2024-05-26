@@ -2,8 +2,8 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import java.time.LocalDate;
 
-import com.utndds.heladerasApi.models.Persona.PersonaVulnerable;
 import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Persona.personaVulnerable.PersonaVulnerable;
 
 public class RegistroPersonaVulnerable extends Colaboracion {
     PersonaVulnerable personaVuln;

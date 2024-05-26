@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Validadores;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
