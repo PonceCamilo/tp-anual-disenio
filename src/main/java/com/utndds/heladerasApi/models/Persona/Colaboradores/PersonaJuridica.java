@@ -18,4 +18,16 @@ public class PersonaJuridica extends Colaborador {
         this.tipo = tipo;
         this.rubro = rubro;
     }
+
+    public void alta() {
+        System.out.println("se dio de alta la persona juridica");
+    }
+
+    public void baja() {
+        System.out.println("se dio de baja la persona juridica");
+    }
+
+    public void modificar() {
+        System.out.println("se modifico la persona juridica");
+    }
 }
