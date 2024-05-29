@@ -18,11 +18,23 @@ public class PersonaHumana extends Colaborador {
     }
 
     public PersonaHumana(List<Contacto> mediosDeContacto, String direccion, List<Colaboracion> colaboraciones,
-                         String nombre, String apellido, Date fechaDeNacimiento) {
+            String nombre, String apellido, Date fechaDeNacimiento) {
         super(mediosDeContacto, direccion, colaboraciones);
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
+    public void alta() {
+        System.out.println("se dio de alta la persona humana");
+    }
+
+    public void baja() {
+        System.out.println("se dio de baja la persona humana");
+    }
+
+    public void modificar() {
+        System.out.println("se modifico la persona humana");
     }
 
     // Getters y Setters
@@ -49,6 +61,7 @@ public class PersonaHumana extends Colaborador {
     public void setFechaDeNacimiento(Date fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
+
     public List<Colaboracion> getPosiblesColaboraciones() {
         return posiblesColaboraciones;
     }

@@ -10,24 +10,14 @@ public class Colaborador {
     List<Contacto> mediosDeContacto = new ArrayList<>();
     String direccion;
     List<Colaboracion> colaboraciones = new ArrayList<>();
+
     public Colaborador() {
     }
+
     public Colaborador(List<Contacto> mediosDeContacto, String direccion, List<Colaboracion> colaboraciones) {
         this.direccion = direccion;
         this.mediosDeContacto = mediosDeContacto;
         this.colaboraciones = colaboraciones;
-    }
-
-    public void alta() {
-        System.out.println("se dio de alta el colaborador");
-    }
-
-    public void baja() {
-        System.out.println("se dio de baja el colaborador");
-    }
-
-    public void modificar() {
-        System.out.println("se modifico el colaborador");
     }
 
     public void realizarColaboracion(Colaboracion colaboracion) {
@@ -47,9 +37,11 @@ public class Colaborador {
 
         return puntos;
     }
+
     public void setColaboraciones(List<Colaboracion> colaboraciones) {
         this.colaboraciones = colaboraciones;
     }
+
     public void setMediosDeContacto(List<Contacto> mediosDeContacto) {
         this.mediosDeContacto = mediosDeContacto;
     }
