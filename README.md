@@ -69,3 +69,4 @@ En la carpeta donde clonaste el frontend (tp-anual-disenio con la rama front-end
 Orden de Inicio
 
 Para asegurar que el API esté corriendo antes de que el frontend lo solicite, inicia primero el backend y luego el frontend.
+PD: El workspace del back tarda en cargar
