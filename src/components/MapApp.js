@@ -14,6 +14,7 @@ function MapApp() {
 
   const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [mapCenter, setMapCenter] = useState(center);
   const [zoom, setZoom] = useState(15);
 
   useEffect(() => {
@@ -29,14 +30,24 @@ function MapApp() {
 
     fetchLocations();
   }, []);
- 
+
   const handleMarkerClick = (location) => {
     setSelectedLocation(location);
+    setMapCenter({ lat: location.latitud, lng: location.longitud });
     setZoom(17);
   };
 
   const handleCloseInfoWindow = () => {
     setSelectedLocation(null);
+  };
+
+  const handleSearch = (query) => {
+    const location = locations.find(loc => loc.nombre.toLowerCase() === query.toLowerCase());
+    if (location) {
+      setSelectedLocation(location);
+      setMapCenter({ lat: location.latitud, lng: location.longitud });
+      setZoom(17);
+    }
   };
 
   if (!isLoaded) {
@@ -46,7 +57,7 @@ function MapApp() {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <GoogleMap
-        center={center}
+        center={mapCenter}
         zoom={zoom}
         mapContainerStyle={{ width: '100%', height: '100%' }}
       >
@@ -70,7 +81,7 @@ function MapApp() {
           </InfoWindow>
         )}
       </GoogleMap>
-      <SearchMapApp />
+      <SearchMapApp onSearch={handleSearch} />
     </div>
   );
 }

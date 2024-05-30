@@ -3,6 +3,10 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
-    padding: 20px;
+  }
+.full-height-row {
+    min-height: calc()
+  }
+  .header-container {
+    margin-top: 65px;
   }
