@@ -17,7 +17,7 @@ public class Heladera {
     double minTemp;
     double maxTemp;
     boolean estado;
-    SensorMovimiento sensorMov;
+    List<Observador> observadores = new ArrayList<>();
     LocalDate fechaInicioFuncionamiento;
     List<Vianda> viandas = new ArrayList<>();
 
@@ -93,7 +93,9 @@ public class Heladera {
 
     public void extraerVianda() {
         if (this.hayFraude()) {
-            sensorMov.alertar();
+            for (Observador observador : observadores) {
+                observador.actualizar();
+            }
             return;
         }
         viandas.remove(viandas.size() - 1);
@@ -112,6 +114,10 @@ public class Heladera {
         Period periodo = Period.between(fechaInicioFuncionamiento, hoy);
         int cantMeses = periodo.getYears() * 12 + periodo.getMonths();
         return cantMeses;
+    }
+
+    public void agregarObservador(Observador observador) {
+        observadores.add(observador);
     }
 
     public static void main(String[] args) {
