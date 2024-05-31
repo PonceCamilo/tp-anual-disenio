@@ -39,10 +39,10 @@ Clonar el Repositorio
 
     Clona el repositorio para el backend:
 
-    Clona el repositorio para el front :
+    Clona el repositorio para el front : git clone https://github.com/PonceCamilo/tp-anual-disenio.git
 
 
-git clone https://github.com/PonceCamilo/tp-anual-disenio.git
+
 
 Este contiene el backend en su raíz.
 
