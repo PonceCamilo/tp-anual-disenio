@@ -18,7 +18,7 @@ Variables de Entorno
 
 Para mantener segura nuestra API key, sigue estos pasos:
 
-    En la raíz del proyecto, crea un archivo llamado .env.local.
+    En la raíz del proyecto(Front), crea un archivo llamado .env.local.
 
     Dentro, añade la siguiente línea:
 
