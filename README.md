@@ -22,9 +22,9 @@ Para mantener segura nuestra API key, sigue estos pasos:
 
     Dentro, añade la siguiente línea:
 
-    REACT_APP_GOOGLE_MAPS_API_KEY=(Key enviada en el BOCETO.txt en la entrega del aula virtual)
+    REACT_APP_GOOGLE_MAPS_API_KEY=(Key dentro del docs , ingresar con un mail .frba.utn.edu.ar , sino les va a pedir permisos)
 
-
+https://docs.google.com/document/d/1q6Z1KfbiKVK4Epo6AxTKiZKfk3pDTCAnS13loOJOi_U/edit?usp=sharing 
 Prerrequisitos
 
     Java 17
