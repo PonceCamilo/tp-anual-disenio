@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.models.CargaCSV;
+import com.utndds.heladerasApi.models.CargaCSV.CargaCSV;
 import com.utndds.heladerasApi.models.Persona.Colaboradores.PersonaHumana;
 import java.util.List;
 
@@ -13,7 +13,8 @@ public class ControllerCargaCSV {
         }
         return "Archivo cargado con éxito";
     }
-//PARA PROBAR EL CONTROLADOR
+
+    // PARA PROBAR EL CONTROLADOR
     public static void main(String[] args) {
         ControllerCargaCSV controller = new ControllerCargaCSV();
         String rutaArchivoCSV = ".\\tp-anual-disenio\\src\\main\\resources\\colaboraciones.csv";

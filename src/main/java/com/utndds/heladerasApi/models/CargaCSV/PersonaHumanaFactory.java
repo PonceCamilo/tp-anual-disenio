@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.CargaCSV;
 import java.time.LocalDate;
 import java.util.Arrays;
 import com.utndds.heladerasApi.models.Persona.Colaboradores.PersonaHumana;
