@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.CargaCSV;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
