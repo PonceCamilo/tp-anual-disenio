@@ -13,20 +13,13 @@ public class SensorTemperatura {
     public SensorTemperatura(Heladera heladera, double temperatura) {
         this.heladera = heladera;
         this.temperatura = temperatura;
-        scheduler.scheduleAtFixedRate(this::actualizarTemp, 0, 5, TimeUnit.MINUTES);// se ejecuta c/5mins
+        scheduler.scheduleAtFixedRate(this::calcularTemp, 0, 5, TimeUnit.MINUTES);// se ejecuta c/5mins
     }
 
-    private void actualizarTemp() {
+    private void calcularTemp() {
         Random random = new Random();
         this.temperatura = -10 + (20 + 10) * random.nextDouble();
-        this.verificarTemp();
+        heladera.verificarTemp(this.temperatura);
     }
 
-    private void verificarTemp() {
-        double tempMin = heladera.getMinTemp();
-        double tempMax = heladera.getMaxTemp();
-        if (this.temperatura < tempMin || this.temperatura > tempMax) {
-            heladera.setEstado(false);
-        }
-    }
 }

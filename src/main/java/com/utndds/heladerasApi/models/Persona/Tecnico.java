@@ -23,16 +23,4 @@ public class Tecnico {
         this.areaCobertura = areaCobertura;
     }
 
-    public void alta() {
-        System.out.println("Se realizo alta del tecnico: " + this.nombre);
-    }
-
-    public void baja() {
-        System.out.println("Se realizo alta del tecnico: " + this.nombre);
-    }
-
-    public void modificar() {
-        System.out.println("Se realizo la modificacion del tecnico: " + this.nombre);
-    }
-
 }

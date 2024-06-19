@@ -36,37 +36,6 @@ public class Heladera {
         this.viandas = viandas;
     }
 
-    public void alta(Connection con) {
-        try {
-            String query = "INSERT INTO heladeras (Nombre, Longitud, Latitud, Direccion, F_funcionamiento, Cant_viandas) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, nombre);
-            pstmt.setDouble(2, longitud);
-            pstmt.setDouble(3, latitud);
-            pstmt.setString(4, direccion);
-            pstmt.setDate(5, java.sql.Date.valueOf(fechaInicioFuncionamiento));
-            pstmt.setString(6, String.valueOf(cantViandasDentro()));
-
-            int filasInsertadas = pstmt.executeUpdate();
-
-            if (filasInsertadas > 0) {
-                System.out.println("Heladera dada de alta exitosamente");
-            } else {
-                System.out.println("No se pudo dar de alta la heladera");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al insertar Heladera: " + e.getMessage());
-        }
-    }
-
-    public void baja() {
-        System.out.println("Se dio de baja la heladera: " + this.nombre);
-    }
-
-    public void modificar() {
-        System.out.println("Se modifico la heladera: " + this.nombre);
-    }
-
     public double getMinTemp() {
         return minTemp;
     }
@@ -101,12 +70,12 @@ public class Heladera {
         viandas.remove(viandas.size() - 1);
     }
 
-    public int cantViandasDentro() {
-        return viandas.size();
-    }
-
     private boolean hayFraude() {
         return true;
+    }
+
+    public int cantViandasDentro() {
+        return viandas.size();
     }
 
     public int cantMesesActiva() {
@@ -118,6 +87,12 @@ public class Heladera {
 
     public void agregarObservador(Observador observador) {
         observadores.add(observador);
+    }
+
+    public void verificarTemp(Double temperatura) {
+        if (temperatura < this.minTemp || temperatura > this.maxTemp) {
+            this.estado = false;
+        }
     }
 
     public static void main(String[] args) {

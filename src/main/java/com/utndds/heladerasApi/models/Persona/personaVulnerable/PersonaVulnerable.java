@@ -45,10 +45,6 @@ public class PersonaVulnerable {
         programarReinicioDeUsos();
     }
 
-    public void alta() {
-        System.out.println("Se realizó el alta de la persona vulnerable: " + this.nombre);
-    }
-
     public void usarHeladera(Heladera heladera) {
         if (heladera.cantViandasDentro() > 0) {
             if (this.puedeUsarTarjeta()) {

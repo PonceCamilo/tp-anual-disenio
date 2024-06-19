@@ -20,8 +20,7 @@ public class Colaborador {
         this.colaboraciones = colaboraciones;
     }
 
-    public void realizarColaboracion(Colaboracion colaboracion) {
-        colaboracion.realizar();
+    public void agregarColaboracion(Colaboracion colaboracion) {
         colaboraciones.add(colaboracion);
     }
 
