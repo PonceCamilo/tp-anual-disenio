@@ -1,8 +1,5 @@
 package com.utndds.heladerasApi.models.Heladera;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
