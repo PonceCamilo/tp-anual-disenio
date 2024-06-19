@@ -7,7 +7,7 @@ import java.util.List;
 public class ControllerCargaCSV {
     public String cargarArchivoCSV(String filePath) {
         CargaCSV cargaCSV = new CargaCSV();
-        List<PersonaHumana> personas = cargaCSV.cargarArchivoCSV(filePath);
+        List<PersonaHumana> personas = cargaCSV.cargarCSV(filePath);
         for (PersonaHumana persona : personas) {
             System.out.println("Colaborador: " + persona.getNombre() + " " + persona.getApellido());
         }

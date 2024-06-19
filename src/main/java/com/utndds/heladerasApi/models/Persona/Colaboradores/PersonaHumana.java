@@ -25,18 +25,6 @@ public class PersonaHumana extends Colaborador {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
-    public void alta() {
-        System.out.println("se dio de alta la persona humana");
-    }
-
-    public void baja() {
-        System.out.println("se dio de baja la persona humana");
-    }
-
-    public void modificar() {
-        System.out.println("se modifico la persona humana");
-    }
-
     // Getters y Setters
     public String getNombre() {
         return nombre;

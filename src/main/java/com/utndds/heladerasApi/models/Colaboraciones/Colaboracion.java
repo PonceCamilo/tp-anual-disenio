@@ -13,7 +13,9 @@ public abstract class Colaboracion {
         this.colaborador = colaborador;
     }
 
-    public abstract void realizar();
+    public void realizar() {
+        colaborador.agregarColaboracion(this);
+    }
 
     protected void notificarColaborador() {
         colaborador.notificar();
