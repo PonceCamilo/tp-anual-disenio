@@ -4,29 +4,32 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Vianda;
-import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DonacionVianda extends Colaboracion {
-    Vianda viandaDonada;
+    List<Vianda> viandasDonadas = new ArrayList<>();
     Heladera heladera;
     boolean estado;
-    double coeficiente;
 
-    public DonacionVianda(LocalDate fecha, Colaborador colaborador, Vianda viandaDonada, Heladera heladera,
+    public DonacionVianda(
+            LocalDate fecha, Colaborador colaborador,
+            List<Vianda> viandasDonadas, Heladera heladera,
             boolean estado) {
         super(fecha, colaborador);
-        this.viandaDonada = viandaDonada;
+        this.viandasDonadas = viandasDonadas;
         this.heladera = heladera;
         this.estado = estado;
     }
 
     @Override
-    public void realizar() {
+    public void procesar() {
         System.out.println("SE REALIZO LA DONACION DE VIANDA");
     }
 

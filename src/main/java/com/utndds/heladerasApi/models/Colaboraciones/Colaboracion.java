@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import java.time.LocalDate;
 
-import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 public abstract class Colaboracion {
     LocalDate fecha;
@@ -11,14 +11,33 @@ public abstract class Colaboracion {
     public Colaboracion(LocalDate fecha, Colaborador colaborador) {
         this.fecha = fecha;
         this.colaborador = colaborador;
-    }
 
-    public void realizar() {
+        this.procesar();
         colaborador.agregarColaboracion(this);
     }
 
-    protected void notificarColaborador() {
-        colaborador.notificar();
+    public void setColaborador(Colaborador colaborador) {
+        this.colaborador = colaborador;
+    }
+
+    public Colaborador getColaborador() {
+        return colaborador;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void procesar() {
+        colaborador.agregarColaboracion(this);
+    }
+
+    protected void notificarColaborador(String mensaje) {
+        colaborador.notificar(mensaje);
     };
 
     public double puntosGanados() {

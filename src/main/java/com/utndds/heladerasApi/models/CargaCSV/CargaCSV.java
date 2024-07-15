@@ -3,30 +3,35 @@ package com.utndds.heladerasApi.models.CargaCSV;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
-import com.utndds.heladerasApi.models.Persona.Colaboradores.PersonaHumana;
+import com.utndds.heladerasApi.models.Persona.PersonaHumana;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
+
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CargaCSV {
-    private PersonaHumanaFactory phfactory = new PersonaHumanaFactory();
-    private ColaboracionFactory cfactory = new ColaboracionFactory();
+    private PersonaHumanaFactory phFactory = new PersonaHumanaFactory();
+    private ColaboradorFactory cFactory = new ColaboradorFactory();
+    private ColaboracionFactory colaboFactory = new ColaboracionFactory();
 
-    public List<PersonaHumana> cargarCSV(String filePath) {
-        List<PersonaHumana> personas = new ArrayList<>();
+    public List<Colaboracion> cargarCSV(String filePath) {
+        List<Colaboracion> colaboracionesCargadas = new ArrayList<>();
+
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             List<String[]> registros = reader.readAll();
             for (String[] registro : registros) {
-                PersonaHumana persona = phfactory.crearPersonaHumana(registro);
-                List<Colaboracion> colaboraciones = cfactory.crearColaboracion(registro, persona);
-                persona.setColaboraciones(colaboraciones);
-                personas.add(persona);
+                PersonaHumana persona = phFactory.crearPersonaHumana(registro);
+                Colaborador colaborador = cFactory.crearColaborador(registro, persona);
+                List<Colaboracion> colaboracion = colaboFactory.crearColaboracion(registro, colaborador);
+                colaboracionesCargadas.addAll(colaboracion);
             }
         } catch (IOException | CsvException e) {
             e.printStackTrace();
         }
-        return personas;
+
+        return colaboracionesCargadas;
     }
 
     public static void main(String[] args) {

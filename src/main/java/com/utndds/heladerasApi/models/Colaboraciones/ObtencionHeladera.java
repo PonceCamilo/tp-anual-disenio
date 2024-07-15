@@ -1,7 +1,7 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 import java.time.LocalDate;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,7 +20,7 @@ public class ObtencionHeladera extends Colaboracion {
     }
 
     @Override
-    public void realizar() {
+    public void procesar() {
         System.out.println("SE REALIZADO LA OBTENCION DE LA HELADERA");
     }
 
