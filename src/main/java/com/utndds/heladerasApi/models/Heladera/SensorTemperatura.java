@@ -19,7 +19,8 @@ public class SensorTemperatura {
     private void calcularTemp() {
         Random random = new Random();
         this.temperatura = -10 + (20 + 10) * random.nextDouble();
-        heladera.verificarTemp(this.temperatura);
+        heladera.setUltimaTempRegistrada(this.temperatura);
+        heladera.actualizar();
     }
 
 }

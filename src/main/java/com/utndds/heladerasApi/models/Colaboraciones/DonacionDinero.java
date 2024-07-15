@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 public class DonacionDinero extends Colaboracion {
     double monto;
@@ -20,7 +20,7 @@ public class DonacionDinero extends Colaboracion {
     }
 
     @Override
-    public void realizar() {
+    public void procesar() {
         System.out.println("SE REALIZO LA DONACION DE DINERO");
     }
 

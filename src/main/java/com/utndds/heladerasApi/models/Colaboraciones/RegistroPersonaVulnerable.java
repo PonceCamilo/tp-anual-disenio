@@ -7,8 +7,8 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
-import com.utndds.heladerasApi.models.Persona.personaVulnerable.PersonaVulnerable;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 
 public class RegistroPersonaVulnerable extends Colaboracion {
     PersonaVulnerable personaVuln;
@@ -19,7 +19,7 @@ public class RegistroPersonaVulnerable extends Colaboracion {
     }
 
     @Override
-    public void realizar() {
+    public void procesar() {
         System.out.println("SE REALIZO EL REGISTRO DE PERSONA VULNERABLE");
     }
 

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Heladera.UbicacionGoogleMaps;
+import com.utndds.heladerasApi.models.Heladera.Ubicacion;
 import com.utndds.heladerasApi.services.GoogleMapsService;
 
 @CrossOrigin(origins = "*")
@@ -19,7 +19,7 @@ public class GoogleMapsController {
     }
 
     @GetMapping("/ubicaciones-googlemaps")
-    public List<UbicacionGoogleMaps> obtenerUbicacionesGoogleMaps() {
+    public List<Ubicacion> obtenerUbicacionesGoogleMaps() {
         return googleMapsService.obtenerUbicaciones();
     }
 }

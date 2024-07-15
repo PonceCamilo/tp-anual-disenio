@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Persona.Colaboradores.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class DistribucionViandas extends Colaboracion {
     }
 
     @Override
-    public void realizar() {
+    public void procesar() {
         System.out.println("SE REALIZO LA DISTRIBUCION VIANDAS");
     }
 

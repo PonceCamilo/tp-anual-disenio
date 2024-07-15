@@ -11,6 +11,6 @@ public class SensorMovimiento implements Observador {
 
     @Override
     public void actualizar() {
-        System.out.println("Fraude detectado en la heladera");
+        System.out.println("Fraude detectado en la heladera" + heladera.getNombre());
     }
 }
