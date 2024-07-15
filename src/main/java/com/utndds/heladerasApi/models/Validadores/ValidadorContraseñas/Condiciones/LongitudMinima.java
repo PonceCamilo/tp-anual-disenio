@@ -6,9 +6,9 @@ public class LongitudMinima extends Condicion {
     @Override
     public boolean verificarCondicion(String contraseña) {
         if (contraseña.length() < LONGITUD_MINIMA_CONTRASEÑA) {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
