@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Tecnico;
 
 public class Heladera implements Observador {
     String nombre;
@@ -138,6 +139,10 @@ public class Heladera implements Observador {
     }
 
     public void notificarDesperfecto() {
+    }
+
+    public Tecnico tecnicoMasCercano() {
+        return null;
     }
 
     public static void main(String[] args) {
