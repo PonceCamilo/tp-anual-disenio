@@ -35,7 +35,7 @@ public class ValidadorContraseña {
     }
 
     public static void main(String[] args) {
-        String contraseña = "contraseña123";
+        String contraseña = "Segura123!";
         ValidadorContraseña validador = new ValidadorContraseña();
         validador.validarContraseña(contraseña);
     }

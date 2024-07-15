@@ -10,13 +10,13 @@ public class ValidadorContraseñaTest {
     @Test
     public void testContraseñaSegura() {
         String contraseña = "Segura123!";
-        assertFalse(new ValidadorContraseña().validarContraseña(contraseña));
+        assertTrue(new ValidadorContraseña().validarContraseña(contraseña));
     }
 
     @Test
     public void testContraseñaLongitudInsuficiente() {
         String contraseña = "hola1!";
-        assertTrue(new ValidadorContraseña().validarContraseña(contraseña));
+        assertFalse(new ValidadorContraseña().validarContraseña(contraseña));
     }
 
     @Test
