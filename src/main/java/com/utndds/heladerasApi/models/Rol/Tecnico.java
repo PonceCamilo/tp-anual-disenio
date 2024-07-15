@@ -1,10 +1,16 @@
 package com.utndds.heladerasApi.models.Rol;
 
-public class Tecnico {
+import java.util.List;
+
+import com.utndds.heladerasApi.models.Persona.Persona;
+import com.utndds.heladerasApi.models.Rol.Contacto.Contacto;
+
+public class Tecnico extends Rol {
     String cuil;
     String areaCobertura;
 
-    public Tecnico(String cuil, String areaCobertura) {
+    public Tecnico(Persona persona, List<Contacto> mediosContacto, String cuil, String areaCobertura) {
+        super(persona, mediosContacto);
         this.cuil = cuil;
         this.areaCobertura = areaCobertura;
     }
