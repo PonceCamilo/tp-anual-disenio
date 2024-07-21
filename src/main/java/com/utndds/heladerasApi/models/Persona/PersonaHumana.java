@@ -3,20 +3,20 @@ package com.utndds.heladerasApi.models.Persona;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class PersonaHumana extends Persona {
     private String nombre;
     private String apellido;
-    private Date fechaDeNacimiento;
+    private LocalDate fechaDeNacimiento;
     private List<Colaboracion> posiblesColaboraciones = new ArrayList<>();
 
     public PersonaHumana() {
         // Constructor
     }
 
-    public PersonaHumana(String nombre, String apellido, Date fechaDeNacimiento) {
+    public PersonaHumana(String nombre, String apellido, LocalDate fechaDeNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaDeNacimiento = fechaDeNacimiento;
@@ -39,11 +39,11 @@ public class PersonaHumana extends Persona {
         this.apellido = apellido;
     }
 
-    public Date getFechaDeNacimiento() {
+    public LocalDate getFechaDeNacimiento() {
         return fechaDeNacimiento;
     }
 
-    public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
         this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
