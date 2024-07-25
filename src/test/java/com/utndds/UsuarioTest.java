@@ -1,52 +1,52 @@
 package com.utndds;
 
+import com.utndds.heladerasApi.controllers.UsuarioController;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
-import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Sistema.Usuario;
-import com.utndds.heladerasApi.services.UsuarioService.PasswordHashService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UsuarioTest {
 
-    private PasswordHashService passwordHashService;
-    private PersonaHumana personaHumana;
-    private Colaborador colaborador;
-    private Usuario usuario;
+        private PersonaHumana personaHumana;
+        private Colaborador colaborador;
+        private UsuarioController usuarioController;
 
-    @BeforeEach
-    public void setUp() {
-        passwordHashService = new PasswordHashService();
-        List<Contacto> contactos = new ArrayList<>();
-        personaHumana = new PersonaHumana(null, contactos, "Lucas", "Fernandez", LocalDate.of(1990, 5, 15), null);
-        colaborador = new Colaborador(personaHumana, null);
-        usuario = new Usuario("lucas.f@example.com", "ContraseñaSegura123!", colaborador, passwordHashService);
-    }
+        @BeforeEach
+        public void setUp() {
+                // Inicialización de los objetos necesarios
+                personaHumana = new PersonaHumana(null, null, "Lucas", "Fernandez", LocalDate.of(1990, 5, 15), null);
+                colaborador = new Colaborador(personaHumana, null);
+                usuarioController = new UsuarioController();
 
-    @Test
-    public void testEmail() {
-        // Verificar el email
-        assertTrue(usuario.getEmail().equals("lucas.f@example.com"));
-    }
+                // Registrar usuario
+                usuarioController.registrarUsuario("lucas.f@example.com", "ContraseñaSegura123!", colaborador);
+        }
 
-    @Test
-    public void testPasswordCorrecta() {
-        // Verificar la contraseña (usando un password correcto)
-        assertTrue(usuario.verificarPassword("ContraseñaSegura123!"));
-    }
+        @Test
+        public void testRegistrarUsuario() {
+                // Verificar el registro de usuario
+                String resultado = usuarioController.registrarUsuario("lucas.f@example.com", "ContraseñaSegura123!",
+                                colaborador);
+                assertEquals("Usuario registrado con éxito.", resultado);
+        }
 
-    @Test
-    public void testPasswordIncorrecta() {
-        // Verificar la contraseña (usando un password incorrecto)
-        assertFalse(usuario.verificarPassword("ContraseñaIncorrecta!"));
-    }
+        @Test
+        public void testRegistrarUsuarioContraseñaInsegura() {
+                // Verificar el registro de usuario
+                String resultado = usuarioController.registrarUsuario("lucas.f@example.com", "12345!",
+                                colaborador);
+                assertEquals("La contraseña no cumple con los requisitos de seguridad.", resultado);
+        }
+
+        @Test
+        public void testRegistrarUsuarioMailVacio() {
+                // Verificar el registro de usuario
+                String resultado = usuarioController.registrarUsuario(null, "ContraseñaSegura123!", colaborador);
+                assertEquals("El email no puede estar vacío.", resultado);
+        }
 }
