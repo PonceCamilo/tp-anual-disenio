@@ -33,7 +33,7 @@ public class UsuarioService {
         // Crear el usuario
         new Usuario(email, password, rol);
 
-        // Una vez tengamos la BD creada y se haría un insert del new Usuario
+        // Una vez tengamos la BD creada aca se haría un insert del new Usuario
 
         return "Usuario registrado con éxito.";
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioService usuarioService = new UsuarioService();
 
     @PostMapping("/registro")
     public String registrarUsuario(@RequestParam String email, @RequestParam String password, @RequestParam Rol rol) {
