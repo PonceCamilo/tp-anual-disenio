@@ -1,8 +1,7 @@
 package com.utndds.heladerasApi.services;
 
-import com.utndds.heladerasApi.models.Usuario;
-import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Rol.Rol;
+import com.utndds.heladerasApi.models.Sistema.Usuario;
 import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.ValidadorContraseña;
 
 public class UsuarioService {
@@ -16,7 +15,7 @@ public class UsuarioService {
     }
 
     // Método para registrar un nuevo usuario
-    public String registrarUsuario(String email, String password, Persona persona, Rol rol) {
+    public String registrarUsuario(String email, String password, Rol rol) {
 
         if (email == null || email.isEmpty()) {
             return "El email no puede estar vacío.";
@@ -28,10 +27,9 @@ public class UsuarioService {
         }
 
         // Crear el usuario
-        new Usuario(email, password, persona, rol, passwordHashService);
+        new Usuario(email, password, rol, passwordHashService);
 
-        // No se usa , pero se usaria una vez tengamos la BD creada y se haría
-        // un insert
+        // Una vez tengamos la BD creada y se haría un insert del new Usuario
 
         return "Usuario registrado con éxito.";
     }

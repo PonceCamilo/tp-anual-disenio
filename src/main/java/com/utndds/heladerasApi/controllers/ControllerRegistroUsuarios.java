@@ -1,6 +1,5 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Rol.Rol;
 import com.utndds.heladerasApi.services.UsuarioService;
 
@@ -13,8 +12,8 @@ public class ControllerRegistroUsuarios {
     }
 
     // Método para registrar un nuevo usuario
-    public String registrarUsuario(String email, String password, Persona persona, Rol rol) {
-        return usuarioService.registrarUsuario(email, password, persona, rol);
+    public String registrarUsuario(String email, String password, Rol rol) {
+        return usuarioService.registrarUsuario(email, password, rol);
     }
 
 }

@@ -1,22 +1,20 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Sistema;
 
-import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Rol.Rol;
 import com.utndds.heladerasApi.services.PasswordHashService;
+
 public class Usuario {
     private String email;
     private String password; // Este atributo debería ser manejado con cuidado
-    private Persona persona;
     private Rol rol;
 
     private PasswordHashService passwordHashService;
 
     // Constructor
-    public Usuario(String email, String password, Persona persona, Rol rol, PasswordHashService passwordHashService) {
+    public Usuario(String email, String password, Rol rol, PasswordHashService passwordHashService) {
         this.email = email;
         this.passwordHashService = passwordHashService;
         this.password = passwordHashService.hashPassword(password); // Delegar el hash
-        this.persona = persona;
         this.rol = rol;
     }
 
@@ -27,15 +25,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    // No hay getter para la contraseña
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
-    public Persona getPersona() {
-        return persona;
     }
 
     public void setRol(Rol rol) {
