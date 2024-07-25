@@ -6,14 +6,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.ValidadorContraseña;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class PasswordController {
-    @GetMapping("/validar-contraseña")
+    @Autowired
+    private ValidadorContraseña validadorContraseña = new ValidadorContraseña();
 
+    @GetMapping("/validar-contraseña")
     public void validarContraseña(@RequestParam String contraseña) {
-        new ValidadorContraseña().validarContraseña(contraseña);
+        this.validadorContraseña.validarContraseña(contraseña);
     }
 }

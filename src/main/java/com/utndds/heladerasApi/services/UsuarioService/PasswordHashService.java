@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.services;
+package com.utndds.heladerasApi.services.UsuarioService;
 
 import org.mindrot.jbcrypt.BCrypt;
 

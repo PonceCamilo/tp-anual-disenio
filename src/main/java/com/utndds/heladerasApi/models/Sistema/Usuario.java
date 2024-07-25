@@ -1,20 +1,19 @@
 package com.utndds.heladerasApi.models.Sistema;
 
 import com.utndds.heladerasApi.models.Rol.Rol;
-import com.utndds.heladerasApi.services.PasswordHashService;
+import com.utndds.heladerasApi.services.UsuarioService.PasswordHashService;
 
 public class Usuario {
     private String email;
     private String password; // Este atributo debería ser manejado con cuidado
     private Rol rol;
 
-    private PasswordHashService passwordHashService;
+    PasswordHashService passwordHashService;
 
     // Constructor
-    public Usuario(String email, String password, Rol rol, PasswordHashService passwordHashService) {
+    public Usuario(String email, String password, Rol rol) {
         this.email = email;
-        this.passwordHashService = passwordHashService;
-        this.password = passwordHashService.hashPassword(password); // Delegar el hash
+        this.password = password; // Delegar el hash
         this.rol = rol;
     }
 
@@ -35,8 +34,12 @@ public class Usuario {
         return rol;
     }
 
-    // Método para comparar contraseñas (hasheadas) se usa para el logeo del usuario
-    public boolean verificarPassword(String password) {
-        return passwordHashService.verificarPassword(password, this.password);
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
 }
