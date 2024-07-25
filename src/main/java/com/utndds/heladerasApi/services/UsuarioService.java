@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.services;
 
 import com.utndds.heladerasApi.models.Rol.Rol;
 import com.utndds.heladerasApi.models.Sistema.Usuario;
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.ValidadorContraseña;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.ValidadorContraseña;
 
 public class UsuarioService {
 

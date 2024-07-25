@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.Condiciones;
+package com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.Condiciones;
+package com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones;
 
 public class LongitudMinima extends Condicion {
     int LONGITUD_MINIMA_CONTRASEÑA = 8;
