@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Rol.Contacto;
+package com.utndds.heladerasApi.models.Persona.Contacto;
 
 public class Email extends Contacto {
     String email;

@@ -2,17 +2,20 @@ package com.utndds.heladerasApi.models.Rol;
 
 import java.util.List;
 
+import com.utndds.heladerasApi.models.Heladera.Visita;
 import com.utndds.heladerasApi.models.Persona.Persona;
-import com.utndds.heladerasApi.models.Rol.Contacto.Contacto;
 
 public class Tecnico extends Rol {
     String cuil;
     String areaCobertura;
+    List<Visita> visitas;
 
-    public Tecnico(Persona persona, List<Contacto> mediosContacto, String cuil, String areaCobertura) {
-        super(persona, mediosContacto);
+    public Tecnico(Persona persona, String cuil, String areaCobertura,
+            List<Visita> visitas) {
+        super(persona);
         this.cuil = cuil;
         this.areaCobertura = areaCobertura;
+        this.visitas = visitas;
     }
 
     public void setAreaCobertura(String areaCobertura) {
@@ -21,6 +24,14 @@ public class Tecnico extends Rol {
 
     public String getAreaCobertura() {
         return areaCobertura;
+    }
+
+    public void setVisitas(List<Visita> visitas) {
+        this.visitas = visitas;
+    }
+
+    public List<Visita> getVisitas() {
+        return visitas;
     }
 
     public void setCuil(String cuil) {

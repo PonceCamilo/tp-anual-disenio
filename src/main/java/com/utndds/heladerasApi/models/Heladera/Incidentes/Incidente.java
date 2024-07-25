@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Incidentes;
+package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
 import java.sql.Time;
 import java.time.LocalDate;

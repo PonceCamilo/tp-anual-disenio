@@ -5,16 +5,12 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.Persona;
-import com.utndds.heladerasApi.models.Rol.Contacto.Contacto;
 
 public class Colaborador extends Rol {
-    String direccion;
     List<Colaboracion> colaboraciones = new ArrayList<>();
 
-    public Colaborador(Persona persona, List<Contacto> mediosContacto, String direccion,
-            List<Colaboracion> colaboraciones) {
-        super(persona, mediosContacto);
-        this.direccion = direccion;
+    public Colaborador(Persona persona, List<Colaboracion> colaboraciones) {
+        super(persona);
         this.colaboraciones = colaboraciones;
     }
 
