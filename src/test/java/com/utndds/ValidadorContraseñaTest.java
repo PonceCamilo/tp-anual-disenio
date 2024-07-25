@@ -2,7 +2,7 @@ package com.utndds;
 
 import org.junit.Test;
 
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.ValidadorContraseña;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.ValidadorContraseña;
 
 import static org.junit.Assert.*;
 

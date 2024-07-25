@@ -1,12 +1,12 @@
-package com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas;
+package com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.Condiciones.CaracteresEspeciales;
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.Condiciones.Condicion;
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.Condiciones.LongitudMinima;
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.Condiciones.PeoresContraseñas;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones.CaracteresEspeciales;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones.Condicion;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones.LongitudMinima;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones.PeoresContraseñas;
 
 public class ValidadorContraseña {
     private List<Condicion> condiciones = new ArrayList<>();

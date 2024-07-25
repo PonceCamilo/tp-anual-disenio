@@ -1,7 +1,7 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.models.CargaCSV.CargaCSV;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
+import com.utndds.heladerasApi.services.CargaCSV.CargaCSV;
 
 import java.util.List;
 

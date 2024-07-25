@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.controllers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utndds.heladerasApi.models.Validadores.ValidadorContraseñas.ValidadorContraseña;
+import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.ValidadorContraseña;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.CrossOrigin;
