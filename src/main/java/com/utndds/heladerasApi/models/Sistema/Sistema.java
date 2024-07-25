@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models;
+package com.utndds.heladerasApi.models.Sistema;
 
 import java.util.List;
 import java.util.ArrayList;
