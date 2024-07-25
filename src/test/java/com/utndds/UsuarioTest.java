@@ -4,7 +4,8 @@ import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Sistema.Usuario;
-import com.utndds.heladerasApi.services.PasswordHashService;
+import com.utndds.heladerasApi.services.UsuarioService.PasswordHashService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

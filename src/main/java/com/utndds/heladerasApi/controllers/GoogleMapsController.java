@@ -7,16 +7,14 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Ubicacion;
 import com.utndds.heladerasApi.services.GoogleMapsService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class GoogleMapsController {
 
-    private final GoogleMapsService googleMapsService;
-
-    public GoogleMapsController(GoogleMapsService googleMapsService) {
-        this.googleMapsService = googleMapsService;
-    }
+    @Autowired
+    private GoogleMapsService googleMapsService = new GoogleMapsService();
 
     @GetMapping("/ubicaciones-googlemaps")
     public List<Ubicacion> obtenerUbicacionesGoogleMaps() {
