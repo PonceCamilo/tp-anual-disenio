@@ -2,15 +2,14 @@ package com.utndds;
 
 import com.utndds.heladerasApi.models.Usuario;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
+import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Rol.Contacto.Contacto;
 import com.utndds.heladerasApi.services.PasswordHashService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,10 +25,11 @@ public class UsuarioTest {
     @BeforeEach
     public void setUp() {
         passwordHashService = new PasswordHashService();
-        personaHumana = new PersonaHumana("Lucas", "Fernandez", LocalDate.of(1990, 5, 15));
-        List<Contacto> contactos = new ArrayList<>(); // Puedes agregar instancias de Contacto si las tienes
-        colaborador = new Colaborador(personaHumana, contactos, "Calle Falsa 123", new ArrayList<>());
-        usuario = new Usuario("lucas.f@example.com", "ContraseñaSegura123!", personaHumana, colaborador, passwordHashService);
+        List<Contacto> contactos = new ArrayList<>();
+        personaHumana = new PersonaHumana(null, contactos, "Lucas", "Fernandez", LocalDate.of(1990, 5, 15), null);
+        colaborador = new Colaborador(personaHumana, null);
+        usuario = new Usuario("lucas.f@example.com", "ContraseñaSegura123!", personaHumana, colaborador,
+                passwordHashService);
     }
 
     @Test
