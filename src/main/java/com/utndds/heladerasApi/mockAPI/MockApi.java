@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.controllers;
+package com.utndds.heladerasApi.mockAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

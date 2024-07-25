@@ -28,8 +28,7 @@ public class UsuarioTest {
         List<Contacto> contactos = new ArrayList<>();
         personaHumana = new PersonaHumana(null, contactos, "Lucas", "Fernandez", LocalDate.of(1990, 5, 15), null);
         colaborador = new Colaborador(personaHumana, null);
-        usuario = new Usuario("lucas.f@example.com", "ContraseñaSegura123!", personaHumana, colaborador,
-                passwordHashService);
+        usuario = new Usuario("lucas.f@example.com", "ContraseñaSegura123!", colaborador, passwordHashService);
     }
 
     @Test
