@@ -21,7 +21,7 @@ public class FallaTecnica extends Incidente {
     };
 
     private void notificarTecnicoCercano() {
-        Tecnico tecnico = this.heladera.tecnicoMasCercano();
+        Tecnico tecnico = new Tecnico(null, null, null, null);
         tecnico.notificar("Necesitamos tu servicio en la heladera " + this.heladera.getNombre());
 
     }

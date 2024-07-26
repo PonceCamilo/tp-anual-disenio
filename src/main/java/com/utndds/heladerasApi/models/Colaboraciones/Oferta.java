@@ -25,4 +25,20 @@ public class Oferta extends Colaboracion {
         System.out.println("SE REALIZO LA OFERTA");
     }
 
+    public void canjear(Colaborador colaborador) {
+        if ((this.verificarPuntosRequeridos(colaborador)) == true) {
+            System.out.println(
+                    "el colaborador " + colaborador.getPersona().getNombre() + "canjeo la oferta " + this.nombre);
+
+        } else {
+            System.out.println("el colaborador " + colaborador.getPersona().getNombre()
+                    + "no tiene puntos necesarios para canjear la oferta " + this.nombre);
+        }
+
+    }
+
+    private boolean verificarPuntosRequeridos(Colaborador colaborador) {
+        return colaborador.puntos() >= this.puntosGanados();
+    }
+
 }
