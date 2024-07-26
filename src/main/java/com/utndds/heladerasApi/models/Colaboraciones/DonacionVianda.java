@@ -16,7 +16,6 @@ import java.util.List;
 public class DonacionVianda extends Colaboracion {
     List<Vianda> viandasDonadas = new ArrayList<>();
     Heladera heladera;
-    boolean estado;
 
     public DonacionVianda(
             LocalDate fecha, Colaborador colaborador,
@@ -25,7 +24,6 @@ public class DonacionVianda extends Colaboracion {
         super(fecha, colaborador);
         this.viandasDonadas = viandasDonadas;
         this.heladera = heladera;
-        this.estado = estado;
     }
 
     @Override

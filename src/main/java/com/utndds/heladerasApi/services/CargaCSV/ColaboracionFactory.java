@@ -29,7 +29,7 @@ public class ColaboracionFactory {
                 List<Vianda> viandasDonadas = new ArrayList<>();
 
                 for (int i = 0; i < cantidadViandas; i++) {
-                    Vianda viandaDonada = new Vianda(null, null, 0, 0);
+                    Vianda viandaDonada = new Vianda(null, null, 0, 0, true);
                     viandasDonadas.add(viandaDonada);
                 }
                 DonacionVianda donacionVianda = new DonacionVianda(LocalDate.now(), colaborador, viandasDonadas,

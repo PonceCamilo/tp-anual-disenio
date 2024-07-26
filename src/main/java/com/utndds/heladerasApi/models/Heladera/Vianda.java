@@ -7,12 +7,14 @@ public class Vianda {
     LocalDate fechaCaducidad;
     double calorias;
     double peso;
+    boolean estado;
 
-    public Vianda(String comida, LocalDate fechaCaducidad, double calorias, double peso) {
+    public Vianda(String comida, LocalDate fechaCaducidad, double calorias, double peso, boolean estado) {
         this.comida = comida;
         this.fechaCaducidad = fechaCaducidad;
         this.calorias = calorias;
         this.peso = peso;
+        this.estado = estado;
     }
 
 }
