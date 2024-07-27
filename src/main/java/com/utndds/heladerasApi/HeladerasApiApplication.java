@@ -8,7 +8,6 @@ public class HeladerasApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HeladerasApiApplication.class, args);
-
 	}
 
 }

@@ -5,12 +5,14 @@ import com.opencsv.exceptions.CsvException;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CargaCSV {
     private PersonaHumanaFactory phFactory = new PersonaHumanaFactory();
     private ColaboradorFactory cFactory = new ColaboradorFactory();
