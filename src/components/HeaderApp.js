@@ -1,7 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import './css/CustomContainer.css';
+import './css/CustomContainer.css'; // Si ya no necesitas estilos personalizados, este import puede ser opcional
 
 function HeaderApp({ setHeaderHeight }) {
   const headerRef = useRef(null);
@@ -13,21 +11,14 @@ function HeaderApp({ setHeaderHeight }) {
   }, [setHeaderHeight]);
   
   return (
-    <div ref={headerRef} className='text-center' style={{ marginTop: '65px' }}>
-      <h1 className="font-monospace">Heladeras Comunitarias</h1>
-      <h3>
-        Sistema para la mejora del acceso alimentario<br />
-        en Contextos de Vulnerabilidad Socioeconómica
-      </h3>
-      <Container fluid className='d-flex bg-primary justify-content-around'>
-        <Button className='fs-4 shadow-lg p-2' variant="primary" style={{ minWidth: '200px' }}>
-          Se voluntario
-        </Button>
-        <Button className='fs-4 shadow-lg p-2' variant="primary" style={{ minWidth: '200px' }}>
-          Doná
-        </Button>
-      </Container>
+    <div ref={headerRef} className='header-container d-flex flex-column justify-content-center align-items-center vh-100'>
+      <h1 className='font-monospace mb-5'>Heladeras Comunitarias</h1>
+      <div className='d-flex flex-column gap-3'>
+        <button className='btn btn-outline-dark btn-lg'>Doná</button>
+        <button className='btn btn-outline-dark btn-lg'>Sé Voluntario</button>
+      </div>
     </div>
+    
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 function SearchMapApp({ onSearch }) {
   const [query, setQuery] = useState('');
@@ -13,17 +14,19 @@ function SearchMapApp({ onSearch }) {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', position: 'fixed', top: '100px', left: '200px', zIndex: 1000 }}>
-      <input
-        type="text"
-        placeholder="Buscar una Heladera"
-        value={query}
-        onChange={handleInputChange}
-      />
-      <Button className='shadow-lg ms-3 ' variant="primary" onClick={handleSearch}>
-        Buscar
-      </Button>
-    </div>
+    <Container fluid className="d-flex justify-content-center fixed-top" style={{ top: '100px' }}>
+      <div className="d-flex align-items-center">
+        <input
+          type="text"
+          placeholder="Buscar una Heladera"
+          value={query}
+          onChange={handleInputChange}
+          className="form-control me-2"
+        />
+        <Button variant="dark" onClick={handleSearch}>Buscar</Button>
+        
+      </div>
+    </Container>
   );
 }
 

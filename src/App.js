@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import NavApp from './components/NavApp';
 import HeaderApp from './components/HeaderApp';
-import BodyApp from './components/BodyApp';
 import MapApp from './components/MapApp';
 
 function App() {
@@ -27,7 +26,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         </>
       )}
       <Routes>
-        <Route path="/" element={<BodyApp headerHeight={headerHeight} />} />
+        <Route path="/" element={<></>} />
         <Route path="/map" element={<MapApp />} />
       </Routes>
     </>

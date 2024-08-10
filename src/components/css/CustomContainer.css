@@ -1,5 +1,5 @@
 .custom-container {
-    background-image: url('../../assets/imgs/bgbody.jpg');
+    background-image: linear-gradient(189deg, #82c91e 5%, #38d9a9 95%);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -7,6 +7,9 @@
 .full-height-row {
     min-height: calc()
   }
-  .header-container {
-    margin-top: 65px;
-  }
+.header-container {
+    background-image: linear-gradient(180deg, #79bd67 5%, #a6ee97 95%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
