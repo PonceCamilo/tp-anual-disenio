@@ -37,11 +37,7 @@ function LegalForm({ contactMethod, setContactMethod, contactInfo, setContactInf
       <Form.Group className='mb-3' controlId="formBasicAddress">
         <Form.Label>Dirección (opcional)</Form.Label>
         <Form.Control type="text" placeholder="Ingrese su dirección"/>
-      </Form.Group>
-      <Form.Group className='mb-3'controlId="formBasicPassword">
-            <Form.Label>Ingrese una Contraseña</Form.Label>
-            <Form.Control type="password" placeholder=""/>
-          </Form.Group>  
+      </Form.Group> 
     </>
   );
 }
