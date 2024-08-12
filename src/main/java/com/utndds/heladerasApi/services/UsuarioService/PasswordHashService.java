@@ -1,7 +1,9 @@
 package com.utndds.heladerasApi.services.UsuarioService;
 
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PasswordHashService {
 
     // Método para hash de contraseñas

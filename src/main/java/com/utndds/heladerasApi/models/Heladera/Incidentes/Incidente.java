@@ -23,4 +23,7 @@ public abstract class Incidente {
         this.heladera.setFuncionando(false);
     }
 
+    public Heladera getHeladera() {
+        return heladera;
+    }
 }

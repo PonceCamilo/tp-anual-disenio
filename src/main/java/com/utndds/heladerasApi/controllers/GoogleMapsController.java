@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class GoogleMapsController {
 
     @Autowired
-    private GoogleMapsService googleMapsService = new GoogleMapsService();
+    private GoogleMapsService googleMapsService;
 
     @GetMapping("/ubicaciones-googlemaps")
     public List<Punto> obtenerUbicacionesGoogleMaps() {

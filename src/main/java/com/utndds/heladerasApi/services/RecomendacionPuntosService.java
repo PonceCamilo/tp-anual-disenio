@@ -13,9 +13,26 @@ import java.util.List;
 
 @Service
 public class RecomendacionPuntosService {
+    private static volatile RecomendacionPuntosService instancia;
 
     @Autowired
     private RestTemplate restTemplate;
+
+    // Constructor privado para evitar la instanciación directa
+    private RecomendacionPuntosService() {
+    }
+
+    // Método público para obtener la instancia única
+    public static RecomendacionPuntosService getInstance() {
+        if (instancia == null) {
+            synchronized (RecomendacionPuntosService.class) {
+                if (instancia == null) {
+                    instancia = new RecomendacionPuntosService();
+                }
+            }
+        }
+        return instancia;
+    }
 
     public List<Punto> getRecomendaciones(double latitud, double longitud, double radio) {
         String url = "http://localhost:8080/api/puntos?latitud=1&longitud=1&radio=1";

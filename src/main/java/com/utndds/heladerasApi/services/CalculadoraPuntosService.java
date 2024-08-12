@@ -7,10 +7,13 @@ import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 import com.utndds.heladerasApi.models.Colaboraciones.ObtencionHeladera;
 import com.utndds.heladerasApi.models.Colaboraciones.RegistroPersonaVulnerable;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CalculadoraPuntosService {
+
     public double calcularPuntos(Colaborador colaborador) {
         List<Colaboracion> colaboraciones = colaborador.getColaboraciones();
         double puntosTotales = 0;

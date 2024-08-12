@@ -3,18 +3,21 @@ package com.utndds.heladerasApi.models.Sistema;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.services.CalculadoraPuntosService;
+import com.utndds.heladerasApi.models.Rol.Tecnico;
 
 public class Sistema {
     private static volatile Sistema instancia;
+    private List<Heladera> heladeras;
     private List<Colaborador> colaboradores;
-    private CalculadoraPuntosService calculadoraPuntos = new CalculadoraPuntosService();
+    private List<Tecnico> tecnicos;
 
     // Constructor privado para evitar la instanciación directa
     private Sistema() {
         this.colaboradores = new ArrayList<>();
+        this.tecnicos = new ArrayList<>();
     }
 
     // Método público para obtener la instancia única
@@ -44,12 +47,16 @@ public class Sistema {
         this.colaboradores.add(colaborador);
     }
 
-    public double calcularPuntos(Colaborador colaborador) {
-        return this.calculadoraPuntos.calcularPuntos(colaborador);
-    }
-
     public List<Colaborador> getColaboradores() {
         return this.colaboradores;
+    }
+
+    public List<Tecnico> getTecnicos() {
+        return tecnicos;
+    }
+
+    public List<Heladera> getHeladeras() {
+        return heladeras;
     }
 
 }

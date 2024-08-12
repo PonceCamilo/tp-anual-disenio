@@ -23,4 +23,6 @@ public abstract class Rol {
             medio.notificar(mensaje);
         }
     }
+
+    
 }
