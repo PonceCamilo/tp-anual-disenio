@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class PeoresContraseñas extends Condicion {
     String RUTA_PEORES_CONTRASEÑAS = "/peoresContraseñas.txt";
 

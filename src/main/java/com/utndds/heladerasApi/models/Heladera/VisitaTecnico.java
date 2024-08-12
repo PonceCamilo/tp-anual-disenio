@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
 
-public class Visita {
+public class VisitaTecnico {
     LocalDate fecha;
     Tecnico tecnico;
     Heladera heladera;
@@ -13,7 +13,7 @@ public class Visita {
     File foto;
     boolean arreglado;
 
-    public Visita(LocalDate fecha, Tecnico tecnico, Heladera heladera, String descripcion, File foto,
+    public VisitaTecnico(LocalDate fecha, Tecnico tecnico, Heladera heladera, String descripcion, File foto,
             boolean arreglado) {
         this.fecha = fecha;
         this.tecnico = tecnico;

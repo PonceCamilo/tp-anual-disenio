@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
 import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
@@ -20,6 +21,7 @@ public class Heladera implements Observador {
     double maxTemp;
     SensorMovimiento sensorMov = new SensorMovimiento(this);
     List<SolicitudApertura> solicitudes = new ArrayList<>();
+    List<Incidente> incidentes = new ArrayList<>();
     List<Vianda> viandas = new ArrayList<>();
 
     public Heladera(Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando, boolean abierta,
@@ -88,6 +90,10 @@ public class Heladera implements Observador {
     public void verificarSuscripciones() {
     }
 
+    public int cantFallas() {
+        return this.incidentes.size();
+    }
+
     public double getMinTemp() {
         return minTemp;
     }
@@ -115,4 +121,5 @@ public class Heladera implements Observador {
     public Punto getPunto() {
         return punto;
     }
+
 }

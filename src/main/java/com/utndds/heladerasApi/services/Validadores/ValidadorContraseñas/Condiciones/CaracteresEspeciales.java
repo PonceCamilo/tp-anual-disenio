@@ -1,5 +1,8 @@
 package com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Condiciones;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CaracteresEspeciales extends Condicion {
     String CARACTERES_ESPECIALES = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 

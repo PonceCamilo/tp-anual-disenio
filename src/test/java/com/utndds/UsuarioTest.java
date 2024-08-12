@@ -25,7 +25,7 @@ public class UsuarioTest {
                 personaHumana = new PersonaHumana(null, null, "Lucas", "Fernandez", LocalDate.of(1990, 5, 15), null);
                 colaborador = new Colaborador(personaHumana, null);
                 usuarioController = new UsuarioController();
-                registrationDTO = new RegistrationDTO(null, null, null, "null", "Colaborador", null, "Humana",
+                registrationDTO = new RegistrationDTO("", null, null, "null", "Colaborador", null, "Humana",
                                 null,
                                 null,
                                 null,

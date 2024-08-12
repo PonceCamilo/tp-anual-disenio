@@ -11,6 +11,23 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GoogleMapsService {
+    private static volatile GoogleMapsService instancia;
+
+    // Constructor privado para evitar la instanciación directa
+    private GoogleMapsService() {
+    }
+
+    // Método público para obtener la instancia única
+    public static GoogleMapsService getInstance() {
+        if (instancia == null) {
+            synchronized (GoogleMapsService.class) {
+                if (instancia == null) {
+                    instancia = new GoogleMapsService();
+                }
+            }
+        }
+        return instancia;
+    }
 
     public List<Punto> obtenerUbicaciones() {
         List<Punto> ubicaciones = new ArrayList<>();
