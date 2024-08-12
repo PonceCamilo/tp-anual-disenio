@@ -1,6 +1,5 @@
 package com.utndds.heladerasApi.models.Tarjeta;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,19 +7,18 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 import java.time.Duration;
 
 public class Tarjeta {
-    int cantUsosHoy;
+    String codigo;
     PersonaVulnerable persVul;
+    int cantUsosHoy;
     List<UsoTarjeta> usos = new ArrayList<>();
 
-    public Tarjeta(PersonaVulnerable persVul, int cantUsosHoy, List<UsoTarjeta> usos) {
-        this.persVul = persVul;
-        this.cantUsosHoy = cantUsosHoy;
-        this.usos = usos;
+    public Tarjeta(String codigo) {
+        this.codigo = codigo;
+        this.cantUsosHoy = 0;
 
         this.programarReinicioDeUsos();
     }
@@ -42,25 +40,23 @@ public class Tarjeta {
 
     private void reiniciarUsosPermitidos() {
         this.cantUsosHoy = 0;
-        System.out.println("Se reinició el contador de usos diarios a las 00:00.");
+        System.out.println("Se reinició el contador de usos diarios de la tarjeta " + this.codigo);
     }
 
-    public void usar(Heladera heladera) {
-        if (heladera.cantViandasDentro() > 0) {
-            if (this.puedeUsarse()) {
-                this.usos.add(new UsoTarjeta(heladera, LocalDate.now()));
-                this.cantUsosHoy++;
-                System.out.println("La persona vulnerable: " + this.persVul + " sacó una vianda");
-            } else {
-                System.out.println("No puede usar la tarjeta (exceso de usos diarios)");
-            }
-        } else {
-            System.out.println("No hay viandas en la heladera");
-        }
-    }
-
-    private boolean puedeUsarse() {
+    public boolean puedeUsarse() {
         return this.cantUsosHoy < this.persVul.extraccionesDiariasPermitidas();
     }
 
+    public void agregarUso(UsoTarjeta uso) {
+        this.usos.add(uso);
+        this.cantUsosHoy++;
+    }
+
+    public void setPersVul(PersonaVulnerable persVul) {
+        this.persVul = persVul;
+    }
+
+    public String getCodigo() {
+        return this.codigo;
+    }
 }

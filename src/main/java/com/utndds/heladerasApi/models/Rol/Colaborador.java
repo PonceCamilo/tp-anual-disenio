@@ -32,4 +32,7 @@ public class Colaborador extends Rol {
         return puntos;
     }
 
+    public List<Colaboracion> getColaboraciones() {
+        return colaboraciones;
+    }
 }

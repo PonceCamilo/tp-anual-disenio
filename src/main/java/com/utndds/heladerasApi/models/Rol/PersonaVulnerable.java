@@ -9,10 +9,9 @@ public class PersonaVulnerable extends Rol {
     boolean situacionCalle;
     int cantMenoresAcargo;
 
-    public PersonaVulnerable(Persona persona, LocalDate fechaRegistro,
-            boolean situacionCalle, int cantMenoresAcargo) {
+    public PersonaVulnerable(Persona persona, boolean situacionCalle, int cantMenoresAcargo) {
         super(persona);
-        this.fechaRegistro = fechaRegistro;
+        this.fechaRegistro = LocalDate.now();
         this.situacionCalle = situacionCalle;
         this.cantMenoresAcargo = cantMenoresAcargo;
     }

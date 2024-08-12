@@ -17,6 +17,24 @@ public class RegistrationDTO {
 
     // Getters y Setters
 
+    public RegistrationDTO(String email, String whatsapp, String telefono, String password, String rol,
+            String name, String type, String lastName, String birthdate, String address,
+            boolean donationChecked, boolean foodDonationChecked, boolean mealDistributionChecked) {
+        this.email = email;
+        this.whatsapp = whatsapp;
+        this.telefono = telefono;
+        this.password = password;
+        this.rol = rol;
+        this.name = name;
+        this.type = type;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+        this.address = address;
+        this.donationChecked = donationChecked;
+        this.foodDonationChecked = foodDonationChecked;
+        this.mealDistributionChecked = mealDistributionChecked;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -68,7 +86,7 @@ public class RegistrationDTO {
     public String getType() {
         return type;
     }
-    
+
     public void setType(String type) {
         this.type = type;
     }
@@ -121,4 +139,3 @@ public class RegistrationDTO {
         this.mealDistributionChecked = mealDistributionChecked;
     }
 }
-

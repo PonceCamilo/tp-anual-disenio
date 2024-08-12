@@ -37,5 +37,4 @@ public abstract class Persona {
             medio.notificar(message);
         }
     }
-
 }

@@ -1,26 +1,23 @@
 package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
 import java.nio.charset.StandardCharsets;
-import java.sql.Time;
-import java.time.LocalDate;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
+import com.utndds.heladerasApi.models.Heladera.Punto;
 
 public class Alerta extends Incidente {
     private static final String EXCHANGE_NAME = "alerta";
+    String tipo;
 
-    public Alerta(LocalDate fecha, Time hora, Heladera heladera) {
-        super(fecha, hora, heladera);
+    public Alerta(Heladera heladera, String tipo) {
+        super(heladera);
+        this.tipo = tipo;
+        this.procesar();
         this.publicarAlerta();
     }
-
-    @Override
-    public void procesar() {
-
-    };
 
     private void publicarAlerta() {
         try {
@@ -31,7 +28,7 @@ public class Alerta extends Incidente {
             try (Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel()) {
                 channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-                String message = "Heladera: " + heladera.getNombre() + ", alerta";
+                String message = "Heladera: " + heladera.getPunto().getNombre() + ", alerta";
                 channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes(StandardCharsets.UTF_8));
                 System.out.println(" [x] Sent '" + message + "'");
             }
@@ -42,8 +39,9 @@ public class Alerta extends Incidente {
     }
 
     public static void main(String[] args) {
-        Heladera heladera = new Heladera("nombre", null, 0, null, 0, 0, 0, false, null, null, null);
-        new Alerta(null, null, heladera);
+        Punto punto = new Punto(1, 1, "nombre heladera", null);
+        Heladera heladera = new Heladera(punto, 0, 0, 0, false, false, null, null);
+        new Alerta(heladera, null);
     }
 
 }

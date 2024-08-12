@@ -5,44 +5,87 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
+import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 public class Heladera implements Observador {
-    String nombre;
-    Ubicacion ubicacion;
+    Punto punto;
     int capacidad;
-    String direccion;
+    LocalDate fechaInicioFuncionamiento;
+    boolean funcionando;
+    boolean abierta;
     double ultimaTempRegistrada;
     double minTemp;
     double maxTemp;
-    boolean estado;
-    List<Observador> observadores = new ArrayList<>();
+    SensorMovimiento sensorMov = new SensorMovimiento(this);
     List<SolicitudApertura> solicitudes = new ArrayList<>();
-    LocalDate fechaInicioFuncionamiento;
     List<Vianda> viandas = new ArrayList<>();
 
-    public Heladera(String nombre, Ubicacion ubicacion, int capacidad, String direccion, double ultimaTempRegistrada,
-            double minTemp, double maxTemp, boolean estado, LocalDate fechaInicioFuncionamiento, List<Vianda> viandas,
-            List<SolicitudApertura> solicitudes) {
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
+    public Heladera(Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando, boolean abierta,
+            LocalDate fechaInicioFuncionamiento, List<Vianda> viandas) {
+        this.punto = punto;
         this.capacidad = capacidad;
-        this.direccion = direccion;
-        this.ultimaTempRegistrada = ultimaTempRegistrada;
         this.minTemp = minTemp;
         this.maxTemp = maxTemp;
-        this.estado = estado;
+        this.funcionando = funcionando;
+        this.abierta = abierta;
         this.fechaInicioFuncionamiento = fechaInicioFuncionamiento;
         this.viandas = viandas;
-        this.solicitudes = solicitudes;
     }
 
-    public void setUltimaTempRegistrada(double ultimaTempRegistrada) {
-        this.ultimaTempRegistrada = ultimaTempRegistrada;
+    @Override
+    public void actualizarTemperatura(double temperatura) {
+        this.ultimaTempRegistrada = temperatura;
+        this.verificarTemperatura();
     }
 
-    public String getNombre() {
-        return nombre;
+    private void verificarTemperatura() {
+        if (this.ultimaTempRegistrada < this.minTemp || this.ultimaTempRegistrada > this.maxTemp) {
+            new Alerta(this, "Temperatura");
+        }
+    }
+
+    public int cantMesesActiva() {
+        LocalDate hoy = LocalDate.now();
+        Period periodo = Period.between(fechaInicioFuncionamiento, hoy);
+        int cantMeses = periodo.getYears() * 12 + periodo.getMonths();
+        return cantMeses;
+    }
+
+    public void agregarSolicitud(SolicitudApertura solicitud) {
+        this.solicitudes.add(solicitud);
+    }
+
+    public void eliminarSolicitud(SolicitudApertura solicitud) {
+        this.solicitudes.remove(solicitud);
+    }
+
+    public void extraerVianda() {
+        this.viandas.remove(this.viandas.size() - 1);
+    }
+
+    public void abrir(Colaborador colaborador) {
+        SolicitudApertura solicitudCorrespondiente = this.obtenerSolicitud(colaborador);
+        if (solicitudCorrespondiente != null) {
+            System.out.println("El colaborador abrio la heladera con exito");
+            this.solicitudes.remove(solicitudCorrespondiente);
+            return;
+        } else {
+            System.out.println("El colaborador no hizo solicitud o la misma expiro");
+        }
+    }
+
+    public SolicitudApertura obtenerSolicitud(Colaborador colaborador) {
+        for (SolicitudApertura solicitud : solicitudes) {
+            if (solicitud.getColaborador().equals(colaborador)) {
+                return solicitud;
+            }
+        }
+        return null;
+    }
+
+    public void verificarSuscripciones() {
     }
 
     public double getMinTemp() {
@@ -61,84 +104,15 @@ public class Heladera implements Observador {
         this.maxTemp = maxTemp;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void setActiva(boolean abierta) {
+        this.abierta = abierta;
     }
 
-    public boolean getEstado() {
-        return estado;
+    public void setFuncionando(boolean funcionando) {
+        this.funcionando = funcionando;
     }
 
-    public int cantViandasDentro() {
-        return viandas.size();
+    public Punto getPunto() {
+        return punto;
     }
-
-    public int cantMesesActiva() {
-        LocalDate hoy = LocalDate.now();
-        Period periodo = Period.between(fechaInicioFuncionamiento, hoy);
-        int cantMeses = periodo.getYears() * 12 + periodo.getMonths();
-        return cantMeses;
-    }
-
-    public void agregarObservador(Observador observador) {
-        observadores.add(observador);
-    }
-
-    @Override
-    public void actualizar() {
-        if (this.ultimaTempRegistrada < this.minTemp || this.ultimaTempRegistrada > this.maxTemp) {
-            this.estado = false;
-        }
-    }
-
-    public void agregarSolicitud(SolicitudApertura solicitud) {
-        this.solicitudes.add(solicitud);
-    }
-
-    public void eliminarSolicitud(SolicitudApertura solicitud) {
-        this.solicitudes.remove(solicitud);
-    }
-
-    public void extraerVianda(Vianda vianda) {
-        if (this.hayFraude()) {
-            for (Observador observador : observadores) {
-                observador.actualizar();
-            }
-            return;
-        }
-        viandas.remove(vianda);
-    }
-
-    private boolean hayFraude() {
-        return true;
-    }
-
-    public void abrir(Colaborador colaborador) {
-        SolicitudApertura solicitudCorrespondiente = this.obtenerSolicitud(colaborador);
-        if (solicitudCorrespondiente != null) {
-            System.out.println("El colaborador abrio la heladera con exito");
-            this.solicitudes.remove(solicitudCorrespondiente);
-            return;
-        } else {
-            System.out.println("El colaborador no hizo solicitud o la misma expiro");
-        }
-
-    }
-
-    public SolicitudApertura obtenerSolicitud(Colaborador colaborador) {
-        for (SolicitudApertura solicitud : solicitudes) {
-            if (solicitud.getColaborador().equals(colaborador)) {
-                return solicitud;
-            }
-        }
-        return null;
-    }
-
-    public void verificarSuscripciones() {
-    }
-
-    public static void main(String[] args) {
-        // Connection con = ConexionBD.getConnection();
-    }
-
 }
