@@ -1,7 +1,5 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
-import java.time.LocalDate;
-
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 public class Oferta extends Colaboracion {
@@ -10,10 +8,9 @@ public class Oferta extends Colaboracion {
     double cantidadPuntosNec;
     String imagen;
 
-    public Oferta(LocalDate fecha, Colaborador colaborador, String rubro, String nombre, double cantidadPuntosNec,
+    public Oferta(Colaborador colaborador, String rubro, String nombre, double cantidadPuntosNec,
             String imagen) {
-        super(fecha, colaborador);
-        this.fecha = fecha;
+        super(colaborador);
         this.colaborador = colaborador;
         this.rubro = rubro;
         this.nombre = nombre;
@@ -21,8 +18,9 @@ public class Oferta extends Colaboracion {
         this.imagen = imagen;
     }
 
-    public void procesar() {
-        System.out.println("SE REALIZO LA OFERTA");
+    protected void procesar() {
+        super.procesar();
+        System.out.println("SE GUARDO LA OFERTA POR PARTE DE: " + this.colaborador.getPersona().getNombre());
     }
 
     public void canjear(Colaborador colaborador) {

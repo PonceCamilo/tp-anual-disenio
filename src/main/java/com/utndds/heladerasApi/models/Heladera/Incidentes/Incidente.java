@@ -1,27 +1,26 @@
 package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
-import java.sql.Time;
-import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 public abstract class Incidente {
-    LocalDate fecha;
-    Time hora;
+    ZonedDateTime fechaHora;
     Heladera heladera;
 
-    public Incidente(LocalDate fecha, Time hora, Heladera heladera) {
-        this.fecha = fecha;
-        this.hora = hora;
+    public Incidente(Heladera heladera) {
+        this.fechaHora = ZonedDateTime.now();
         this.heladera = heladera;
 
-        this.desactivarHeladera();
+        this.procesar();
     }
 
-    public abstract void procesar();
+    public void procesar() {
+        this.desactivarHeladera();
+    };
 
     private void desactivarHeladera() {
-        this.heladera.setEstado(false);
+        this.heladera.setFuncionando(false);
     }
 
 }

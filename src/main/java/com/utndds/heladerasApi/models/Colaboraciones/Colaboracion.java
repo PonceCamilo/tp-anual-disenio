@@ -8,13 +8,28 @@ public abstract class Colaboracion {
     LocalDate fecha;
     Colaborador colaborador;
 
-    public Colaboracion(LocalDate fecha, Colaborador colaborador) {
-        this.fecha = fecha;
+    public Colaboracion(Colaborador colaborador) {
+        this.fecha = LocalDate.now();
         this.colaborador = colaborador;
-
         this.procesar();
-        colaborador.agregarColaboracion(this);
     }
+
+    protected void procesar() {
+        colaborador.agregarColaboracion(this);
+        this.notificarColaborador("La colaboracion ha sido recibida correctamente.");
+    }
+
+    protected void notificarColaborador(String mensaje) {
+        colaborador.notificar(mensaje);
+    };
+
+    public double puntosGanados() {
+        return 0;
+    };
+
+    protected double obtenerCoeficiente() {
+        return 0;
+    };
 
     public void setColaborador(Colaborador colaborador) {
         this.colaborador = colaborador;
@@ -31,21 +46,5 @@ public abstract class Colaboracion {
     public LocalDate getFecha() {
         return fecha;
     }
-
-    public void procesar() {
-        colaborador.agregarColaboracion(this);
-    }
-
-    protected void notificarColaborador(String mensaje) {
-        colaborador.notificar(mensaje);
-    };
-
-    public double puntosGanados() {
-        return 0;
-    };
-
-    protected double obtenerCoeficiente() {
-        return 0;
-    };
 
 }

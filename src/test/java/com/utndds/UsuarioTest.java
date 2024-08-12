@@ -1,5 +1,6 @@
 package com.utndds;
 
+import com.utndds.heladerasApi.controllers.RegistrationDTO;
 import com.utndds.heladerasApi.controllers.UsuarioController;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
@@ -15,38 +16,44 @@ public class UsuarioTest {
         private PersonaHumana personaHumana;
         private Colaborador colaborador;
         private UsuarioController usuarioController;
+        private RegistrationDTO registrationDTO;
 
         @BeforeEach
         public void setUp() {
                 // Inicialización de los objetos necesarios
+
                 personaHumana = new PersonaHumana(null, null, "Lucas", "Fernandez", LocalDate.of(1990, 5, 15), null);
                 colaborador = new Colaborador(personaHumana, null);
                 usuarioController = new UsuarioController();
+                registrationDTO = new RegistrationDTO(null, null, null, "null", "Colaborador", null, "Humana",
+                                null,
+                                null,
+                                null,
+                                false,
+                                false, false);
 
                 // Registrar usuario
-                usuarioController.registrarUsuario("lucas.f@example.com", "ContraseñaSegura123!", colaborador);
+                usuarioController.registrarUsuario(registrationDTO);
         }
 
         @Test
         public void testRegistrarUsuario() {
                 // Verificar el registro de usuario
-                String resultado = usuarioController.registrarUsuario("lucas.f@example.com", "ContraseñaSegura123!",
-                                colaborador);
-                assertEquals("Usuario registrado con éxito.", resultado);
+                String resultado = usuarioController.registrarUsuario(registrationDTO);
+                assertEquals("Usuario y Persona Humana registrados con éxito.", resultado);
         }
 
         @Test
         public void testRegistrarUsuarioContraseñaInsegura() {
                 // Verificar el registro de usuario
-                String resultado = usuarioController.registrarUsuario("lucas.f@example.com", "12345!",
-                                colaborador);
+                String resultado = usuarioController.registrarUsuario(registrationDTO);
                 assertEquals("La contraseña no cumple con los requisitos de seguridad.", resultado);
         }
 
         @Test
         public void testRegistrarUsuarioMailVacio() {
                 // Verificar el registro de usuario
-                String resultado = usuarioController.registrarUsuario(null, "ContraseñaSegura123!", colaborador);
+                String resultado = usuarioController.registrarUsuario(registrationDTO);
                 assertEquals("El email no puede estar vacío.", resultado);
         }
 }

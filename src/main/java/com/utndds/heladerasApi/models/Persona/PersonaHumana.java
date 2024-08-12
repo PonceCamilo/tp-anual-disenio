@@ -55,4 +55,5 @@ public class PersonaHumana extends Persona {
     public Documento getDocumento() {
         return documento;
     }
+
 }

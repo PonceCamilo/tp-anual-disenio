@@ -35,7 +35,7 @@ public class SolicitudApertura {
     }
 
     public void iniciarTemporizador() {
-        System.out.println("Temporizador iniciado para abrir: " + heladera.getNombre() + " por parte de "
+        System.out.println("Temporizador iniciado para abrir: " + heladera.getPunto().getNombre() + " por parte de "
                 + colaborador.getPersona().getNombre());
 
         int tiempo = this.tiempoLimite();
@@ -46,7 +46,7 @@ public class SolicitudApertura {
 
     private void finalizarTemporizador() {
         this.heladera.eliminarSolicitud(this);
-        System.out.println("Temporizador finalizado para abrir: " + heladera.getNombre() + " por parte de "
+        System.out.println("Temporizador finalizado para abrir: " + heladera.getPunto().getNombre() + " por parte de "
                 + colaborador.getPersona().getNombre());
     }
 
@@ -72,7 +72,7 @@ public class SolicitudApertura {
             try (Connection connection = factory.newConnection();
                     Channel channel = connection.createChannel()) {
                 channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
-                String message = "Heladera: " + heladera.getNombre() + " recibio una solicitud de apertura ";
+                String message = "Heladera: " + heladera.getPunto().getNombre() + " recibio una solicitud de apertura ";
                 channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes(StandardCharsets.UTF_8));
                 System.out.println(" [x] Sent '" + message + "'");
             }

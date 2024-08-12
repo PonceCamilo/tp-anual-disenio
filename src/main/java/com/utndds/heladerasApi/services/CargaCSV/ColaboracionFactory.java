@@ -1,6 +1,5 @@
 package com.utndds.heladerasApi.services.CargaCSV;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 import com.utndds.heladerasApi.models.Colaboraciones.RegistroPersonaVulnerable;
 import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Tarjeta.Tarjeta;
 
 public class ColaboracionFactory {
     public List<Colaboracion> crearColaboracion(String[] registro, Colaborador colaborador) {
@@ -20,7 +20,7 @@ public class ColaboracionFactory {
         switch (tipoColaboracion) {
             case "DINERO":
                 double monto = Double.parseDouble(registro[6]);
-                DonacionDinero dinero = new DonacionDinero(LocalDate.now(), colaborador, monto, 0);
+                DonacionDinero dinero = new DonacionDinero(colaborador, monto, 0);
                 colaboraciones.add(dinero);
                 break;
 
@@ -32,29 +32,29 @@ public class ColaboracionFactory {
                     Vianda viandaDonada = new Vianda(null, null, 0, 0, true);
                     viandasDonadas.add(viandaDonada);
                 }
-                DonacionVianda donacionVianda = new DonacionVianda(LocalDate.now(), colaborador, viandasDonadas,
+                DonacionVianda donacionVianda = new DonacionVianda(colaborador, viandasDonadas,
                         null, true);
                 colaboraciones.add(donacionVianda);
                 break;
 
             case "REDISTRIBUCION_VIANDAS":
-                int redistribucion = Integer.parseInt(registro[6]);
-                DistribucionViandas redistribucionVianda = new DistribucionViandas(LocalDate.now(), colaborador, null,
-                        null,
-                        redistribucion, null);
+                int cantidadMovida = Integer.parseInt(registro[6]);
+                DistribucionViandas redistribucionVianda = new DistribucionViandas(colaborador, null, null,
+                        cantidadMovida, null);
                 colaboraciones.add(redistribucionVianda);
                 break;
 
             case "ENTREGA_TARJETAS":
                 int cantidadTarjetas = Integer.parseInt(registro[6]);
                 for (int t = 0; t < cantidadTarjetas; t++) {
-                    RegistroPersonaVulnerable registrar = new RegistroPersonaVulnerable(LocalDate.now(), colaborador,
-                            null);
-                    colaboraciones.add(registrar);
+                    Tarjeta tarj = new Tarjeta(null);
+                    RegistroPersonaVulnerable registroPV = new RegistroPersonaVulnerable(colaborador, null, tarj);
+                    colaboraciones.add(registroPV);
                 }
                 break;
         }
 
         return colaboraciones;
     }
+
 }

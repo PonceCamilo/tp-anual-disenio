@@ -15,7 +15,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    
     @PostMapping("/registrar")
     public String registrarUsuario(@RequestBody RegistrationDTO registrationDTO) {
         try {
@@ -27,17 +26,19 @@ public class UsuarioController {
             String apellido = registrationDTO.getLastName(); // Apellido es 'lastName' en el DTO
             String direccion = registrationDTO.getAddress();
             String type = registrationDTO.getType();
-            //String birthdate = registrationDTO.getBirthdate();  // Manejado después si es necesario
-    
+            // String birthdate = registrationDTO.getBirthdate(); // Manejado despues si se
+            // necesita
+
             // Validaciones en el Front y también en el Back
             if ("Persona Vulnerable".equalsIgnoreCase(rol) && "Persona Juridica".equalsIgnoreCase(type)) {
-                throw new IllegalArgumentException("No se puede registrar una Persona Vulnerable como persona Juridica.");
+                throw new IllegalArgumentException(
+                        "No se puede registrar una Persona Vulnerable como persona Juridica.");
             }
-    
+
             Usuario usuario = null;
             Persona persona = null;
-            String personaType = "";  // Variable para almacenar el tipo de persona creado
-    
+            String personaType = ""; // Variable para almacenar el tipo de persona creado
+
             if ("Colaborador".equalsIgnoreCase(rol) && "Humana".equalsIgnoreCase(type)) {
                 usuario = new Usuario(email, password, null);
                 persona = new PersonaHumana(direccion, null, nombre, apellido, null, null);
@@ -47,17 +48,18 @@ public class UsuarioController {
                 persona = new PersonaHumana(direccion, null, nombre, apellido, null, null);
                 personaType = "Persona Humana";
             } else if ("Colaborador".equalsIgnoreCase(rol) && "Juridica".equalsIgnoreCase(type)) {
-                // Implementar creación de PersonaJuridica cuando el JSON esté preparado para ello
+                // Implementar creación de PersonaJuridica cuando el JSON esté preparado para
+                // ello
                 personaType = "Persona Juridica";
             } else {
                 throw new IllegalArgumentException("Tipo o rol no soportado: " + rol + " - " + type);
             }
-    
+
             // Verificar que las instancias se han creado correctamente
             if (usuario != null && persona != null) {
                 // Aquí puedes realizar operaciones adicionales como guardar en la base de datos
                 // usuarioService.registrarUsuario(usuario, persona);
-    
+
                 return "Usuario y " + personaType + " registrados con éxito.";
             } else {
                 throw new IllegalArgumentException("Error en la creación de las instancias de Usuario o Persona.");
