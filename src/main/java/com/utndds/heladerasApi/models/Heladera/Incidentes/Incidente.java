@@ -1,18 +1,18 @@
 package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 public abstract class Incidente {
-    ZonedDateTime fechaHora;
+    LocalDateTime fechaHora;
     Heladera heladera;
     List<VisitaTecnico> visitas = new ArrayList<>();
 
     public Incidente(Heladera heladera) {
-        this.fechaHora = ZonedDateTime.now();
+        this.fechaHora = LocalDateTime.now();
         this.heladera = heladera;
 
         this.procesar();
@@ -24,6 +24,10 @@ public abstract class Incidente {
 
     private void desactivarHeladera() {
         this.heladera.setFuncionando(false);
+    }
+
+    public void agregarVisita(VisitaTecnico visita) {
+        this.visitas.add(visita);
     }
 
     public Heladera getHeladera() {

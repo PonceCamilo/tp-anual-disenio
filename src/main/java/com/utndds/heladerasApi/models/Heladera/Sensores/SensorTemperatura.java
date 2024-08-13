@@ -13,14 +13,14 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
-public class SensorTemperatura {
+public class SensorTemperatura extends Sensor {
     Heladera heladera;
     Double temperatura;
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private static final String EXCHANGE_NAME = "temperatura";
 
     public SensorTemperatura(Heladera heladera) {
-        this.heladera = heladera;
+        super(heladera);
         scheduler.scheduleAtFixedRate(this::medirTemperatura, 0, 5, TimeUnit.SECONDS);// deberia ejecutarse c/5mins
     }
 

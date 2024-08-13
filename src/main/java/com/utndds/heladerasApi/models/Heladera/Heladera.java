@@ -15,6 +15,7 @@ public class Heladera implements ObservadorHeladera {
     Punto punto;
     int capacidad;
     LocalDate fechaInicioFuncionamiento;
+    List<Vianda> viandas = new ArrayList<>();
     boolean funcionando;
     boolean abierta;
     ManejadorTemperatura manejadorTemperatura;
@@ -22,7 +23,6 @@ public class Heladera implements ObservadorHeladera {
     List<Suscripcion> suscriptores = new ArrayList<>();
     List<SolicitudApertura> solicitudes = new ArrayList<>();
     List<Incidente> incidentes = new ArrayList<>();
-    List<Vianda> viandas = new ArrayList<>();
 
     public Heladera(Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando, boolean abierta,
             LocalDate fechaInicioFuncionamiento, List<Vianda> viandas) {
@@ -74,7 +74,7 @@ public class Heladera implements ObservadorHeladera {
         }
     }
 
-    public SolicitudApertura obtenerSolicitud(Colaborador colaborador) {
+    public boolean puedeAbrirse(Colaborador colaborador) {
         for (SolicitudApertura solicitud : solicitudes) {
             if (solicitud.getColaborador().equals(colaborador)) {
                 return solicitud;

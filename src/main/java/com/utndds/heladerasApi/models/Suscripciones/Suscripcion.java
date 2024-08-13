@@ -13,7 +13,6 @@ public class Suscripcion implements ObservadorSuscripcion {
     Colaborador colaborador;
     List<Evento> notificacionesDeseadas = new ArrayList<>();
 
-    // Constructor corregido
     public Suscripcion(Heladera heladera, Colaborador colaborador) {
         this.heladera = heladera;
         this.colaborador = colaborador;
@@ -21,7 +20,8 @@ public class Suscripcion implements ObservadorSuscripcion {
         this.procesar();
     }
 
-    public void verificarSuscripcion() {
+    public void verificarNotificaciones(Heladera heladera) {
+        // FALTA IMPLEMENTAR
     };
 
     private void procesar() {

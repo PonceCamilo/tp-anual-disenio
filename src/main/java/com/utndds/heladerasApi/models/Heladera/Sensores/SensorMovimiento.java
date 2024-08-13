@@ -3,12 +3,10 @@ package com.utndds.heladerasApi.models.Heladera.Sensores;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 
-public class SensorMovimiento {
-
-    Heladera heladera;
+public class SensorMovimiento extends Sensor {
 
     public SensorMovimiento(Heladera heladera) {
-        this.heladera = heladera;
+        super(heladera);
     }
 
     public void hayFraude() {

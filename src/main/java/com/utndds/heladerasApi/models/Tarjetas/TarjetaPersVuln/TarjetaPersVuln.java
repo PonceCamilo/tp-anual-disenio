@@ -8,15 +8,17 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
+import com.utndds.heladerasApi.models.Tarjetas.Tarjeta;
+
 import java.time.Duration;
 
-public class Tarjeta {
+public class TarjetaPersVuln extends Tarjeta {
     String codigo;
     PersonaVulnerable persVul;
     int cantUsosHoy;
-    List<UsoTarjeta> usos = new ArrayList<>();
+    List<UsoHeladera> usos = new ArrayList<>();
 
-    public Tarjeta(String codigo) {
+    public TarjetaPersVuln(String codigo) {
         this.codigo = codigo;
         this.cantUsosHoy = 0;
 
@@ -47,7 +49,7 @@ public class Tarjeta {
         return this.cantUsosHoy < this.persVul.extraccionesDiariasPermitidas();
     }
 
-    public void agregarUso(UsoTarjeta uso) {
+    public void agregarUso(UsoHeladera uso) {
         this.usos.add(uso);
         this.cantUsosHoy++;
     }
