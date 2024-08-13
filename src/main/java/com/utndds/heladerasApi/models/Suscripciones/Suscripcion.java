@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
+import com.utndds.heladerasApi.models.Observer.ObservadorSuscripcion;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Suscripciones.Evento.Evento;
 
-public class Suscripcion {
+public class Suscripcion implements ObservadorSuscripcion {
     Heladera heladera;
     Colaborador colaborador;
     List<Evento> notificacionesDeseadas = new ArrayList<>();
@@ -19,6 +20,9 @@ public class Suscripcion {
 
         this.procesar();
     }
+
+    public void verificarSuscripcion() {
+    };
 
     private void procesar() {
         this.heladera.agregarSuscripcion(this);

@@ -5,21 +5,19 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
 import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
+import com.utndds.heladerasApi.models.Observer.ObservadorHeladera;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 
-public class Heladera implements Observador {
+public class Heladera implements ObservadorHeladera {
     Punto punto;
     int capacidad;
     LocalDate fechaInicioFuncionamiento;
     boolean funcionando;
     boolean abierta;
-    double ultimaTempRegistrada;
-    double minTemp;
-    double maxTemp;
+    ManejadorTemperatura manejadorTemperatura;
     SensorMovimiento sensorMov = new SensorMovimiento(this);
     List<Suscripcion> suscriptores = new ArrayList<>();
     List<SolicitudApertura> solicitudes = new ArrayList<>();
@@ -30,24 +28,16 @@ public class Heladera implements Observador {
             LocalDate fechaInicioFuncionamiento, List<Vianda> viandas) {
         this.punto = punto;
         this.capacidad = capacidad;
-        this.minTemp = minTemp;
-        this.maxTemp = maxTemp;
         this.funcionando = funcionando;
         this.abierta = abierta;
         this.fechaInicioFuncionamiento = fechaInicioFuncionamiento;
         this.viandas = viandas;
+        this.manejadorTemperatura = new ManejadorTemperatura(this, minTemp, maxTemp);
     }
 
     @Override
     public void actualizarTemperatura(double temperatura) {
-        this.ultimaTempRegistrada = temperatura;
-        this.verificarTemperatura();
-    }
-
-    private void verificarTemperatura() {
-        if (this.ultimaTempRegistrada < this.minTemp || this.ultimaTempRegistrada > this.maxTemp) {
-            new Alerta(this, "Temperatura");
-        }
+        this.manejadorTemperatura.actualizarTemperatura(temperatura);
     }
 
     public int cantMesesActiva() {
@@ -105,22 +95,6 @@ public class Heladera implements Observador {
 
     public int cantViandas() {
         return this.viandas.size();
-    }
-
-    public double getMinTemp() {
-        return minTemp;
-    }
-
-    public double getMaxTemp() {
-        return maxTemp;
-    }
-
-    public void setMinTemp(double minTemp) {
-        this.minTemp = minTemp;
-    }
-
-    public void setMaxTemp(double maxTemp) {
-        this.maxTemp = maxTemp;
     }
 
     public void setActiva(boolean abierta) {

@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Tarjeta;
+package com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

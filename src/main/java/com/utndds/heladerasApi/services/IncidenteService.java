@@ -3,8 +3,8 @@ package com.utndds.heladerasApi.services;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.VisitaTecnico;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.VisitaTecnico;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
 import com.utndds.heladerasApi.models.Sistema.Sistema;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,7 @@
-package com.utndds.heladerasApi.models.Tarjeta;
+package com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
+
 import java.time.LocalDate;
 
 public class UsoTarjeta {
