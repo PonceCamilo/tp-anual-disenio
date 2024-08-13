@@ -34,6 +34,10 @@ public class Tecnico extends Rol {
         return visitas;
     }
 
+    public void agregarVisita(VisitaTecnico visita) {
+        visitas.add(visita);
+    }
+
     public void setCuil(String cuil) {
         this.cuil = cuil;
     }

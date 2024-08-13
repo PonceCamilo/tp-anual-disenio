@@ -25,10 +25,21 @@ public class VisitaTecnico {
         this.foto = foto;
         this.arreglado = arreglado;
 
+        this.procesar();
+    }
+
+    private void procesar() {
+        this.incidente.agregarVisita(this);
+        this.tecnico.agregarVisita(this);
         this.verificarArreglo();
     }
 
     private void verificarArreglo() {
-        System.out.println("se verifica el arreglo por parte del tecnico, sino se arregla se plantea otra visita");
+        if (this.arreglado) {
+            this.heladera.setFuncionando(true);
+        } else {
+            System.out.println("Se arregla otra visita");
+        }
+
     }
 }

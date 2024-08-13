@@ -4,12 +4,12 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 import java.time.LocalDate;
 
-public class UsoTarjeta {
+public class UsoHeladera {
     Heladera heladera;
-    Tarjeta tarjeta;
+    TarjetaPersVuln tarjeta;
     LocalDate fechaUso;
 
-    public UsoTarjeta(Heladera heladera, Tarjeta tarjeta, LocalDate fechaUso) {
+    public UsoHeladera(Heladera heladera, TarjetaPersVuln tarjeta, LocalDate fechaUso) {
         if (tarjeta.puedeUsarse()) {
             this.heladera = heladera;
             this.tarjeta = tarjeta;
@@ -25,11 +25,11 @@ public class UsoTarjeta {
         this.heladera.extraerVianda();
     }
 
-    public void setTarjeta(Tarjeta tarjeta) {
+    public void setTarjeta(TarjetaPersVuln tarjeta) {
         this.tarjeta = tarjeta;
     }
 
-    public Tarjeta getTarjeta() {
+    public TarjetaPersVuln getTarjeta() {
         return tarjeta;
     }
 

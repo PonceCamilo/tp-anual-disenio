@@ -10,7 +10,7 @@ import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 import com.utndds.heladerasApi.models.Colaboraciones.RegistroPersonaVulnerable;
 import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln.Tarjeta;
+import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln.TarjetaPersVuln;
 
 public class ColaboracionFactory {
     public List<Colaboracion> crearColaboracion(String[] registro, Colaborador colaborador) {
@@ -47,7 +47,7 @@ public class ColaboracionFactory {
             case "ENTREGA_TARJETAS":
                 int cantidadTarjetas = Integer.parseInt(registro[6]);
                 for (int t = 0; t < cantidadTarjetas; t++) {
-                    Tarjeta tarj = new Tarjeta(null);
+                    TarjetaPersVuln tarj = new TarjetaPersVuln(null);
                     RegistroPersonaVulnerable registroPV = new RegistroPersonaVulnerable(colaborador, null, tarj);
                     colaboraciones.add(registroPV);
                 }

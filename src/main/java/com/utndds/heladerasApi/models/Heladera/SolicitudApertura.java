@@ -4,6 +4,7 @@ import java.io.File;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -18,20 +19,22 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 public class SolicitudApertura {
     Colaborador colaborador;
     Heladera heladera;
+    LocalDateTime fechaHora;
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private static final String EXCHANGE_NAME = "solicitudApertura";
 
     public SolicitudApertura(Colaborador colaborador, Heladera heladera) {
         this.colaborador = colaborador;
         this.heladera = heladera;
+        this.fechaHora = LocalDateTime.now();
 
+        this.procesar();
+    }
+
+    private void procesar() {
         this.heladera.agregarSolicitud(this);
         this.iniciarTemporizador();
         this.publicarSolicitud();
-    }
-
-    public Colaborador getColaborador() {
-        return this.colaborador;
     }
 
     public void iniciarTemporizador() {
@@ -40,14 +43,8 @@ public class SolicitudApertura {
 
         int tiempo = this.tiempoLimite();
 
-        long delay = TimeUnit.HOURS.toSeconds(tiempo); // Convierte el tiempo en horas a segundos
+        long delay = TimeUnit.HOURS.toSeconds(tiempo);
         scheduler.schedule(this::finalizarTemporizador, delay, TimeUnit.SECONDS);
-    }
-
-    private void finalizarTemporizador() {
-        this.heladera.eliminarSolicitud(this);
-        System.out.println("Temporizador finalizado para abrir: " + heladera.getPunto().getNombre() + " por parte de "
-                + colaborador.getPersona().getNombre());
     }
 
     private int tiempoLimite() {
@@ -61,6 +58,16 @@ public class SolicitudApertura {
             e.printStackTrace();
         }
         return limiteHoras;
+    }
+
+    private void finalizarTemporizador() {
+        this.heladera.eliminarSolicitud(this);
+        System.out.println("Temporizador finalizado para abrir: " + heladera.getPunto().getNombre() + " por parte de "
+                + colaborador.getPersona().getNombre());
+    }
+
+    public Colaborador getColaborador() {
+        return this.colaborador;
     }
 
     private void publicarSolicitud() {
