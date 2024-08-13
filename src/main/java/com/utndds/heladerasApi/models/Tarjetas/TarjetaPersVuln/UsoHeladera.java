@@ -9,15 +9,11 @@ public class UsoHeladera {
     TarjetaPersVuln tarjeta;
     LocalDate fechaUso;
 
-    public UsoHeladera(Heladera heladera, TarjetaPersVuln tarjeta, LocalDate fechaUso) {
-        if (tarjeta.puedeUsarse()) {
-            this.heladera = heladera;
-            this.tarjeta = tarjeta;
-            this.fechaUso = LocalDate.now();
-            this.procesar();
-        } else {
-            throw new IllegalArgumentException("La tarjeta no puede ser usada. (limite de usos diarios excedido)");
-        }
+    public UsoHeladera(Heladera heladera, TarjetaPersVuln tarjeta) {
+        this.heladera = heladera;
+        this.tarjeta = tarjeta;
+        this.fechaUso = LocalDate.now();
+        this.procesar();
     }
 
     private void procesar() {

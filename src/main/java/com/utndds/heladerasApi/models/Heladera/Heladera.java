@@ -8,7 +8,6 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
 import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
 import com.utndds.heladerasApi.models.Observer.ObservadorHeladera;
-import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 
 public class Heladera implements ObservadorHeladera {
@@ -21,7 +20,6 @@ public class Heladera implements ObservadorHeladera {
     ManejadorTemperatura manejadorTemperatura;
     SensorMovimiento sensorMov = new SensorMovimiento(this);
     List<Suscripcion> suscriptores = new ArrayList<>();
-    List<SolicitudApertura> solicitudes = new ArrayList<>();
     List<Incidente> incidentes = new ArrayList<>();
 
     public Heladera(Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando, boolean abierta,
@@ -47,40 +45,12 @@ public class Heladera implements ObservadorHeladera {
         return cantMeses;
     }
 
-    public void agregarSolicitud(SolicitudApertura solicitud) {
-        this.solicitudes.add(solicitud);
-    }
-
     public void agregarSuscripcion(Suscripcion suscripcion) {
         this.suscriptores.add(suscripcion);
     }
 
-    public void eliminarSolicitud(SolicitudApertura solicitud) {
-        this.solicitudes.remove(solicitud);
-    }
-
     public void extraerVianda() {
         this.viandas.remove(this.viandas.size() - 1);
-    }
-
-    public void abrir(Colaborador colaborador) {
-        SolicitudApertura solicitudCorrespondiente = this.obtenerSolicitud(colaborador);
-        if (solicitudCorrespondiente != null) {
-            System.out.println("El colaborador abrio la heladera con exito");
-            this.solicitudes.remove(solicitudCorrespondiente);
-            return;
-        } else {
-            System.out.println("El colaborador no hizo solicitud o la misma expiro");
-        }
-    }
-
-    public boolean puedeAbrirse(Colaborador colaborador) {
-        for (SolicitudApertura solicitud : solicitudes) {
-            if (solicitud.getColaborador().equals(colaborador)) {
-                return solicitud;
-            }
-        }
-        return null;
     }
 
     public void verificarSuscripciones() {

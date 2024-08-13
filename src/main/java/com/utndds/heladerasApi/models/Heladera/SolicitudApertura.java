@@ -15,24 +15,29 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Sistema.Sistema;
 
 public class SolicitudApertura {
     Colaborador colaborador;
     Heladera heladera;
     LocalDateTime fechaHora;
+    String motivo;
+    boolean estado;
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private static final String EXCHANGE_NAME = "solicitudApertura";
 
-    public SolicitudApertura(Colaborador colaborador, Heladera heladera) {
+    public SolicitudApertura(Colaborador colaborador, Heladera heladera, String motivo) {
         this.colaborador = colaborador;
         this.heladera = heladera;
+        this.motivo = motivo;
         this.fechaHora = LocalDateTime.now();
+        this.estado = true;
 
         this.procesar();
     }
 
     private void procesar() {
-        this.heladera.agregarSolicitud(this);
+        Sistema.getInstance().agregarSolicitud(this);
         this.iniciarTemporizador();
         this.publicarSolicitud();
     }
@@ -61,13 +66,17 @@ public class SolicitudApertura {
     }
 
     private void finalizarTemporizador() {
-        this.heladera.eliminarSolicitud(this);
+        this.estado = false;
         System.out.println("Temporizador finalizado para abrir: " + heladera.getPunto().getNombre() + " por parte de "
                 + colaborador.getPersona().getNombre());
     }
 
     public Colaborador getColaborador() {
         return this.colaborador;
+    }
+
+    public boolean getEstado() {
+        return this.estado;
     }
 
     private void publicarSolicitud() {
@@ -89,7 +98,7 @@ public class SolicitudApertura {
     }
 
     public static void main(String[] args) {
-        int tiempo = new SolicitudApertura(null, null).tiempoLimite();
+        int tiempo = new SolicitudApertura(null, null, null).tiempoLimite();
         System.out.println(tiempo);
     }
 }
