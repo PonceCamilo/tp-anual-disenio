@@ -8,6 +8,7 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
 import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
+import com.utndds.heladerasApi.models.Heladera.Suscripciones.Suscripcion;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 public class Heladera implements Observador {
@@ -20,6 +21,7 @@ public class Heladera implements Observador {
     double minTemp;
     double maxTemp;
     SensorMovimiento sensorMov = new SensorMovimiento(this);
+    List<Suscripcion> suscriptores = new ArrayList<>();
     List<SolicitudApertura> solicitudes = new ArrayList<>();
     List<Incidente> incidentes = new ArrayList<>();
     List<Vianda> viandas = new ArrayList<>();
@@ -59,6 +61,10 @@ public class Heladera implements Observador {
         this.solicitudes.add(solicitud);
     }
 
+    public void agregarSuscripcion(Suscripcion suscripcion) {
+        this.suscriptores.add(suscripcion);
+    }
+
     public void eliminarSolicitud(SolicitudApertura solicitud) {
         this.solicitudes.remove(solicitud);
     }
@@ -88,10 +94,17 @@ public class Heladera implements Observador {
     }
 
     public void verificarSuscripciones() {
+        for (Suscripcion suscripcion : suscriptores) {
+            suscripcion.verificarNotificaciones();
+        }
     }
 
     public int cantFallas() {
         return this.incidentes.size();
+    }
+
+    public int cantViandas() {
+        return this.viandas.size();
     }
 
     public double getMinTemp() {
@@ -120,6 +133,10 @@ public class Heladera implements Observador {
 
     public Punto getPunto() {
         return punto;
+    }
+
+    public boolean getFuncionando() {
+        return funcionando;
     }
 
 }
