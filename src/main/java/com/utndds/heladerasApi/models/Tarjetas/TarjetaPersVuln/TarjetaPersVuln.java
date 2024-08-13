@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 import com.utndds.heladerasApi.models.Tarjetas.Tarjeta;
 
@@ -45,8 +46,16 @@ public class TarjetaPersVuln extends Tarjeta {
         System.out.println("Se reinició el contador de usos diarios de la tarjeta " + this.codigo);
     }
 
-    public boolean puedeUsarse() {
-        return this.cantUsosHoy < this.persVul.extraccionesDiariasPermitidas();
+    public boolean puedeUsarse(Heladera heladera) {
+        return this.cantUsosHoy < this.extraccionesDiariasPermitidas();
+    }
+
+    private int extraccionesDiariasPermitidas() {
+        return 4 + 2 * this.persVul.getCantMenoresAcargo();
+    }
+
+    protected void usar(Heladera heladera) {
+        new UsoHeladera(heladera, this);
     }
 
     public void agregarUso(UsoHeladera uso) {

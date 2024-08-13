@@ -19,6 +19,7 @@ public class RegistroPersonaVulnerable extends Colaboracion {
     protected void procesar() {
         super.procesar();
         this.personaVuln.setTarjeta(this.tarjeta);
+        this.tarjeta.setPersVul(this.personaVuln);
         System.out.println("SE GUARDO EL REGISTRO DE PERSONA VULNERABLE POR PARTE DE: "
                 + this.colaborador.getPersona().getNombre());
     }
