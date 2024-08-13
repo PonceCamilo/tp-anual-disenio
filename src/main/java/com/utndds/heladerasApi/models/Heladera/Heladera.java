@@ -8,8 +8,8 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
 import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
-import com.utndds.heladerasApi.models.Heladera.Suscripciones.Suscripcion;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 
 public class Heladera implements Observador {
     Punto punto;

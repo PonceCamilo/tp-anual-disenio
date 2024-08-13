@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Heladera.Suscripciones.Evento;
+package com.utndds.heladerasApi.models.Suscripciones.Evento;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
-import com.utndds.heladerasApi.models.Heladera.Suscripciones.Suscripcion;
 import com.utndds.heladerasApi.models.Persona.Persona;
+import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 
 public class Colaborador extends Rol {
     List<Colaboracion> colaboraciones = new ArrayList<>();
