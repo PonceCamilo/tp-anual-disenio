@@ -1,11 +1,11 @@
-package com.utndds.heladerasApi.models.Heladera.Suscripciones;
+package com.utndds.heladerasApi.models.Suscripciones;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.Suscripciones.Evento.Evento;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Suscripciones.Evento.Evento;
 
 public class Suscripcion {
     Heladera heladera;
