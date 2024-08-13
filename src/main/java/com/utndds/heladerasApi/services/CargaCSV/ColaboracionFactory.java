@@ -10,7 +10,7 @@ import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 import com.utndds.heladerasApi.models.Colaboraciones.RegistroPersonaVulnerable;
 import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Tarjeta.Tarjeta;
+import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln.Tarjeta;
 
 public class ColaboracionFactory {
     public List<Colaboracion> crearColaboracion(String[] registro, Colaborador colaborador) {

@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
-import com.utndds.heladerasApi.models.Tarjeta.Tarjeta;
+import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln.Tarjeta;
 
 public class RegistroPersonaVulnerable extends Colaboracion {
     PersonaVulnerable personaVuln;

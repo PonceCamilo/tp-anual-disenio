@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.models.Rol;
 
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Heladera.VisitaTecnico;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.VisitaTecnico;
 import com.utndds.heladerasApi.models.Persona.Persona;
 
 public class Tecnico extends Rol {
