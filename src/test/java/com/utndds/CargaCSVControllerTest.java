@@ -17,8 +17,7 @@ public class CargaCSVControllerTest {
 
     @Test
     public void testCargarArchivoCSV() {
-        String rutaArchivoCSV = ".\\src\\main\\resources\\colaboraciones.csv";
-        cargaCSVController.cargarArchivoCSV(rutaArchivoCSV);
+        cargaCSVController.cargarArchivoCSV();
 
         List<Colaborador> colaboradores = Sistema.getInstance().getColaboradores();
         assertEquals(4, colaboradores.size());

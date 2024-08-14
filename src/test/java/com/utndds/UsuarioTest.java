@@ -1,6 +1,6 @@
 package com.utndds;
 
-import com.utndds.heladerasApi.controllers.RegistrationDTO;
+import com.utndds.heladerasApi.DTOs.RegistrationDTO;
 import com.utndds.heladerasApi.controllers.UsuarioController;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
