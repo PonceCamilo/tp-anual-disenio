@@ -18,10 +18,10 @@ public class CargaCSV {
     private ColaboradorFactory cFactory = new ColaboradorFactory();
     private ColaboracionFactory colaboFactory = new ColaboracionFactory();
 
-    public void cargarCSV(String filePath) {
+    public void cargarCSV() {
         Sistema sistema = Sistema.getInstance();
 
-        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+        try (CSVReader reader = new CSVReader(new FileReader(".\\src\\main\\resources\\colaboraciones.csv"))) {
             List<String[]> registros = reader.readAll();
             for (String[] registro : registros) {
                 PersonaHumana persona = phFactory.crearPersonaHumana(registro);

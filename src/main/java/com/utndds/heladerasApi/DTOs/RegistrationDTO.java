@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.controllers;
+package com.utndds.heladerasApi.DTOs;
 
 public class RegistrationDTO {
     private String email;
