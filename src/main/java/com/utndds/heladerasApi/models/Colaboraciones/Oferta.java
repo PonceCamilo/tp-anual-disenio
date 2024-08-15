@@ -2,20 +2,25 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
-public class Oferta extends Colaboracion {
-    String rubro;
-    String nombre;
-    double cantidadPuntosNec;
-    String imagen;
+import javax.persistence.*;
 
-    public Oferta(Colaborador colaborador, String rubro, String nombre, double cantidadPuntosNec,
-            String imagen) {
-        super(colaborador);
-        this.colaborador = colaborador;
-        this.rubro = rubro;
-        this.nombre = nombre;
-        this.cantidadPuntosNec = cantidadPuntosNec;
-        this.imagen = imagen;
+@Entity
+public class Oferta extends Colaboracion {
+
+    @Column(name = "rubro")
+    private String rubro;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "cantidad_puntos_nec")
+    private double cantidadPuntosNec;
+
+    @Column(name = "imagen")
+    private String imagen;
+
+    // Constructor vacío para JPA
+    public Oferta() {
     }
 
     protected void procesar() {

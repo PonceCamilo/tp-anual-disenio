@@ -6,8 +6,17 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("MUCHAS_VIANDAS")
 public class MuchasViandas extends Evento {
-    int cantidadMaxima;
+
+    @Column(name = "cantidad_maxima")
+    private int cantidadMaxima;
+
+    public MuchasViandas() {
+    }
 
     public MuchasViandas(Colaborador colaborador, List<Contacto> mediosDeseados, int cantidadMaxima) {
         super(colaborador, mediosDeseados);

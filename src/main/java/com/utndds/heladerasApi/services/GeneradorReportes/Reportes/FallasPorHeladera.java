@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Sistema.Sistema;
+import com.utndds.heladerasApi.models.ONG.ONG;
 
 @Service
 public class FallasPorHeladera extends Reporte {
@@ -16,7 +16,7 @@ public class FallasPorHeladera extends Reporte {
 
     private void mostrarFallasPorHeladera() {
 
-        List<Heladera> heladeras = Sistema.getInstance().getHeladeras();
+        List<Heladera> heladeras = ONG.getInstance().getHeladeras();
         for (Heladera heladera : heladeras) {
             int cantFallas = heladera.cantFallas();
             System.out.println("Heladera: " + heladera.getPunto().getNombre() + ", " + cantFallas + " Fallas.");

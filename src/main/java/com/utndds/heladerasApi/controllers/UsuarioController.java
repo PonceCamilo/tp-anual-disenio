@@ -1,7 +1,7 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.models.Sistema.Usuario;
 import com.utndds.heladerasApi.DTOs.RegistrationDTO;
+import com.utndds.heladerasApi.models.ONG.Usuario;
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.services.UsuarioService.UsuarioService;

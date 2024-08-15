@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Sistema;
+package com.utndds.heladerasApi.models.ONG;
 
 import com.utndds.heladerasApi.models.Rol.Rol;
 import com.utndds.heladerasApi.services.UsuarioService.PasswordHashService;

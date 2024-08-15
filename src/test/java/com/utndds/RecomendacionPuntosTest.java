@@ -17,7 +17,7 @@ import com.utndds.heladerasApi.models.Heladera.Punto;
 
 @SpringBootTest(classes = HeladerasApiApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test") // Opcional, si necesitas perfiles de configuración especiales para pruebas
-public class HeladeraControllerTest {
+public class RecomendacionPuntosTest {
 
         @Autowired
         private TestRestTemplate restTemplate;

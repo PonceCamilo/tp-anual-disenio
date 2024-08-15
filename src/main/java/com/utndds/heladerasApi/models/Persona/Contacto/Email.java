@@ -1,7 +1,15 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("EMAIL")
 public class Email extends Contacto {
-    String email;
+    @Column(name = "email")
+    private String email;
+
+    public Email() {
+    }
 
     public Email(String email) {
         this.email = email;

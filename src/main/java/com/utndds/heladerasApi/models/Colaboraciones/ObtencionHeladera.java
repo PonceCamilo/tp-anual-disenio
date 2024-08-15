@@ -1,14 +1,18 @@
 package com.utndds.heladerasApi.models.Colaboraciones;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Rol.Colaborador;
 
+import javax.persistence.*;
+
+@Entity
 public class ObtencionHeladera extends Colaboracion {
-    Heladera heladera;
 
-    public ObtencionHeladera(Colaborador colaborador, Heladera heladera) {
-        super(colaborador);
-        this.heladera = heladera;
+    @ManyToOne
+    @JoinColumn(name = "heladera")
+    private Heladera heladera;
+
+    // Constructor vacío para JPA
+    public ObtencionHeladera() {
     }
 
     @Override
@@ -20,12 +24,6 @@ public class ObtencionHeladera extends Colaboracion {
 
     public Heladera getHeladera() {
         return heladera;
-    }
-
-    public static void main(String[] args) {
-        ObtencionHeladera colaboracion = new ObtencionHeladera(null, null);
-        System.out.println(colaboracion.puntosGanados());
-
     }
 
 }

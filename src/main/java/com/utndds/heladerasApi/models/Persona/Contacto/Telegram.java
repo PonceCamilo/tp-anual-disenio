@@ -1,7 +1,15 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("TELEGRAM")
 public class Telegram extends Contacto {
-    String numero;
+    @Column(name = "numero")
+    private String numero;
+
+    public Telegram() {
+    }
 
     public Telegram(String numero) {
         this.numero = numero;

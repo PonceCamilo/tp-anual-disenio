@@ -1,7 +1,15 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
+import javax.persistence.*;
+
+@Entity
+@DiscriminatorValue("WHATSAPP")
 public class Whatsapp extends Contacto {
-    String numero;
+    @Column(name = "numero")
+    private String numero;
+
+    public Whatsapp() {
+    }
 
     public Whatsapp(String numero) {
         this.numero = numero;

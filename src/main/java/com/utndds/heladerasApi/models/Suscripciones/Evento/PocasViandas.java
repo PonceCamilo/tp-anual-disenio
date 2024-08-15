@@ -5,9 +5,17 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("POCAS_VIANDAS")
 public class PocasViandas extends Evento {
-    int cantidadMinima;
+
+    @Column(name = "cantidad_minima")
+    private int cantidadMinima;
+
+    public PocasViandas() {
+    }
 
     public PocasViandas(Colaborador colaborador, List<Contacto> mediosDeseados, int cantidadMinima) {
         super(colaborador, mediosDeseados);

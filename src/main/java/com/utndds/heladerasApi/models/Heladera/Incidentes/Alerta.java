@@ -7,10 +7,20 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Punto;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "alerta")
 public class Alerta extends Incidente {
+
     private static final String EXCHANGE_NAME = "alerta";
-    String tipo;
+
+    @Column(name = "tipo")
+    private String tipo;
+
+    // Constructor vacío para JPA
+    public Alerta() {
+    }
 
     public Alerta(Heladera heladera, String tipo) {
         super(heladera);
@@ -18,6 +28,10 @@ public class Alerta extends Incidente {
         this.procesar();
         this.publicarAlerta();
     }
+
+    public void procesar() {
+        super.procesar();
+    };
 
     private void publicarAlerta() {
         try {
@@ -40,7 +54,7 @@ public class Alerta extends Incidente {
 
     public static void main(String[] args) {
         Punto punto = new Punto(1, 1, "nombre heladera", null);
-        Heladera heladera = new Heladera(punto, 0, 0, 0, false, false, null, null);
+        Heladera heladera = new Heladera(null, punto, 0, 0, 0, false, false, null, null);
         new Alerta(heladera, null);
     }
 

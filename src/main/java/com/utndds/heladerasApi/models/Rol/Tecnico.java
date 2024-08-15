@@ -4,11 +4,24 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.VisitaTecnico;
 import com.utndds.heladerasApi.models.Persona.Persona;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "tecnico")
 public class Tecnico extends Rol {
-    String cuil;
-    String areaCobertura;
-    List<VisitaTecnico> visitas;
+
+    @Column(name = "cuil")
+    private String cuil;
+
+    @Column(name = "area_cobertura")
+    private String areaCobertura;
+
+    @OneToMany(mappedBy = "tecnico", fetch = FetchType.LAZY)
+    private List<VisitaTecnico> visitas;
+
+    // Constructor vacío para JPA
+    public Tecnico() {
+    }
 
     public Tecnico(Persona persona, String cuil, String areaCobertura,
             List<VisitaTecnico> visitas) {

@@ -1,12 +1,32 @@
 package com.utndds.heladerasApi.models.Heladera;
 
+import javax.persistence.*;
+
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 
+@Entity
 public class ManejadorTemperatura {
-    Heladera heladera;
-    double ultimaTempRegistrada;
-    double minTemp;
-    double maxTemp;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "heladera", referencedColumnName = "id")
+    private Heladera heladera;
+
+    @Column(name = "ultima_temp_registrada")
+    private double ultimaTempRegistrada;
+
+    @Column(name = "minima_temperatura")
+    private double minTemp;
+
+    @Column(name = "maxima_temperatura")
+    private double maxTemp;
+
+    // Constructor vacío para JPA
+    public ManejadorTemperatura() {
+    }
 
     public ManejadorTemperatura(Heladera heladera, double minTemp, double maxTemp) {
         this.heladera = heladera;

@@ -1,7 +1,14 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("TELEFONO")
 public class Telefono extends Contacto {
-    String numero;
+    @Column(name = "numero")
+    private String numero;
+
+    public Telefono() {
+    }
 
     public Telefono(String numero) {
         this.numero = numero;

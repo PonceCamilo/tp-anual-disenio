@@ -3,13 +3,34 @@ package com.utndds.heladerasApi.models.Heladera.Incidentes;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.*;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 
+import lombok.Getter;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED) // Utiliza JOINED si Incidente es una clase base para otras entidades
 public abstract class Incidente {
-    LocalDateTime fechaHora;
-    Heladera heladera;
-    List<VisitaTecnico> visitas = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "fecha_hora")
+    private LocalDateTime fechaHora;
+
+    @Getter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "heladera") // Nombre de la columna de la FK en la tabla Incidente
+    protected Heladera heladera;
+
+    @OneToMany(mappedBy = "incidente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<VisitaTecnico> visitas = new ArrayList<>();
+
+    // Constructor vacío para JPA
+    public Incidente() {
+    }
 
     public Incidente(Heladera heladera) {
         this.fechaHora = LocalDateTime.now();
@@ -28,9 +49,5 @@ public abstract class Incidente {
 
     public void agregarVisita(VisitaTecnico visita) {
         this.visitas.add(visita);
-    }
-
-    public Heladera getHeladera() {
-        return heladera;
     }
 }

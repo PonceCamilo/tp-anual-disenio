@@ -13,15 +13,25 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "sensor_temperatura")
 public class SensorTemperatura extends Sensor {
-    Heladera heladera;
-    Double temperatura;
+
+    @Column(name = "temperatura")
+    private Double temperatura;
+
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private static final String EXCHANGE_NAME = "temperatura";
 
+    // Constructor vacío para JPA
+    protected SensorTemperatura() {
+    }
+
     public SensorTemperatura(Heladera heladera) {
         super(heladera);
-        scheduler.scheduleAtFixedRate(this::medirTemperatura, 0, 5, TimeUnit.SECONDS);// deberia ejecutarse c/5mins
+        scheduler.scheduleAtFixedRate(this::medirTemperatura, 0, 5, TimeUnit.MINUTES); // Corre cada 5 minutos
     }
 
     public void medirTemperatura() {
@@ -61,7 +71,7 @@ public class SensorTemperatura extends Sensor {
 
     public static void main(String[] args) {
         Punto punto = new Punto(0, 0, "nombre Heladera", "direccion Heladera");
-        Heladera heladera = new Heladera(punto, 0, 0, 0, false, false, null, null);
+        Heladera heladera = new Heladera(null, punto, 0, 0, 0, false, false, null, null);
         new SensorTemperatura(heladera);
     }
 }

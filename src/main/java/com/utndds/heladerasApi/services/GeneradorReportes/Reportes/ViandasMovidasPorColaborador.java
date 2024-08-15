@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Colaboraciones.DistribucionViandas;
+import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Sistema.Sistema;
 
 @Service
 public class ViandasMovidasPorColaborador extends Reporte {
@@ -17,7 +17,7 @@ public class ViandasMovidasPorColaborador extends Reporte {
     }
 
     private void mostrarViandasDistribuidasPorColaborador() {
-        List<Colaborador> colaboradores = Sistema.getInstance().getColaboradores();
+        List<Colaborador> colaboradores = ONG.getInstance().getColaboradores();
         for (Colaborador colaborador : colaboradores) {
             int cantViandasDistribuidas = this.cantidadViandasDistribuidas(colaborador.getColaboraciones());
             System.out.println("Colaborador: " + colaborador.getPersona().getNombre() + ", " + cantViandasDistribuidas

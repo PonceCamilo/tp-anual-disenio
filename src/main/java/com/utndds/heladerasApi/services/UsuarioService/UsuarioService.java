@@ -1,7 +1,7 @@
 package com.utndds.heladerasApi.services.UsuarioService;
 
+import com.utndds.heladerasApi.models.ONG.Usuario;
 import com.utndds.heladerasApi.models.Rol.Rol;
-import com.utndds.heladerasApi.models.Sistema.Usuario;
 import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.ValidadorContraseña;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

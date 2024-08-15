@@ -10,17 +10,33 @@ import java.util.concurrent.TimeUnit;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 import com.utndds.heladerasApi.models.Tarjetas.Tarjeta;
+import javax.persistence.*;
 
 import java.time.Duration;
 
+@Entity
 public class TarjetaPersVuln extends Tarjeta {
-    String codigo;
-    PersonaVulnerable persVul;
-    int cantUsosHoy;
-    List<UsoHeladera> usos = new ArrayList<>();
 
-    public TarjetaPersVuln(String codigo) {
-        this.codigo = codigo;
+    @Column(name = "codigo")
+    private String codigo;
+
+    @ManyToOne
+    @JoinColumn(name = "persona_vulnerable")
+    private PersonaVulnerable persVul;
+
+    @Column(name = "cant_usos_hoy")
+    private int cantUsosHoy;
+
+    @OneToMany(mappedBy = "tarjeta_pers_vuln", cascade = CascadeType.ALL)
+    private List<UsoHeladera> usos = new ArrayList<>();
+
+    public TarjetaPersVuln() {
+        super(null); // Necesario para JPA
+        this.cantUsosHoy = 0;
+    }
+
+    public TarjetaPersVuln(PersonaVulnerable personaVulnerable) {
+        super(personaVulnerable);
         this.cantUsosHoy = 0;
 
         this.programarReinicioDeUsos();
