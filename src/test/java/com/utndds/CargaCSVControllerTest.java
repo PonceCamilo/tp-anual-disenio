@@ -1,8 +1,9 @@
 package com.utndds;
 
 import java.util.List;
+
+import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Sistema.Sistema;
 import com.utndds.heladerasApi.HeladerasApiApplication;
 import com.utndds.heladerasApi.controllers.CargaCSVController;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ public class CargaCSVControllerTest {
     public void testCargarArchivoCSV() {
         cargaCSVController.cargarArchivoCSV();
 
-        List<Colaborador> colaboradores = Sistema.getInstance().getColaboradores();
+        List<Colaborador> colaboradores = ONG.getInstance().getColaboradores();
         assertEquals(4, colaboradores.size());
         assertEquals("Jorge", colaboradores.get(0).getPersona().getNombre());
     }

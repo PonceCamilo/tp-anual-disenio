@@ -4,24 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.SolicitudApertura;
+import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Sistema.Sistema;
+import com.utndds.heladerasApi.models.Solicitudes.SolicitudApertura;
 import com.utndds.heladerasApi.models.Tarjetas.Tarjeta;
+import javax.persistence.*;
 
+@Entity
 public class TarjetaColaborador extends Tarjeta {
-    Colaborador colaborador;
-    List<Apertura> aperturas = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "colaborador")
+    private Colaborador colaborador;
+
+    @OneToMany(mappedBy = "tarjeta_colaborador", cascade = CascadeType.ALL)
+    private List<Apertura> aperturas = new ArrayList<>();
+
+    public TarjetaColaborador() {
+        super(null); // Necesario para JPA
+    }
 
     public TarjetaColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
-
+        super(colaborador);
     }
 
     public boolean puedeUsarse(Heladera heladera) {
-        List<SolicitudApertura> solicitudes = Sistema.getInstance().getSolicitudes();
+        List<SolicitudApertura> solicitudes = ONG.getInstance().getSolicitudes();
         return solicitudes.stream()
-                .filter(solicitud -> solicitud.getColaborador() == this.colaborador)
+                .filter(solicitud -> solicitud.getColaborador() == this.dueño)
                 .anyMatch(SolicitudApertura::getEstado);
     }
 
@@ -32,14 +42,6 @@ public class TarjetaColaborador extends Tarjeta {
 
     public void agregarApertura(Apertura apertura) {
         this.aperturas.add(apertura);
-    }
-
-    public Colaborador getColaborador() {
-        return colaborador;
-    }
-
-    public void setColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
     }
 
 }

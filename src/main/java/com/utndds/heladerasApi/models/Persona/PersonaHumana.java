@@ -3,12 +3,28 @@ package com.utndds.heladerasApi.models.Persona;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import java.time.LocalDate;
 import java.util.List;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "persona_humana")
 public class PersonaHumana extends Persona {
+
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "apellido")
     private String apellido;
+
+    @Column(name = "fecha_nacimiento")
     private LocalDate fechaDeNacimiento;
+
+    @ManyToOne
+    @JoinColumn(name = "documento")
     private Documento documento;
+
+    // Constructor vacío para JPA
+    public PersonaHumana() {
+    }
 
     public PersonaHumana(String direccion, List<Contacto> mediosContacto) {
         super(direccion, mediosContacto);

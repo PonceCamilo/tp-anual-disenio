@@ -5,15 +5,43 @@ import java.time.LocalDate;
 import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "visita_tecnico")
 public class VisitaTecnico {
-    LocalDate fecha;
-    Tecnico tecnico;
-    Heladera heladera;
-    Incidente incidente;
-    String descripcion;
-    File foto;
-    boolean arreglado;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "fecha")
+    private LocalDate fecha;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tecnico")
+    private Tecnico tecnico;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "heladera")
+    private Heladera heladera;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "incidente")
+    private Incidente incidente;
+
+    @Column(name = "descripcion")
+    private String descripcion;
+
+    @Column(name = "foto")
+    private File foto;
+
+    @Column(name = "arreglado")
+    private boolean arreglado;
+
+    // Constructor vacío para JPA
+    public VisitaTecnico() {
+    }
 
     public VisitaTecnico(LocalDate fecha, Tecnico tecnico, Heladera heladera, Incidente incidente, String descripcion,
             File foto, boolean arreglado) {

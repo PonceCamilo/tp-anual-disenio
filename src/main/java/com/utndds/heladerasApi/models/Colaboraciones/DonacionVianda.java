@@ -4,12 +4,24 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
 public class DonacionVianda extends Colaboracion {
-    List<Vianda> viandasDonadas = new ArrayList<>();
-    Heladera heladera;
+
+    @OneToMany
+    @JoinColumn(name = "donacion_vianda") // Ajusta según la clave foránea en la tabla Vianda
+    private List<Vianda> viandasDonadas;
+
+    @ManyToOne
+    @JoinColumn(name = "heladera")
+    private Heladera heladera;
+
+    // Constructor vacío para JPA
+    public DonacionVianda() {
+    }
 
     public DonacionVianda(Colaborador colaborador,
             List<Vianda> viandasDonadas, Heladera heladera,

@@ -3,11 +3,29 @@ package com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
 public class UsoHeladera {
-    Heladera heladera;
-    TarjetaPersVuln tarjeta;
-    LocalDate fechaUso;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "heladera")
+    private Heladera heladera;
+
+    @ManyToOne
+    @JoinColumn(name = "tarjeta_pers_vuln")
+    private TarjetaPersVuln tarjeta;
+
+    @Column(name = "fecha_uso")
+    private LocalDate fechaUso;
+
+    // Constructor vacío para JPA
+    public UsoHeladera() {
+    }
 
     public UsoHeladera(Heladera heladera, TarjetaPersVuln tarjeta) {
         this.heladera = heladera;

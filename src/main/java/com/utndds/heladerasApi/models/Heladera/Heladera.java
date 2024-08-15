@@ -7,23 +7,62 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
 import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
+import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Observer.ObservadorHeladera;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 
+import lombok.Setter;
+import lombok.Getter;
+
+import javax.persistence.*;
+
+@Setter
+@Getter
+@Entity
+@Table(name = "Heladera")
 public class Heladera implements ObservadorHeladera {
-    Punto punto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "ong", referencedColumnName = "id")
+    private ONG ong;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "punto")
+    private Punto punto;
+
+    @Column(name = "capacidad")
     int capacidad;
+
+    @Column(name = "fecha_inicio_funcionamiento")
     LocalDate fechaInicioFuncionamiento;
-    List<Vianda> viandas = new ArrayList<>();
+
+    @Column(name = "funcionando")
     boolean funcionando;
+
+    @Column(name = "abierta")
     boolean abierta;
+
+    @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    SensorMovimiento sensorMov;
+
+    @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     ManejadorTemperatura manejadorTemperatura;
-    SensorMovimiento sensorMov = new SensorMovimiento(this);
+
+    @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    List<Vianda> viandas = new ArrayList<>();
+
+    @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Suscripcion> suscriptores = new ArrayList<>();
+
+    @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Incidente> incidentes = new ArrayList<>();
 
-    public Heladera(Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando, boolean abierta,
-            LocalDate fechaInicioFuncionamiento, List<Vianda> viandas) {
+    public Heladera(ONG ong, Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando,
+            boolean abierta, LocalDate fechaInicioFuncionamiento, List<Vianda> viandas) {
+        this.ong = ong;
         this.punto = punto;
         this.capacidad = capacidad;
         this.funcionando = funcionando;
@@ -31,6 +70,7 @@ public class Heladera implements ObservadorHeladera {
         this.fechaInicioFuncionamiento = fechaInicioFuncionamiento;
         this.viandas = viandas;
         this.manejadorTemperatura = new ManejadorTemperatura(this, minTemp, maxTemp);
+        this.sensorMov = new SensorMovimiento(this);
     }
 
     @Override
@@ -67,20 +107,12 @@ public class Heladera implements ObservadorHeladera {
         return this.viandas.size();
     }
 
-    public void setActiva(boolean abierta) {
-        this.abierta = abierta;
+    public void agregarVianda(Vianda vianda) {
+        this.viandas.add(vianda);
     }
 
-    public void setFuncionando(boolean funcionando) {
-        this.funcionando = funcionando;
-    }
-
-    public Punto getPunto() {
-        return punto;
-    }
-
-    public boolean getFuncionando() {
-        return funcionando;
+    public boolean estaFuncionando() {
+        return this.funcionando;
     }
 
 }

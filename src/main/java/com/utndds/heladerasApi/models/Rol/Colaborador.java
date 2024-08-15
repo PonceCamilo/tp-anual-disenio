@@ -6,19 +6,29 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "colaborador")
 public class Colaborador extends Rol {
-    List<Colaboracion> colaboraciones = new ArrayList<>();
-    List<Suscripcion> suscripciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Colaboracion> colaboraciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Suscripcion> suscripciones = new ArrayList<>();
+
+    // Constructor vacío para JPA
+    public Colaborador() {
+    }
 
     public Colaborador(Persona persona, List<Colaboracion> colaboraciones) {
         super(persona);
         this.colaboraciones = colaboraciones;
     }
 
-    @Override
     public Persona getPersona() {
-        return (Persona) persona;
+        return (Persona) this.persona;
     }
 
     public double puntos() {

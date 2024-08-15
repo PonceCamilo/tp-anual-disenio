@@ -12,12 +12,12 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class RecomendacionPuntosService {
+public class RecomendacionDonacionService {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    public List<Punto> getRecomendaciones(double latitud, double longitud, double radio) {
+    public List<Punto> getRecomendacionesDonaciones(double latitud, double longitud) {
         String url = "http://localhost:8080/api/puntos?latitud=1&longitud=1&radio=1";
         try {
             ResponseEntity<List<Punto>> response = restTemplate.exchange(

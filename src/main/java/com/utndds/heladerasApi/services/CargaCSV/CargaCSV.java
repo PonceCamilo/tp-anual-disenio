@@ -2,9 +2,9 @@ package com.utndds.heladerasApi.services.CargaCSV;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Sistema.Sistema;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class CargaCSV {
     private ColaboracionFactory colaboFactory = new ColaboracionFactory();
 
     public void cargarCSV() {
-        Sistema sistema = Sistema.getInstance();
+        ONG sistema = ONG.getInstance();
 
         try (CSVReader reader = new CSVReader(new FileReader(".\\src\\main\\resources\\colaboraciones.csv"))) {
             List<String[]> registros = reader.readAll();

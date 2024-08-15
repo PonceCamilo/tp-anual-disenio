@@ -5,15 +5,21 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("DESPERFECTO")
 public class Desperfecto extends Evento {
+
+    public Desperfecto() {
+    }
 
     public Desperfecto(Colaborador colaborador, List<Contacto> mediosDeseados) {
         super(colaborador, mediosDeseados);
     }
 
     public void verificarEvento(Heladera heladera) {
-        if (!heladera.getFuncionando()) {
+        if (!heladera.estaFuncionando()) {
             this.notificarEvento(heladera);
         }
     };

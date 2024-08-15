@@ -5,9 +5,29 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
+import lombok.Getter;
+
+import javax.persistence.*;
+
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Persona {
-    String direccion;
-    List<Contacto> mediosContacto = new ArrayList<>();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Getter
+    @Column(name = "direccion")
+    private String direccion;
+
+    @Getter
+    @OneToMany(mappedBy = "persona")
+    private List<Contacto> mediosContacto = new ArrayList<>();
+
+    // Constructor vacío para JPA
+    protected Persona() {
+    }
 
     public Persona(String direccion, List<Contacto> mediosContacto) {
         this.direccion = direccion;
@@ -15,22 +35,6 @@ public abstract class Persona {
     }
 
     public abstract String getNombre();
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public List<Contacto> getMediosContacto() {
-        return mediosContacto;
-    }
-
-    public void setMediosContacto(List<Contacto> mediosContacto) {
-        this.mediosContacto = mediosContacto;
-    }
 
     public void notificar(String message) {
         for (Contacto medio : this.mediosContacto) {
