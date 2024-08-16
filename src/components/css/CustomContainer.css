@@ -3,12 +3,13 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    
   }
 .full-height-row {
     min-height: calc()
   }
 .header-container {
-    background-image: linear-gradient(180deg, #79bd67 5%, #a6ee97 95%);
+    background-image: url(../../assets/imgs/bg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

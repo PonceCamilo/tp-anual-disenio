@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import { ModalFooter } from 'react-bootstrap';
 import ContactMethod from './ContactMethod';
+import ModalFooter from 'react-bootstrap/ModalFooter';
 
-function HumanForm({ formData, handleInputChange, contactMethod, setContactMethod }) {
+function HumanForm({ formData, handleInputChange }) {
+  const [contactMethod, setContactMethod] = useState('');
+
+  const handleContactMethodChange = (event) => {
+    setContactMethod(event.target.value);
+  };
+
+  const handleContactInfoChange = (newValue) => {
+    handleInputChange({
+      target: { name: contactMethod, value: newValue }
+    });
+  };
+
   return (
     <>
       <Form.Group controlId="formBasicName">
@@ -26,14 +38,31 @@ function HumanForm({ formData, handleInputChange, contactMethod, setContactMetho
           onChange={handleInputChange}
         />
       </Form.Group>
-      <Form.Group className='mt-2 mb-3' controlId="formBasicContact">
-        <ContactMethod
-          contactMethod={contactMethod}
-          setContactMethod={setContactMethod}
-          contactInfo={formData.contactInfo}
-          setContactInfo={(value) => handleInputChange({ target: { name: 'contactInfo', value } })}
-        />
+      
+      <Form.Group className='mt-2 mb-3' controlId="formBasicContactMethod">
+        <Form.Label>Seleccione un Método de Contacto</Form.Label>
+        <Form.Select
+          aria-label="Método de Contacto"
+          value={contactMethod}
+          onChange={handleContactMethodChange}
+        >
+          <option value="">Seleccione...</option>
+          <option value="emailContact">Email</option>
+          <option value="telefono">Teléfono</option>
+          <option value="whatsapp">WhatsApp</option>
+        </Form.Select>
       </Form.Group>
+
+      {contactMethod && (
+        <Form.Group className='mt-3' controlId={`formBasic${contactMethod}`}>
+          <ContactMethod
+            type={contactMethod}
+            formData={formData}
+            setFormData={handleContactInfoChange}
+          />
+        </Form.Group>
+      )}
+      
       <Form.Label>Formas de Contribuir</Form.Label>
       <div className='d-flex'>
         <Form.Check
@@ -59,25 +88,25 @@ function HumanForm({ formData, handleInputChange, contactMethod, setContactMetho
         />
       </div>
       <ModalFooter fluid className='d-flex justify-content-around flex-nowrap'>
-        <Form.Group controlId="formBasicBirthdate">
-          <Form.Label>Fecha de Nacimiento (opcional)</Form.Label>
-          <Form.Control
-            type="date"
-            name="birthdate"
-            value={formData.birthdate}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="formBasicAddress">
-          <Form.Label>Dirección<br /> (opcional)</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Ingrese su dirección"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-          />
-        </Form.Group>
+      <Form.Group className='mb-3' controlId="formBasicBirthdate">
+        <Form.Label>Fecha de Nacimiento (opcional)</Form.Label>
+        <Form.Control
+          type="date"
+          name="birthdate"
+          value={formData.birthdate}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
+      <Form.Group className='mb-3' controlId="formBasicAddress">
+        <Form.Label>Dirección<br /> (opcional)</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Ingrese su dirección"
+          name="address"
+          value={formData.address}
+          onChange={handleInputChange}
+        />
+      </Form.Group>
       </ModalFooter>
     </>
   );
