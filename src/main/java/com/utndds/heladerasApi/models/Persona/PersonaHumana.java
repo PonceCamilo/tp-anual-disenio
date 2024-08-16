@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.models.Persona;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "persona_humana")

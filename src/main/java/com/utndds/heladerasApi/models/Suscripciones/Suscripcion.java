@@ -7,7 +7,7 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Observer.ObservadorSuscripcion;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Suscripciones.Evento.Evento;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Suscripcion implements ObservadorSuscripcion {

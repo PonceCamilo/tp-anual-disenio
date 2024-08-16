@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.models.Heladera.Incidentes;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 

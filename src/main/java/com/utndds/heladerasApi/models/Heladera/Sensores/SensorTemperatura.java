@@ -13,16 +13,17 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "sensor_temperatura")
 public class SensorTemperatura extends Sensor {
-
     @Column(name = "temperatura")
     private Double temperatura;
 
+    @Transient
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    @Transient
     private static final String EXCHANGE_NAME = "temperatura";
 
     // Constructor vacío para JPA

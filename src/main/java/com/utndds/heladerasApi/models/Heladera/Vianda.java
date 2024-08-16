@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Heladera;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 

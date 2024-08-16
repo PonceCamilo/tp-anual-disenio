@@ -4,12 +4,19 @@ import java.time.LocalDate;
 
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln.TarjetaPersVuln;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "persona_vulnerable")
 public class PersonaVulnerable extends Rol {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @Getter
+    @Setter
+    private Long id;
     @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
 

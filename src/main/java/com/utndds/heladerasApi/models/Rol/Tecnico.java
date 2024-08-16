@@ -4,12 +4,19 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.VisitaTecnico;
 import com.utndds.heladerasApi.models.Persona.Persona;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "tecnico")
 public class Tecnico extends Rol {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @Getter
+    @Setter
+    private Long id;
     @Column(name = "cuil")
     private String cuil;
 

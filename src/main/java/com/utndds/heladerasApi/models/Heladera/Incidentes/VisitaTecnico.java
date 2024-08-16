@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "visita_tecnico")

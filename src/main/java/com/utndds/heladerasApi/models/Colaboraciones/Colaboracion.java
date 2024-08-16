@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 import java.time.LocalDate;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

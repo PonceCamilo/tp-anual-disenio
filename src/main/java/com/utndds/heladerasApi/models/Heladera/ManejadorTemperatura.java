@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Heladera;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 

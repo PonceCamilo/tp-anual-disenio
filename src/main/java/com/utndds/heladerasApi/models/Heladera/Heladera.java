@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
-import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
 import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Observer.ObservadorHeladera;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
@@ -14,7 +13,7 @@ import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 import lombok.Setter;
 import lombok.Getter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Setter
 @Getter
@@ -44,10 +43,6 @@ public class Heladera implements ObservadorHeladera {
 
     @Column(name = "abierta")
     boolean abierta;
-
-    @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    SensorMovimiento sensorMov;
-
     @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     ManejadorTemperatura manejadorTemperatura;
 
@@ -70,7 +65,6 @@ public class Heladera implements ObservadorHeladera {
         this.fechaInicioFuncionamiento = fechaInicioFuncionamiento;
         this.viandas = viandas;
         this.manejadorTemperatura = new ManejadorTemperatura(this, minTemp, maxTemp);
-        this.sensorMov = new SensorMovimiento(this);
     }
 
     @Override

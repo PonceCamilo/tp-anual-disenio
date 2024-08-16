@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class DistribucionViandas extends Colaboracion {

@@ -1,20 +1,28 @@
 package com.utndds.heladerasApi.models.Rol;
 
+import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 import lombok.Getter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-@MappedSuperclass
-@Inheritance(strategy = InheritanceType.JOINED)
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED) // Estrategia de herencia
+@Table(name = "rol")
 public abstract class Rol {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    protected Long id;
     @Getter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "persona")
     protected Persona persona;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ong") // Nombre de la columna que se refiere a la ONG
+    private ONG ong;
 
     // Constructor vacío para JPA
     protected Rol() {
@@ -30,4 +38,7 @@ public abstract class Rol {
         }
     }
 
+    public int getCantMenoresAcargo() {
+        return 0;
+    }
 }

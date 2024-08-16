@@ -8,7 +8,7 @@ import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
 import com.utndds.heladerasApi.models.Solicitudes.SolicitudApertura;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ong")

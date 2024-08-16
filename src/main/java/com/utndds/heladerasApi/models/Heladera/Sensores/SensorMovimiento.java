@@ -3,12 +3,11 @@ package com.utndds.heladerasApi.models.Heladera.Sensores;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "sensor_movimiento")
 public class SensorMovimiento extends Sensor {
-
     // Constructor vacío para JPA
     protected SensorMovimiento() {
     }
