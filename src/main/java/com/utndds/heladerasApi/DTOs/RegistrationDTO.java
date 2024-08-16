@@ -2,6 +2,7 @@ package com.utndds.heladerasApi.DTOs;
 
 public class RegistrationDTO {
     private String email;
+    private String emailContact;
     private String whatsapp;
     private String telefono;
     private String password;
@@ -11,6 +12,9 @@ public class RegistrationDTO {
     private String lastName;
     private String birthdate;
     private String address;
+    private String companyName;
+    private String organizationType;
+    private String category;
     private boolean donationChecked;
     private boolean foodDonationChecked;
     private boolean mealDistributionChecked;
@@ -19,8 +23,9 @@ public class RegistrationDTO {
 
     public RegistrationDTO(String email, String whatsapp, String telefono, String password, String rol,
             String name, String type, String lastName, String birthdate, String address,
-            boolean donationChecked, boolean foodDonationChecked, boolean mealDistributionChecked) {
+            boolean donationChecked, boolean foodDonationChecked, boolean mealDistributionChecked, String companyName,String organizationType, String category,String emailContact) {
         this.email = email;
+        this.emailContact = emailContact;
         this.whatsapp = whatsapp;
         this.telefono = telefono;
         this.password = password;
@@ -33,6 +38,9 @@ public class RegistrationDTO {
         this.donationChecked = donationChecked;
         this.foodDonationChecked = foodDonationChecked;
         this.mealDistributionChecked = mealDistributionChecked;
+        this.companyName = companyName;
+        this.organizationType = organizationType;
+        this.category = category;
     }
 
     public String getEmail() {
@@ -41,6 +49,13 @@ public class RegistrationDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getEmailContact() {
+        return emailContact;
+    }
+    public void setEmailContact(String emailContact) {
+        this.emailContact = emailContact;
     }
 
     public String getWhatsapp() {
@@ -137,5 +152,23 @@ public class RegistrationDTO {
 
     public void setMealDistributionChecked(boolean mealDistributionChecked) {
         this.mealDistributionChecked = mealDistributionChecked;
+    }
+    public String getCompanyName() {
+        return companyName;
+    }
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+    public String getOrganizationType() {
+        return organizationType;
+    }
+    public void setOrganizationType(String organizationType) {
+        this.organizationType = organizationType;
+    }
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
