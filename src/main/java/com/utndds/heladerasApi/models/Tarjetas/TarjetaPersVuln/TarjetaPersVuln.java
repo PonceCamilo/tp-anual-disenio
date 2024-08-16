@@ -10,7 +10,8 @@ import java.util.concurrent.TimeUnit;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 import com.utndds.heladerasApi.models.Tarjetas.Tarjeta;
-import javax.persistence.*;
+
+import jakarta.persistence.*;
 
 import java.time.Duration;
 
@@ -20,14 +21,9 @@ public class TarjetaPersVuln extends Tarjeta {
     @Column(name = "codigo")
     private String codigo;
 
-    @ManyToOne
-    @JoinColumn(name = "persona_vulnerable")
-    private PersonaVulnerable persVul;
-
     @Column(name = "cant_usos_hoy")
     private int cantUsosHoy;
-
-    @OneToMany(mappedBy = "tarjeta_pers_vuln", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tarjeta", cascade = CascadeType.ALL)
     private List<UsoHeladera> usos = new ArrayList<>();
 
     public TarjetaPersVuln() {
@@ -67,7 +63,7 @@ public class TarjetaPersVuln extends Tarjeta {
     }
 
     private int extraccionesDiariasPermitidas() {
-        return 4 + 2 * this.persVul.getCantMenoresAcargo();
+        return 4 + 2 * this.dueño.getCantMenoresAcargo();
     }
 
     protected void usar(Heladera heladera) {
@@ -79,11 +75,8 @@ public class TarjetaPersVuln extends Tarjeta {
         this.cantUsosHoy++;
     }
 
-    public void setPersVul(PersonaVulnerable persVul) {
-        this.persVul = persVul;
-    }
-
     public String getCodigo() {
         return this.codigo;
     }
+
 }

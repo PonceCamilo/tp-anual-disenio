@@ -17,12 +17,19 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "solicitud_apertura")
 public class SolicitudApertura {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    @Getter
+    @Setter
+    private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "colaborador")
     private Colaborador colaborador;
@@ -39,8 +46,12 @@ public class SolicitudApertura {
 
     @Column(name = "estado")
     private boolean estado;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ong") // Nombre de la columna que se refiere a la ONG
+    private ONG ong;
+    @Transient
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    @Transient
     private static final String EXCHANGE_NAME = "solicitudApertura";
 
     // Constructor vacío para JPA

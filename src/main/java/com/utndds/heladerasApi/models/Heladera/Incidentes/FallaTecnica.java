@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "falla_tecnica")

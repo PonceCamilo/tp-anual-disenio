@@ -1,6 +1,5 @@
 package com.utndds.heladerasApi.controllers;
 
-
 import com.utndds.heladerasApi.DTOs.RegistrationDTO;
 import com.utndds.heladerasApi.models.ONG.Usuario;
 import com.utndds.heladerasApi.models.Persona.Persona;
@@ -58,7 +57,7 @@ public class UsuarioController {
             if (!validadorContraseña.validarContraseña(password)) {
                 return "Error: Contraseña no cumple con los requisitos mínimos.";
             }
-            
+
             String hashedPassword = passwordHashService.hashPassword(password);
             String type = registrationDTO.getType(); // Persona Humana o Juridica
 
@@ -78,12 +77,14 @@ public class UsuarioController {
 
     private String registrarHumano(RegistrationDTO registrationDTO, String hashedPassword) {
         PersonaHumana personaHumana = setHumano(registrationDTO);
-        return registrarColaborador(personaHumana, registrationDTO.getRol(), registrationDTO.getEmail(), hashedPassword);
+        return registrarColaborador(personaHumana, registrationDTO.getRol(), registrationDTO.getEmail(),
+                hashedPassword);
     }
 
     private String registrarJuridico(RegistrationDTO registrationDTO, String hashedPassword) {
         PersonaJuridica personaJuridica = setJuridico(registrationDTO);
-        return registrarColaborador(personaJuridica, registrationDTO.getRol(), registrationDTO.getEmail(), hashedPassword);
+        return registrarColaborador(personaJuridica, registrationDTO.getRol(), registrationDTO.getEmail(),
+                hashedPassword);
     }
 
     private PersonaHumana setHumano(RegistrationDTO registrationDTO) {
@@ -91,7 +92,7 @@ public class UsuarioController {
         String nombre = registrationDTO.getName();
         String apellido = registrationDTO.getLastName();
         Email email = new Email(registrationDTO.getEmail());
-    
+
         // Datos opcionales
         String direccion = registrationDTO.getAddress();
         String whatsapp = registrationDTO.getWhatsapp();
@@ -99,14 +100,12 @@ public class UsuarioController {
         String nacimiento = registrationDTO.getBirthdate();
         String emailContacto = registrationDTO.getEmailContact();
         LocalDate fechaDeNacimiento = null;
-    
-        
+
         if (nacimiento != null && !nacimiento.equals("null")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             fechaDeNacimiento = LocalDate.parse(nacimiento, formatter);
         }
-    
-        
+
         List<Contacto> mediosContacto = new ArrayList<>();
         if (whatsapp != null && !whatsapp.isEmpty()) {
             mediosContacto.add(new Whatsapp(whatsapp));
@@ -117,19 +116,18 @@ public class UsuarioController {
         if (emailContacto != null && !emailContacto.isEmpty()) {
             mediosContacto.add(new Email(emailContacto));
         }
-        if (mediosContacto.isEmpty()) {  // Si no hay whatsapp ni teléfono, agregar el email de registro
+        if (mediosContacto.isEmpty()) { // Si no hay whatsapp ni teléfono, agregar el email de registro
             mediosContacto.add(email);
         }
-    
-        if (nombre == null || nombre.isEmpty() || 
-            apellido == null || apellido.isEmpty() || 
-            mediosContacto.isEmpty()) {
+
+        if (nombre == null || nombre.isEmpty() ||
+                apellido == null || apellido.isEmpty() ||
+                mediosContacto.isEmpty()) {
             throw new IllegalArgumentException("Nombre, apellido y al menos un medio de contacto son obligatorios.");
         }
-    
+
         return new PersonaHumana(direccion, mediosContacto, nombre, apellido, fechaDeNacimiento, null);
     }
-    
 
     private PersonaJuridica setJuridico(RegistrationDTO registrationDTO) {
         // Datos obligatorios
@@ -142,7 +140,7 @@ public class UsuarioController {
         String whatsapp = registrationDTO.getWhatsapp();
         String telefono = registrationDTO.getTelefono();
         String emailContacto = registrationDTO.getEmailContact();
-    
+
         // Lista de medios de contacto
         List<Contacto> mediosContacto = new ArrayList<>();
         if (whatsapp != null && !whatsapp.isEmpty()) {
@@ -154,22 +152,20 @@ public class UsuarioController {
         if (emailContacto != null && !emailContacto.isEmpty()) {
             mediosContacto.add(new Email(emailContacto));
         }
-        if (mediosContacto.isEmpty()) {  // Si no hay whatsapp ni teléfono, agregar el email de registro
+        if (mediosContacto.isEmpty()) { // Si no hay whatsapp ni teléfono, agregar el email de registro
             mediosContacto.add(email);
         }
-    
+
         // Validaciones
-        if (razonSocial == null || razonSocial.isEmpty() || 
-            rubro == null || rubro.isEmpty() || 
-            tipoOrganizacion == null || tipoOrganizacion.isEmpty() || 
-            mediosContacto.isEmpty()) {
-            throw new IllegalArgumentException("Razón social, rubro, tipo de organización y al menos un medio de contacto son obligatorios.");
+        if (razonSocial == null || razonSocial.isEmpty() ||
+                rubro == null || rubro.isEmpty() ||
+                tipoOrganizacion == null || tipoOrganizacion.isEmpty() ||
+                mediosContacto.isEmpty()) {
+            throw new IllegalArgumentException(
+                    "Razón social, rubro, tipo de organización y al menos un medio de contacto son obligatorios.");
         }
-    return new PersonaJuridica(direccion, mediosContacto, razonSocial, tipoOrganizacion, rubro);
+        return new PersonaJuridica(direccion, mediosContacto, razonSocial, tipoOrganizacion, rubro);
     }
-    
-    
-    
 
     private String registrarColaborador(Persona persona, String rol, String email, String hashedPassword) {
         if ("Colaborador".equalsIgnoreCase(rol)) {
@@ -177,7 +173,7 @@ public class UsuarioController {
             Usuario nuevoUsuario = new Usuario(email, hashedPassword, colaborador);
 
             // Guardar el nuevo usuario en la base de datos
-            //usuarioService.guardarUsuario(nuevoUsuario);
+            // usuarioService.guardarUsuario(nuevoUsuario);
 
             return "Usuario colaborador creado exitosamente.";
         }

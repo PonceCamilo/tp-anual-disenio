@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.models.Tarjetas.TarjetaColaborador;
 import java.time.LocalDate;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Apertura {
@@ -16,7 +16,7 @@ public class Apertura {
     @JoinColumn(name = "heladera")
     private Heladera heladera;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tarjeta_colaborador")
     private TarjetaColaborador tarjetaColaborador;
 

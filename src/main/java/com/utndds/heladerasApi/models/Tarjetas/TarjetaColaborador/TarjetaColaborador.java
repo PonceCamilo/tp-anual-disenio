@@ -8,16 +8,11 @@ import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Solicitudes.SolicitudApertura;
 import com.utndds.heladerasApi.models.Tarjetas.Tarjeta;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class TarjetaColaborador extends Tarjeta {
-
-    @ManyToOne
-    @JoinColumn(name = "colaborador")
-    private Colaborador colaborador;
-
-    @OneToMany(mappedBy = "tarjeta_colaborador", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tarjetaColaborador", cascade = CascadeType.ALL)
     private List<Apertura> aperturas = new ArrayList<>();
 
     public TarjetaColaborador() {

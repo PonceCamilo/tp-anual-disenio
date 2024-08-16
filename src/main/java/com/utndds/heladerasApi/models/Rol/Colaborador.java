@@ -6,12 +6,15 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "colaborador")
 public class Colaborador extends Rol {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Colaboracion> colaboraciones = new ArrayList<>();
 

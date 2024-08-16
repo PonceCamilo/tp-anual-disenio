@@ -4,7 +4,7 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln.TarjetaPersVuln;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class RegistroPersonaVulnerable extends Colaboracion {
@@ -32,7 +32,7 @@ public class RegistroPersonaVulnerable extends Colaboracion {
     protected void procesar() {
         super.procesar();
         this.personaVuln.setTarjeta(this.tarjeta);
-        this.tarjeta.setPersVul(this.personaVuln);
+        this.tarjeta.setDueño(this.personaVuln);
         System.out.println("SE GUARDO EL REGISTRO DE PERSONA VULNERABLE POR PARTE DE: "
                 + this.colaborador.getPersona().getNombre());
     }

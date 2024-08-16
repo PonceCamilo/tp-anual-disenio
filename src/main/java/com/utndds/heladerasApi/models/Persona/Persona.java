@@ -7,9 +7,9 @@ import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 import lombok.Getter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
-@MappedSuperclass
+@Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Persona {
 

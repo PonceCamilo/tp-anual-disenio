@@ -3,7 +3,7 @@ package com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 import java.time.LocalDate;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class UsoHeladera {

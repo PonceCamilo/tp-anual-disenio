@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @DiscriminatorValue("WHATSAPP")

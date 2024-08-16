@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Persona;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "documento")

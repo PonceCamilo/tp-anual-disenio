@@ -7,7 +7,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Punto;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "alerta")

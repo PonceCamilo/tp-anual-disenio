@@ -6,7 +6,7 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 import java.util.List;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class DonacionVianda extends Colaboracion {

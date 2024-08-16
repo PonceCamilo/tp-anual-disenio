@@ -1,18 +1,18 @@
 package com.utndds.heladerasApi.models.Heladera.Sensores;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) // Define la estrategia de herencia
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Sensor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "heladera") // Nombre de la columna de la FK en la tabla Sensor
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "heladera") // Asegúrate de que el nombre sea coherente con las tablas
     protected Heladera heladera;
 
     // Constructor vacío para JPA
