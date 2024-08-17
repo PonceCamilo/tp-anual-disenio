@@ -7,7 +7,7 @@ import UTNlogo from '../assets/logos/utn.svg';
 import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import LoginModal from './LoginModal';
-import './css/CustomContainer.css'; // Asegúrate de que el CSS esté importado
+import '../assets/styles/CustomContainer.css'; // Asegúrate de que el CSS esté importado
 
 function NavApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

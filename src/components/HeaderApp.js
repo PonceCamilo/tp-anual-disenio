@@ -1,25 +1,30 @@
 import React, { useRef, useEffect } from 'react';
-import './css/CustomContainer.css'; // Si ya no necesitas estilos personalizados, este import puede ser opcional
+import { useNavigate } from 'react-router-dom';
+import '../assets/styles/CustomContainer.css';
 
 function HeaderApp({ setHeaderHeight }) {
   const headerRef = useRef(null);
+  const navigate = useNavigate(); // Hook para manejar la navegación
 
   useEffect(() => {
     if (headerRef.current) {
       setHeaderHeight(headerRef.current.clientHeight);
     }
   }, [setHeaderHeight]);
-  
+
+  const handleReportIssue = () => {
+    navigate('/report-issue'); // Navega a la ruta del formulario
+  };
+
   return (
-    
     <div ref={headerRef} className='header-container d-flex flex-column justify-content-center align-items-center vh-100'>
       <h1 className='font-monospace mb-5'>Heladeras Comunitarias</h1>
       <div className='d-flex flex-column gap-3'>
         <button className='btn btn-outline-dark btn-lg'>Doná</button>
         <button className='btn btn-outline-dark btn-lg'>Sé Voluntario</button>
+        <button className='btn btn-outline-dark btn-lg' onClick={handleReportIssue}>Reportar Falla</button> {/* Botón para reportar falla */}
       </div>
     </div>
-    
   );
 }
 

@@ -1,0 +1,21 @@
+.report-issue-page {
+    padding: 20px;
+}
+
+.report-issue-page h2 {
+    font-size: 24px;
+}
+
+.report-issue-page form {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #8cf79c;
+    /* Verde claro */
+    min-height: 100vh;
+    /* Asegura que el fondo cubra toda la altura de la ventana */
+    margin: 0;
+    padding: 0;
+}
