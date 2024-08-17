@@ -1,16 +1,18 @@
 .custom-container {
-    background-image: linear-gradient(189deg, #82c91e 5%, #38d9a9 95%);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    
-  }
+  background-image: linear-gradient(189deg, #82c91e 5%, #38d9a9 95%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+
 .full-height-row {
-    min-height: calc()
-  }
+  min-height: calc()
+}
+
 .header-container {
-    background-image: url(../../assets/imgs/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+  background-image: url(../../assets/imgs/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
