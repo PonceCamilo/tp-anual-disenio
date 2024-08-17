@@ -6,6 +6,7 @@ import MapApp from './components/MapApp';
 import ReportIssuePage from './pages/ReportIssuePage.js';
 import ConsultaCanjePage from './pages/ConsultaCanjePage.js';
 import PublicarProductoPage from './pages/PublicarProductoPage.js';
+
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -22,10 +23,8 @@ function Main({ setHeaderHeight, headerHeight }) {
 
   return (
     <>
-      {location.pathname !== '/map' && (
-        <>
-          <HeaderApp setHeaderHeight={setHeaderHeight} />
-        </>
+      {location.pathname === '/' && (
+        <HeaderApp setHeaderHeight={setHeaderHeight} />
       )}
       <Routes>
         <Route path="/" element={<></>} />

@@ -1,4 +1,25 @@
 .publicar-producto-page {
-    padding: 20px;
-    background-color: #8cf79c;
+    padding: 30px;
+    background: linear-gradient(135deg, #8cf79c, #b0e57c);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    color: #000;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    flex: 1;
+    /* Permite que el título ocupe espacio */
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex: 2;
+    /* Permite que el formulario ocupe más espacio */
 }

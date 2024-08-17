@@ -13,7 +13,7 @@ function HeaderApp({ setHeaderHeight }) {
   }, [setHeaderHeight]);
 
   const handleReportIssue = () => {
-    navigate('/report-issue'); // Navega a la ruta del formulario
+    navigate('/report-issue');
   };
   const handleConsultaCanje = () => {
     navigate('/consulta-canje');

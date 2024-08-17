@@ -1,63 +1,65 @@
 .consulta-canjes-form-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #e0e0e0;
-    /* Color de fondo ligero */
-    border-radius: 8px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* Para posicionar el área de puntos actuales */
 }
 
 .consulta-canjes-form-container h2 {
-    font-size: 2rem;
-    color: #333;
+    font-size: 24px;
     margin-bottom: 20px;
+    color: #333;
 }
 
 .productos-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-    justify-content: center;
 }
 
 .producto-card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 15px;
-    width: 200px;
+    padding: 10px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .producto-card img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .producto-card h3 {
-    font-size: 1.2rem;
-    color: #555;
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .producto-card p {
-    font-size: 1rem;
-    color: #888;
+    font-size: 16px;
+    color: #666;
+    margin: 10px 0;
 }
 
 .canjear-button {
-    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
     padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #388e3c;
-    /* Verde para el botón */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 .canjear-button:hover {
-    background-color: #2e7d32;
+    background-color: #45a049;
 }

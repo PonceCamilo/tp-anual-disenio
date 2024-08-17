@@ -16,25 +16,31 @@ const productos = [
     },
     {
         id: 2,
-        nombre: 'Producto 2',
+        nombre: 'Producto 3',
         puntos: 200,
         imagen: 'https://via.placeholder.com/150'
     },
     {
         id: 2,
-        nombre: 'Producto 2',
+        nombre: 'Producto 4',
         puntos: 200,
         imagen: 'https://via.placeholder.com/150'
     },
     {
         id: 2,
-        nombre: 'Producto 2',
+        nombre: 'Producto 4',
         puntos: 200,
         imagen: 'https://via.placeholder.com/150'
     },
     {
         id: 2,
-        nombre: 'Producto 2',
+        nombre: 'Producto 4',
+        puntos: 200,
+        imagen: 'https://via.placeholder.com/150'
+    },
+    {
+        id: 2,
+        nombre: 'Producto 4',
         puntos: 200,
         imagen: 'https://via.placeholder.com/150'
     },
@@ -42,6 +48,8 @@ const productos = [
 ];
 
 function ConsultaCanjeForm() {
+    const puntosActuales = 1500; // Ejemplo de puntos actuales
+
     const handleCanjear = (productoId) => {
         // Lógica para canjear el producto
         alert(`Producto ${productoId} canjeado.`);
@@ -49,6 +57,9 @@ function ConsultaCanjeForm() {
 
     return (
         <div className="consulta-canjes-form-container">
+            <div className="puntos-actuales">
+                <p>Puntos actuales: {puntosActuales}</p>
+            </div>
             <h2>Consulta y Canje de Productos</h2>
             <div className="productos-grid">
                 {productos.map(producto => (
