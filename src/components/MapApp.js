@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useJsApiLoader, GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
 import SearchMapApp from './SearchMapApp';
+import IcoAlerta from '../assets/iconos/IcoAlerta.svg';
 
 const center = {
   lat: -34.5994039,
@@ -22,6 +23,7 @@ function MapApp() {
       try {
         const response = await fetch('http://localhost:8080/ubicaciones-googlemaps');
         const data = await response.json();
+        console.log(data);
         setLocations(data);
       } catch (error) {
         console.error('Error al obtener las ubicaciones:', error);
@@ -54,6 +56,10 @@ function MapApp() {
     return <div>Loading...</div>;
   }
 
+  const getMarkerIcon = (heladeraFuncionando) => {
+    return heladeraFuncionando ? undefined : IcoAlerta;
+  }
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       <GoogleMap
@@ -66,6 +72,10 @@ function MapApp() {
             key={location.nombre}
             position={{ lat: location.latitud, lng: location.longitud }}
             onClick={() => handleMarkerClick(location)}
+            icon={{
+              url: getMarkerIcon(location.funcionando),
+              scaledSize: new window.google.maps.Size(40, 40),
+            }}
           />
         ))}
 
