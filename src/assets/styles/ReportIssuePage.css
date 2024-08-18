@@ -1,6 +1,9 @@
 .report-issue-page {
     padding: 30px;
-    background: linear-gradient(135deg, #8cf79c, #b0e57c);
+    background-image: url(../../assets/imgs/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -17,11 +20,3 @@
     flex-direction: column;
 }
 
-body {
-    background-color: #8cf79c;
-    /* Verde claro */
-    min-height: 100vh;
-    /* Asegura que el fondo cubra toda la altura de la ventana */
-    margin: 0;
-    padding: 0;
-}

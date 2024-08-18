@@ -1,14 +1,21 @@
 .consulta-canjes-form-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1000px;
+    min-width: 400px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
-    /* Para posicionar el área de puntos actuales */
+    background-image: url(../../assets/imgs/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
+
+
+
 
 .consulta-canjes-form-container h2 {
     font-size: 24px;

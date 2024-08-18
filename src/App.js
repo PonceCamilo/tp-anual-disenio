@@ -6,6 +6,7 @@ import MapApp from './components/MapApp';
 import ReportIssuePage from './pages/ReportIssuePage.js';
 import ConsultaCanjePage from './pages/ConsultaCanjePage.js';
 import PublicarProductoPage from './pages/PublicarProductoPage.js';
+import RegistrarVulnerable from './pages/RegistrarVulnerablePage.js';
 
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -32,6 +33,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/report-issue" element={<ReportIssuePage />} />
         <Route path="/consulta-canje" element={<ConsultaCanjePage />} />
         <Route path="/publicar-producto" element={<PublicarProductoPage />} />
+        <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} />
       </Routes>
     </>
   );

@@ -1,15 +1,19 @@
 .publicar-producto-page {
-    padding: 30px;
-    background: linear-gradient(135deg, #8cf79c, #b0e57c);
+    padding-top: 70px;
+    background-image: url(../../assets/imgs/bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
 }
 
 .page-title {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: #000;
     text-align: left;
     font-family: 'Roboto', sans-serif;
