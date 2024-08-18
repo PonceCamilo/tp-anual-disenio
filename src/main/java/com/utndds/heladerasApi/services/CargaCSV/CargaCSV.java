@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 @Service
@@ -18,10 +20,10 @@ public class CargaCSV {
     private ColaboradorFactory cFactory = new ColaboradorFactory();
     private ColaboracionFactory colaboFactory = new ColaboracionFactory();
 
-    public void cargarCSV() {
+    public void cargarCSV(InputStream fileInputStream) {
         ONG sistema = ONG.getInstance();
 
-        try (CSVReader reader = new CSVReader(new FileReader(".\\src\\main\\resources\\colaboraciones.csv"))) {
+        try (CSVReader reader = new CSVReader(new InputStreamReader(fileInputStream))) {
             List<String[]> registros = reader.readAll();
             for (String[] registro : registros) {
                 PersonaHumana persona = phFactory.crearPersonaHumana(registro);
@@ -33,6 +35,7 @@ public class CargaCSV {
                 }
 
                 colaboFactory.crearColaboracion(registro, colaborador);
+                System.out.println(colaborador.getPersona().getNombre());
             }
         } catch (IOException | CsvException e) {
             e.printStackTrace();
