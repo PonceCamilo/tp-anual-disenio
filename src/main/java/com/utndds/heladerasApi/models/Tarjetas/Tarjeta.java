@@ -12,7 +12,7 @@ public abstract class Tarjeta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "dueño")
     protected Rol dueño;
 

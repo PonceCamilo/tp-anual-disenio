@@ -6,7 +6,10 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
+import com.utndds.heladerasApi.models.Tarjetas.TarjetaColaborador.TarjetaColaborador;
+
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 @Table(name = "colaborador")
@@ -20,6 +23,11 @@ public class Colaborador extends Rol {
 
     @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Suscripcion> suscripciones = new ArrayList<>();
+
+    @Getter
+    @OneToOne
+    @JoinColumn(name = "tarjeta")
+    private TarjetaColaborador tarjeta;
 
     // Constructor vacío para JPA
     public Colaborador() {
