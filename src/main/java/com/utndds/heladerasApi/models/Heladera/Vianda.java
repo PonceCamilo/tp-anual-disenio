@@ -42,7 +42,6 @@ public class Vianda {
         this.peso = peso;
         this.estado = estado;
         this.heladera = heladera;
-        this.heladera.agregarVianda(this);
     }
 
 }
