@@ -25,16 +25,19 @@ public class RegistroPersonaVulnerable extends Colaboracion {
         super(colaborador);
         this.personaVuln = personaVuln;
         this.tarjeta = tarjeta;
-        this.procesar();
     }
 
     @Override
     protected void procesar() {
         super.procesar();
-        this.personaVuln.setTarjeta(this.tarjeta);
-        this.tarjeta.setDueño(this.personaVuln);
-        System.out.println("SE GUARDO EL REGISTRO DE PERSONA VULNERABLE POR PARTE DE: "
-                + this.colaborador.getPersona().getNombre());
+        if (this.personaVuln != null && this.tarjeta != null) {
+            this.personaVuln.setTarjeta(this.tarjeta);
+            this.tarjeta.setDueño(this.personaVuln);
+            System.out.println("SE GUARDO EL REGISTRO DE PERSONA VULNERABLE POR PARTE DE: "
+                    + this.colaborador.getPersona().getNombre());
+        } else {
+            System.out.println("Error: personaVuln o tarjeta es null");
+        }
     }
 
 }
