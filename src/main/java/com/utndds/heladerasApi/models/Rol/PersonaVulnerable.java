@@ -26,7 +26,7 @@ public class PersonaVulnerable extends Rol {
     @Column(name = "cant_menores_acargo")
     private int cantMenoresAcargo;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "tarjeta")
     private TarjetaPersVuln tarjeta;
 
