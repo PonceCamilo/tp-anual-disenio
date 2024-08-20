@@ -8,6 +8,7 @@ import com.utndds.heladerasApi.models.Observer.ObservadorSuscripcion;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Suscripciones.Evento.Evento;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
 public class Suscripcion implements ObservadorSuscripcion {
@@ -20,6 +21,7 @@ public class Suscripcion implements ObservadorSuscripcion {
     @JoinColumn(name = "heladera")
     private Heladera heladera;
 
+    @Getter
     @ManyToOne
     @JoinColumn(name = "colaborador")
     private Colaborador colaborador;

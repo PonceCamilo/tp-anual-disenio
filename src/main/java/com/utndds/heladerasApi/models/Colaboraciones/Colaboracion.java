@@ -4,7 +4,11 @@ import java.time.LocalDate;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Colaboracion {
@@ -46,21 +50,5 @@ public abstract class Colaboracion {
     protected double obtenerCoeficiente() {
         return 0;
     };
-
-    public void setColaborador(Colaborador colaborador) {
-        this.colaborador = colaborador;
-    }
-
-    public Colaborador getColaborador() {
-        return colaborador;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
 
 }

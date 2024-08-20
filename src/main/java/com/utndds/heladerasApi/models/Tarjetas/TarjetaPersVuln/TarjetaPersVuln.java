@@ -18,9 +18,6 @@ import java.time.Duration;
 @Entity
 public class TarjetaPersVuln extends Tarjeta {
 
-    @Column(name = "codigo")
-    private String codigo;
-
     @Column(name = "cant_usos_hoy")
     private int cantUsosHoy;
     @OneToMany(mappedBy = "tarjeta", cascade = CascadeType.ALL)
@@ -55,7 +52,7 @@ public class TarjetaPersVuln extends Tarjeta {
 
     private void reiniciarUsosPermitidos() {
         this.cantUsosHoy = 0;
-        System.out.println("Se reinició el contador de usos diarios de la tarjeta " + this.codigo);
+        System.out.println("Se reinició el contador de usos diarios de la tarjeta " + this.id);
     }
 
     public boolean puedeUsarse(Heladera heladera) {
@@ -73,10 +70,6 @@ public class TarjetaPersVuln extends Tarjeta {
     public void agregarUso(UsoHeladera uso) {
         this.usos.add(uso);
         this.cantUsosHoy++;
-    }
-
-    public String getCodigo() {
-        return this.codigo;
     }
 
 }

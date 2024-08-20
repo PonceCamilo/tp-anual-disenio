@@ -26,6 +26,7 @@ public class SolicitudApertura {
     @Getter
     @Setter
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "colaborador")
     private Colaborador colaborador;
@@ -42,9 +43,11 @@ public class SolicitudApertura {
 
     @Column(name = "estado")
     private boolean estado;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ong") // Nombre de la columna que se refiere a la ONG
     private ONG ong;
+
     @Transient
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     @Transient

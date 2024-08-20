@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
-import com.utndds.heladerasApi.models.Rol.Colaborador;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,8 +13,8 @@ public class Desperfecto extends Evento {
     public Desperfecto() {
     }
 
-    public Desperfecto(Colaborador colaborador, List<Contacto> mediosDeseados) {
-        super(colaborador, mediosDeseados);
+    public Desperfecto(List<Contacto> mediosDeseados) {
+        super(mediosDeseados);
     }
 
     public void verificarEvento(Heladera heladera) {
@@ -25,10 +24,10 @@ public class Desperfecto extends Evento {
     };
 
     protected void notificarEvento(Heladera heladera) {
-        List<Contacto> contactos = this.colaborador.getPersona().getMediosContacto();
+        List<Contacto> contactos = this.suscripcion.getColaborador().getPersona().getMediosContacto();
         for (Contacto contacto : contactos) {
             if (this.mediosDeseados.contains(contacto)) {
-                contacto.notificar("Se notifico a " + this.colaborador.getPersona().getNombre()
+                contacto.notificar("Se notifico a " + this.suscripcion.getColaborador().getPersona().getNombre()
                         + " que hay un desperfecto en la heladera: " + heladera.getPunto().getDireccion());
             }
         }

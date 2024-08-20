@@ -12,7 +12,7 @@ import jakarta.persistence.*;
 public class DonacionVianda extends Colaboracion {
 
     @OneToMany
-    @JoinColumn(name = "donacion_vianda") // Ajusta según la clave foránea en la tabla Vianda
+    @JoinColumn(name = "donacion_vianda")
     private List<Vianda> viandasDonadas;
 
     @ManyToOne
