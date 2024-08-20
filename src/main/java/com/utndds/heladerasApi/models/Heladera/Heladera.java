@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
-import com.utndds.heladerasApi.models.Heladera.Sensores.SensorMovimiento;
 import com.utndds.heladerasApi.models.ONG.ONG;
 import com.utndds.heladerasApi.models.Observer.ObservadorHeladera;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
@@ -48,8 +47,6 @@ public class Heladera implements ObservadorHeladera {
     @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     ManejadorTemperatura manejadorTemperatura;
 
-    @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    SensorMovimiento sensorMovimiento;
     @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Vianda> viandas = new ArrayList<>();
 

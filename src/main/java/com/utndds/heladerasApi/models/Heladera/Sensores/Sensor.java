@@ -15,7 +15,7 @@ public abstract class Sensor {
 
     @Getter
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "heladera") // Asegúrate de que el nombre sea coherente con las tablas
+    @JoinColumn(name = "heladera")
     protected Heladera heladera;
 
     // Constructor vacío para JPA
