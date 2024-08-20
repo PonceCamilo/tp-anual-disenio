@@ -4,7 +4,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(189deg, #82c91e 5%, #38d9a9 95%);
+    background-image: url(../../assets/imgs/bg.jpg);
     min-height: 100vh;
     gap:20px;
+}
+.form-vulnerable{
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
 }

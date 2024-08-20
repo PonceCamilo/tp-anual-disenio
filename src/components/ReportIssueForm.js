@@ -18,8 +18,6 @@ const ReportIssueForm = ({ collaborators, fridges }) => {
             formData.append('photo', photo);
         }
 
-        // Aquí puedes agregar la lógica para enviar los datos al servidor
-        // Ejemplo usando fetch:
         try {
             const response = await fetch('/api/report-issue', {
                 method: 'POST',

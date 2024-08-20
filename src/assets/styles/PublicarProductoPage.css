@@ -1,12 +1,11 @@
 .publicar-producto-page {
-    padding-top: 70px;
+    padding: 30px;
     background-image: url(../../assets/imgs/bg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -18,12 +17,10 @@
     text-align: left;
     font-family: 'Roboto', sans-serif;
     flex: 1;
-    /* Permite que el título ocupe espacio */
 }
 
 .form-container {
     display: flex;
     justify-content: center;
     flex: 2;
-    /* Permite que el formulario ocupe más espacio */
 }

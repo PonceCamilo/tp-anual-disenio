@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/PublicarProductoForm.css';
+import Button from 'react-bootstrap/Button';
 
 function PublicarProductoForm() {
     const [product, setProduct] = useState({
@@ -39,7 +40,7 @@ function PublicarProductoForm() {
             formData.append('image', product.image);
         }
 
-        // Aquí puedes hacer una petición para enviar los datos al servidor
+       
         fetch('/api/publicar-producto', {
             method: 'POST',
             body: formData
@@ -47,19 +48,19 @@ function PublicarProductoForm() {
             .then(response => response.json())
             .then(data => {
                 console.log('Producto publicado:', data);
-                // Manejar la respuesta del servidor
+                
             })
             .catch(error => {
                 console.error('Error al publicar el producto:', error);
             });
     };
 
-    return (
-        <div className="publicar-producto-form-container">
-            <h2>Publicar Producto/Servicio</h2>
-            <form onSubmit={handleSubmit}>
+    return (        
+            <form className="publicar-producto-form" onSubmit={handleSubmit}>
+                <h3 className='mb-4'>Publicar Producto/Servicio</h3>
+                
                 <div className="form-group">
-                    <label htmlFor="name">Nombre</label>
+                <label htmlFor="name">Nombre:</label>
                     <input
                         type="text"
                         id="name"
@@ -70,7 +71,7 @@ function PublicarProductoForm() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">Descripción</label>
+                    <label htmlFor="description">Descripción:</label>
                     <textarea
                         id="description"
                         name="description"
@@ -80,7 +81,7 @@ function PublicarProductoForm() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="points">Puntos necesarios</label>
+                    <label htmlFor="points">Puntos necesarios:</label>
                     <input
                         type="number"
                         id="points"
@@ -91,7 +92,7 @@ function PublicarProductoForm() {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="image">Selecciona una imagen</label>
+                    <label htmlFor="image">Selecciona una imagen:</label>
                     <input
                         type="file"
                         id="image"
@@ -99,10 +100,10 @@ function PublicarProductoForm() {
                         accept="image/*"
                         onChange={handleImageChange}
                     />
+                    <Button className='mt-3' variant="primary" type="submit">Publicar</Button>
                 </div>
-                <button type="submit">Publicar</button>
+                
             </form>
-        </div>
     );
 }
 

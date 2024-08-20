@@ -29,6 +29,9 @@ function HeaderApp({ setHeaderHeight }) {
     navigate('#carga-csv');
     setShowCSVModal(true);
   }
+  const handleRegistrarVulnerable = () => {
+    navigate('/registro-vulnerable');
+  };
 
   return (
     <div ref={headerRef} className='header-container d-flex flex-column justify-content-center align-items-center vh-100'>
@@ -40,6 +43,7 @@ function HeaderApp({ setHeaderHeight }) {
         <button className='btn btn-outline-dark btn-lg' onClick={handleConsultaCanje}>Consulta y Canje</button>
         <button className='btn btn-outline-dark btn-lg' onClick={handlePublicarProducto}>Publicar Producto/Servicio</button>
         <button className='btn btn-outline-dark btn-lg' onClick={handleCargaCSV}>Cargar datos antiguos</button>
+        <button className='btn btn-outline-dark btn-lg' onClick={handleRegistrarVulnerable}>Registrar persona vulnerable</button>
       </div>
       <LoadCSVModal show={showCSVModal} onHide={() => {setShowCSVModal(false); navigate('')}} />
     </div>

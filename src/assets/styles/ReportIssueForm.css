@@ -1,18 +1,17 @@
 .report-issue-form {
-    max-width: 800px;
-    
     margin: 0 auto;
-    
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
-    width: 50%;
-    
     box-sizing: border-box;
     
 }
-
+@media screen and (max-width: 500px) {
+    .report-issue-form {
+        width: 100%;
+    }
+}
 .report-issue-form h2 {
     margin-bottom: 20px;
 }

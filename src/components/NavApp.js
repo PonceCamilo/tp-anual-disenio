@@ -7,7 +7,7 @@ import UTNlogo from '../assets/logos/utn.svg';
 import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import LoginModal from './LoginModal';
-import '../assets/styles/CustomContainer.css'; // Asegúrate de que el CSS esté importado
+import '../assets/styles/CustomContainer.css'; 
 
 function NavApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,7 +19,7 @@ function NavApp() {
 
   return (
     <>
-      <Navbar expand="lg" fixed="top">
+      <Navbar className="Nav-Bar"expand="lg" fixed="top">
         <Container>
           <Navbar.Brand as={Link} to="/" className="fs-3 d-flex align-items-center">
             <img

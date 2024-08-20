@@ -5,7 +5,6 @@ import '../assets/styles/PublicarProductoPage.css';
 function PublicarProductoPage() {
     return (
         <div className="publicar-producto-page">
-            <h1>Publicar Producto/Servicio</h1>
             <div className="form-container">
                 <PublicarProductoForm />
             </div>
