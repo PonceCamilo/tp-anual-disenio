@@ -10,7 +10,7 @@ public abstract class Tarjeta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
     @OneToOne
     @JoinColumn(name = "dueño")

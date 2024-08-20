@@ -3,7 +3,6 @@ package com.utndds.heladerasApi.models.Heladera.Incidentes;
 import java.time.LocalDate;
 
 import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
-import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
 import jakarta.persistence.*;
 
@@ -23,10 +22,6 @@ public class VisitaTecnico {
     private Tecnico tecnico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "heladera")
-    private Heladera heladera;
-
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "incidente")
     private Incidente incidente;
 
@@ -43,11 +38,10 @@ public class VisitaTecnico {
     public VisitaTecnico() {
     }
 
-    public VisitaTecnico(LocalDate fecha, Tecnico tecnico, Heladera heladera, Incidente incidente, String descripcion,
+    public VisitaTecnico(LocalDate fecha, Tecnico tecnico, Incidente incidente, String descripcion,
             File foto, boolean arreglado) {
         this.fecha = fecha;
         this.tecnico = tecnico;
-        this.heladera = heladera;
         this.incidente = incidente;
         this.descripcion = descripcion;
         this.foto = foto;
@@ -64,7 +58,7 @@ public class VisitaTecnico {
 
     private void verificarArreglo() {
         if (this.arreglado) {
-            this.heladera.setFuncionando(true);
+            this.incidente.getHeladera().setFuncionando(true);
         } else {
             System.out.println("Se arregla otra visita");
         }

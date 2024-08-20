@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
-import com.utndds.heladerasApi.models.Rol.Colaborador;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,8 +16,8 @@ public class PocasViandas extends Evento {
     public PocasViandas() {
     }
 
-    public PocasViandas(Colaborador colaborador, List<Contacto> mediosDeseados, int cantidadMinima) {
-        super(colaborador, mediosDeseados);
+    public PocasViandas(List<Contacto> mediosDeseados, int cantidadMinima) {
+        super(mediosDeseados);
         this.cantidadMinima = cantidadMinima;
     }
 
@@ -29,10 +28,10 @@ public class PocasViandas extends Evento {
     };
 
     protected void notificarEvento(Heladera heladera) {
-        List<Contacto> contactos = this.colaborador.getPersona().getMediosContacto();
+        List<Contacto> contactos = this.suscripcion.getColaborador().getPersona().getMediosContacto();
         for (Contacto contacto : contactos) {
             if (this.mediosDeseados.contains(contacto)) {
-                contacto.notificar("SE notifico a " + this.colaborador.getPersona().getNombre()
+                contacto.notificar("SE notifico a " + this.suscripcion.getColaborador().getPersona().getNombre()
                         + " que hay pocas viandas en la heladera: " + heladera.getPunto().getDireccion());
             }
         }
