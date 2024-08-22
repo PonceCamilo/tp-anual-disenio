@@ -22,13 +22,37 @@
   min-height: calc()
 }
 .image-container {
-  
   border-radius: 50%;
   border:6px solid #15ffcc;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+@media only screen and (max-width: 1051px) {
+  .image-container {
+    display: none;
+  }
+  h1{
+    font-size: 4rem !important;
+    text-align: center;
+  }
+  .title-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .btn-group {
+    display: flex;
+    width: 100%;
+    justify-content:center;
+  }
+  .btn-group .btn {
+    max-width: 200px; /* Puedes ajustar esto según tus necesidades */
+  }
+}
+
 
 .header-container {
   background-image: url(../../assets/imgs/bg.jpg);
