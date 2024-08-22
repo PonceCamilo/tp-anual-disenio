@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/CustomContainer.css';
 import LoadCSVModal from './LoadCSVModal';
-
+import HeaderImage from '../assets/imgs/Header.png';
 function HeaderApp({ setHeaderHeight }) {
   const headerRef = useRef(null);
   const navigate = useNavigate(); // Hook para manejar la navegación
@@ -34,18 +34,21 @@ function HeaderApp({ setHeaderHeight }) {
   };
 
   return (
-    <div ref={headerRef} className='header-container d-flex flex-column justify-content-center align-items-center vh-100'>
-      <h1 className='font-monospace mb-5'>Heladeras Comunitarias</h1>
-      <div className='d-flex flex-column gap-3'>
-        <button className='btn btn-outline-dark btn-lg'>Doná</button>
-        <button className='btn btn-outline-dark btn-lg'>Sé Voluntario</button>
-        <button className='btn btn-outline-dark btn-lg' onClick={handleReportIssue}>Reportar Falla</button>
-        <button className='btn btn-outline-dark btn-lg' onClick={handleConsultaCanje}>Consulta y Canje</button>
-        <button className='btn btn-outline-dark btn-lg' onClick={handlePublicarProducto}>Publicar Producto/Servicio</button>
-        <button className='btn btn-outline-dark btn-lg' onClick={handleCargaCSV}>Cargar datos antiguos</button>
-        <button className='btn btn-outline-dark btn-lg' onClick={handleRegistrarVulnerable}>Registrar persona vulnerable</button>
+    <div ref={headerRef} className='header-container d-flex flex-row justify-content-around align-items-center vh-100'>
+      <div className='title-container'>
+        <h1 className='manrope-font fw-bold pb-4'>Heladeras <br></br>Comunitarias</h1>
+        <p className='text-wrap fs-5 fw-normal text-break w-50'>
+          Un espacio solidario para compartir alimentos con quienes más lo necesitan.
+        </p>
+        <button className='btn btn-dark btn-lg mt-4 me-3'>Doná</button>
+        <button className='btn btn-dark btn-lg mt-4'>Sé Voluntario</button>
       </div>
-      <LoadCSVModal show={showCSVModal} onHide={() => {setShowCSVModal(false); navigate('')}} />
+
+      <div className='image-container'>
+        <img src={HeaderImage} alt='Descripción' className='img-fluid' />
+      </div>
+
+      
     </div>
   );
 }

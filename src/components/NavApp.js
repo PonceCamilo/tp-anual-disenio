@@ -9,7 +9,7 @@ import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import LoginModal from './LoginModal';
 import '../assets/styles/CustomContainer.css'; 
 
-function NavApp() {
+function NavApp({ className }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -19,7 +19,7 @@ function NavApp() {
 
   return (
     <>
-      <Navbar className="Nav-Bar"expand="lg" fixed="top">
+      <Navbar className={`Nav-Bar ${className}`} expand="lg" fixed="top">
         <Container>
           <Navbar.Brand as={Link} to="/" className="fs-3 d-flex align-items-center">
             <img
@@ -75,4 +75,5 @@ function NavApp() {
     </>
   );
 }
+
 export default NavApp;
