@@ -2,9 +2,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/CustomContainer.css';
 import HeaderImage from '../assets/imgs/Header.png';
+
 function HeaderApp({ setHeaderHeight }) {
   const headerRef = useRef(null);
-  const navigate = useNavigate(); // Hook para manejar la navegación
+  const navigate = useNavigate(); 
   const [showCSVModal, setShowCSVModal] = useState(false);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ function HeaderApp({ setHeaderHeight }) {
   const handleRegistrarVulnerable = () => {
     navigate('/registro-vulnerable');
   };
+  
 
   return (
     <div ref={headerRef} className='header-container d-flex flex-row justify-content-around align-items-center vh-100'>

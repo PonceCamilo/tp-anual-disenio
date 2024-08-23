@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import HumanForm from './HumanForm';
 import LegalForm from './LegalForm';
+import Notify from './Notify';
+import NotifyError from './NotifyError';
 
-function RegistrationForm() {
+function RegistrationForm({ onRegisterSuccess }) {
   const [personType, setPersonType] = useState('');
   const [formData, setFormData] = useState({
     name: '',
@@ -24,7 +27,8 @@ function RegistrationForm() {
     organizationType: '',
     category: '',
   });
-  
+  const [notification, setNotification] = useState({ message: '', type: '' });
+  const navigate = useNavigate();
 
   const handlePersonTypeChange = (event) => {
     setPersonType(event.target.value);
@@ -72,17 +76,24 @@ function RegistrationForm() {
       },
       body: JSON.stringify(dataToSend),
     })
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then((errorText) => {
+          throw new Error(errorText);
+        });
+      }
+      return response.text();
+    })
     .then((data) => {
-      alert(data);
+      setNotification({ message: data, type: 'success' });
+      if (onRegisterSuccess) onRegisterSuccess();
+      navigate('/');
     })
     .catch((error) => {
-      console.error('Error:', error);
+      setNotification({ message: error.message, type: 'error' });
     });
   };
-  
 
-  // Determine if the personType group should be disabled
   const isPersonTypeDisabled = !formData.rol;
 
   return (
@@ -134,7 +145,7 @@ function RegistrationForm() {
               value={type}
               checked={personType === type}
               onChange={handlePersonTypeChange}
-              disabled={isPersonTypeDisabled} // Disable if rol is not selected
+              disabled={isPersonTypeDisabled}
             />
           </div>
         ))}
@@ -151,7 +162,7 @@ function RegistrationForm() {
         <LegalForm 
           formData={formData} 
           handleInputChange={handleInputChange} 
-          setFormData={setFormData} // Pass setFormData to LegalForm
+          setFormData={setFormData} 
         />
       )}
 
@@ -160,6 +171,13 @@ function RegistrationForm() {
           Registrarme
         </Button>
       </div>
+
+      {notification.message && (
+        notification.type === 'success' ? 
+        <Notify message={notification.message} /> : 
+        notification.type === 'error' ? 
+        <NotifyError message={notification.message} /> : null
+      )}
     </Form>
   );
 }

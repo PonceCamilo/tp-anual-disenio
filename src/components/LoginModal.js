@@ -6,7 +6,9 @@ import RegistrationForm from './RegistrationForm';
 
 function LoginModal({ show, onHide }) {
   const [isLoginForm, setIsLoginForm] = useState(true);
-
+  const handleRegisterSuccess = () => {
+    onHide(); 
+  };
   const toggleForm = () => {
     setIsLoginForm(!isLoginForm);
   };
@@ -20,7 +22,7 @@ function LoginModal({ show, onHide }) {
         {isLoginForm ? (
           <LoginForm onRegisterClick={toggleForm} />
         ) : (
-          <RegistrationForm />
+          <RegistrationForm onRegisterSuccess={handleRegisterSuccess} />
         )}
       </Modal.Body>
       <Modal.Footer className="justify-content-center">
