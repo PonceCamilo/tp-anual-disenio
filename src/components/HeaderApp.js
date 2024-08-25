@@ -3,17 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import '../assets/styles/CustomContainer.css';
 import HeaderImage from '../assets/imgs/Header.png';
 
+
 function HeaderApp({ setHeaderHeight }) {
   const headerRef = useRef(null);
   const navigate = useNavigate(); 
-  const [showCSVModal, setShowCSVModal] = useState(false);
-
-  useEffect(() => {
-    if (headerRef.current) {
-      setHeaderHeight(headerRef.current.clientHeight);
-    }
-  }, [setHeaderHeight]);
-
+  
   const handleReportIssue = () => {
     navigate('/report-issue');
   };
@@ -25,10 +19,6 @@ function HeaderApp({ setHeaderHeight }) {
     navigate('/publicar-producto');
   };
 
-  const handleCargaCSV = () => {
-    navigate('#carga-csv');
-    setShowCSVModal(true);
-  }
   const handleRegistrarVulnerable = () => {
     navigate('/registro-vulnerable');
   };
