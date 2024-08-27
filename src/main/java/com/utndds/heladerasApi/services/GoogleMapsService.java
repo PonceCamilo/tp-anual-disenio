@@ -63,8 +63,7 @@ public class GoogleMapsService {
                                 0.0, // maxTemp (asumido como 0.0 o un valor adecuado si tienes)
                                 false, // Funcionando (asumido como false o true si tienes esa información)
                                 false, // Abierta (asumido como false o true si tienes esa información)
-                                null, // fechaInicioFuncionamiento (asumido como null o una fecha adecuada si tienes)
-                                null));
+                                null)); // fechaInicioFuncionamiento (asumido como null o una fecha adecuada si tienes);
 
                 heladeras.add(new Heladera(
                                 null,
@@ -74,7 +73,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -85,7 +83,6 @@ public class GoogleMapsService {
                                 0.0,
                                 true,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -96,7 +93,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -107,7 +103,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -118,7 +113,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -129,7 +123,6 @@ public class GoogleMapsService {
                                 0.0,
                                 true,
                                 true,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -140,7 +133,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -151,7 +143,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -162,7 +153,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -173,7 +163,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -184,7 +173,6 @@ public class GoogleMapsService {
                                 0.0,
                                 true,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -195,7 +183,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -206,7 +193,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -217,7 +203,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -228,7 +213,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -239,7 +223,6 @@ public class GoogleMapsService {
                                 0.0,
                                 true,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -250,7 +233,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -261,7 +243,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -272,7 +253,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -283,7 +263,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -294,7 +273,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
 
                 heladeras.add(new Heladera(
@@ -305,7 +283,6 @@ public class GoogleMapsService {
                                 0.0,
                                 false,
                                 false,
-                                null,
                                 null));
         }
 }

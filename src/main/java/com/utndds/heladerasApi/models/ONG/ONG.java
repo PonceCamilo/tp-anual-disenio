@@ -9,7 +9,11 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.Tecnico;
 import com.utndds.heladerasApi.models.Solicitudes.SolicitudApertura;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "ong")
 public class ONG {

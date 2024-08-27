@@ -1,9 +1,12 @@
 package com.utndds.heladerasApi.controllers;
 
+import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Punto;
+import com.utndds.heladerasApi.services.HeladeraService;
 import com.utndds.heladerasApi.services.RecomendacionPuntosService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +18,8 @@ public class HeladeraController {
 
     @Autowired
     private RecomendacionPuntosService recomendacionService;
+    @Autowired
+    private HeladeraService heladeraService;
 
     @GetMapping("/recomendarPuntos")
     public List<Punto> recomendarPuntosColocacion(@RequestParam double latitud,
@@ -23,8 +28,9 @@ public class HeladeraController {
         return recomendacionService.getRecomendaciones(latitud, longitud, radio);
     }
 
-    public static void main(String[] args) {
-        HeladeraController controlador = new HeladeraController();
-        System.out.println(controlador.recomendarPuntosColocacion(1, 1, 1));
+    @PostMapping("/agregar")
+    public ResponseEntity<String> agregarHeladera(@RequestBody Heladera heladera) {
+        heladeraService.agregarHeladera(heladera);
+        return ResponseEntity.ok("Heladera agregada exitosamente");
     }
 }
