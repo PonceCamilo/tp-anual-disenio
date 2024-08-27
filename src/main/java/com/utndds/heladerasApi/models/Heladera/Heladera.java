@@ -24,11 +24,11 @@ public class Heladera implements ObservadorHeladera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ong", referencedColumnName = "id")
     private ONG ong;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "punto")
     private Punto punto;
 
@@ -44,8 +44,9 @@ public class Heladera implements ObservadorHeladera {
     @Column(name = "abierta")
     boolean abierta;
 
-    @OneToOne(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    ManejadorTemperatura manejadorTemperatura;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "manejador_temperatura", referencedColumnName = "id")
+    private ManejadorTemperatura manejadorTemperatura;
 
     @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Vianda> viandas = new ArrayList<>();
@@ -56,16 +57,19 @@ public class Heladera implements ObservadorHeladera {
     @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Incidente> incidentes = new ArrayList<>();
 
-    public Heladera(ONG ong, Punto punto, int capacidad, double minTemp, double maxTemp, boolean funcionando,
-            boolean abierta, LocalDate fechaInicioFuncionamiento, List<Vianda> viandas) {
+    public Heladera() {
+    };
+
+    public Heladera(ONG ong, Punto punto, int capacidad, ManejadorTemperatura manejadorTemperatura, boolean funcionando,
+            boolean abierta, LocalDate fechaInicioFuncionamiento) {
         this.ong = ong;
         this.punto = punto;
         this.capacidad = capacidad;
         this.funcionando = funcionando;
         this.abierta = abierta;
         this.fechaInicioFuncionamiento = fechaInicioFuncionamiento;
-        this.viandas = viandas;
-        this.manejadorTemperatura = new ManejadorTemperatura(this, minTemp, maxTemp);
+        this.manejadorTemperatura = manejadorTemperatura;
+        manejadorTemperatura.setHeladera(this); // Esto asegura la relacion bidireccional
     }
 
     @Override

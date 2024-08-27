@@ -1,9 +1,13 @@
 package com.utndds.heladerasApi.models.Heladera;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
 
+@Setter
+@Getter
 @Entity
 public class ManejadorTemperatura {
 
@@ -11,8 +15,7 @@ public class ManejadorTemperatura {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "heladera", referencedColumnName = "id")
+    @OneToOne(mappedBy = "manejadorTemperatura", fetch = FetchType.LAZY)
     private Heladera heladera;
 
     @Column(name = "ultima_temp_registrada")
@@ -24,8 +27,8 @@ public class ManejadorTemperatura {
     @Column(name = "maxima_temperatura")
     private double maxTemp;
 
-    // Constructor vacío para JPA
     public ManejadorTemperatura() {
+        // Constructor vacío
     }
 
     public ManejadorTemperatura(Heladera heladera, double minTemp, double maxTemp) {
