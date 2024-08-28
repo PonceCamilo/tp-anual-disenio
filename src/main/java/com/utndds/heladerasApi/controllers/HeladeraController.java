@@ -1,7 +1,8 @@
 package com.utndds.heladerasApi.controllers;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.Punto;
+import com.utndds.heladerasApi.DTOs.RecomendacionDTO;
+import com.utndds.heladerasApi.DTOs.AreaRecomendacionDTO;
 import com.utndds.heladerasApi.services.HeladeraService;
 import com.utndds.heladerasApi.services.RecomendacionPuntosService;
 
@@ -21,11 +22,9 @@ public class HeladeraController {
     @Autowired
     private HeladeraService heladeraService;
 
-    @GetMapping("/recomendarPuntos")
-    public List<Punto> recomendarPuntosColocacion(@RequestParam double latitud,
-            @RequestParam double longitud,
-            @RequestParam double radio) {
-        return recomendacionService.getRecomendaciones(latitud, longitud, radio);
+    @PostMapping("/recomendarPuntos")
+    public List<RecomendacionDTO> recomendarPuntosColocacion(@RequestBody AreaRecomendacionDTO data) {
+        return recomendacionService.getRecomendaciones(data.getLatitud(), data.getLongitud(), data.getRadio());
     }
 
     @PostMapping("/agregar")
