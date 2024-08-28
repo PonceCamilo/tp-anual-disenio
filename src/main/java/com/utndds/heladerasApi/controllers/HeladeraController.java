@@ -1,8 +1,8 @@
 package com.utndds.heladerasApi.controllers;
 
+import com.utndds.heladerasApi.controllers.DTOs.AreaRecomendacionDTO;
+import com.utndds.heladerasApi.controllers.DTOs.RecomendacionDTO;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.DTOs.RecomendacionDTO;
-import com.utndds.heladerasApi.DTOs.AreaRecomendacionDTO;
 import com.utndds.heladerasApi.services.HeladeraService;
 import com.utndds.heladerasApi.services.RecomendacionPuntosService;
 

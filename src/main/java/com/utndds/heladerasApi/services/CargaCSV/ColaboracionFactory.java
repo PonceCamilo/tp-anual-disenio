@@ -27,15 +27,12 @@ public class ColaboracionFactory {
 
             case "DONACION_VIANDAS":
                 int cantidadViandas = Integer.parseInt(registro[6]);
-                List<Vianda> viandasDonadas = new ArrayList<>();
 
                 for (int i = 0; i < cantidadViandas; i++) {
                     Vianda viandaDonada = new Vianda(null, null, 0, 0, true, null);
-                    viandasDonadas.add(viandaDonada);
+                    DonacionVianda donacionVianda = new DonacionVianda(colaborador, viandaDonada, null);
+                    colaboraciones.add(donacionVianda);
                 }
-                DonacionVianda donacionVianda = new DonacionVianda(colaborador, viandasDonadas,
-                        null, true);
-                colaboraciones.add(donacionVianda);
                 break;
 
             case "REDISTRIBUCION_VIANDAS":

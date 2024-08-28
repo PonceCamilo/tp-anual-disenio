@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.services;
 
-import com.utndds.heladerasApi.DTOs.RecomendacionDTO;
+import com.utndds.heladerasApi.controllers.DTOs.RecomendacionDTO;
 import com.utndds.heladerasApi.models.Heladera.Punto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;

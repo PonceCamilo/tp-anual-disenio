@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
+import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
+
 @Entity
 public class Vianda {
 
@@ -29,6 +31,9 @@ public class Vianda {
     @ManyToOne
     @JoinColumn(name = "heladera", referencedColumnName = "id")
     private Heladera heladera;
+
+    @OneToOne(mappedBy = "viandaDonada")
+    private DonacionVianda donacionVianda;
 
     // Constructor vacío para JPA
     public Vianda() {
