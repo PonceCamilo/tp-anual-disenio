@@ -51,7 +51,7 @@ const productos = [
 ];
 
 function ConsultaCanjeForm() {
-    const puntosActuales = 2000; 
+    const puntosActuales = 2000;
 
     const handleCanjear = (productoId) => {
         const producto = productos.find(p => p.id === productoId);

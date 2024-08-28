@@ -8,7 +8,7 @@ function VulnerableForm() {
     name: '',
     LastName: '',
     birthDate: '',
-    registrationDate: '', 
+    registrationDate: '',
     isHomeless: false,
     address: '',
     documentType: '',
@@ -45,10 +45,10 @@ function VulnerableForm() {
   };
 
   return (
-    <Form className="form-vulnerable"onSubmit={handleSubmit}>
-      
+    <Form className="form-vulnerable" onSubmit={handleSubmit}>
+
       <Form.Group className="mb-3" controlId="formBasicName">
-      <h3 className='mb-3'>Registrar persona vulnerable</h3>
+        <h3 className='mb-3'>Registrar persona vulnerable</h3>
         <Form.Label>Nombre</Form.Label>
         <Form.Control
           type="text"
@@ -149,7 +149,7 @@ function VulnerableForm() {
             value={formData.minorsCount}
             onChange={handleInputChange}
           />
-          
+
         </Form.Group>
       )}
       <Form.Group className="mt-3">
@@ -158,7 +158,7 @@ function VulnerableForm() {
         </Button>
       </Form.Group>
 
-      
+
     </Form>
   );
 }

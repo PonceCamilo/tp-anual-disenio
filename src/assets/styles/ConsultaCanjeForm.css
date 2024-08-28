@@ -9,13 +9,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     background-image: url(../../assets/imgs/bg.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
-
-
-
 
 .consulta-canjes-form-container h2 {
     font-size: 24px;

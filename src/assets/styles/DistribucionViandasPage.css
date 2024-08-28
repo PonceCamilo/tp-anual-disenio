@@ -1,22 +1,57 @@
-.distribucion-viandas-page {
-    padding: 30px;
-    background-image: url(../../assets/imgs/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
+.suscripcion-heladera-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
 
-    justify-content: center;
+.search-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.heladeras-grid {
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.distribucion-viandas-page h2 {
-    font-size: 24px;
+.heladera-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: calc(33% - 20px);
+    /* Adjust width based on desired layout */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.distribucion-viandas-page form {
-    display: flex;
-    flex-direction: column;
+.heladera-card h3 {
+    margin: 0 0 10px;
+}
+
+.suscripcion-form {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.suscripcion-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.suscripcion-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.suscripcion-form button {
+    margin-top: 10px;
 }

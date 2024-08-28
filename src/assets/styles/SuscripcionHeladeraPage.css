@@ -1,8 +1,15 @@
-.consulta-canjes-page {
+.suscripcion-heladera-page {
     padding-top: 70px;
     min-height: 100vh;
     background-image: url(../../assets/imgs/bg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
 }
