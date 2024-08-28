@@ -7,6 +7,7 @@ import ReportIssuePage from './pages/ReportIssuePage.js';
 import ConsultaCanjePage from './pages/ConsultaCanjePage.js';
 import PublicarProductoPage from './pages/PublicarProductoPage.js';
 import RegistrarVulnerable from './pages/RegistrarVulnerablePage.js';
+import RecomendarPuntos from './pages/RecomendarPuntosPage.js';
 import InfoApp from './components/InfoApp';
 
 function App() {
@@ -66,6 +67,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/consulta-canje" element={<ConsultaCanjePage />} />
         <Route path="/publicar-producto" element={<PublicarProductoPage />} />
         <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} />
+        <Route path="/recomendar-puntos" element={<RecomendarPuntos />} />
       </Routes>
     </>
   );
