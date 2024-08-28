@@ -1,0 +1,47 @@
+.distribucion-viandas-form {
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+
+}
+
+@media screen and (max-width: 500px) {
+    .distribucion-viandas-form {
+        width: 80%;
+    }
+}
+
+.distribucion-viandas-form h2 {
+    margin-bottom: 20px;
+}
+
+.distribucion-viandas-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.distribucion-viandas-form select,
+.distribucion-viandas-form textarea,
+.distribucion-viandas-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.distribucion-viandas-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.distribucion-viandas-form button:hover {
+    background-color: #45a049;
+}

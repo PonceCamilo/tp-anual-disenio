@@ -13,6 +13,7 @@ import InfoApp from './components/InfoApp';
 import DonacionDineroPage from './pages/DonacionDineroPage.js';
 import DonacionViandaPage from './pages/DonacionViandaPage.js';
 import CargarHeladeraPage from './pages/CargarHeladeraPage.js';
+import DistribucionViandasPage from './pages/DistribucionViandasPage.js';
 
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -76,6 +77,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/donacion-dinero" element={<DonacionDineroPage />} />
         <Route path="/donacion-vianda" element={<DonacionViandaPage />} />
         <Route path="/cargar-heladera" element={<CargarHeladeraPage />} />
+        <Route path="/distribucion-viandas" element={<DistribucionViandasPage />} />
       </Routes>
     </>
   );
