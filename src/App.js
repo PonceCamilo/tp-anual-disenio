@@ -8,7 +8,11 @@ import ConsultaCanjePage from './pages/ConsultaCanjePage.js';
 import PublicarProductoPage from './pages/PublicarProductoPage.js';
 import RegistrarVulnerable from './pages/RegistrarVulnerablePage.js';
 import RecomendarPuntos from './pages/RecomendarPuntosPage.js';
+import Reportes from './pages/ReportesPage.js'
 import InfoApp from './components/InfoApp';
+import DonacionDineroPage from './pages/DonacionDineroPage.js';
+import DonacionViandaPage from './pages/DonacionViandaPage.js';
+import CargarHeladeraPage from './pages/CargarHeladeraPage.js';
 
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -68,6 +72,10 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/publicar-producto" element={<PublicarProductoPage />} />
         <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} />
         <Route path="/recomendar-puntos" element={<RecomendarPuntos />} />
+        <Route path="/reportes" element={<Reportes />} />
+        <Route path="/donacion-dinero" element={<DonacionDineroPage />} />
+        <Route path="/donacion-vianda" element={<DonacionViandaPage />} />
+        <Route path="/cargar-heladera" element={<CargarHeladeraPage />} />
       </Routes>
     </>
   );

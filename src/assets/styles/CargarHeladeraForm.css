@@ -1,4 +1,4 @@
-.report-issue-form {
+.cargar-heladera-form {
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -9,23 +9,23 @@
 }
 
 @media screen and (max-width: 500px) {
-    .report-issue-form {
+    .cargar-heladera-form {
         width: 100%;
     }
 }
 
-.report-issue-form h2 {
+.cargar-heladera-form h2 {
     margin-bottom: 20px;
 }
 
-.report-issue-form label {
+.cargar-heladera-form label {
     display: block;
     margin-bottom: 10px;
 }
 
-.report-issue-form select,
-.report-issue-form textarea,
-.report-issue-form input {
+.cargar-heladera-form select,
+.cargar-heladera-form textarea,
+.cargar-heladera-form input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -33,7 +33,7 @@
     border-radius: 4px;
 }
 
-.report-issue-form button {
+.cargar-heladera-form button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -42,6 +42,6 @@
     cursor: pointer;
 }
 
-.report-issue-form button:hover {
+.cargar-heladera-form button:hover {
     background-color: #45a049;
 }

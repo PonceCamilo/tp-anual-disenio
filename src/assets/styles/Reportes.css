@@ -1,0 +1,38 @@
+.reportes-page {
+    background-image: url(../../assets/imgs/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.reportes-container {
+    background-color: aliceblue;
+    height: 80vh;
+    width: 80vw;
+    border-radius: 20px;
+    padding: 20px
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+}
+
+.botones>* {
+    flex: 1;
+    margin: 10px;
+}
+
+.fallas {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightsteelblue;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}

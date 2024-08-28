@@ -14,14 +14,14 @@ function FormasColaborarGrid() {
       titulo: 'Donación de Dinero',
       descripcion: 'Contribuye con una donación monetaria.',
       imagen: LaDonate,
-      link: '/registro-vulnerable'
+      link: '/donacion-dinero'
     },
     {
       id: 2,
       titulo: 'Donación de Viandas',
       descripcion: 'Prepara y dona viandas para quienes lo necesitan.',
       imagen: Heladera,
-      link: '/publicar-producto'
+      link: '/donacion-vianda'
     },
     {
       id: 3,

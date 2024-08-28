@@ -7,6 +7,37 @@
     min-height: 100vh;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    /* Cambiado para que los elementos se apilen verticalmente */
+}
+
+.buscador-container {
+    display: flex;
+    width: 80vw;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 0 100px 0 350px;
+    /* Añadir margen inferior para separar el buscador del resto del contenido */
+}
+
+.input-direccion {
+    flex: 5;
+    /* Para que el campo de texto ocupe más espacio */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.buscador-container Button {
+    flex: 1;
+    /* El botón ocupará menos espacio */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 .recomendador-container {
@@ -23,9 +54,9 @@
 
 .mapa {
     flex: 5;
-    position: relative; /* Ensure relative positioning */
-    height: 100%; /* Make sure it takes the full height of the parent */
-    overflow: hidden; /* Prevent overflow */
+    position: relative;
+    height: 100%;
+    overflow: hidden;
     outline: none;
     border: 0;
 }
@@ -36,7 +67,6 @@
     margin: 10px;
     padding: 10px;
 }
-
 
 @media (min-aspect-ratio: 1/1) {
     .recomendador-container {
@@ -60,14 +90,13 @@
     .recomendador-container {
         flex-direction: column;
     }
-    
+
     .lista-puntos {
         overflow-x: auto;
     }
 
-    
-
-    .container-puntos, .mapa {
+    .container-puntos,
+    .mapa {
         width: 100%;
     }
 

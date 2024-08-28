@@ -1,0 +1,9 @@
+.donacion-dinero-page {
+    padding-top:70px;
+    min-height: 100vh;
+    background-image: url(../../assets/imgs/bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    
+}

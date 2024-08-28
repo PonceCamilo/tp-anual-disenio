@@ -4,7 +4,7 @@ import '../assets/styles/PublicarProductoPage.css';
 
 function PublicarProductoPage() {
     return (
-        <div className="publicar-producto-page">
+        <div className="publicar-producto-page ">
             <div className="form-container">
                 <PublicarProductoForm />
             </div>

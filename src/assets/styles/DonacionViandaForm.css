@@ -1,4 +1,4 @@
-.report-issue-form {
+.donacion-vianda-form {
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -9,23 +9,23 @@
 }
 
 @media screen and (max-width: 500px) {
-    .report-issue-form {
-        width: 100%;
+    .donacion-vianda-form {
+        width: 80%;
     }
 }
 
-.report-issue-form h2 {
+.donacion-vianda-form h2 {
     margin-bottom: 20px;
 }
 
-.report-issue-form label {
+.donacion-vianda-form label {
     display: block;
     margin-bottom: 10px;
 }
 
-.report-issue-form select,
-.report-issue-form textarea,
-.report-issue-form input {
+.donacion-vianda-form select,
+.donacion-vianda-form textarea,
+.donacion-vianda-form input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
@@ -33,7 +33,7 @@
     border-radius: 4px;
 }
 
-.report-issue-form button {
+.donacion-vianda-form button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -42,6 +42,6 @@
     cursor: pointer;
 }
 
-.report-issue-form button:hover {
+.donacion-vianda-form button:hover {
     background-color: #45a049;
 }

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useJsApiLoader, GoogleMap, Marker, Circle } from '@react-google-maps/api';
 
 const center = {
-    lat: -34.5994039,
-    lng: -58.435489
+  lat: -34.5994039,
+  lng: -58.435489
 };
 
 function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedLocation, puntos, setPuntos }) {
@@ -64,18 +64,18 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
       const lon1 = toRadians(center.lng);
       const lat2 = toRadians(point.latLng.lat());
       const lon2 = toRadians(point.latLng.lng());
-  
+
       const deltaLat = lat2 - lat1;
       const deltaLon = lon2 - lon1;
-  
+
       const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-                Math.cos(lat1) * Math.cos(lat2) *
-                Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-  
+        Math.cos(lat1) * Math.cos(lat2) *
+        Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  
+
       const distance = R * c;
-      
+
       setRadius(distance);
     }
   }
@@ -93,7 +93,7 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
         onClick={handleMapClick}
         onMouseMove={handleMovement}
       >
-        
+
         {/* Marca en el mapa las heladeras existentes */}
         {locations.map((location, index) => (
           <Marker
@@ -114,12 +114,12 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
 
         {/* Marca los puntos recomendados en el mapa */}
         {puntos.map((punto) => (
-            <Marker
-              key={punto.nombre}
-              position={{ lat: punto.latitud, lng: punto.longitud }}
-            />
-          ))}
-          
+          <Marker
+            key={punto.nombre}
+            position={{ lat: punto.latitud, lng: punto.longitud }}
+          />
+        ))}
+
       </GoogleMap>
     </div>
   );

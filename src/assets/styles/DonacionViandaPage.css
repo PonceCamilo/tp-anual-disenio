@@ -1,4 +1,4 @@
-.report-issue-page {
+.donacion-vianda-page {
     padding: 30px;
     background-image: url(../../assets/imgs/bg.jpg);
     background-repeat: no-repeat;
@@ -12,11 +12,11 @@
     gap: 20px;
 }
 
-.report-issue-page h2 {
+.donacion-vianda-page h2 {
     font-size: 24px;
 }
 
-.report-issue-page form {
+.donacion-vianda-page form {
     display: flex;
     flex-direction: column;
 }

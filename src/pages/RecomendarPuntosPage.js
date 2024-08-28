@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import RecomendarPuntosApp from "../components/RecomendarPuntosApp";
 import '../assets/styles/RecomendarPuntosPage.css';
 import Button from 'react-bootstrap/Button';
@@ -8,9 +8,21 @@ function RecomendarPuntosPage() {
     const [puntos, setPuntos] = useState([]);
     const [selectedLocation, setSelectedLocation] = useState(null);
     const [radius, setRadius] = useState(0);
+    const [direccion, setDireccion] = useState("");
 
+    const handleDireccionChange = (e) => {
+        setDireccion(e.target.value);
+    };
 
-    const handleSubmit = async () => {        
+    const handleBuscarDireccion = () => {
+        // Aquí puedes integrar la lógica para buscar la dirección ingresada.
+        console.log("Buscar dirección:", direccion);
+        // Supongamos que tienes una función que convierte la dirección a coordenadas:
+        // const { lat, lng } = obtenerCoordenadas(direccion);
+        // setSelectedLocation({ lat, lng });
+    };
+
+    const handleSubmit = async () => {
         try {
             const response = await fetch('http://localhost:8080/heladeras/recomendarPuntos', {
                 method: 'POST',
@@ -33,6 +45,19 @@ function RecomendarPuntosPage() {
 
     return (
         <div className="recomendar-puntos-page">
+            <div className="buscador-container">
+                <input
+                    type="text"
+                    placeholder="Ingrese una dirección"
+                    value={direccion}
+                    onChange={handleDireccionChange}
+                    className="input-direccion"
+                />
+                <Button onClick={handleBuscarDireccion}>
+                    Aceptar
+                </Button>
+            </div>
+
             <div className="recomendador-container">
                 <div className="container-puntos">
                     <p>Seleccione un área en el mapa y presione <b>Obtener recomendación</b></p>
@@ -53,7 +78,7 @@ function RecomendarPuntosPage() {
                 </div>
 
                 <div className="mapa">
-                    <RecomendarPuntosApp 
+                    <RecomendarPuntosApp
                         radius={radius}
                         selectedLocation={selectedLocation}
                         setRadius={setRadius}
