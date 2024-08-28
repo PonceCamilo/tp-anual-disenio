@@ -4,16 +4,14 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
 public class DonacionVianda extends Colaboracion {
 
-    @OneToMany
-    @JoinColumn(name = "donacion_vianda")
-    private List<Vianda> viandasDonadas;
+    @OneToOne
+    @JoinColumn(name = "vianda")
+    private Vianda viandaDonada;
 
     @ManyToOne
     @JoinColumn(name = "heladera")
@@ -24,10 +22,9 @@ public class DonacionVianda extends Colaboracion {
     }
 
     public DonacionVianda(Colaborador colaborador,
-            List<Vianda> viandasDonadas, Heladera heladera,
-            boolean estado) {
+            Vianda viandaDonada, Heladera heladera) {
         super(colaborador);
-        this.viandasDonadas = viandasDonadas;
+        this.viandaDonada = viandaDonada;
         this.heladera = heladera;
     }
 
@@ -37,9 +34,4 @@ public class DonacionVianda extends Colaboracion {
         System.out.println(
                 "SE GUARDO LA DONACION DE VIANDAS POR PARTE DE: " + this.colaborador.getPersona().getNombre());
     }
-
-    public double cantViandasDonadas() {
-        return this.viandasDonadas.size();
-    }
-
 }

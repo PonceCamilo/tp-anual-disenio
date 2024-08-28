@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.DTOs;
+package com.utndds.heladerasApi.controllers.DTOs;
 
 public class PuntoMapaDTO {
 

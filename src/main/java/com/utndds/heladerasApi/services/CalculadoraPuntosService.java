@@ -55,8 +55,7 @@ public class CalculadoraPuntosService {
 
         for (Colaboracion colaboracion : colaboraciones) {
             if (colaboracion instanceof DonacionVianda) {
-                DonacionVianda donacionVianda = (DonacionVianda) colaboracion;
-                contador += donacionVianda.cantViandasDonadas();
+                contador += 1;
             }
         }
         return contador * 1.5;

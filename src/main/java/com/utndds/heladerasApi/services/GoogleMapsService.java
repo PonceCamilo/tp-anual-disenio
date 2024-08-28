@@ -2,7 +2,8 @@ package com.utndds.heladerasApi.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.utndds.heladerasApi.DTOs.PuntoMapaDTO;
+
+import com.utndds.heladerasApi.controllers.DTOs.PuntoMapaDTO;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.ManejadorTemperatura;
 import com.utndds.heladerasApi.models.Heladera.Punto;
