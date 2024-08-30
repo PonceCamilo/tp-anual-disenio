@@ -38,31 +38,6 @@
     animation: slideInRight 1s ease-in-out forwards;
 }
 
-/* Keyframes for Animations */
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
 @media screen and (max-width: 768px) {
     .publicar-producto-page {
         flex-direction: column;
@@ -77,29 +52,5 @@
     .right-side {
         padding: 20px;
         animation: slideInBottom 1s ease-in-out forwards;
-    }
-}
-
-@keyframes slideInTop {
-    from {
-        transform: translateY(-100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInBottom {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
     }
 }

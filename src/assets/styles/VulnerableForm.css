@@ -9,18 +9,6 @@
     animation: formSlideIn 1s ease-in-out forwards;
 }
 
-@keyframes formSlideIn {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
 .form-vulnerable h3 {
     margin-bottom: 20px;
 }
@@ -48,6 +36,18 @@
     border-color: #007bff;
     border-radius: 4px;
     padding: 10px 20px;
+}
+
+@keyframes formSlideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .form-vulnerable .btn-primary:hover {
