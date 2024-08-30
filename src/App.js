@@ -72,12 +72,12 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/report-issue" element={<ReportIssuePage />} />
         <Route path="/consulta-canje" element={<ConsultaCanjePage />} />
         <Route path="/publicar-producto" element={<PublicarProductoPage />} />
-        <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} />
+        <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} /> {/* FALTA MODIFICAR*/}
         <Route path="/recomendar-puntos" element={<RecomendarPuntos />} />
-        <Route path="/reportes" element={<Reportes />} />
+        <Route path="/reportes" element={<Reportes />} /> {/* FALTA MODIFICAR*/}
         <Route path="/donacion-dinero" element={<DonacionDineroPage />} />
         <Route path="/donacion-vianda" element={<DonacionViandaPage />} />
-        <Route path="/cargar-heladera" element={<CargarHeladeraPage />} />
+        <Route path="/cargar-heladera" element={<CargarHeladeraPage />} /> {/* FALTA MODIFICAR*/}
         <Route path="/distribucion-viandas" element={<DistribucionViandasPage />} />
         <Route path="/suscripcion-heladera" element={<SuscripcionHeladeraPage />} />
       </Routes>

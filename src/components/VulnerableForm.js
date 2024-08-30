@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import '../assets/styles/RegistrarVulnerable.css';
+import '../assets/styles/VulnerableForm.css';
 
 function VulnerableForm() {
   const [formData, setFormData] = useState({
@@ -41,12 +41,11 @@ function VulnerableForm() {
     };
 
     console.log("Datos a enviar:", dataToSubmit);
-    //  enviar dataToSubmit a un backend o realizar otra acción
+    // Enviar dataToSubmit a un backend o realizar otra acción
   };
 
   return (
     <Form className="form-vulnerable" onSubmit={handleSubmit}>
-
       <Form.Group className="mb-3" controlId="formBasicName">
         <h3 className='mb-3'>Registrar persona vulnerable</h3>
         <Form.Label>Nombre</Form.Label>
@@ -149,16 +148,14 @@ function VulnerableForm() {
             value={formData.minorsCount}
             onChange={handleInputChange}
           />
-
         </Form.Group>
       )}
+
       <Form.Group className="mt-3">
         <Button variant="primary" type="submit">
           Registrar
         </Button>
       </Form.Group>
-
-
     </Form>
   );
 }
