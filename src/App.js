@@ -74,7 +74,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/publicar-producto" element={<PublicarProductoPage />} />
         <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} />
         <Route path="/recomendar-puntos" element={<RecomendarPuntos />} />
-        <Route path="/reportes" element={<Reportes />} /> {/* FALTA MODIFICAR*/}
+        <Route path="/reportes" element={<Reportes />} />
         <Route path="/donacion-dinero" element={<DonacionDineroPage />} />
         <Route path="/donacion-vianda" element={<DonacionViandaPage />} />
         <Route path="/cargar-heladera" element={<CargarHeladeraPage />} />

@@ -8,15 +8,11 @@ import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import LoginModal from './LoginModal';
 import '../assets/styles/CustomContainer.css';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function NavApp({ className }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const [expanded, setExpanded] = useState(false);
-
-  const handleLoginClick = () => {
-    setShowModal(true);
-  };
 
   const handleResize = () => {
     if (window.innerWidth >= 992 && expanded) {
@@ -43,7 +39,7 @@ function NavApp({ className }) {
         fixed="top"
         expanded={expanded}
         onToggle={() => setExpanded(!expanded)}
-        style={{ zIndex: 1050 }} /* En caso de que prefieras aplicar inline style */
+        style={{ zIndex: 1050 }}
       >
         <Container>
           <Navbar.Brand as={Link} to="/" className="fs-3 d-flex align-items-center">
@@ -60,18 +56,23 @@ function NavApp({ className }) {
           <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
             <Nav>
               {isAuthenticated ? (
-                <Nav.Link href="#profile" onClick={handleNavLinkClick} className="fs-5">
-                  <img
-                    alt=""
-                    src={IcoProfile}
-                    width="25"
-                    height="25"
-                    className="d-inline-block me-2"
-                  />
-                  {' Nombre del Usuario'}
-                </Nav.Link>
+                <>
+                  <Nav.Link href="#profile" onClick={handleNavLinkClick} className="fs-5">
+                    <img
+                      alt=""
+                      src={IcoProfile}
+                      width="25"
+                      height="25"
+                      className="d-inline-block me-2"
+                    />
+                    {user.name} {/* Muestra el nombre del usuario autenticado */}
+                  </Nav.Link>
+                  <Nav.Link href="#logout" onClick={() => logout({ returnTo: window.location.origin })} className="fs-5">
+                    Cerrar sesión
+                  </Nav.Link>
+                </>
               ) : (
-                <Nav.Link href="#login" onClick={handleLoginClick} className="fs-5">
+                <Nav.Link href="#login" onClick={loginWithRedirect} className="fs-5">
                   <img
                     alt=""
                     src={IcoProfile}
@@ -96,7 +97,6 @@ function NavApp({ className }) {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <LoginModal show={showModal} onHide={() => setShowModal(false)} />
     </>
   );
 }

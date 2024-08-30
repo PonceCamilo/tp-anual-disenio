@@ -7,7 +7,7 @@ import RegistrationForm from './RegistrationForm';
 function LoginModal({ show, onHide }) {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const handleRegisterSuccess = () => {
-    onHide(); 
+    onHide();
   };
   const toggleForm = () => {
     setIsLoginForm(!isLoginForm);
@@ -29,7 +29,7 @@ function LoginModal({ show, onHide }) {
         {isLoginForm ? (
           <>
             <Button variant="link">¿Olvidaste tu contraseña?</Button>
-            
+
           </>
         ) : (
           <>
