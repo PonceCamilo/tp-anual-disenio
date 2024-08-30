@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../assets/styles/ConsultaCanjeForm.css';
 import { notice } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
-import '../assets/styles/ConsultaCanjeForm.css';
 
 const productos = [
     {
@@ -21,36 +20,25 @@ const productos = [
     {
         id: 3,
         nombre: 'Producto 3',
-        puntos: 200,
+        puntos: 300,
         imagen: 'https://via.placeholder.com/150'
     },
     {
         id: 4,
         nombre: 'Producto 4',
-        puntos: 200,
+        puntos: 400,
         imagen: 'https://via.placeholder.com/150'
     },
     {
         id: 5,
         nombre: 'Producto 5',
-        puntos: 200,
-        imagen: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 6,
-        nombre: 'Producto 6',
-        puntos: 200,
-        imagen: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 7,
-        nombre: 'Producto 7',
-        puntos: 200,
+        puntos: 500,
         imagen: 'https://via.placeholder.com/150'
     },
 ];
 
 function ConsultaCanjeForm() {
+    const [searchTerm, setSearchTerm] = useState('');
     const puntosActuales = 2000;
 
     const handleCanjear = (productoId) => {
@@ -79,14 +67,34 @@ function ConsultaCanjeForm() {
         }
     };
 
+    const filteredProducts = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const handleSearch = () => {
+        // Optionally, add any additional search handling logic here
+    };
+
     return (
         <div className="consulta-canjes-form-container">
             <div className="puntos-actuales">
-                <p>Puntos actuales: {puntosActuales}</p>
+                <h4>Puntos actuales:</h4>
+                <h1>{puntosActuales}</h1>
             </div>
-            <h2>Consulta y Canje de Productos</h2>
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Buscar producto..."
+                    className="search-input"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <button className="search-button" onClick={handleSearch}>
+                    Buscar
+                </button>
+            </div>
             <div className="productos-grid">
-                {productos.map(producto => (
+                {filteredProducts.map(producto => (
                     <div key={producto.id} className="producto-card">
                         <img src={producto.imagen} alt={producto.nombre} />
                         <h3>{producto.nombre}</h3>

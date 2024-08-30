@@ -11,8 +11,14 @@ const fridges = [
 
 const ReportIssuePage = () => {
     return (
-        <div className="report-issue-page">
-            <ReportIssueForm fridges={fridges} />
+        <div className="report-issue-page d-flex">
+            <div className="left-side">
+                <h1>Reportar Falla Tecnica</h1>
+                <p>Con tu ayuda, podemos mantener nuestras heladeras en óptimas condiciones. </p>
+            </div>
+            <div className="right-side">
+                <ReportIssueForm fridges={fridges} />
+            </div>
         </div>
     );
 };

@@ -1,26 +1,105 @@
 .publicar-producto-page {
-    padding: 30px;
+    display: flex;
     background-image: url(../../assets/imgs/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
+    height: 100vh;
+    background-color: #f7f8fa;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
 }
 
-.page-title {
-    font-size: 1.5rem;
-    color: #000;
-    text-align: left;
-    font-family: 'Roboto', sans-serif;
+.left-side {
     flex: 1;
+    padding: 50px;
+    background-color: #343a40;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    animation: slideInLeft 1s ease-in-out forwards;
 }
 
-.form-container {
+.left-side h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.left-side p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.right-side {
+    flex: 1;
+    padding: 50px;
     display: flex;
     justify-content: center;
-    flex: 2;
+    align-items: center;
+    animation: slideInRight 1s ease-in-out forwards;
+}
+
+/* Keyframes for Animations */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .publicar-producto-page {
+        flex-direction: column;
+    }
+
+    .left-side {
+        text-align: center;
+        padding: 30px;
+        animation: slideInTop 1s ease-in-out forwards;
+    }
+
+    .right-side {
+        padding: 20px;
+        animation: slideInBottom 1s ease-in-out forwards;
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }

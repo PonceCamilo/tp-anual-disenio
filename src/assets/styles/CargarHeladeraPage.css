@@ -7,16 +7,15 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-
     justify-content: center;
     gap: 20px;
-}
-
-.cargar-heladera-page h2 {
-    font-size: 24px;
-}
-
-.cargar-heladera-page form {
-    display: flex;
     flex-direction: column;
+}
+
+.page-title {
+    font-size: 36px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    text-align: center;
 }

@@ -1,8 +1,21 @@
 .consulta-canjes-page {
-    padding-top: 70px;
-    min-height: 100vh;
+    padding: 30px;
     background-image: url(../../assets/imgs/bg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.page-title {
+    font-size: 36px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 30px;
+    text-align: center;
 }

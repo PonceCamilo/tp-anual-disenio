@@ -40,7 +40,7 @@ function PublicarProductoForm() {
             formData.append('image', product.image);
         }
 
-       
+
         fetch('/api/publicar-producto', {
             method: 'POST',
             body: formData
@@ -48,62 +48,62 @@ function PublicarProductoForm() {
             .then(response => response.json())
             .then(data => {
                 console.log('Producto publicado:', data);
-                
+
             })
             .catch(error => {
                 console.error('Error al publicar el producto:', error);
             });
     };
 
-    return (        
-            <form className="publicar-producto-form" onSubmit={handleSubmit}>
-                <h3 className='mb-4'>Publicar Producto/Servicio</h3>
-                
-                <div className="form-group">
+    return (
+        <form className="publicar-producto-form" onSubmit={handleSubmit}>
+            <h3 className='mb-4'>Publicar Producto/Servicio</h3>
+
+            <div className="form-group">
                 <label htmlFor="name">Nombre:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={product.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="description">Descripción:</label>
-                    <textarea
-                        id="description"
-                        name="description"
-                        value={product.description}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="points">Puntos necesarios:</label>
-                    <input
-                        type="number"
-                        id="points"
-                        name="points"
-                        value={product.points}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="image">Selecciona una imagen:</label>
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
-                    <Button className='mt-3' variant="primary" type="submit">Publicar</Button>
-                </div>
-                
-            </form>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={product.name}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="description">Descripción:</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    value={product.description}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="points">Puntos necesarios:</label>
+                <input
+                    type="number"
+                    id="points"
+                    name="points"
+                    value={product.points}
+                    onChange={handleChange}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="image">Selecciona una imagen:</label>
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                />
+                <Button className='mt-3' variant="primary" type="submit">Publicar</Button>
+            </div>
+
+        </form>
     );
 }
 

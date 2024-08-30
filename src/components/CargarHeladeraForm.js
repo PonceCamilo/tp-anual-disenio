@@ -32,7 +32,6 @@ const CargarHeladeraForm = () => {
             console.error('Error:', error);
         }
 
-        // Reiniciar formulario
         setCapacidad('');
         setTemperaturaMinima('');
         setTemperaturaMaxima('');
@@ -40,7 +39,7 @@ const CargarHeladeraForm = () => {
 
     return (
         <form className="cargar-heladera-form" onSubmit={handleSubmit}>
-            <h2>Añadir Heladera</h2>
+            <h2>Cargar Heladera</h2>
 
             <label>
                 Capacidad (cantidad viandas):
