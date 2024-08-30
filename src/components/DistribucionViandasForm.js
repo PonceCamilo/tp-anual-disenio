@@ -5,11 +5,11 @@ const DistribucionViandasForm = () => {
     const [heladeras, setHeladeras] = useState([]);
     const [heladeraOrigen, setHeladeraOrigen] = useState('');
     const [heladeraDestino, setHeladeraDestino] = useState('');
-    const [cantidadViandas, setCantidadViandas] = useState('');
+    const [cantidadDeViandas, setCantidadDeViandas] = useState('');
     const [motivo, setMotivo] = useState('');
 
     useEffect(() => {
-        // Fetch the list of heladeras when the component mounts
+        // Simulación de obtención de heladeras desde una API
         const fetchHeladeras = async () => {
             try {
                 const response = await fetch('/api/heladeras');
@@ -29,12 +29,12 @@ const DistribucionViandasForm = () => {
         const formData = {
             heladeraOrigen,
             heladeraDestino,
-            cantidadViandas: parseInt(cantidadViandas, 10),
+            cantidadDeViandas: parseInt(cantidadDeViandas),
             motivo,
         };
 
         try {
-            const response = await fetch('/api/move-viandas', {
+            const response = await fetch('/api/distribute-meal', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -42,78 +42,74 @@ const DistribucionViandasForm = () => {
                 body: JSON.stringify(formData),
             });
             if (response.ok) {
-                console.log('Viandas movidas con éxito');
+                console.log('Distribución de viandas enviada con éxito');
             } else {
-                console.log('Error al mover las viandas');
+                console.log('Error al enviar la distribución de viandas');
             }
         } catch (error) {
             console.error('Error:', error);
         }
 
-        // Reset form fields
         setHeladeraOrigen('');
         setHeladeraDestino('');
-        setCantidadViandas('');
+        setCantidadDeViandas('');
         setMotivo('');
     };
 
     return (
         <form className="distribucion-viandas-form" onSubmit={handleSubmit}>
-            <h2>Distribuir Viandas</h2>
-
-            <label>
-                Seleccione Heladera de Origen:
+            <div className="form-group">
+                <label>Heladera de Origen:</label>
                 <select
                     value={heladeraOrigen}
                     onChange={(e) => setHeladeraOrigen(e.target.value)}
                     required
                 >
-                    <option value="">Seleccione una heladera</option>
+                    <option value="">Seleccionar</option>
                     {heladeras.map((heladera) => (
                         <option key={heladera.id} value={heladera.id}>
                             {heladera.nombre}
                         </option>
                     ))}
                 </select>
-            </label>
+            </div>
 
-            <label>
-                Seleccione Heladera de Destino:
+            <div className="form-group">
+                <label>Heladera de Destino:</label>
                 <select
                     value={heladeraDestino}
                     onChange={(e) => setHeladeraDestino(e.target.value)}
                     required
                 >
-                    <option value="">Seleccione una heladera</option>
+                    <option value="">Seleccionar</option>
                     {heladeras.map((heladera) => (
                         <option key={heladera.id} value={heladera.id}>
                             {heladera.nombre}
                         </option>
                     ))}
                 </select>
-            </label>
+            </div>
 
-            <label>
-                Cantidad de Viandas a Mover:
+            <div className="form-group">
+                <label>Cantidad de Viandas a Mover:</label>
                 <input
                     type="number"
-                    value={cantidadViandas}
-                    onChange={(e) => setCantidadViandas(e.target.value)}
+                    value={cantidadDeViandas}
+                    onChange={(e) => setCantidadDeViandas(e.target.value)}
                     required
                 />
-            </label>
+            </div>
 
-            <label>
-                Motivo:
-                <input
-                    type="text"
+            <div className="form-group">
+                <label>Motivo:</label>
+                <textarea
                     value={motivo}
                     onChange={(e) => setMotivo(e.target.value)}
                     required
                 />
-            </label>
+            </div>
 
-            <button type="submit">Mover Viandas</button>
+            <button type="submit" className="submit-button">Distribuir Viandas</button>
         </form>
     );
 };
