@@ -11,7 +11,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
 }
 
 .Nav-Bar.map-page {
@@ -22,7 +21,7 @@
 }
 
 .full-height-row {
-  min-height: calc()
+  min-height: calc(100vh - 56px);
 }
 
 .image-container {
@@ -63,7 +62,6 @@
   }
 }
 
-
 .header-container {
   background-image: url(../../assets/imgs/bg.jpg);
   background-repeat: no-repeat;
@@ -81,6 +79,60 @@
   max-width: 500px;
 }
 
+/* Estilos añadidos para controlar el despliegue del menú en pantallas pequeñas */
+.navbar-collapse {
+  position: relative;
+  /* Cambiado de absolute a relative para mantener la alineación horizontal */
+  top: auto;
+  /* Reseteado a su valor inicial */
+  right: auto;
+  /* Reseteado a su valor inicial */
+  left: auto;
+  /* Reseteado a su valor inicial */
+  background-color: transparent;
+  /* Hacer el fondo transparente en pantalla completa */
+  width: auto;
+  /* Ajustar el ancho automáticamente */
+  box-shadow: none;
+  /* Quitar la sombra en pantalla completa */
+  border-radius: 0;
+  /* Quitar el borde redondeado */
+}
+
+.navbar-toggler {
+  margin-left: auto;
+  /* Alinea el ícono de hamburguesa a la derecha */
+}
+
 .navbar-collapse.show .nav-link {
   color: black;
+  padding-left: 20px;
+  /* Espacio interno a la izquierda */
+  padding-right: 20px;
+  /* Espacio interno a la derecha */
+  background-color: rgb(195, 255, 190);
+  ;
+  /* Fondo blanco al abrir el menú en responsive */
+}
+
+@media (min-width: 992px) {
+  .navbar-nav {
+    margin-left: auto;
+    /* Asegura que los elementos estén alineados a la derecha en pantalla completa */
+  }
+
+  .navbar-collapse.show .nav-link {
+    color: #333;
+    /* Ajusta el color del texto en pantalla completa */
+  }
+}
+
+.navbar-nav .nav-link {
+  color: black;
+  /* Color de los enlaces por defecto */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+  /* Color de los enlaces al pasar el cursor */
 }
