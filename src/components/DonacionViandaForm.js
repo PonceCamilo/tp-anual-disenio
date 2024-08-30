@@ -34,7 +34,6 @@ const DonacionViandaForm = () => {
       console.error('Error:', error);
     }
 
-    // Reiniciar formulario
     setComida('');
     setFechaDeCaducidad('');
     setCalorias('');
@@ -43,30 +42,28 @@ const DonacionViandaForm = () => {
 
   return (
     <form className="donacion-vianda-form" onSubmit={handleSubmit}>
-      <h2>Donar Vianda</h2>
-
-      <label>
-        Comida:
+      <div className="form-group">
+        <label>Comida:</label>
         <input
           type="text"
           value={comida}
           onChange={(e) => setComida(e.target.value)}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Fecha de Caducidad:
+      <div className="form-group">
+        <label>Fecha de Caducidad:</label>
         <input
           type="date"
           value={fechaDeCaducidad}
           onChange={(e) => setFechaDeCaducidad(e.target.value)}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Calorías:
+      <div className="form-group">
+        <label>Calorías:</label>
         <input
           type="number"
           step="0.01"
@@ -74,10 +71,10 @@ const DonacionViandaForm = () => {
           onChange={(e) => setCalorias(e.target.value)}
           required
         />
-      </label>
+      </div>
 
-      <label>
-        Peso (en gramos):
+      <div className="form-group">
+        <label>Peso (en gramos):</label>
         <input
           type="number"
           step="0.01"
@@ -85,9 +82,9 @@ const DonacionViandaForm = () => {
           onChange={(e) => setPeso(e.target.value)}
           required
         />
-      </label>
+      </div>
 
-      <button type="submit">Enviar Donación</button>
+      <button type="submit" className="submit-button">Enviar Donación</button>
     </form>
   );
 };

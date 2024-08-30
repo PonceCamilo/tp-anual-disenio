@@ -11,10 +11,14 @@ h2 {
 .search-container {
     display: flex;
     align-items: center;
-    margin-bottom: 20px; /* Separa del grid */
-    max-width: 400px; /* Ajusta el ancho máximo según lo necesites */
-    margin-left: auto; /* Centra horizontalmente */
-    margin-right: auto; /* Centra horizontalmente */
+    margin-bottom: 20px;
+    /* Separa del grid */
+    max-width: 400px;
+    /* Ajusta el ancho máximo según lo necesites */
+    margin-left: auto;
+    /* Centra horizontalmente */
+    margin-right: auto;
+    /* Centra horizontalmente */
 }
 
 .search-input {
@@ -23,7 +27,8 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
-    margin-right: 10px; /* Espacio entre el input y el botón */
+    margin-right: 10px;
+    /* Espacio entre el input y el botón */
 }
 
 .search-button {

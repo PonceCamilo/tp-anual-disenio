@@ -1,47 +1,94 @@
 .donacion-vianda-form {
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
-
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
 }
 
-@media screen and (max-width: 500px) {
-    .donacion-vianda-form {
-        width: 80%;
-    }
-}
-
-.donacion-vianda-form h2 {
+.donacion-vianda-form .form-group {
     margin-bottom: 20px;
 }
 
 .donacion-vianda-form label {
     display: block;
-    margin-bottom: 10px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
 }
 
-.donacion-vianda-form select,
-.donacion-vianda-form textarea,
 .donacion-vianda-form input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
 }
 
-.donacion-vianda-form button {
-    background-color: #4CAF50;
+.donacion-vianda-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-button {
+    background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
 }
 
-.donacion-vianda-form button:hover {
-    background-color: #45a049;
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+    .donacion-vianda-page {
+        flex-direction: column;
+    }
+
+    .left-side {
+        text-align: center;
+        padding: 30px;
+        animation: slideInTop 1s ease-in-out forwards;
+    }
+
+    .right-side {
+        padding: 20px;
+        animation: slideInBottom 1s ease-in-out forwards;
+    }
+
+    .donacion-vianda-form {
+        max-width: 100%;
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
