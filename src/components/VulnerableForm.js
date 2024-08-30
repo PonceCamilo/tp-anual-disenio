@@ -47,7 +47,6 @@ function VulnerableForm() {
   return (
     <Form className="form-vulnerable" onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicName">
-        <h3 className='mb-3'>Registrar persona vulnerable</h3>
         <Form.Label>Nombre</Form.Label>
         <Form.Control
           type="text"

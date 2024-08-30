@@ -68,11 +68,11 @@ function Main({ setHeaderHeight, headerHeight }) {
       )}
       <Routes>
         <Route path="/" element={<></>} />
-        <Route path="/map" element={<MapApp />} />
-        <Route path="/report-issue" element={<ReportIssuePage />} />
-        <Route path="/consulta-canje" element={<ConsultaCanjePage />} />
-        <Route path="/publicar-producto" element={<PublicarProductoPage />} />
-        <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} /> {/* FALTA MODIFICAR*/}
+        <Route path="/map" element={<MapApp />} /> 
+        <Route path="/report-issue" element={<ReportIssuePage />} /> {/* FALTA MODIFICAR*/}
+        <Route path="/consulta-canje" element={<ConsultaCanjePage />} /> {/* FALTA MODIFICAR*/}
+        <Route path="/publicar-producto" element={<PublicarProductoPage />} /> {/* FALTA MODIFICAR*/}
+        <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} /> 
         <Route path="/recomendar-puntos" element={<RecomendarPuntos />} />
         <Route path="/reportes" element={<Reportes />} /> {/* FALTA MODIFICAR*/}
         <Route path="/donacion-dinero" element={<DonacionDineroPage />} />
