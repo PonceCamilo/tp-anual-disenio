@@ -58,3 +58,24 @@
 .submit-button:hover {
     background-color: #0056b3;
 }
+
+@media screen and (max-width: 768px) {
+    .donacion-dinero-page {
+        flex-direction: column;
+    }
+
+    .left-side {
+        text-align: center;
+        padding: 30px;
+        animation: slideInTop 1s ease-in-out forwards;
+    }
+
+    .right-side {
+        padding: 20px;
+        animation: slideInBottom 1s ease-in-out forwards;
+    }
+
+    .donacion-dinero-form {
+        max-width: 100%;
+    }
+}
