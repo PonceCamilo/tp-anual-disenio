@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react'; // Importa el hook de Auth0
 import NavApp from './components/NavApp';
 import HeaderApp from './components/HeaderApp';
 import MapApp from './components/MapApp';
@@ -8,7 +9,7 @@ import ConsultaCanjePage from './pages/ConsultaCanjePage.js';
 import PublicarProductoPage from './pages/PublicarProductoPage.js';
 import RegistrarVulnerable from './pages/RegistrarVulnerablePage.js';
 import RecomendarPuntos from './pages/RecomendarPuntosPage.js';
-import Reportes from './pages/ReportesPage.js'
+import Reportes from './pages/ReportesPage.js';
 import InfoApp from './components/InfoApp';
 import DonacionDineroPage from './pages/DonacionDineroPage.js';
 import DonacionViandaPage from './pages/DonacionViandaPage.js';
@@ -29,9 +30,9 @@ function App() {
 
 function Main({ setHeaderHeight, headerHeight }) {
   const location = useLocation();
+  const { isAuthenticated, loginWithRedirect } = useAuth0(); // Obtener estado de autenticación y la función de redirección
   const isMapPage = location.pathname === '/map';
   const infoRef = useRef(null);
-
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -55,6 +56,15 @@ function Main({ setHeaderHeight, headerHeight }) {
     };
   }, []);
 
+  // Componente de ruta protegida
+  const ProtectedRoute = ({ children }) => {
+    if (!isAuthenticated) {
+      loginWithRedirect(); // Redirige al usuario a la página de inicio de sesión si no está autenticado
+      return null; // Muestra nada mientras redirige
+    }
+    return children;
+  };
+
   return (
     <>
       <NavApp className={isMapPage ? 'map-page' : ''} />
@@ -67,19 +77,22 @@ function Main({ setHeaderHeight, headerHeight }) {
         </div>
       )}
       <Routes>
+        {/* Rutas públicas */}
         <Route path="/" element={<></>} />
         <Route path="/map" element={<MapApp />} />
-        <Route path="/report-issue" element={<ReportIssuePage />} />
-        <Route path="/consulta-canje" element={<ConsultaCanjePage />} />
-        <Route path="/publicar-producto" element={<PublicarProductoPage />} />
-        <Route path="/registro-vulnerable" element={<RegistrarVulnerable />} />
-        <Route path="/recomendar-puntos" element={<RecomendarPuntos />} />
-        <Route path="/reportes" element={<Reportes />} />
-        <Route path="/donacion-dinero" element={<DonacionDineroPage />} />
-        <Route path="/donacion-vianda" element={<DonacionViandaPage />} />
-        <Route path="/cargar-heladera" element={<CargarHeladeraPage />} />
-        <Route path="/distribucion-viandas" element={<DistribucionViandasPage />} />
-        <Route path="/suscripcion-heladera" element={<SuscripcionHeladeraPage />} />
+        
+        {/* Rutas protegidas */}
+        <Route path="/report-issue" element={<ProtectedRoute><ReportIssuePage /></ProtectedRoute>} />
+        <Route path="/consulta-canje" element={<ProtectedRoute><ConsultaCanjePage /></ProtectedRoute>} />
+        <Route path="/publicar-producto" element={<ProtectedRoute><PublicarProductoPage /></ProtectedRoute>} />
+        <Route path="/registro-vulnerable" element={<ProtectedRoute><RegistrarVulnerable /></ProtectedRoute>} />
+        <Route path="/recomendar-puntos" element={<ProtectedRoute><RecomendarPuntos /></ProtectedRoute>} />
+        <Route path="/reportes" element={<ProtectedRoute><Reportes /></ProtectedRoute>} />
+        <Route path="/donacion-dinero" element={<ProtectedRoute><DonacionDineroPage /></ProtectedRoute>} />
+        <Route path="/donacion-vianda" element={<ProtectedRoute><DonacionViandaPage /></ProtectedRoute>} />
+        <Route path="/cargar-heladera" element={<ProtectedRoute><CargarHeladeraPage /></ProtectedRoute>} />
+        <Route path="/distribucion-viandas" element={<ProtectedRoute><DistribucionViandasPage /></ProtectedRoute>} />
+        <Route path="/suscripcion-heladera" element={<ProtectedRoute><SuscripcionHeladeraPage /></ProtectedRoute>} />
       </Routes>
     </>
   );

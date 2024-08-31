@@ -2,6 +2,7 @@
   "name": "heladeras-dds",
   "version": "0.1.0",
   "private": true,
+  
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@pnotify/animate": "^5.2.0",
@@ -58,4 +59,5 @@
   "devDependencies": {
     "sass": "^1.75.0"
   }
+
 }
