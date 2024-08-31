@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class GoogleMapsService {
         private static volatile GoogleMapsService instancia;
 
-        // Constructor privado para evitar la instanciación directa
+        // evitar la instanciación directa
         private GoogleMapsService() {
         }
 
