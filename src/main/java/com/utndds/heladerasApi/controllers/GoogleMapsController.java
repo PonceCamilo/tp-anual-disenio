@@ -9,7 +9,7 @@ import com.utndds.heladerasApi.controllers.DTOs.PuntoMapaDTO;
 import com.utndds.heladerasApi.services.GoogleMapsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 public class GoogleMapsController {
 
