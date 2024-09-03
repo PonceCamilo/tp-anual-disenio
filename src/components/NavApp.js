@@ -6,11 +6,12 @@ import Container from 'react-bootstrap/Container';
 import UTNlogo from '../assets/logos/utn.svg';
 import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
-import { useAuth0 } from '@auth0/auth0-react'; // Importa el hook de Auth0
+import Logout from '../assets/iconos/Logout.svg';
+import { useAuth0 } from '@auth0/auth0-react'; 
 import '../assets/styles/CustomContainer.css';
 
 function NavApp({ className }) {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0(); // Desestructuramos el hook de Auth0
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0(); 
   const [expanded, setExpanded] = useState(false);
 
   const handleResize = () => {
@@ -20,7 +21,7 @@ function NavApp({ className }) {
   };
 
   const handleNavLinkClick = () => {
-    setExpanded(false); // Colapsa el Navbar al hacer clic en un enlace de navegación
+    setExpanded(false); 
   };
 
   useEffect(() => {
@@ -35,10 +36,10 @@ function NavApp({ className }) {
       console.log("Usuario logueado:", {
         nombre: user.name,
         email: user.email,
-        sub: user.sub // Puedes agregar más propiedades si lo deseas
+        sub: user.sub 
       });
     }
-  }, [isAuthenticated, user]); // Ejecuta el efecto cuando cambia la autenticación o el usuario
+  }, [isAuthenticated, user]); 
 
   return (
     <Navbar
@@ -63,20 +64,17 @@ function NavApp({ className }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
           <Nav>
-            {isAuthenticated ? ( // Verifica si el usuario está autenticado
+            {isAuthenticated ? ( 
               <>
                 <Nav.Link href="#profile" onClick={handleNavLinkClick} className="fs-5">
                   <img
                     alt=""
-                    src={IcoProfile}
+                    src={user.picture || IcoProfile}
                     width="25"
                     height="25"
-                    className="d-inline-block me-2"
+                    className="d-inline-block me-2 rounded-circle"
                   />
-                  {user.name} {/* Muestra el nombre del usuario autenticado */}
-                </Nav.Link>
-                <Nav.Link href="#logout" onClick={() => logout({ returnTo: window.location.origin })} className="fs-5">
-                  Cerrar sesión
+                  {user.name}
                 </Nav.Link>
               </>
             ) : (
@@ -101,6 +99,21 @@ function NavApp({ className }) {
               />
               {' Heladeras'}
             </Nav.Link>
+            
+            {isAuthenticated && (
+              <>
+                
+                <Nav.Link href="#logout" onClick={() => logout({ returnTo: window.location.origin })} className="fs-5">
+                  <img 
+                    alt=""
+                    src={Logout}
+                    width="30"
+                    height="30"
+                    className="d-inline-block me-2"></img>
+                  Cerrar sesión
+                </Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
