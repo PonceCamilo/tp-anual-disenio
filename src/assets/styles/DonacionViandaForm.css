@@ -1,38 +1,60 @@
-.donacion-vianda-form {
+/* Estilos básicos para la página de donación de viandas */
+.donacion-vianda-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 30px;
+  }
+  
+  .left-side {
+    text-align: left;
+    max-width: 600px;
+  }
+  
+  .right-side {
+    max-width: 400px;
+  }
+  
+  .donacion-vianda-form {
     background-color: white;
+    min-width: 400px;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
-}
-
-.donacion-vianda-form .form-group {
+    margin: 0 auto;
+  }
+  
+  .donacion-vianda-form .form-group {
     margin-bottom: 20px;
-}
-
-.donacion-vianda-form label {
+  }
+  
+  .donacion-vianda-form label {
     display: block;
     font-weight: bold;
     margin-bottom: 8px;
     color: #333;
-}
-
-.donacion-vianda-form input {
+  }
+  
+  .donacion-vianda-form input {
     width: 100%;
+    
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
     transition: border-color 0.3s;
-}
-
-.donacion-vianda-form input:focus {
+  }
+  
+  .donacion-vianda-form input:focus {
     border-color: #007bff;
     outline: none;
-}
-
-.submit-button {
+  }
+  
+  /* Estilos para el botón de envío */
+  .submit-button {
     background-color: #007bff;
     color: white;
     padding: 12px 20px;
@@ -42,29 +64,61 @@
     font-size: 16px;
     transition: background-color 0.3s ease-in-out;
     width: 100%;
-}
-
-.submit-button:hover {
+  }
+  
+  .submit-button:hover {
     background-color: #0056b3;
-}
-
-@media screen and (max-width: 768px) {
+  }
+  
+  /* Animaciones controladas mediante clases */
+  @keyframes slideInTop {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInBottom {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-in-top {
+    animation: slideInTop 1s ease-in-out forwards;
+  }
+  
+  .animate-slide-in-bottom {
+    animation: slideInBottom 1s ease-in-out forwards;
+  }
+  
+  /* Responsividad para pantallas más pequeñas */
+  @media screen and (max-width: 768px) {
     .donacion-vianda-page {
-        flex-direction: column;
+      flex-direction: column;
+      padding: 20px;
     }
-
+  
     .left-side {
-        text-align: center;
-        padding: 30px;
-        animation: slideInTop 1s ease-in-out forwards;
+      text-align: center;
+      padding: 30px;
     }
-
+  
     .right-side {
-        padding: 20px;
-        animation: slideInBottom 1s ease-in-out forwards;
+      padding: 20px;
     }
-
+  
     .donacion-vianda-form {
-        max-width: 100%;
+      max-width: 100%;
     }
-}
+  }
+  

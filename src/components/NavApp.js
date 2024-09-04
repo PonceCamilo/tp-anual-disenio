@@ -9,10 +9,12 @@ import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import Logout from '../assets/iconos/Logout.svg';
 import { useAuth0 } from '@auth0/auth0-react'; 
 import '../assets/styles/CustomContainer.css';
+import UserProfileModal from './UserProfileModal'; // Importar el nuevo componente
 
 function NavApp({ className }) {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0(); 
   const [expanded, setExpanded] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false); // Estado para el modal
 
   const handleResize = () => {
     if (window.innerWidth >= 992 && expanded) {
@@ -22,6 +24,14 @@ function NavApp({ className }) {
 
   const handleNavLinkClick = () => {
     setExpanded(false); 
+  };
+
+  const handleProfileClick = () => {
+    setShowProfileModal(true); // Mostrar modal al hacer clic en el perfil
+  };
+
+  const handleCloseProfileModal = () => {
+    setShowProfileModal(false); // Cerrar modal
   };
 
   useEffect(() => {
@@ -42,82 +52,84 @@ function NavApp({ className }) {
   }, [isAuthenticated, user]); 
 
   return (
-    <Navbar
-      className={`Nav-Bar ${className}`}
-      expand="lg"
-      fixed="top"
-      expanded={expanded}
-      onToggle={() => setExpanded(!expanded)}
-      style={{ zIndex: 1050 }}
-    >
-      <Container>
-        <Navbar.Brand as={Link} to="/" className="fs-3 d-flex align-items-center">
-          <img
-            alt=""
-            src={UTNlogo}
-            width="30"
-            height="30"
-            className="d-inline-block align-top me-2"
-          />
-          {' Heladeras DDS'}
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-          <Nav>
-            {isAuthenticated ? ( 
-              <>
-                <Nav.Link href="#profile" onClick={handleNavLinkClick} className="fs-5">
+    <>
+      <Navbar
+        className={`Nav-Bar ${className}`}
+        expand="lg"
+        fixed="top"
+        expanded={expanded}
+        onToggle={() => setExpanded(!expanded)}
+        style={{ zIndex: 1050 }}
+      >
+        <Container>
+          <Navbar.Brand as={Link} to="/" className="fs-3 d-flex align-items-center">
+            <img
+              alt=""
+              src={UTNlogo}
+              width="30"
+              height="30"
+              className="d-inline-block align-top me-2"
+            />
+            {' Heladeras DDS'}
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+            <Nav>
+              {isAuthenticated ? ( 
+                <>
+                  <Nav.Link href="#profile" onClick={handleProfileClick} className="fs-5">
+                    <img
+                      alt=""
+                      src={user.picture || IcoProfile}
+                      width="25"
+                      height="25"
+                      className="d-inline-block me-2 rounded-circle"
+                    />
+                    {user.name}
+                  </Nav.Link>
+                </>
+              ) : (
+                <Nav.Link href="#login" onClick={loginWithRedirect} className="fs-5">
                   <img
                     alt=""
-                    src={user.picture || IcoProfile}
-                    width="25"
-                    height="25"
-                    className="d-inline-block me-2 rounded-circle"
+                    src={IcoProfile}
+                    width="30"
+                    height="30"
+                    className="d-inline-block me-2"
                   />
-                  {user.name}
+                  {' Ingresar'}
                 </Nav.Link>
-              </>
-            ) : (
-              <Nav.Link href="#login" onClick={loginWithRedirect} className="fs-5">
+              )}
+              <Nav.Link as={Link} to="/map" onClick={handleNavLinkClick} className="fs-5">
                 <img
                   alt=""
-                  src={IcoProfile}
+                  src={IcoHeladera}
                   width="30"
                   height="30"
                   className="d-inline-block me-2"
                 />
-                {' Ingresar'}
+                {' Heladeras'}
               </Nav.Link>
-            )}
-            <Nav.Link as={Link} to="/map" onClick={handleNavLinkClick} className="fs-5">
-              <img
-                alt=""
-                src={IcoHeladera}
-                width="30"
-                height="30"
-                className="d-inline-block me-2"
-              />
-              {' Heladeras'}
-            </Nav.Link>
-            
-            {isAuthenticated && (
-              <>
-                
-                <Nav.Link href="#logout" onClick={() => logout({ returnTo: window.location.origin })} className="fs-5">
-                  <img 
-                    alt=""
-                    src={Logout}
-                    width="30"
-                    height="30"
-                    className="d-inline-block me-2"></img>
-                  Cerrar sesión
-                </Nav.Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+              
+              {isAuthenticated && (
+                <>
+                  <Nav.Link href="#logout" onClick={() => logout({ returnTo: window.location.origin })} className="fs-5">
+                    <img 
+                      alt=""
+                      src={Logout}
+                      width="30"
+                      height="30"
+                      className="d-inline-block me-2"></img>
+                    Cerrar sesión
+                  </Nav.Link>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <UserProfileModal show={showProfileModal} onHide={handleCloseProfileModal} />
+    </>
   );
 }
 

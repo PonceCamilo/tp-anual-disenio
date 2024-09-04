@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/ReportIssueForm.css';
-
+import {  Button } from 'react-bootstrap';
 const ReportIssueForm = ({ collaborators, fridges }) => {
     const [date, setDate] = useState(new Date().toISOString().slice(0, 16));
     const [fridge, setFridge] = useState('');
@@ -85,7 +85,7 @@ const ReportIssueForm = ({ collaborators, fridges }) => {
                 />
             </label>
 
-            <button type="submit">Enviar Reporte</button>
+            <Button type="submit">Enviar Reporte</Button>
         </form>
     );
 };
