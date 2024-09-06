@@ -52,7 +52,7 @@ function UserProfileModal({ show, onHide }) {
         <Row>
           <Col xs={4} className="text-center h-100">
             <Button variant="light" className="d-flex flex-column align-items-center justify-content-center w-100 h-100"
-              onClick={() => handleNavigate('/suscribirse')}>
+              onClick={() => handleNavigate('/suscripcion-heladera')}>
               <img src={Suscripcion} alt="Suscribirse" width="40" height="40" />
               Suscribirse
             </Button>
