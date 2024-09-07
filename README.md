@@ -32,17 +32,12 @@ Prerrequisitos
     Java 17
     Node.js (incluye npm) 
     Yarn
-Dependencias 
-    Yarn add react-bootstrap
-    yarn add @react-google-maps/api 
 
 Clonar el Repositorio
 
     Clona el repositorio para el backend:
 
     Clona el repositorio para el front : git clone https://github.com/PonceCamilo/tp-anual-disenio.git
-
-
 
 
 Este contiene el backend en su raíz.
