@@ -3,13 +3,14 @@
 Tecnologías Utilizadas
 
     Backend:
-        Spring Boot
         Java 17
-
+        Spring 
+       
     Frontend:
         React
         React Bootstrap
         React Google Maps API
+        React Auth0
 
     Gestor de Paquetes:
         Yarn
