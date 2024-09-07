@@ -61,6 +61,7 @@ Instalación de Dependencias
     En la carpeta donde clonaste el front, instala las dependencias y ejecuta la aplicación utilizando:
     yarn add react-bootstrap
     yarn add @react-google-maps/api
+    yarn add @auth0/auth0-react
 
 
 En la carpeta donde clonaste el frontend (tp-anual-disenio con la rama front-end), abre una terminal y ejecuta:
