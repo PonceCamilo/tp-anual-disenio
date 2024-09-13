@@ -1,7 +1,7 @@
 import React from "react";
 import VulnerableForm from "../components/VulnerableForm";
 import "../assets/styles/RegistrarVulnerablePage.css";
-
+import '../assets/styles/App.css';
 function RegistrarVulnerablePage() {
   return (
     <div className="registrar-vulnerable-page">

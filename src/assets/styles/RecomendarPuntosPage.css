@@ -1,14 +1,9 @@
 .recomendar-puntos-page {
-    background-image: url(../../assets/imgs/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     display: flex;
     min-height: 100vh;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* Cambiado para que los elementos se apilen verticalmente */
 }
 
 .buscador-container {
@@ -17,12 +12,10 @@
     margin-top: 50px;
     margin-bottom: 20px;
     padding: 0 100px 0 350px;
-    /* Añadir margen inferior para separar el buscador del resto del contenido */
 }
 
 .input-direccion {
     flex: 5;
-    /* Para que el campo de texto ocupe más espacio */
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -31,7 +24,6 @@
 
 .buscador-container Button {
     flex: 1;
-    /* El botón ocupará menos espacio */
     padding: 10px;
     background-color: #007bff;
     color: white;

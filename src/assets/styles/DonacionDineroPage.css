@@ -3,10 +3,6 @@
 .donacion-dinero-page {
     display: flex;
     height: 100vh;
-    background-image: url(../../assets/imgs/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     font-family: 'Arial', sans-serif;
     overflow: auto;
 }

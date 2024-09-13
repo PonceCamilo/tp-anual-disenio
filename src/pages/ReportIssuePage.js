@@ -1,7 +1,7 @@
 import React from 'react';
 import ReportIssueForm from '../components/ReportIssueForm';
 import '../assets/styles/ReportIssuePage.css';
-
+import '../assets/styles/App.css';
 
 const fridges = [
     { id: 'a', name: 'Heladera A' },

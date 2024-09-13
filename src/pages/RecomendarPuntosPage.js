@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RecomendarPuntosApp from "../components/RecomendarPuntosApp";
 import '../assets/styles/RecomendarPuntosPage.css';
 import Button from 'react-bootstrap/Button';
-
+import '../assets/styles/App.css';
 function RecomendarPuntosPage() {
 
     const [puntos, setPuntos] = useState([]);

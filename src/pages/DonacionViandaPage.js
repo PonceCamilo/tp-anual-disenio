@@ -1,7 +1,7 @@
 import React from 'react';
 import DonacionViandaForm from '../components/DonacionViandaForm';
 import '../assets/styles/DonacionViandaPage.css';
-
+import '../assets/styles/App.css';
 const DonacionViandaPage = () => {
     return (
         <div className="donacion-vianda-page d-flex">

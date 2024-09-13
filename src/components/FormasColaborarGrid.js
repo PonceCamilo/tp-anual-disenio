@@ -51,7 +51,7 @@ function FormasColaborarGrid() {
             <Card
               className="text-center h-100"
               onClick={() => handleCardClick(forma.link)}
-              style={{ cursor: 'pointer' }} // Cambia el cursor para indicar que es clickeable
+              style={{ cursor: 'pointer' }} 
             >
               <Card.Img
                 className="mx-auto mt-4 mb-4"

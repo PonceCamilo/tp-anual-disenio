@@ -13,11 +13,11 @@ import Canje from '../assets/iconos/Canje.svg';
 import Config from '../assets/iconos/Config.svg';
 
 function UserProfileModal({ show, onHide }) {
-  const navigate = useNavigate(); // Define el hook de navegación
+  const navigate = useNavigate(); 
 
   const handleNavigate = (path) => {
-    navigate(path); // Redirige a la ruta especificada
-    onHide(); // Cierra el modal después de la redirección
+    navigate(path);
+    onHide();
   };
 
   return (

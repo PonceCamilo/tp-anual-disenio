@@ -1,8 +1,6 @@
 .publicar-producto-page {
     display: flex;
-    background-image: url(../../assets/imgs/bg.jpg);
     height: 100vh;
-    background-color: #f7f8fa;
     font-family: 'Arial', sans-serif;
     overflow: auto;
 }

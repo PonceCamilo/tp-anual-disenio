@@ -1,9 +1,5 @@
 .cargar-heladera-page {
     padding: 30px;
-    background-image: url(../../assets/imgs/bg.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     min-height: 100vh;
     display: flex;
     align-items: center;

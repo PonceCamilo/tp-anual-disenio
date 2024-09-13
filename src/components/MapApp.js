@@ -25,12 +25,12 @@ function MapApp() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            // Otros encabezados necesarios
+           
           },
-          credentials: 'include' // Incluye las credenciales si es necesario
+          credentials: 'include' 
         });
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Error de Red');
         }
         const data = await response.json();
         console.log(data);
@@ -71,7 +71,7 @@ function MapApp() {
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+    <div style={{width: '100%', height: '100vh' }}>
       <GoogleMap
         center={mapCenter}
         zoom={zoom}

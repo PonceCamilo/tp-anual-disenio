@@ -1,7 +1,7 @@
 import React from 'react';
 import CargarHeladeraForm from '../components/CargarHeladeraForm';
 import '../assets/styles/CargarHeladeraPage.css';
-
+import '../assets/styles/App.css';
 function CargarHeladeraPage() {
     return (
         <div className="cargar-heladera-page d-flex flex-column align-items-center justify-content-center">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../assets/styles/ReportIssueForm.css';
+import '../assets/styles/App.css';
 import {  Button } from 'react-bootstrap';
 const ReportIssueForm = ({ collaborators, fridges }) => {
     const [date, setDate] = useState(new Date().toISOString().slice(0, 16));

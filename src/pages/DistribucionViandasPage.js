@@ -1,7 +1,7 @@
 import React from 'react';
 import DistribucionViandasForm from '../components/DistribucionViandasForm';
 import '../assets/styles/DistribucionViandasPage.css';
-
+import '../assets/styles/App.css';
 const DistribucionViandasPage = () => {
     return (
         <div className="distribucion-viandas-page d-flex">

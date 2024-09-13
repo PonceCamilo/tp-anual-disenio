@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Collapse } from 'react-bootstrap';
 import "../assets/styles/Reportes.css"
-
+import '../assets/styles/App.css';
 const BotonReporte = ({ texto, section, handleClick, openSection }) => (
     <Button
         className="mt-1"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react'; // Importa el hook de Auth0
+import { useAuth0 } from '@auth0/auth0-react';
 import NavApp from './components/NavApp';
 import HeaderApp from './components/HeaderApp';
 import MapApp from './components/MapApp';
@@ -22,7 +22,7 @@ function App() {
 
   return (
     <Router>
-      <NavApp />
+      
       <Main setHeaderHeight={setHeaderHeight} headerHeight={headerHeight} />
     </Router>
   );
@@ -30,37 +30,13 @@ function App() {
 
 function Main({ setHeaderHeight, headerHeight }) {
   const location = useLocation();
-  const { isAuthenticated, loginWithRedirect } = useAuth0(); // Obtener estado de autenticación y la función de redirección
+  const { isAuthenticated, loginWithRedirect } = useAuth0(); 
   const isMapPage = location.pathname === '/map';
-  const infoRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (infoRef.current) {
-      observer.observe(infoRef.current);
-    }
-
-    return () => {
-      if (infoRef.current) {
-        observer.unobserve(infoRef.current);
-      }
-    };
-  }, []);
-
-  // Componente de ruta protegida
   const ProtectedRoute = ({ children }) => {
     if (!isAuthenticated) {
-      loginWithRedirect(); // Redirige al usuario a la página de inicio de sesión si no está autenticado
-      return null; // Muestra nada mientras redirige
+      loginWithRedirect();
+      return null; 
     }
     return children;
   };
@@ -71,8 +47,8 @@ function Main({ setHeaderHeight, headerHeight }) {
       {location.pathname === '/' && (
         <div className="header-info-container">
           <HeaderApp setHeaderHeight={setHeaderHeight} />
-          <div ref={infoRef}>
-            <InfoApp isVisible={isVisible} />
+          <div >
+            <InfoApp/>
           </div>
         </div>
       )}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DonacionDineroForm from "../components/DonacionDineroForm";
 import "../assets/styles/DonacionDineroPage.css";
-
+import '../assets/styles/App.css';
 function DonacionDineroPage() {
   const [animationClasses, setAnimationClasses] = useState({
     left: "",
