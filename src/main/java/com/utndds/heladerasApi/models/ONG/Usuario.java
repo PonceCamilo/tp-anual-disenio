@@ -5,7 +5,7 @@ import com.utndds.heladerasApi.services.UsuarioService.PasswordHashService;
 
 public class Usuario {
     private String email;
-    private String password; // Este atributo debería ser manejado con cuidado
+    private String password; 
     private Rol rol;
 
     PasswordHashService passwordHashService;

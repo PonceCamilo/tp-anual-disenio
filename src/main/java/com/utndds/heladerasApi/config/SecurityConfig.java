@@ -36,6 +36,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/", "/images/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/ubicaciones-googlemaps").permitAll()
+                .requestMatchers(HttpMethod.POST,"/heladeras/recomendarPuntos").permitAll()
                 .anyRequest().authenticated())
             .oauth2Login(withDefaults())
             .logout(logout -> logout
