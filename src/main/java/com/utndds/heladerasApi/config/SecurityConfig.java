@@ -31,16 +31,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
-            .csrf((csrf)->csrf.disable())
-            .cors(withDefaults())
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/", "/images/**").permitAll()
-                .requestMatchers(HttpMethod.GET,"/ubicaciones-googlemaps").permitAll()
-                .requestMatchers(HttpMethod.POST,"/heladeras/recomendarPuntos").permitAll()
-                .anyRequest().authenticated())
-            .oauth2Login(withDefaults())
-            .logout(logout -> logout
-                .addLogoutHandler(logoutHandler()));
+                .csrf((csrf) -> csrf.disable())
+                .cors(withDefaults())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/", "/images/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/ubicaciones-googlemaps").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/heladeras/recomendarPuntos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/mockAPI/recomendarPuntos").permitAll()
+                        .anyRequest().authenticated())
+                .oauth2Login(withDefaults())
+                .logout(logout -> logout
+                        .addLogoutHandler(logoutHandler()));
 
         return http.build();
     }
