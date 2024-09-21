@@ -15,10 +15,11 @@ public class ReporteController {
     @Autowired
     private GeneradorReportes generadorReportes;
 
+    // En vez de generarlos tendria que enviar los reportes generados
     @PostMapping("/generarReportes")
     public ResponseEntity<String> generarReportes() {
         try {
-            generadorReportes.generarReportes();
+            //generadorReportes.generarReportes();
             return ResponseEntity.ok("reporte generado exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

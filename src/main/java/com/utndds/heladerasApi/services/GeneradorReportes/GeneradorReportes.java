@@ -13,19 +13,23 @@ import com.utndds.heladerasApi.services.GeneradorReportes.Reportes.ViandasMovida
 
 @Service
 public class GeneradorReportes {
-    List<Reporte> reportes = new ArrayList<>();
+    List<Reporte> reportesSemanales = new ArrayList<>();
 
     public GeneradorReportes() {
-        this.reportes.add(new FallasPorHeladera());
-        this.reportes.add(new ViandasMovidasPorColaborador());
-        this.reportes.add(new ViandasMovidasPorHeladera());
+        this.reportesSemanales.add(new FallasPorHeladera());
+        this.reportesSemanales.add(new ViandasMovidasPorColaborador());
+        this.reportesSemanales.add(new ViandasMovidasPorHeladera());
     }
 
-    @Scheduled(fixedRateString = "604800000") // 604.800.000ms = 2 semanas
-    public void generarReportes() {
-        for (Reporte reporte : reportes) {
+    private void generarReportes(List<Reporte> listaReportes) {
+        for (Reporte reporte : listaReportes) {
             reporte.generarReporte();
         }
+    }
+
+    @Scheduled(cron = "0 0 0 * * SUN")
+    public void generarReportesSemanales() {
+        generarReportes(reportesSemanales);
     }
 
 }
