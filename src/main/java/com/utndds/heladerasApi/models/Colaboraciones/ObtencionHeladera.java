@@ -2,6 +2,7 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,11 @@ public class ObtencionHeladera extends Colaboracion {
 
     // Constructor vacío para JPA
     public ObtencionHeladera() {
+    }
+
+    public ObtencionHeladera(Colaborador colaborador, Heladera heladera) {
+        super(colaborador);
+        this.heladera = heladera;
     }
 
     @Override
