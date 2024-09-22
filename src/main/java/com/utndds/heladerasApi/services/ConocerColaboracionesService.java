@@ -3,9 +3,11 @@ package com.utndds.heladerasApi.services;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class ConocerColaboracionesService {
 
     public int getViandasDonadas(Colaborador colaborador, int dias) {

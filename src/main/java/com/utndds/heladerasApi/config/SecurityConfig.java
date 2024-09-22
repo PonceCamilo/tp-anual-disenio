@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/ubicaciones-googlemaps").permitAll()
                         .requestMatchers(HttpMethod.POST, "/heladeras/recomendarPuntos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/mockAPI/recomendarPuntos").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/colaboraciones/recomendaciones-colaboradores").permitAll()
                         .anyRequest().authenticated())
                 .oauth2Login(withDefaults())
                 .logout(logout -> logout
