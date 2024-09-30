@@ -15,6 +15,7 @@ import lombok.Getter;
 @Table(name = "colaborador")
 public class Colaborador extends Rol {
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

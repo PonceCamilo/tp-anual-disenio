@@ -35,4 +35,9 @@ public class HeladeraService {
         // Guardar la heladera con la ONG existente o nueva
         return heladeraRepository.save(heladera);
     }
+
+    @Transactional
+    public Heladera crearHeladera(Heladera heladera) {
+        return heladeraRepository.save(heladera); // Guarda la nueva heladera en la base de datos
+    }
 }
