@@ -10,11 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -44,32 +40,6 @@ public class CargaCSV {
             }
         } catch (IOException | CsvException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        try {
-            // Ruta del archivo CSV
-            Path path = Paths.get("./src/main/resources/colaboraciones.csv");
-            byte[] content = Files.readAllBytes(path);
-
-            // Crear un InputStream desde el contenido del archivo
-            InputStream inputStream = new ByteArrayInputStream(content);
-
-            // Instanciar CargaCSV
-            CargaCSV cargaCSV = new CargaCSV();
-            // Llamar al método cargarCSV con el InputStream
-            cargaCSV.cargarCSV(inputStream);
-
-            // Verificar los colaboradores cargados
-            List<Colaborador> colaboradores = ONG.getInstance().getColaboradores();
-            System.out.println("Número de colaboradores: " + colaboradores.size());
-            for (Colaborador colaborador : colaboradores) {
-                System.out.println("Colaborador: " + colaborador.getPersona().getNombre());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al leer el archivo CSV.", e);
         }
     }
 }

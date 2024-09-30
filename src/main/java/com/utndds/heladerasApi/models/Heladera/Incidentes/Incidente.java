@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.persistence.*;
@@ -17,8 +17,8 @@ public abstract class Incidente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "fecha_hora")
-    private LocalDateTime fechaHora;
+    @Column(name = "fecha")
+    private LocalDate fecha;
 
     @Getter
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,7 +33,7 @@ public abstract class Incidente {
     }
 
     public Incidente(Heladera heladera) {
-        this.fechaHora = LocalDateTime.now();
+        this.fecha = LocalDate.now();
         this.heladera = heladera;
 
         this.procesar();
