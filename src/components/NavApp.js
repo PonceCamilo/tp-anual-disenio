@@ -7,14 +7,15 @@ import UTNlogo from '../assets/logos/utn.svg';
 import IcoProfile from '../assets/iconos/IcoProfile.svg';
 import IcoHeladera from '../assets/iconos/IcoHeladera.svg';
 import Logout from '../assets/iconos/Logout.svg';
-import { useAuth0 } from '@auth0/auth0-react'; 
+import { useAuth } from '../config/authContext';
 import '../assets/styles/CustomContainer.css';
-import UserProfileModal from './UserProfileModal'; // Importar el nuevo componente
+import UserProfileModal from './UserProfileModal';
 
 function NavApp({ className }) {
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0(); 
+  const { logout, login, isAuthenticated, user, roles } = useAuth(); 
   const [expanded, setExpanded] = useState(false);
-  const [showProfileModal, setShowProfileModal] = useState(false); // Estado para el modal
+  const isAdmin = roles.includes('ROLE_ADMIN');
+  const [showProfileModal, setShowProfileModal] = useState(false);
 
   const handleResize = () => {
     if (window.innerWidth >= 992 && expanded) {
@@ -27,11 +28,11 @@ function NavApp({ className }) {
   };
 
   const handleProfileClick = () => {
-    setShowProfileModal(true); // Mostrar modal al hacer clic en el perfil
+    setShowProfileModal(true); 
   };
 
   const handleCloseProfileModal = () => {
-    setShowProfileModal(false); // Cerrar modal
+    setShowProfileModal(false); 
   };
 
   useEffect(() => {
@@ -89,7 +90,7 @@ function NavApp({ className }) {
                   </Nav.Link>
                 </>
               ) : (
-                <Nav.Link href="#login" onClick={loginWithRedirect} className="fs-5">
+                <Nav.Link href="#login" onClick={login} className="fs-5">
                   <img
                     alt=""
                     src={IcoProfile}

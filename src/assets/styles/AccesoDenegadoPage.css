@@ -1,0 +1,43 @@
+.denied-page {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .denied-page h1 {
+    font-size: 3rem;
+    color: #ff6b6b;
+  }
+  
+  .denied-page p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .emoji {
+    font-size: 4rem;
+    margin: 2rem 0;
+  }
+  
+  .back-button {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button:hover {
+    background-color: #ff4c4c;
+  }
+  
