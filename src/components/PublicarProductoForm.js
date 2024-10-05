@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import '../assets/styles/PublicarProductoForm.css';
-import Button from 'react-bootstrap/Button';
+import { Box, Button, FormControl, FormLabel, Input, Textarea, VStack } from '@chakra-ui/react';
 
 function PublicarProductoForm() {
     const [product, setProduct] = useState({
@@ -30,8 +29,6 @@ function PublicarProductoForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Crear un FormData para enviar la imagen junto con el resto de los datos
         const formData = new FormData();
         formData.append('name', product.name);
         formData.append('description', product.description);
@@ -40,7 +37,6 @@ function PublicarProductoForm() {
             formData.append('image', product.image);
         }
 
-
         fetch('/api/publicar-producto', {
             method: 'POST',
             body: formData
@@ -48,7 +44,6 @@ function PublicarProductoForm() {
             .then(response => response.json())
             .then(data => {
                 console.log('Producto publicado:', data);
-
             })
             .catch(error => {
                 console.error('Error al publicar el producto:', error);
@@ -56,54 +51,50 @@ function PublicarProductoForm() {
     };
 
     return (
-        <form className="publicar-producto-form" onSubmit={handleSubmit}>
-            <h3 className='mb-4'>Publicar Producto/Servicio</h3>
-
-            <div className="form-group">
-                <label htmlFor="name">Nombre:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={product.name}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="description">Descripción:</label>
-                <textarea
-                    id="description"
-                    name="description"
-                    value={product.description}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="points">Puntos necesarios:</label>
-                <input
-                    type="number"
-                    id="points"
-                    name="points"
-                    value={product.points}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-group">
-                <label htmlFor="image">Selecciona una imagen:</label>
-                <input
-                    type="file"
-                    id="image"
-                    name="image"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                />
-                <Button className='mt-3' variant="primary" type="submit">Publicar</Button>
-            </div>
-
-        </form>
+        <Box as="form" onSubmit={handleSubmit} width="100%">
+            <VStack spacing={4} align="stretch">
+                <FormControl isRequired>
+                    <FormLabel htmlFor="name">Nombre:</FormLabel>
+                    <Input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={product.name}
+                        onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel htmlFor="description">Descripción:</FormLabel>
+                    <Textarea
+                        id="description"
+                        name="description"
+                        value={product.description}
+                        onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel htmlFor="points">Puntos necesarios:</FormLabel>
+                    <Input
+                        type="number"
+                        id="points"
+                        name="points"
+                        value={product.points}
+                        onChange={handleChange}
+                    />
+                </FormControl>
+                <FormControl>
+                    <FormLabel htmlFor="image">Selecciona una imagen:</FormLabel>
+                    <Input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+                </FormControl>
+                <Button colorScheme="green" type="submit">Publicar</Button>
+            </VStack>
+        </Box>
     );
 }
 

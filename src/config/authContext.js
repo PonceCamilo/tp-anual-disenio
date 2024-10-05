@@ -12,7 +12,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [user, setUser] = useState(null);
   const [roles, setRoles] = useState([]);
   const [accessToken, setAccessToken] = useState(null);

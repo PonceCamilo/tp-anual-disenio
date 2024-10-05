@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../assets/styles/CargarHeladeraForm.css';
+import { Box, Button, FormControl, FormLabel, Heading, Input } from '@chakra-ui/react';
 
 const CargarHeladeraForm = () => {
     const [capacidad, setCapacidad] = useState('');
@@ -38,43 +38,58 @@ const CargarHeladeraForm = () => {
     };
 
     return (
-        <form className="cargar-heladera-form" onSubmit={handleSubmit}>
-            <h2>Cargar Heladera</h2>
+        <Box 
+            as="form" 
+            onSubmit={handleSubmit} 
+            maxWidth="400px" 
+            width="100%" 
+            margin="0 auto" 
+            padding={6} 
+            borderRadius="lg" 
+            boxShadow="lg" 
+            bg="rgba(255, 255, 255)" 
+            backdropFilter="blur(10px)"
+        >
+            <Heading as="h2" size="lg" textAlign="center" mb={4}>
+                Cargar Heladera
+            </Heading>
 
-            <label>
-                Capacidad (cantidad viandas):
-                <input
+            <FormControl mb={4}>
+                <FormLabel>Capacidad (cantidad viandas):</FormLabel>
+                <Input
                     type="number"
                     value={capacidad}
                     onChange={(e) => setCapacidad(e.target.value)}
                     required
                 />
-            </label>
+            </FormControl>
 
-            <label>
-                Temperatura Mínima (°C):
-                <input
+            <FormControl mb={4}>
+                <FormLabel>Temperatura Mínima (°C):</FormLabel>
+                <Input
                     type="number"
                     step="0.1"
                     value={temperaturaMinima}
                     onChange={(e) => setTemperaturaMinima(e.target.value)}
                     required
                 />
-            </label>
+            </FormControl>
 
-            <label>
-                Temperatura Máxima (°C):
-                <input
+            <FormControl mb={4}>
+                <FormLabel>Temperatura Máxima (°C):</FormLabel>
+                <Input
                     type="number"
                     step="0.1"
                     value={temperaturaMaxima}
                     onChange={(e) => setTemperaturaMaxima(e.target.value)}
                     required
                 />
-            </label>
+            </FormControl>
 
-            <button type="submit">Añadir Heladera</button>
-        </form>
+            <Button type="submit" colorScheme="green" width="full">
+                Añadir Heladera
+            </Button>
+        </Box>
     );
 };
 

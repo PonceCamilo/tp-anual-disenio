@@ -1,12 +1,19 @@
 import React from 'react';
 import SuscripcionHeladeraContent from '../components/SuscripcionHeladeraContent';
-import '../assets/styles/SuscripcionHeladeraPage.css';
-import '../assets/styles/App.css';
+
+import { Box } from '@chakra-ui/react';
 function SuscripcionHeladeraPage() {
     return (
-        <div className="suscripcion-heladera-page">
+        <Box 
+            paddingTop="70px" 
+            minHeight="100vh" 
+            display="flex" 
+            flexDirection="column" 
+            justifyContent="center" 
+            alignItems="center"
+        >
             <SuscripcionHeladeraContent />
-        </div>
+        </Box>
     );
 }
 

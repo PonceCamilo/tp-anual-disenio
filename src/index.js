@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './assets/styles/styles.scss';
+
 import App from './App';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { authConfig } from '../src/config/auth-config';
 import reportWebVitals from './reportWebVitals';
+import '@fontsource/manrope'; // Importa Manrope desde la biblioteca
 
 // Función para manejar el redireccionamiento después de la autenticación
 const onRedirectCallback = (appState) => {
@@ -27,5 +28,4 @@ root.render(
   </Auth0Provider>
 );
 
-// Medir rendimiento
 reportWebVitals();

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
+import { Box, Input, Button } from '@chakra-ui/react';
 
 function SearchMapApp({ onSearch }) {
   const [query, setQuery] = useState('');
@@ -14,19 +13,28 @@ function SearchMapApp({ onSearch }) {
   };
 
   return (
-    <Container fluid className="d-flex justify-content-center fixed-top" style={{ top: '100px' }}>
-      <div className="d-flex align-items-center">
-        <input
-          type="text"
-          placeholder="Buscar una Heladera"
-          value={query}
-          onChange={handleInputChange}
-          className="form-control me-2"
-        />
-        <Button variant="dark" onClick={handleSearch}>Buscar</Button>
-        
-      </div>
-    </Container>
+    <Box 
+      position="fixed" 
+      display="flex"
+      top="70px" // Ajusta según el espaciado que necesites
+      left="50%" 
+      transform="translateX(-50%)" 
+      zIndex="10" // Asegúrate de que esté sobre el mapa
+      width="80%" // Ajusta el ancho como necesites
+      maxWidth="600px" // Tamaño máximo opcional
+    >
+      <Input
+        placeholder="Buscar una Heladera"
+        value={query}
+        onChange={handleInputChange}
+        bg="white"
+        mb={2}
+        mr={2}
+      />
+      <Button variant="solid" colorScheme="green" onClick={handleSearch}>
+        Buscar
+      </Button>
+    </Box>
   );
 }
 

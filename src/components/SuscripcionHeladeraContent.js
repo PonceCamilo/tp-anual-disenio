@@ -1,5 +1,25 @@
 import React, { useState } from 'react';
-import '../assets/styles/SuscripcionHeladeraContent.css';
+import {
+    Box,
+    Input,
+    Button,
+    Text,
+    Grid,
+    Image,
+    Heading,
+    Flex,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalCloseButton,
+    VStack,
+    FormControl,
+    Checkbox,
+    HStack,
+    useDisclosure,
+} from '@chakra-ui/react';
 
 const heladeras = [
     { id: 1, nombre: 'Heladera 1', descripcion: 'Descripción de la Heladera 1', imagen: 'https://via.placeholder.com/150' },
@@ -8,13 +28,19 @@ const heladeras = [
     { id: 4, nombre: 'Heladera 4', descripcion: 'Descripción de la Heladera 4', imagen: 'https://via.placeholder.com/150' },
     { id: 5, nombre: 'Heladera 5', descripcion: 'Descripción de la Heladera 5', imagen: 'https://via.placeholder.com/150' },
     { id: 6, nombre: 'Heladera 6', descripcion: 'Descripción de la Heladera 6', imagen: 'https://via.placeholder.com/150' },
-    // Agrega más heladeras si es necesario
+    { id: 1, nombre: 'Heladera 1', descripcion: 'Descripción de la Heladera 1', imagen: 'https://via.placeholder.com/150' },
+    { id: 2, nombre: 'Heladera 2', descripcion: 'Descripción de la Heladera 2', imagen: 'https://via.placeholder.com/150' },
+    { id: 3, nombre: 'Heladera 3', descripcion: 'Descripción de la Heladera 3', imagen: 'https://via.placeholder.com/150' },
+    { id: 4, nombre: 'Heladera 4', descripcion: 'Descripción de la Heladera 4', imagen: 'https://via.placeholder.com/150' },
+    { id: 5, nombre: 'Heladera 5', descripcion: 'Descripción de la Heladera 5', imagen: 'https://via.placeholder.com/150' },
+    { id: 6, nombre: 'Heladera 6', descripcion: 'Descripción de la Heladera 6', imagen: 'https://via.placeholder.com/150' },
+    
 ];
 
 function SuscripcionHeladeraContent() {
-    const [formVisible, setFormVisible] = useState(false);
-    const [selectedHeladera, setSelectedHeladera] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [selectedHeladera, setSelectedHeladera] = useState(null);
     const [notificationSettings, setNotificationSettings] = useState({
         case1: false,
         case2: false,
@@ -22,35 +48,34 @@ function SuscripcionHeladeraContent() {
     });
     const [viandasNumber, setViandasNumber] = useState({
         case1: '',
-        case2: ''
+        case2: '',
     });
 
     const handleSuscribirse = (heladera) => {
         setSelectedHeladera(heladera);
-        setFormVisible(true);
+        onOpen();
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Aquí puedes manejar la lógica de envío del formulario
-        alert('Formulario enviado');
-        setFormVisible(false); // Ocultar el formulario después de enviarlo
-    };
-
-    const handleCheckboxChange = (event) => {
-        const { name, checked } = event.target;
+    const handleCheckboxChange = (e) => {
+        const { name, checked } = e.target;
         setNotificationSettings(prevState => ({
             ...prevState,
-            [name]: checked
+            [name]: checked,
         }));
     };
 
-    const handleViandasChange = (event) => {
-        const { name, value } = event.target;
+    const handleViandasChange = (e) => {
+        const { name, value } = e.target;
         setViandasNumber(prevState => ({
             ...prevState,
-            [name]: value
+            [name]: value,
         }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(`Configuración enviada para ${selectedHeladera?.nombre}`);
+        onClose();
     };
 
     const filteredHeladeras = heladeras.filter(heladera =>
@@ -58,92 +83,122 @@ function SuscripcionHeladeraContent() {
     );
 
     return (
-        <div className="suscripcion-heladera-content-container">
-            <h2>Suscripción a Heladeras</h2>
-            <div className="search-container">
-                <input
-                    type="text"
-                    placeholder="Buscar por nombre..."
+        <Box
+            width="100%"
+            maxW="1300px"
+            minW="400px"
+            p={6}
+            bg="white"
+            borderRadius="lg"
+            boxShadow="lg"
+            overflowY="auto"
+            maxHeight="80vh"
+        >
+            <Box textAlign="center" mb={6}>
+                <Heading size="md" mb={1}>Suscripción a Heladeras</Heading>
+            </Box>
+            <Flex justifyContent="center" mb={6}>
+                <Input
+                    placeholder="Buscar heladera..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="search-input"
+                    width="250px"
+                    mr={2}
                 />
-                <button className="search-button">
-                    Buscar
-                </button>
-            </div>
-            <div className="heladeras-grid">
+                <Button colorScheme="green" onClick={() => {}}>Buscar</Button>
+            </Flex>
+            <Grid templateColumns="repeat(auto-fill, minmax(180px, 1fr))" gap={4}>
                 {filteredHeladeras.map(heladera => (
-                    <div key={heladera.id} className="heladera-card">
-                        <img src={heladera.imagen} alt={heladera.nombre} />
-                        <h3>{heladera.nombre}</h3>
-                        <p>{heladera.descripcion}</p>
-                        <button
-                            className="suscribirse-button"
+                    <Box
+                        key={heladera.id}
+                        p={3}
+                        bg="gray.50"
+                        borderRadius="lg"
+                        boxShadow="md"
+                        textAlign="center"
+                        transition="transform 0.3s, box-shadow 0.3s"
+                        _hover={{ transform: 'scale(1.05)', boxShadow: 'lg' }}
+                    >
+                        <Image src={heladera.imagen} alt={heladera.nombre} borderRadius="md" mb={3} />
+                        <Heading size="sm" mb={2}>{heladera.nombre}</Heading>
+                        <Text fontSize="md" color="gray.600">{heladera.descripcion}</Text>
+                        <Button
+                            mt={3}
+                            size="sm"
+                            colorScheme="green"
                             onClick={() => handleSuscribirse(heladera)}
                         >
                             Suscribirse
-                        </button>
-                    </div>
+                        </Button>
+                    </Box>
                 ))}
-            </div>
-            {formVisible && selectedHeladera && (
-                <div className="form-overlay">
-                    <div className="form-container">
-                        <h3>Formulario de Suscripción para {selectedHeladera.nombre}</h3>
+            </Grid>
+
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Formulario de Suscripción para {selectedHeladera?.nombre}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
                         <form onSubmit={handleSubmit}>
-                            <div className="notification-settings">
-                                <label>
-                                    <input
-                                        type="checkbox"
+                            <VStack spacing={4}>
+                                <FormControl>
+                                    <Checkbox
                                         name="case1"
-                                        checked={notificationSettings.case1}
+                                        isChecked={notificationSettings.case1}
                                         onChange={handleCheckboxChange}
-                                    />
-                                    Quedan únicamente n viandas disponibles
-                                    <input
-                                        type="number"
-                                        name="case1"
-                                        value={viandasNumber.case1}
-                                        onChange={handleViandasChange}
-                                        min="1"
-                                        placeholder="Número de viandas"
-                                    />
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
+                                    >
+                                        Viandas disponibles
+                                        <Input
+                                            type="number"
+                                            name="case1"
+                                            value={viandasNumber.case1}
+                                            onChange={handleViandasChange}
+                                            min="1"
+                                            placeholder="Número de viandas"
+                                            mt={2}
+                                            borderColor="blue.400"
+                                        />
+                                    </Checkbox>
+                                </FormControl>
+                                <FormControl>
+                                    <Checkbox
                                         name="case2"
-                                        checked={notificationSettings.case2}
+                                        isChecked={notificationSettings.case2}
                                         onChange={handleCheckboxChange}
-                                    />
-                                    Faltan n viandas para llenar la heladera
-                                    <input
-                                        type="number"
-                                        name="case2"
-                                        value={viandasNumber.case2}
-                                        onChange={handleViandasChange}
-                                        min="1"
-                                        placeholder="Número de viandas"
-                                    />
-                                </label>
-                                <label>
-                                    <input
-                                        type="checkbox"
+                                    >
+                                        Faltan viandas para llenar la heladera
+                                        <Input
+                                            type="number"
+                                            name="case2"
+                                            value={viandasNumber.case2}
+                                            onChange={handleViandasChange}
+                                            min="1"
+                                            placeholder="Número de viandas"
+                                            mt={2}
+                                            borderColor="blue.400"
+                                        />
+                                    </Checkbox>
+                                </FormControl>
+                                <FormControl>
+                                    <Checkbox
                                         name="case3"
-                                        checked={notificationSettings.case3}
+                                        isChecked={notificationSettings.case3}
                                         onChange={handleCheckboxChange}
-                                    />
-                                    La heladera sufrió un desperfecto
-                                </label>
-                            </div>
-                            <button type="submit">Enviar</button>
-                            <button type="button" onClick={() => setFormVisible(false)}>Cancelar</button>
+                                    >
+                                        La heladera sufrió un desperfecto
+                                    </Checkbox>
+                                </FormControl>
+                                <HStack spacing={4}>
+                                    <Button type="submit" colorScheme="green">Suscribirse</Button>
+                                    <Button onClick={onClose} colorScheme="red">Cancelar</Button>
+                                </HStack>
+                            </VStack>
                         </form>
-                    </div>
-                </div>
-            )}
-        </div>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
+        </Box>
     );
 }
 

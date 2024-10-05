@@ -1,40 +1,41 @@
 import React, { useState } from 'react';
-import '../assets/styles/ConsultaCanjeForm.css';
-import { notice } from '@pnotify/core';
-import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/core/dist/BrightTheme.css';
+import {
+    Box,
+    Input,
+    Button,
+    Text,
+    Grid,
+    Image,
+    Heading,
+    Flex
+} from '@chakra-ui/react';
 
 const productos = [
-    {
-        id: 1,
-        nombre: 'Producto 1',
-        puntos: 100,
-        imagen: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 2,
-        nombre: 'Producto 2',
-        puntos: 200,
-        imagen: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 3,
-        nombre: 'Producto 3',
-        puntos: 300,
-        imagen: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 4,
-        nombre: 'Producto 4',
-        puntos: 400,
-        imagen: 'https://via.placeholder.com/150'
-    },
-    {
-        id: 5,
-        nombre: 'Producto 5',
-        puntos: 500,
-        imagen: 'https://via.placeholder.com/150'
-    },
+    { id: 1, nombre: 'Producto 1', puntos: 100, imagen: 'https://via.placeholder.com/150' },
+    { id: 2, nombre: 'Producto 2', puntos: 200, imagen: 'https://via.placeholder.com/150' },
+    { id: 3, nombre: 'Producto 3', puntos: 300, imagen: 'https://via.placeholder.com/150' },
+    { id: 4, nombre: 'Producto 4', puntos: 400, imagen: 'https://via.placeholder.com/150' },
+    { id: 5, nombre: 'Producto 5', puntos: 500, imagen: 'https://via.placeholder.com/150' },
+    { id: 1, nombre: 'Producto 1', puntos: 100, imagen: 'https://via.placeholder.com/150' },
+    { id: 2, nombre: 'Producto 2', puntos: 200, imagen: 'https://via.placeholder.com/150' },
+    { id: 3, nombre: 'Producto 3', puntos: 300, imagen: 'https://via.placeholder.com/150' },
+    { id: 4, nombre: 'Producto 4', puntos: 400, imagen: 'https://via.placeholder.com/150' },
+    { id: 5, nombre: 'Producto 5', puntos: 500, imagen: 'https://via.placeholder.com/150' },
+    { id: 1, nombre: 'Producto 1', puntos: 100, imagen: 'https://via.placeholder.com/150' },
+    { id: 2, nombre: 'Producto 2', puntos: 200, imagen: 'https://via.placeholder.com/150' },
+    { id: 3, nombre: 'Producto 3', puntos: 300, imagen: 'https://via.placeholder.com/150' },
+    { id: 4, nombre: 'Producto 4', puntos: 400, imagen: 'https://via.placeholder.com/150' },
+    { id: 5, nombre: 'Producto 5', puntos: 500, imagen: 'https://via.placeholder.com/150' },
+    { id: 1, nombre: 'Producto 1', puntos: 100, imagen: 'https://via.placeholder.com/150' },
+    { id: 2, nombre: 'Producto 2', puntos: 200, imagen: 'https://via.placeholder.com/150' },
+    { id: 3, nombre: 'Producto 3', puntos: 300, imagen: 'https://via.placeholder.com/150' },
+    { id: 4, nombre: 'Producto 4', puntos: 400, imagen: 'https://via.placeholder.com/150' },
+    { id: 5, nombre: 'Producto 5', puntos: 500, imagen: 'https://via.placeholder.com/150' },
+    { id: 1, nombre: 'Producto 1', puntos: 100, imagen: 'https://via.placeholder.com/150' },
+    { id: 2, nombre: 'Producto 2', puntos: 200, imagen: 'https://via.placeholder.com/150' },
+    { id: 3, nombre: 'Producto 3', puntos: 300, imagen: 'https://via.placeholder.com/150' },
+    { id: 4, nombre: 'Producto 4', puntos: 400, imagen: 'https://via.placeholder.com/150' },
+    { id: 5, nombre: 'Producto 5', puntos: 500, imagen: 'https://via.placeholder.com/150' },
 ];
 
 function ConsultaCanjeForm() {
@@ -43,27 +44,8 @@ function ConsultaCanjeForm() {
 
     const handleCanjear = (productoId) => {
         const producto = productos.find(p => p.id === productoId);
-
         if (producto) {
-            const notification = notice({
-                title: 'Producto Canjeado',
-                text: `Has canjeado: ${producto.nombre}, Click para ver`,
-                textTrusted: true,
-                icon: false
-            });
-
-            notification.refs.elem.style.cursor = 'pointer';
-            notification.on('click', e => {
-                if ([...notification.refs.elem.querySelectorAll('.pnotify-closer *, .pnotify-sticker *')].indexOf(e.target) !== -1) {
-                    return;
-                }
-                notification.update({
-                    type: 'success',
-                    text: `Canjeaste: ${producto.nombre}! <br></br> <div style="text-align: center;"><img src="${producto.imagen}" alt="${producto.nombre}" /></div>`,
-                    textTrusted: true,
-                    maxTextHeight: null
-                });
-            });
+            alert(`Has canjeado: ${producto.nombre}`);
         }
     };
 
@@ -71,44 +53,59 @@ function ConsultaCanjeForm() {
         producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const handleSearch = () => {
-        // Optionally, add any additional search handling logic here
-    };
-
     return (
-        <div className="consulta-canjes-form-container">
-            <div className="puntos-actuales">
-                <h4>Puntos actuales:</h4>
-                <h1>{puntosActuales}</h1>
-            </div>
-            <div className="search-container">
-                <input
-                    type="text"
+        <Box
+            width="100%"
+            maxW="1300px"
+            minW="400px"
+            p={6}
+            bg="white"
+            borderRadius="lg"
+            boxShadow="lg"
+            overflowY="auto" 
+            maxHeight="80vh" 
+        >
+            <Box textAlign="center" mb={6}>
+                <Heading size="md" mb={1}>Puntos actuales:</Heading>
+                <Text fontSize="2xl" fontWeight="bold" color="green.500">{puntosActuales}</Text>
+            </Box>
+            <Flex justifyContent="center" mb={6}>
+                <Input
                     placeholder="Buscar producto..."
-                    className="search-input"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
+                    width="250px"
+                    mr={2}
                 />
-                <button className="search-button" onClick={handleSearch}>
-                    Buscar
-                </button>
-            </div>
-            <div className="productos-grid">
+                <Button colorScheme="green" onClick={() => {}}>Buscar</Button>
+            </Flex>
+            <Grid templateColumns="repeat(auto-fill, minmax(180px, 1fr))" gap={4}>
                 {filteredProducts.map(producto => (
-                    <div key={producto.id} className="producto-card">
-                        <img src={producto.imagen} alt={producto.nombre} />
-                        <h3>{producto.nombre}</h3>
-                        <p>Puntos necesarios: {producto.puntos}</p>
-                        <button
-                            className="canjear-button"
+                    <Box
+                        key={producto.id}
+                        p={3}
+                        bg="gray.50"
+                        borderRadius="lg"
+                        boxShadow="md"
+                        textAlign="center"
+                        transition="transform 0.3s, box-shadow 0.3s"
+                        _hover={{ transform: 'scale(1.05)', boxShadow: 'lg' }}
+                    >
+                        <Image src={producto.imagen} alt={producto.nombre} borderRadius="md" mb={3} />
+                        <Heading size="sm" mb={2}>{producto.nombre}</Heading>
+                        <Text fontSize="md" color="gray.600">Puntos: {producto.puntos}</Text>
+                        <Button
+                            mt={3}
+                            size="sm"
+                            colorScheme="green"
                             onClick={() => handleCanjear(producto.id)}
                         >
                             Canjear
-                        </button>
-                    </div>
+                        </Button>
+                    </Box>
                 ))}
-            </div>
-        </div>
+            </Grid>
+        </Box>
     );
 }
 

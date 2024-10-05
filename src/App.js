@@ -16,11 +16,12 @@ import CargarHeladeraPage from './pages/CargarHeladeraPage.js';
 import DistribucionViandasPage from './pages/DistribucionViandasPage.js';
 import SuscripcionHeladeraPage from './pages/SuscripcionHeladeraPage.js';
 import CallbackPage from './pages/CallBackPage.js';
-import AccesoDenegadoPage from './pages/AccesoDenegadoPage'; // Página de acceso denegado
+import AccesoDenegadoPage from './pages/AccesoDenegadoPage';
 import { AuthProvider } from './config/authContext.js';
 import { Auth0Provider } from '@auth0/auth0-react';
 import RoleProtectedRoute from './config/RoleProtectedRoute';
-
+import { ChakraProvider } from '@chakra-ui/react';  // Importar ChakraProvider
+import theme from './Theme/theme';
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 const redirectUri = process.env.REACT_APP_AUTH0_REDIRECT_URI;
@@ -29,17 +30,19 @@ function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
 
   return (
-    <Auth0Provider 
-      domain={domain} 
-      clientId={clientId} 
-      redirectUri={redirectUri}
-    >  
-      <AuthProvider>
-        <Router>
-          <Main setHeaderHeight={setHeaderHeight} headerHeight={headerHeight} />
-        </Router>
-      </AuthProvider>
-    </Auth0Provider>
+    <ChakraProvider theme={theme}>  {/* Envolviendo la app con ChakraProvider */}
+      <Auth0Provider 
+        domain={domain} 
+        clientId={clientId} 
+        redirectUri={redirectUri}
+      >  
+        <AuthProvider>
+          <Router>
+            <Main setHeaderHeight={setHeaderHeight} headerHeight={headerHeight} />
+          </Router>
+        </AuthProvider>
+      </Auth0Provider>
+    </ChakraProvider>
   );
 }
 
@@ -74,7 +77,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/consulta-canje" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CLIENT']}>
             <ConsultaCanjePage />
           </RoleProtectedRoute>
         } />
@@ -89,7 +92,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/recomendar-puntos" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CLIENT']}>
             <RecomendarPuntos />
           </RoleProtectedRoute>
         } />
@@ -119,7 +122,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/suscripcion-heladera" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CLIENT']}>
             <SuscripcionHeladeraPage />
           </RoleProtectedRoute>
         } />

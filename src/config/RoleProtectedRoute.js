@@ -5,20 +5,24 @@ import { Navigate } from 'react-router-dom';
 const RoleProtectedRoute = ({ children, allowedRoles }) => {
   const { isAuthenticated, roles, login } = useAuth();
 
+  // Mostrar un componente de carga mientras se verifica la autenticación
+  if (isAuthenticated === null) {
+    return <div>Cargando...</div>; // O un spinner de carga
+  }
+
   if (!isAuthenticated) {
-    login(); // Redirige al login si no está autenticado
-    return null;
+    return <Navigate to="/acceso-denegado" replace />;
   }
 
   // Verifica si el usuario tiene uno de los roles permitidos
   const hasRequiredRole = roles.some(role => allowedRoles.includes(role));
 
   if (!hasRequiredRole) {
-    // Redirige a una página de "acceso denegado" o cualquier otro lugar
     return <Navigate to="/acceso-denegado" replace />;
   }
 
   return children; // Permite el acceso si tiene el rol adecuado
 };
+
 
 export default RoleProtectedRoute;

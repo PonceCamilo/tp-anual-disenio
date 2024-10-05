@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useJsApiLoader, GoogleMap, Marker, Circle } from '@react-google-maps/api';
+import { Input } from '@chakra-ui/react';
 
 const center = {
   lat: -34.5994039,
@@ -51,9 +52,7 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
   };
 
   function getDistance(center, point) {
-    // Esta funcion calcula la distancia entre dos puntos del mapa para asi obtener el radio del circulo.
-    // Un quilombo.
-
+    // Calcula la distancia entre dos puntos para obtener el radio del círculo
     function toRadians(degrees) {
       return degrees * (Math.PI / 180);
     }
@@ -85,7 +84,7 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+    <div style={{ width: '100%', height: '100%' }}>
       <GoogleMap
         center={mapCenter}
         zoom={zoom}
@@ -95,14 +94,14 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
       >
 
         {/* Marca en el mapa las heladeras existentes */}
-        {locations.map((location, index) => (
+        {locations.map((location) => (
           <Marker
             key={location.nombre}
             position={{ lat: location.latitud, lng: location.longitud }}
           />
         ))}
 
-        {/* Renderiza el circulo si se ha seleccionado un punto */}
+        {/* Renderiza el círculo si se ha seleccionado un punto */}
         {selectedLocation && (
           <Circle
             center={selectedLocation}
@@ -121,6 +120,20 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
         ))}
 
       </GoogleMap>
+
+      {selectedLocation && (
+        <Input
+          type="number"
+          value={radius}
+          onChange={(e) => setRadius(Number(e.target.value))}
+          position="absolute"
+          top="10px"
+          right="10px"
+          width="100px"
+          border="1px solid #ccc"
+          borderRadius="md"
+        />
+      )}
     </div>
   );
 }

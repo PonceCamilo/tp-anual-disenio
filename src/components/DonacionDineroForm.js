@@ -1,36 +1,41 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import React from "react";
+import { FormControl, FormLabel, Input, Button, Heading, Box, Text,Flex } from "@chakra-ui/react";
 import MercadoPago from "../assets/iconos/MercadoPago.svg";
 import PayPal from "../assets/iconos/PayPal.svg";
-import CreditCard from "../assets/iconos/CreditCard.svg"; // Fixed typo from "CreditCar.svg"
-import "../assets/styles/DonacionDineroForm.css";
+import CreditCard from "../assets/iconos/CreditCard.svg";
 
 function DonacionDineroForm() {
   return (
-    <Form className="donacion-dinero-form">
-      <h1 className="form-title text-center">Donación de dinero</h1>
+    <Box
+      backgroundColor="white"
+      padding={6}
+      borderRadius="md"
+      boxShadow="lg"
+      maxWidth="500px"
+      width="100%"
+    >
+      <Heading as="h2" size="lg" textAlign="center" mb={4}>
+        Donación de dinero
+      </Heading>
 
-      <Form.Group controlId="monto" className="form-group">
-        <Form.Label>Monto:</Form.Label>
-        <Form.Control
-          type="number"
-          name="monto"
-          placeholder="Ingrese el monto a donar"
-          className="form-control"
-        />
-      </Form.Group>
+      <FormControl id="monto" mb={4}>
+        <FormLabel>Monto:</FormLabel>
+        <Input type="number" placeholder="Ingrese el monto a donar" />
+      </FormControl>
 
-      <h3 className="payment-methods-title">Doná con los siguientes métodos de pago:</h3>
-      <div className="payment-methods d-flex justify-content-around">
-        <img src={MercadoPago} alt="Mercado Pago" className="payment-icon" />
-        <img src={PayPal} alt="PayPal" className="payment-icon" />
-        <img src={CreditCard} alt="Tarjeta de Crédito" className="payment-icon" />
-      </div>
+      <Text fontSize="lg" mb={2}>
+        Doná con los siguientes métodos de pago:
+      </Text>
+      <Flex justifyContent="space-around" mb={6}>
+        <img src={MercadoPago} alt="Mercado Pago" width="50" />
+        <img src={PayPal} alt="PayPal" width="50" />
+        <img src={CreditCard} alt="Tarjeta de Crédito" width="50" />
+      </Flex>
 
-      <Button variant="primary" type="submit" className="submit-button btn-lg">
+      <Button variant="solid" colorScheme="green" width="full">
         Donar
       </Button>
-    </Form>
+    </Box>
   );
 }
 

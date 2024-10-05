@@ -1,92 +1,112 @@
 import React, { useState } from 'react';
-import '../assets/styles/DonacionViandaForm.css';
+import {
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    Button,
+    VStack,
+    NumberInput,
+    NumberInputField
+} from '@chakra-ui/react';
 
 const DonacionViandaForm = () => {
-  const [comida, setComida] = useState('');
-  const [fechaDeCaducidad, setFechaDeCaducidad] = useState('');
-  const [calorias, setCalorias] = useState('');
-  const [peso, setPeso] = useState('');
+    const [comida, setComida] = useState('');
+    const [fechaDeCaducidad, setFechaDeCaducidad] = useState('');
+    const [calorias, setCalorias] = useState('');
+    const [peso, setPeso] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const formData = {
-      comida,
-      fechaDeCaducidad,
-      calorias: parseFloat(calorias),
-      peso: parseFloat(peso),
+        const formData = {
+            comida,
+            fechaDeCaducidad,
+            calorias: parseFloat(calorias),
+            peso: parseFloat(peso),
+        };
+
+        try {
+            const response = await fetch('/api/donate-meal', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            if (response.ok) {
+                console.log('Donación enviada con éxito');
+            } else {
+                console.log('Error al enviar la donación');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        setComida('');
+        setFechaDeCaducidad('');
+        setCalorias('');
+        setPeso('');
     };
 
-    try {
-      const response = await fetch('/api/donate-meal', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        console.log('Donación enviada con éxito');
-      } else {
-        console.log('Error al enviar la donación');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    return (
+        <Box
+            bg="white"
+            p={8}
+            borderRadius="lg"
+            boxShadow="xl"
+            width="100%"
+            maxW="400px"
+        >
+            <VStack spacing={4} as="form" onSubmit={handleSubmit}>
+                <FormControl id="comida" isRequired>
+                    <FormLabel>Comida</FormLabel>
+                    <Input
+                        type="text"
+                        value={comida}
+                        onChange={(e) => setComida(e.target.value)}
+                    />
+                </FormControl>
 
-    setComida('');
-    setFechaDeCaducidad('');
-    setCalorias('');
-    setPeso('');
-  };
+                <FormControl id="fechaDeCaducidad" isRequired>
+                    <FormLabel>Fecha de Caducidad</FormLabel>
+                    <Input
+                        type="date"
+                        value={fechaDeCaducidad}
+                        onChange={(e) => setFechaDeCaducidad(e.target.value)}
+                    />
+                </FormControl>
 
-  return (
-    <form className="donacion-vianda-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Comida:</label>
-        <input
-          type="text"
-          value={comida}
-          onChange={(e) => setComida(e.target.value)}
-          required
-        />
-      </div>
+                <FormControl id="calorias" isRequired>
+                    <FormLabel>Calorías</FormLabel>
+                    <NumberInput
+                        value={calorias}
+                        onChange={(value) => setCalorias(value)}
+                        step={0.01}
+                        min={0}
+                    >
+                        <NumberInputField />
+                    </NumberInput>
+                </FormControl>
 
-      <div className="form-group">
-        <label>Fecha de Caducidad:</label>
-        <input
-          type="date"
-          value={fechaDeCaducidad}
-          onChange={(e) => setFechaDeCaducidad(e.target.value)}
-          required
-        />
-      </div>
+                <FormControl id="peso" isRequired>
+                    <FormLabel>Peso (en gramos)</FormLabel>
+                    <NumberInput
+                        value={peso}
+                        onChange={(value) => setPeso(value)}
+                        step={0.01}
+                        min={0}
+                    >
+                        <NumberInputField />
+                    </NumberInput>
+                </FormControl>
 
-      <div className="form-group">
-        <label>Calorías:</label>
-        <input
-          type="number"
-          step="0.01"
-          value={calorias}
-          onChange={(e) => setCalorias(e.target.value)}
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label>Peso (en gramos):</label>
-        <input
-          type="number"
-          step="0.01"
-          value={peso}
-          onChange={(e) => setPeso(e.target.value)}
-          required
-        />
-      </div>
-
-      <button type="submit" className="submit-button">Enviar Donación</button>
-    </form>
-  );
+                <Button type="submit" colorScheme="green" width="100%">
+                    Enviar Donación
+                </Button>
+            </VStack>
+        </Box>
+    );
 };
 
 export default DonacionViandaForm;
