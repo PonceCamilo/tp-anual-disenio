@@ -3,7 +3,11 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class Oferta extends Colaboracion {
 
@@ -23,25 +27,7 @@ public class Oferta extends Colaboracion {
     public Oferta() {
     }
 
-    protected void procesar() {
-        super.procesar();
-        System.out.println("SE GUARDO LA OFERTA POR PARTE DE: " + this.colaborador.getPersona().getNombre());
-    }
-
     public void canjear(Colaborador colaborador) {
-        if ((this.verificarPuntosRequeridos(colaborador)) == true) {
-            System.out.println(
-                    "el colaborador " + colaborador.getPersona().getNombre() + "canjeo la oferta " + this.nombre);
-
-        } else {
-            System.out.println("el colaborador " + colaborador.getPersona().getNombre()
-                    + "no tiene puntos necesarios para canjear la oferta " + this.nombre);
-        }
-
+        colaborador.restarPuntos(cantidadPuntosNec);
     }
-
-    private boolean verificarPuntosRequeridos(Colaborador colaborador) {
-        return colaborador.puntos() >= this.puntosGanados();
-    }
-
 }

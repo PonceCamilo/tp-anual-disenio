@@ -6,11 +6,13 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 import jakarta.persistence.*;
+import lombok.Setter;
 
 @Entity
 @DiscriminatorValue("MUCHAS_VIANDAS")
 public class MuchasViandas extends Evento {
 
+    @Setter
     @Column(name = "cantidad_maxima")
     private int cantidadMaxima;
 

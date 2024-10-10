@@ -28,10 +28,4 @@ public class DonacionVianda extends Colaboracion {
         this.heladera = heladera;
     }
 
-    @Override
-    protected void procesar() {
-        super.procesar();
-        System.out.println(
-                "SE GUARDO LA DONACION DE VIANDAS POR PARTE DE: " + this.colaborador.getPersona().getNombre());
-    }
 }

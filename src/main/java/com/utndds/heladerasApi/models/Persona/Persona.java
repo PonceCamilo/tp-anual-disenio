@@ -4,29 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
+import com.utndds.heladerasApi.models.Rol.Rol;
 
 import lombok.Getter;
-
+import lombok.Setter;
 import jakarta.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Persona {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
+    @OneToMany(mappedBy = "persona")
+    private List<Rol> roles = new ArrayList<>();
+
     @Column(name = "direccion")
     private String direccion;
 
-    @Getter
     @OneToMany(mappedBy = "persona")
     private List<Contacto> mediosContacto = new ArrayList<>();
 
     // Constructor vacío para JPA
-    protected Persona() {
+    public Persona() {
     }
 
     public Persona(String direccion, List<Contacto> mediosContacto) {

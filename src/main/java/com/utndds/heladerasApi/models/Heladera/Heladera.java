@@ -5,8 +5,8 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente;
-import com.utndds.heladerasApi.models.ONG.ONG;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
+import com.utndds.heladerasApi.models.Heladera.Sensores.Sensor;
 import com.utndds.heladerasApi.models.Observer.ObservadorHeladera;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 
@@ -24,10 +24,6 @@ public class Heladera implements ObservadorHeladera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ong", referencedColumnName = "id")
-    private ONG ong;
-
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "punto")
     private Punto punto;
@@ -41,15 +37,14 @@ public class Heladera implements ObservadorHeladera {
     @Column(name = "funcionando")
     boolean funcionando;
 
-    @Column(name = "abierta")
-    boolean abierta;
+    @Column(name = "cant_viandas")
+    int cantViandas;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "manejador_temperatura", referencedColumnName = "id")
-    private ManejadorTemperatura manejadorTemperatura;
+    @Column(name = "temp_min")
+    Double tempMin;
 
-    @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    List<Vianda> viandas = new ArrayList<>();
+    @Column(name = "temp_max")
+    Double tempMax;
 
     @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Suscripcion> suscriptores = new ArrayList<>();
@@ -57,24 +52,28 @@ public class Heladera implements ObservadorHeladera {
     @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     List<Incidente> incidentes = new ArrayList<>();
 
+    @OneToMany(mappedBy = "heladera", cascade = CascadeType.ALL, fetch = FetchType.LAZY) // Nueva relación para sensores
+    private List<Sensor> sensores = new ArrayList<>(); // Se agrega la lista de sensores
+
     public Heladera() {
     };
 
-    public Heladera(ONG ong, Punto punto, int capacidad, ManejadorTemperatura manejadorTemperatura, boolean funcionando,
+    public Heladera(Punto punto, int capacidad, Double tempMax, Double tempMin, boolean funcionando,
             boolean abierta, LocalDate fechaInicioFuncionamiento) {
-        this.ong = ong;
         this.punto = punto;
         this.capacidad = capacidad;
         this.funcionando = funcionando;
-        this.abierta = abierta;
+        this.tempMax = tempMax;
+        this.tempMin = tempMin;
         this.fechaInicioFuncionamiento = fechaInicioFuncionamiento;
-        this.manejadorTemperatura = manejadorTemperatura;
-        manejadorTemperatura.setHeladera(this); // Esto asegura la relacion bidireccional
+        this.cantViandas = 0;
     }
 
     @Override
     public void actualizarTemperatura(double temperatura) {
-        this.manejadorTemperatura.actualizarTemperatura(temperatura);
+        if (temperatura < this.tempMin || temperatura > this.tempMax) {
+            this.funcionando = false;
+        }
     }
 
     public int cantMesesActiva() {
@@ -89,7 +88,9 @@ public class Heladera implements ObservadorHeladera {
     }
 
     public void extraerVianda() {
-        this.viandas.remove(this.viandas.size() - 1);
+        if (cantViandas > 0) {
+            this.cantViandas -= 1;
+        }
     }
 
     public void verificarSuscripciones() {
@@ -103,11 +104,11 @@ public class Heladera implements ObservadorHeladera {
     }
 
     public int cantViandas() {
-        return this.viandas.size();
+        return this.cantViandas;
     }
 
-    public void agregarVianda(Vianda vianda) {
-        this.viandas.add(vianda);
+    public void agregarVianda() {
+        this.cantViandas += 1;
     }
 
     public boolean estaFuncionando() {

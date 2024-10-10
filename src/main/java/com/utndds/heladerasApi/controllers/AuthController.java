@@ -68,5 +68,4 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al intercambiar el código por el token");
     }
 }
-
 }

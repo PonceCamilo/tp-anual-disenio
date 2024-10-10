@@ -12,11 +12,8 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.HttpMethod;
-import static org.springframework.security.config.Customizer.withDefaults;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -34,21 +31,20 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
                 .csrf((csrf) -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Usamos la configuración CORS personalizada
+                .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Usamos la configuración CORS
+                                                                                   // personalizada
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/", "/images/**").permitAll()
                         .requestMatchers("/callback").permitAll()
                         .requestMatchers(HttpMethod.GET, "/ubicaciones-googlemaps").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/heladeras/recomendarPuntos").hasAuthority("SCOPE_ROLE_COLLABORATOR")
+                        .requestMatchers(HttpMethod.POST, "/heladeras/recomendarPuntos")
+                        .hasAuthority("SCOPE_ROLE_COLLABORATOR")
                         .requestMatchers(HttpMethod.GET, "/mockAPI/recomendarPuntos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/colaboraciones/recomendaciones-colaboradores").permitAll()
-                        .anyRequest().authenticated()
-                        )
-                        .oauth2ResourceServer(oauth2 -> oauth2
+                        .anyRequest().authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
-                            .decoder(jwtDecoder())
-                        )
-                    )
+                                .decoder(jwtDecoder())))
                 .logout(logout -> logout
                         .addLogoutHandler(logoutHandler()));
 
@@ -59,18 +55,18 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Cambia si es necesario
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
     @Bean
     public NimbusJwtDecoder jwtDecoder() {
         return JwtDecoders.fromOidcIssuerLocation(issuer);
     }
-    
 
     private LogoutHandler logoutHandler() {
         return (request, response, authentication) -> {

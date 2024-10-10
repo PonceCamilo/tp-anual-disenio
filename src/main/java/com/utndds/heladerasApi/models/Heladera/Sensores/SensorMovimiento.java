@@ -1,7 +1,7 @@
 package com.utndds.heladerasApi.models.Heladera.Sensores;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.Incidentes.Alerta;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.*;
 
 import jakarta.persistence.*;
 

@@ -11,6 +11,10 @@ public abstract class Contacto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "email")
+    protected String valor;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "persona") // Nombre de la columna que se refiere a la ONG
     private Persona persona;

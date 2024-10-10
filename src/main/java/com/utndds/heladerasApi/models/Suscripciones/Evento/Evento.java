@@ -7,7 +7,11 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_evento")

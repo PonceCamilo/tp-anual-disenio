@@ -16,6 +16,10 @@ public class Documento {
     @Column(name = "numero", nullable = false, unique = true)
     private String numero;
 
+    // Constructor vacío para JPA
+    public Documento() {
+    }
+
     public Documento(String tipo, String numero) {
         this.tipo = tipo;
         this.numero = numero;

@@ -21,13 +21,6 @@ public class ObtencionHeladera extends Colaboracion {
         this.heladera = heladera;
     }
 
-    @Override
-    protected void procesar() {
-        super.procesar();
-        System.out.println(
-                "SE GUARDO LA OBTENCION DE HELADERA POR PARTE DE: " + this.colaborador.getPersona().getNombre());
-    }
-
     public Heladera getHeladera() {
         return heladera;
     }
