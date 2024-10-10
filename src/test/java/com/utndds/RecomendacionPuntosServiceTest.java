@@ -2,53 +2,44 @@ package com.utndds;
 
 import com.utndds.heladerasApi.controllers.DTOs.RecomendacionDTO;
 import com.utndds.heladerasApi.services.RecomendacionPuntosService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class RecomendacionPuntosServiceTest {
 
+    @Mock
+    private RestTemplate restTemplate;
+
+    @InjectMocks
     private RecomendacionPuntosService recomendacionPuntosService;
 
-    @BeforeEach
-    public void setUp() {
-        recomendacionPuntosService = new RecomendacionPuntosService();
-    }
-
+    @SuppressWarnings("deprecation")
     @Test
     public void testGetRecomendaciones() {
-        // Coordenadas de ejemplo (latitud, longitud) y radio de búsqueda
-        double latitud = -34.603722; // Buenos Aires
-        double longitud = -58.381592;
-        double radio = 5000; // 5 km
+        initMocks(this);
 
-        // Llamada al método a testear
-        List<RecomendacionDTO> recomendaciones = recomendacionPuntosService.getRecomendaciones(latitud, longitud,
-                radio);
+        RecomendacionDTO[] mockResponse = {
+                new RecomendacionDTO("Punto 1", 40.7129, -74.0059),
+                new RecomendacionDTO("Punto 2", 40.7130, -74.0058)
+        };
 
-        // Verifica que se hayan generado 10 recomendaciones
-        assertEquals(10, recomendaciones.size(), "Debería haber 10 recomendaciones generadas");
+        when(restTemplate.getForEntity(
+                "http://localhost:8081/mockAPI/recomendarPuntos?latitud=40.712800&longitud=-74.006000&radio=1000.000000",
+                RecomendacionDTO[].class))
+                .thenReturn(ResponseEntity.ok(mockResponse));
 
-        // Verifica que cada recomendación esté dentro del radio esperado
-        for (RecomendacionDTO recomendacion : recomendaciones) {
-            double distancia = calcularDistancia(latitud, longitud, recomendacion.getLatitud(),
-                    recomendacion.getLongitud());
-            assertTrue(distancia <= radio, "La recomendación debería estar dentro del radio especificado");
-        }
-    }
+        List<RecomendacionDTO> recomendaciones = recomendacionPuntosService.getRecomendaciones(40.7128, -74.0060, 1000);
 
-    // Método auxiliar para calcular la distancia entre dos puntos geográficos
-    // usando la fórmula de Haversine
-    private double calcularDistancia(double lat1, double lon1, double lat2, double lon2) {
-        final double RADIO_TIERRA = 6371000; // radio de la Tierra en metros
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLon = Math.toRadians(lon2 - lon1);
-        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return RADIO_TIERRA * c;
+        assertEquals(2, recomendaciones.size());
+        assertEquals("Punto 1", recomendaciones.get(0).getNombre());
     }
 }

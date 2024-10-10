@@ -1,11 +1,15 @@
 package com.utndds.heladerasApi.models.Heladera;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 
+@Setter
+@Getter
 @Entity
 public class Vianda {
 

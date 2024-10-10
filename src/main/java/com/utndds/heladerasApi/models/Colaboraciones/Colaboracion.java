@@ -31,17 +31,7 @@ public abstract class Colaboracion {
     public Colaboracion(Colaborador colaborador) {
         this.fecha = LocalDate.now();
         this.colaborador = colaborador;
-        this.procesar();
     }
-
-    protected void procesar() {
-        colaborador.agregarColaboracion(this);
-        this.notificarColaborador("La colaboracion ha sido recibida correctamente.");
-    }
-
-    protected void notificarColaborador(String mensaje) {
-        colaborador.notificar(mensaje);
-    };
 
     public double puntosGanados() {
         return 0;

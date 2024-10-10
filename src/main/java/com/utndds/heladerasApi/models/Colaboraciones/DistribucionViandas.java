@@ -3,7 +3,11 @@ package com.utndds.heladerasApi.models.Colaboraciones;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class DistribucionViandas extends Colaboracion {
 
@@ -32,13 +36,6 @@ public class DistribucionViandas extends Colaboracion {
         this.heladeraDestino = heladeraDestino;
         this.cantidadViandasAMover = cantidadViandasAMover;
         this.motivo = motivo;
-    }
-
-    @Override
-    protected void procesar() {
-        super.procesar();
-        System.out.println(
-                "SE GUARDO LA DISTRIBUCION VIANDAS POR PARTE DE: " + this.colaborador.getPersona().getNombre());
     }
 
     public int getCantidadViandasAMover() {

@@ -2,10 +2,15 @@ package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
 import java.time.LocalDate;
 
-import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
-import com.utndds.heladerasApi.models.Rol.Tecnico;
-import jakarta.persistence.*;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
+import com.utndds.heladerasApi.models.Rol.Tecnico.Tecnico;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "visita_tecnico")
 public class VisitaTecnico {
@@ -29,7 +34,7 @@ public class VisitaTecnico {
     private String descripcion;
 
     @Column(name = "foto")
-    private File foto;
+    private String foto;
 
     @Column(name = "arreglado")
     private boolean arreglado;
@@ -39,7 +44,7 @@ public class VisitaTecnico {
     }
 
     public VisitaTecnico(LocalDate fecha, Tecnico tecnico, Incidente incidente, String descripcion,
-            File foto, boolean arreglado) {
+            String foto, boolean arreglado) {
         this.fecha = fecha;
         this.tecnico = tecnico;
         this.incidente = incidente;
@@ -51,8 +56,6 @@ public class VisitaTecnico {
     }
 
     private void procesar() {
-        this.incidente.agregarVisita(this);
-        this.tecnico.agregarVisita(this);
         this.verificarArreglo();
     }
 

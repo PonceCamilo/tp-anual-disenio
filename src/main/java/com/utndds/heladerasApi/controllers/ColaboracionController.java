@@ -14,7 +14,6 @@ import com.utndds.heladerasApi.models.Heladera.Punto;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.services.RecomendacionDonacionService;
 
-
 @RestController
 @RequestMapping("/colaboraciones")
 public class ColaboracionController {
@@ -45,4 +44,7 @@ public class ColaboracionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+
+    
 }

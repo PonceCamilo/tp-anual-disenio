@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.services.CalculadoraPuntosService;
+import com.utndds.heladerasApi.services.Canjes.CalculadoraPuntosService;
 
 @RestController
 @RequestMapping("/colaboradores")

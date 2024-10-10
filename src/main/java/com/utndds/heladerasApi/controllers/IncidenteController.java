@@ -1,6 +1,7 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.models.Heladera.Incidentes.*;
+import com.utndds.heladerasApi.controllers.DTOs.VisitaTecnicoDTO;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.services.IncidenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class IncidenteController {
     }
 
     @PostMapping("/registrarVisita")
-    public void registrarVisita(@RequestBody VisitaTecnico visita) {
-        incidenteService.registrarVisita(visita);
+    public void registrarVisita(@RequestParam Long tecnico_id, @RequestBody VisitaTecnicoDTO visita) {
+        incidenteService.registrarVisita(tecnico_id, visita);
     }
 }

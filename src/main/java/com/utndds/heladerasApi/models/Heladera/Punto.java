@@ -27,7 +27,7 @@ public class Punto {
     private String direccion;
 
     public Punto() {
-        
+
     }
 
     public Punto(double latitud, double longitud, String nombre, String direccion) {

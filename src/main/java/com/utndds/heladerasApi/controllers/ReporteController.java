@@ -7,19 +7,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.utndds.heladerasApi.services.GeneradorReportes.GeneradorReportes;
+import com.utndds.heladerasApi.services.Reportes.GeneradorReportes.GeneradorReportesService;
 
 @RestController
 @RequestMapping("/reportes")
 public class ReporteController {
     @Autowired
-    private GeneradorReportes generadorReportes;
+    private GeneradorReportesService generadorReportes;
 
     // En vez de generarlos tendria que enviar los reportes generados
     @PostMapping("/generarReportes")
     public ResponseEntity<String> generarReportes() {
         try {
-            //generadorReportes.generarReportes();
+            generadorReportes.generarReportesSemanales();
             return ResponseEntity.ok("reporte generado exitosamente.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -14,8 +14,8 @@ public abstract class Sensor {
     private Long id;
 
     @Getter
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "heladera")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "heladera", nullable = false)
     protected Heladera heladera;
 
     // Constructor vacío para JPA

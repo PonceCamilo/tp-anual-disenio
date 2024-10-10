@@ -4,7 +4,11 @@ import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import java.time.LocalDate;
 import java.util.List;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "persona_humana")
 public class PersonaHumana extends Persona {

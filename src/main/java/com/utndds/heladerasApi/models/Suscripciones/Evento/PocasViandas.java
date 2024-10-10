@@ -5,11 +5,13 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 import jakarta.persistence.*;
+import lombok.Setter;
 
 @Entity
 @DiscriminatorValue("POCAS_VIANDAS")
 public class PocasViandas extends Evento {
 
+    @Setter
     @Column(name = "cantidad_minima")
     private int cantidadMinima;
 

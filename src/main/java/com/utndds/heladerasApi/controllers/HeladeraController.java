@@ -28,7 +28,7 @@ public class HeladeraController {
 
     @PostMapping("/agregar")
     public ResponseEntity<String> agregarHeladera(@RequestBody Heladera heladera) {
-        heladeraService.agregarHeladera(heladera);
+        heladeraService.crearHeladera(heladera);
         return ResponseEntity.ok("Heladera agregada exitosamente");
     }
 }

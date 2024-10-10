@@ -6,19 +6,16 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Suscripciones.Suscripcion;
-import com.utndds.heladerasApi.models.Tarjetas.TarjetaColaborador.TarjetaColaborador;
+import com.utndds.heladerasApi.models.Tarjetas.TarjetaColaborador;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "colaborador")
 public class Colaborador extends Rol {
 
-    @Getter
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     @OneToMany(mappedBy = "colaborador", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Colaboracion> colaboraciones = new ArrayList<>();
 
@@ -26,30 +23,27 @@ public class Colaborador extends Rol {
     private List<Suscripcion> suscripciones = new ArrayList<>();
 
     @Getter
+    @Setter
     @OneToOne
     @JoinColumn(name = "tarjeta")
     private TarjetaColaborador tarjeta;
+
+    @Getter
+    @Setter
+    @Column(name = "puntos_gastados")
+    private double puntosGastados;
 
     // Constructor vacío para JPA
     public Colaborador() {
     }
 
-    public Colaborador(Persona persona, List<Colaboracion> colaboraciones) {
+    public Colaborador(Persona persona) {
         super(persona);
-        this.colaboraciones = colaboraciones;
+        this.puntosGastados = 0;
     }
 
     public Persona getPersona() {
         return (Persona) this.persona;
-    }
-
-    public double puntos() {
-        double puntos = 0;
-        for (Colaboracion colaboracion : colaboraciones) {
-            puntos += colaboracion.puntosGanados();
-        }
-
-        return puntos;
     }
 
     public void agregarColaboracion(Colaboracion colaboracion) {
@@ -62,6 +56,10 @@ public class Colaborador extends Rol {
 
     public List<Colaboracion> getColaboraciones() {
         return colaboraciones;
+    }
+
+    public void restarPuntos(double puntos) {
+        this.puntosGastados -= puntos;
     }
 
 }
