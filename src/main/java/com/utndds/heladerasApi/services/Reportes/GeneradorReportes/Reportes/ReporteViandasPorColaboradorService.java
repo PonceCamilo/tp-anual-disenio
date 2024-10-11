@@ -9,8 +9,6 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.reportesRepositories.ReporteViandasMovidasColaboradorRepository;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +28,8 @@ public class ReporteViandasPorColaboradorService implements GeneradorReporte {
             int cantViandasDistribuidas = this.cantidadViandasDistribuidas(colaborador.getColaboraciones());
 
             // Crear y guardar el reporte en la base de datos
-            ViandasMovidasPorColaborador reporte = new ViandasMovidasPorColaborador(LocalDate.now(),
-                    colaborador.getId(), cantViandasDistribuidas);
+            ViandasMovidasPorColaborador reporte = new ViandasMovidasPorColaborador(colaborador.getId(),
+                    cantViandasDistribuidas);
             reporteViandasColaboradorRepository.save(reporte);
 
             System.out.println("Colaborador ID: " + colaborador.getId() + ", " + cantViandasDistribuidas

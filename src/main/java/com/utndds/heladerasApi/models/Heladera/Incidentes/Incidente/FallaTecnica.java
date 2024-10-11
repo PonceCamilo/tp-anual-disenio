@@ -14,13 +14,6 @@ public class FallaTecnica extends Incidente {
 
     public FallaTecnica(Heladera heladera) {
         super(heladera);
-        this.procesar();
     }
-
-    @Override
-    public void procesar() {
-        super.procesar();
-        this.heladera.verificarSuscripciones();
-    };
 
 }

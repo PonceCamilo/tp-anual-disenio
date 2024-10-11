@@ -1,7 +1,9 @@
 package com.utndds.heladerasApi.services.Canjes;
 
-import com.utndds.heladerasApi.models.Colaboraciones.Oferta;
+import com.utndds.heladerasApi.models.Colaboraciones.Ofertas.Canje;
+import com.utndds.heladerasApi.models.Colaboraciones.Ofertas.Oferta;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.repositories.CanjeRepository;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.OfertaRepository;
 
@@ -22,6 +24,9 @@ public class CanjesService {
     @Autowired
     private CalculadoraPuntosService calculadoraPuntosService;
 
+    @Autowired
+    private CanjeRepository canjeRepository; // Agregamos el repositorio para Canje
+
     public boolean canjearOferta(Long colaboradorId, Long ofertaId) {
 
         // Buscar al colaborador
@@ -37,11 +42,13 @@ public class CanjesService {
 
         // Verificar si el colaborador tiene puntos suficientes para canjear la oferta
         if (puntosDisponibles >= oferta.getCantidadPuntosNec()) {
-            // El colaborador tiene suficientes puntos, se realiza el canje
-            oferta.canjear(colaborador);
+            // Crear un nuevo objeto Canje
+            Canje canje = new Canje(colaborador, oferta, oferta.getCantidadPuntosNec());
 
-            // Actualizar los puntos gastados del colaborador
-            colaborador.setPuntosGastados(colaborador.getPuntosGastados() + oferta.getCantidadPuntosNec());
+            // Guardar el canje en la base de datos
+            canjeRepository.save(canje); // Guardamos el canje
+
+            // Guardar el colaborador actualizado
             colaboradorRepository.save(colaborador);
 
             return true; // Canje exitoso

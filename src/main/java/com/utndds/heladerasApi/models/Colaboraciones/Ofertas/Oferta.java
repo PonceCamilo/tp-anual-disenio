@@ -1,7 +1,6 @@
-package com.utndds.heladerasApi.models.Colaboraciones;
+package com.utndds.heladerasApi.models.Colaboraciones.Ofertas;
 
-import com.utndds.heladerasApi.models.Rol.Colaborador;
-
+import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,9 +24,5 @@ public class Oferta extends Colaboracion {
 
     // Constructor vacío para JPA
     public Oferta() {
-    }
-
-    public void canjear(Colaborador colaborador) {
-        colaborador.restarPuntos(cantidadPuntosNec);
     }
 }

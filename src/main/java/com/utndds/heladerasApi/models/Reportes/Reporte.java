@@ -16,11 +16,7 @@ public abstract class Reporte {
     private LocalDate fechaGeneracion;
 
     protected Reporte() {
+        this.fechaGeneracion = LocalDate.now();
     }
 
-    public Reporte(LocalDate fechaGeneracion) {
-        this.fechaGeneracion = fechaGeneracion;
-    }
-
-    // Getters y Setters
 }

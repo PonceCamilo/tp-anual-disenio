@@ -15,7 +15,7 @@ public class SensorTemperatura extends Sensor {
     private Double temperatura;
 
     // Constructor vacío para JPA
-    protected SensorTemperatura() {
+    public SensorTemperatura() {
     }
 
     public SensorTemperatura(Heladera heladera) {

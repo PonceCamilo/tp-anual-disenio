@@ -7,7 +7,11 @@ import com.utndds.heladerasApi.models.Persona.Persona;
 import com.utndds.heladerasApi.models.Rol.Rol;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "tecnico")
 public class Tecnico extends Rol {
@@ -32,34 +36,6 @@ public class Tecnico extends Rol {
         this.cuil = cuil;
         this.areaCobertura = areaCobertura;
         this.visitas = visitas;
-    }
-
-    public void setAreaCobertura(AreaCobertura areaCobertura) {
-        this.areaCobertura = areaCobertura;
-    }
-
-    public AreaCobertura getAreaCobertura() {
-        return areaCobertura;
-    }
-
-    public void setVisitas(List<VisitaTecnico> visitas) {
-        this.visitas = visitas;
-    }
-
-    public List<VisitaTecnico> getVisitas() {
-        return visitas;
-    }
-
-    public void agregarVisita(VisitaTecnico visita) {
-        visitas.add(visita);
-    }
-
-    public void setCuil(String cuil) {
-        this.cuil = cuil;
-    }
-
-    public String getCuil() {
-        return cuil;
     }
 
 }

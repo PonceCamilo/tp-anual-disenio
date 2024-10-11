@@ -1,9 +1,11 @@
 package com.utndds.heladerasApi.models.Reportes;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDate;
-
+@Setter
+@Getter
 @Entity
 @Table(name = "reporte_viandas_movidas_por_heladera")
 public class ViandasMovidasPorHeladera extends Reporte {
@@ -18,26 +20,9 @@ public class ViandasMovidasPorHeladera extends Reporte {
         super();
     }
 
-    public ViandasMovidasPorHeladera(LocalDate fechaGeneracion, Long heladeraId, int cantidadViandas) {
-        super(fechaGeneracion);
+    public ViandasMovidasPorHeladera(Long heladeraId, int cantidadViandas) {
         this.heladeraId = heladeraId;
         this.cantidadViandas = cantidadViandas;
     }
 
-    // Getters y Setters
-    public Long getHeladeraId() {
-        return heladeraId;
-    }
-
-    public void setHeladeraId(Long heladeraId) {
-        this.heladeraId = heladeraId;
-    }
-
-    public int getCantidadViandas() {
-        return cantidadViandas;
-    }
-
-    public void setCantidadViandas(int cantidadViandas) {
-        this.cantidadViandas = cantidadViandas;
-    }
 }

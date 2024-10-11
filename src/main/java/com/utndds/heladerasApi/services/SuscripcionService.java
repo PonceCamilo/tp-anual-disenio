@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.services;
 
-import com.utndds.heladerasApi.controllers.DTOs.SuscripcionDTO;
+import com.utndds.heladerasApi.DTOs.SuscripcionDTO;
 import com.utndds.heladerasApi.models.Enums.TipoEvento;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;

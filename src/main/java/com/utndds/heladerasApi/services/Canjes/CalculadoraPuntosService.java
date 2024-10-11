@@ -3,9 +3,9 @@ package com.utndds.heladerasApi.services.Canjes;
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Colaboraciones.DistribucionViandas;
 import com.utndds.heladerasApi.models.Colaboraciones.DonacionDinero;
-import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
 import com.utndds.heladerasApi.models.Colaboraciones.ObtencionHeladera;
 import com.utndds.heladerasApi.models.Colaboraciones.RegistroPersonaVulnerable;
+import com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas.DonacionVianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.ColaboracionRepository;
 

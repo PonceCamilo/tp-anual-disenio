@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.controllers.DTOs;
+package com.utndds.heladerasApi.DTOs;
 
 import java.time.LocalDate;
 

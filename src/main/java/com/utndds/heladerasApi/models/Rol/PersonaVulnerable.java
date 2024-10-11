@@ -40,12 +40,4 @@ public class PersonaVulnerable extends Rol {
         this.cantMenoresAcargo = cantMenoresAcargo;
     }
 
-    public void setTarjeta(TarjetaPersVuln tarjeta) {
-        this.tarjeta = tarjeta;
-    }
-
-    public int getCantMenoresAcargo() {
-        return cantMenoresAcargo;
-    }
-
 }

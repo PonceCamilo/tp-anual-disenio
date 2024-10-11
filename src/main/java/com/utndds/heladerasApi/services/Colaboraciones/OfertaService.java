@@ -3,8 +3,8 @@ package com.utndds.heladerasApi.services.Colaboraciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utndds.heladerasApi.controllers.DTOs.OfertaDTO;
-import com.utndds.heladerasApi.models.Colaboraciones.Oferta;
+import com.utndds.heladerasApi.DTOs.OfertaDTO;
+import com.utndds.heladerasApi.models.Colaboraciones.Ofertas.Oferta;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.OfertaRepository;

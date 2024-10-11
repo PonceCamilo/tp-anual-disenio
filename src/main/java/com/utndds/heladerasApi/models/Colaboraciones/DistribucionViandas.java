@@ -37,8 +37,4 @@ public class DistribucionViandas extends Colaboracion {
         this.cantidadViandasAMover = cantidadViandasAMover;
         this.motivo = motivo;
     }
-
-    public int getCantidadViandasAMover() {
-        return cantidadViandasAMover;
-    }
 }

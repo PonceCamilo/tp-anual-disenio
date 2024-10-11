@@ -18,11 +18,6 @@ public class Alerta extends Incidente {
     public Alerta(Heladera heladera, String tipo) {
         super(heladera);
         this.tipo = tipo;
-        this.procesar();
     }
-
-    public void procesar() {
-        super.procesar();
-    };
 
 }

@@ -83,13 +83,17 @@ public class Heladera implements ObservadorHeladera {
         return cantMeses;
     }
 
-    public void agregarSuscripcion(Suscripcion suscripcion) {
-        this.suscriptores.add(suscripcion);
+    public void agregarVianda() {
+        if (cantViandas < capacidad) {
+            this.cantViandas += 1;
+            this.verificarSuscripciones();
+        }
     }
 
     public void extraerVianda() {
         if (cantViandas > 0) {
             this.cantViandas -= 1;
+            this.verificarSuscripciones();
         }
     }
 
@@ -99,16 +103,14 @@ public class Heladera implements ObservadorHeladera {
         }
     }
 
+    /// Esto es xq no me detecta los getters de ciertos atributos
+
     public int cantFallas() {
         return this.incidentes.size();
     }
 
     public int cantViandas() {
         return this.cantViandas;
-    }
-
-    public void agregarVianda() {
-        this.cantViandas += 1;
     }
 
     public boolean estaFuncionando() {

@@ -1,7 +1,7 @@
-package com.utndds.heladerasApi.models.Colaboraciones;
+package com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas;
 
+import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 
 import jakarta.persistence.*;

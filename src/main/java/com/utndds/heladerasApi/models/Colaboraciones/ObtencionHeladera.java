@@ -4,7 +4,9 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 public class ObtencionHeladera extends Colaboracion {
 
@@ -19,10 +21,6 @@ public class ObtencionHeladera extends Colaboracion {
     public ObtencionHeladera(Colaborador colaborador, Heladera heladera) {
         super(colaborador);
         this.heladera = heladera;
-    }
-
-    public Heladera getHeladera() {
-        return heladera;
     }
 
 }

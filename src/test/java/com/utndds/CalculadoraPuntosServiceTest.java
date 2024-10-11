@@ -1,8 +1,9 @@
 package com.utndds;
 
 import com.utndds.heladerasApi.models.Colaboraciones.*;
+import com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas.DonacionVianda;
+import com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas.Vianda;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
