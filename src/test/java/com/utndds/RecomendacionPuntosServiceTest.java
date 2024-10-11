@@ -1,6 +1,6 @@
 package com.utndds;
 
-import com.utndds.heladerasApi.controllers.DTOs.RecomendacionDTO;
+import com.utndds.heladerasApi.DTOs.RecomendacionDTO;
 import com.utndds.heladerasApi.services.RecomendacionPuntosService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

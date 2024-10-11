@@ -1,4 +1,4 @@
-package com.utndds.heladerasApi.models.Heladera;
+package com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
+import com.utndds.heladerasApi.models.Heladera.Heladera;
 
 @Setter
 @Getter

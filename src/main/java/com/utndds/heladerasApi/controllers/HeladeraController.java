@@ -1,10 +1,10 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.controllers.DTOs.AreaRecomendacionDTO;
-import com.utndds.heladerasApi.controllers.DTOs.RecomendacionDTO;
-import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.services.HeladeraService;
+import com.utndds.heladerasApi.DTOs.AreaRecomendacionDTO;
+import com.utndds.heladerasApi.DTOs.HeladeraDTO;
+import com.utndds.heladerasApi.DTOs.RecomendacionDTO;
 import com.utndds.heladerasApi.services.RecomendacionPuntosService;
+import com.utndds.heladerasApi.services.ABM.HeladeraService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,8 @@ public class HeladeraController {
     }
 
     @PostMapping("/agregar")
-    public ResponseEntity<String> agregarHeladera(@RequestBody Heladera heladera) {
-        heladeraService.crearHeladera(heladera);
+    public ResponseEntity<String> agregarHeladera(@RequestBody HeladeraDTO heladeraDTO) {
+        heladeraService.crearHeladera(heladeraDTO);
         return ResponseEntity.ok("Heladera agregada exitosamente");
     }
 }

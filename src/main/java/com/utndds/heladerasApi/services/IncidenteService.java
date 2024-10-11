@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.services;
 
-import com.utndds.heladerasApi.controllers.DTOs.VisitaTecnicoDTO;
+import com.utndds.heladerasApi.DTOs.VisitaTecnicoDTO;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.VisitaTecnico;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Alerta;

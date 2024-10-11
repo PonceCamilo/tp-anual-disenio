@@ -34,7 +34,7 @@ public class ReporteFallasPorHeladeraService implements GeneradorReporte {
             int cantFallas = fallaTecnicaRepository.findByHeladeraAndFechaAfter(heladera, unaSemanaAtras).size();
 
             // Crear y guardar el reporte en la base de datos
-            FallasPorHeladera reporteFalla = new FallasPorHeladera(LocalDate.now(), heladera.getId(), cantFallas);
+            FallasPorHeladera reporteFalla = new FallasPorHeladera(heladera.getId(), cantFallas);
             reporteFallaRepository.save(reporteFalla); // Guardar en la base de datos
 
             System.out.println("Heladera ID: " + heladera.getPunto().getNombre() + ", " + cantFallas + " Fallas.");

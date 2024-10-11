@@ -3,11 +3,11 @@ package com.utndds.heladerasApi.services.Colaboraciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.utndds.heladerasApi.controllers.DTOs.DonacionViandaDTO;
-import com.utndds.heladerasApi.models.Colaboraciones.DonacionVianda;
+import com.utndds.heladerasApi.DTOs.DonacionViandaDTO;
+import com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas.DonacionVianda;
+import com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas.Vianda;
 import com.utndds.heladerasApi.models.Enums.MotivoApertura;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
-import com.utndds.heladerasApi.models.Heladera.Vianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.HeladeraRepository;

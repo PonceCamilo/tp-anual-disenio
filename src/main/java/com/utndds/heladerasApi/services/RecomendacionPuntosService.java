@@ -1,10 +1,10 @@
 package com.utndds.heladerasApi.services;
 
-import com.utndds.heladerasApi.controllers.DTOs.RecomendacionDTO;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import com.utndds.heladerasApi.DTOs.RecomendacionDTO;
 
 import java.util.Arrays;
 import java.util.List;

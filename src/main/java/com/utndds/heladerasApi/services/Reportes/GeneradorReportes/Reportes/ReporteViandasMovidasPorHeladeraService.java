@@ -1,7 +1,5 @@
 package com.utndds.heladerasApi.services.Reportes.GeneradorReportes.Reportes;
 
-import java.time.LocalDate;
-
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
@@ -29,7 +27,7 @@ public class ReporteViandasMovidasPorHeladeraService implements GeneradorReporte
             int cantViandasMovidas = 0; // falta implementar
 
             // Crear y guardar el reporte en la base de datos
-            ViandasMovidasPorHeladera reporte = new ViandasMovidasPorHeladera(LocalDate.now(), heladera.getId(),
+            ViandasMovidasPorHeladera reporte = new ViandasMovidasPorHeladera(heladera.getId(),
                     cantViandasMovidas);
             reporteViandasHeladeraRepository.save(reporte);
         }

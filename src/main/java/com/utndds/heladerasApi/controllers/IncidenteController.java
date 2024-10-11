@@ -1,6 +1,6 @@
 package com.utndds.heladerasApi.controllers;
 
-import com.utndds.heladerasApi.controllers.DTOs.VisitaTecnicoDTO;
+import com.utndds.heladerasApi.DTOs.VisitaTecnicoDTO;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.services.IncidenteService;
 import org.springframework.beans.factory.annotation.Autowired;

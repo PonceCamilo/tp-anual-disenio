@@ -39,12 +39,8 @@ public abstract class Incidente {
         this.fecha = LocalDate.now();
         this.heladera = heladera;
 
-        this.procesar();
-    }
-
-    public void procesar() {
         this.desactivarHeladera();
-    };
+    }
 
     private void desactivarHeladera() {
         this.heladera.setFuncionando(false);

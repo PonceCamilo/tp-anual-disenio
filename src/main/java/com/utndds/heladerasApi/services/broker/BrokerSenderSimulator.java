@@ -64,7 +64,7 @@ public class BrokerSenderSimulator {
         }
     }
 
-    private void enviarTemperaturas() {
+    public void enviarTemperaturas() {
         System.out.println("Ejecutando enviarTemperaturas..."); // Mensaje de depuración
         List<Sensor> sensores = sensoresRepository.findAll();
 
@@ -97,7 +97,7 @@ public class BrokerSenderSimulator {
     }
 
     // Método que envía una señal del sensor de movimiento al broker
-    private void enviarSenalMovimiento() {
+    public void enviarSenalMovimiento() {
         List<Sensor> sensores = sensoresRepository.findAll();
 
         System.out.println("Sensores encontrados: " + sensores.size());
@@ -122,7 +122,7 @@ public class BrokerSenderSimulator {
         }
     }
 
-    private void enviarSenalApertura() {
+    public void enviarSenalApertura() {
         List<Heladera> heladeras = heladeraRepository.findAll();
         List<Tarjeta> tarjetas = tarjetaRepository.findAll();
 

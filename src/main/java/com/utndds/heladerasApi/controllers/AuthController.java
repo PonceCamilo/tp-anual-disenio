@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-
 @RestController
 public class AuthController {
 
@@ -40,32 +39,34 @@ public class AuthController {
     @GetMapping("/callback")
     public ResponseEntity<?> handleCallback(@RequestParam("code") String code) {
 
-    // URL para intercambiar el código de autorización por el token de acceso
-    String tokenUrl = issuer + "/oauth/token";
+        // URL para intercambiar el código de autorización por el token de acceso
+        String tokenUrl = issuer + "/oauth/token";
 
-    // Crear los headers
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        // Crear los headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
-    // Crear el cuerpo de la solicitud
-    MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
-    requestBody.add("grant_type", "authorization_code");
-    requestBody.add("client_id", clientId);
-    requestBody.add("client_secret", clientSecret);
-    requestBody.add("code", code);
-    requestBody.add("redirect_uri", redirectUri);
-    // Crear la entidad de la solicitud
-    HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
+        // Crear el cuerpo de la solicitud
+        MultiValueMap<String, String> requestBody = new LinkedMultiValueMap<>();
+        requestBody.add("grant_type", "authorization_code");
+        requestBody.add("client_id", clientId);
+        requestBody.add("client_secret", clientSecret);
+        requestBody.add("code", code);
+        requestBody.add("redirect_uri", redirectUri);
+        // Crear la entidad de la solicitud
+        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(requestBody, headers);
 
-    try {
-        // Intercambiar el código por el token de acceso
-        ResponseEntity<String> response = restTemplate.exchange(tokenUrl, HttpMethod.POST, requestEntity, String.class);
-        String responseBody = response.getBody();
-        return ResponseEntity.ok(responseBody);
-    } catch (Exception e) {
-        // Capturar cualquier excepción que ocurra
-        System.out.println("Error al intercambiar el código por el token: " + e.getMessage());
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al intercambiar el código por el token");
+        try {
+            // Intercambiar el código por el token de acceso
+            ResponseEntity<String> response = restTemplate.exchange(tokenUrl, HttpMethod.POST, requestEntity,
+                    String.class);
+            String responseBody = response.getBody();
+            return ResponseEntity.ok(responseBody);
+        } catch (Exception e) {
+            // Capturar cualquier excepción que ocurra
+            System.out.println("Error al intercambiar el código por el token: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al intercambiar el código por el token");
+        }
     }
-}
 }

@@ -1,7 +1,11 @@
 package com.utndds.heladerasApi.models.Rol.Tecnico;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "area_cobertura") // Nombre de la tabla en la base de datos
 public class AreaCobertura {
@@ -30,36 +34,4 @@ public class AreaCobertura {
         this.radio = radio;
     }
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public double getLatitudCentro() {
-        return latitudCentro;
-    }
-
-    public void setLatitudCentro(double latitudCentro) {
-        this.latitudCentro = latitudCentro;
-    }
-
-    public double getLongitudCentro() {
-        return longitudCentro;
-    }
-
-    public void setLongitudCentro(double longitudCentro) {
-        this.longitudCentro = longitudCentro;
-    }
-
-    public double getRadio() {
-        return radio;
-    }
-
-    public void setRadio(double radio) {
-        this.radio = radio;
-    }
 }

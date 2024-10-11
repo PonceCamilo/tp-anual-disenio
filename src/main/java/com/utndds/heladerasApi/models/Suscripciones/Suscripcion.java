@@ -1,5 +1,6 @@
 package com.utndds.heladerasApi.models.Suscripciones;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
@@ -29,7 +30,7 @@ public class Suscripcion implements ObservadorSuscripcion {
     private Colaborador colaborador;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "suscripcion")
-    private List<Evento> notificacionesDeseadas;
+    private List<Evento> notificacionesDeseadas = new ArrayList<>();;
 
     // Constructor vacío para JPA
     public Suscripcion() {

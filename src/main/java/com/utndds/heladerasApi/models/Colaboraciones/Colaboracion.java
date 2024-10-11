@@ -31,7 +31,12 @@ public abstract class Colaboracion {
     public Colaboracion(Colaborador colaborador) {
         this.fecha = LocalDate.now();
         this.colaborador = colaborador;
+        this.notificarColaborador();
     }
+
+    private void notificarColaborador() {
+        this.colaborador.notificar("Gracias " + this.colaborador.getPersona().getNombre() + " por su colaboracion.");
+    };
 
     public double puntosGanados() {
         return 0;

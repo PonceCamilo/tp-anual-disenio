@@ -52,11 +52,8 @@ public class VisitaTecnico {
         this.foto = foto;
         this.arreglado = arreglado;
 
-        this.procesar();
-    }
-
-    private void procesar() {
         this.verificarArreglo();
+
     }
 
     private void verificarArreglo() {
@@ -65,6 +62,5 @@ public class VisitaTecnico {
         } else {
             System.out.println("Se arregla otra visita");
         }
-
     }
 }
