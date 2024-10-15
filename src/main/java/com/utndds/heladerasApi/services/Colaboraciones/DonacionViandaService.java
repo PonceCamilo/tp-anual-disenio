@@ -20,50 +20,51 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class DonacionViandaService {
 
-    @Autowired
-    private ColaboradorRepository colaboradorRepository;
+        @Autowired
+        private ColaboradorRepository colaboradorRepository;
 
-    @Autowired
-    private HeladeraRepository heladeraRepository;
+        @Autowired
+        private HeladeraRepository heladeraRepository;
 
-    @Autowired
-    private DonacionViandaRepository donacionViandaRepository;
+        @Autowired
+        private DonacionViandaRepository donacionViandaRepository;
 
-    @Autowired
-    private ViandaRepository viandaRepository;
-    @Autowired
-    private AperturaService solicitudAperturaService;
+        @Autowired
+        private ViandaRepository viandaRepository;
+        @Autowired
+        private AperturaService solicitudAperturaService;
 
-    public void guardarDonacionVianda(DonacionViandaDTO donacionViandaDTO, Long colaboradorId) {
+        public void guardarDonacionVianda(DonacionViandaDTO donacionViandaDTO, Long colaboradorId) {
 
-        // Buscar al colaborador
-        Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
-                .orElseThrow(() -> new EntityNotFoundException("Colaborador no encontrado con id " + colaboradorId));
+                // Buscar al colaborador
+                Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
+                                .orElseThrow(() -> new EntityNotFoundException(
+                                                "Colaborador no encontrado con id " + colaboradorId));
 
-        // Buscar la heladera
-        Heladera heladera = heladeraRepository.findById(donacionViandaDTO.getHeladeraId())
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Heladera no encontrada con id " + donacionViandaDTO.getHeladeraId()));
+                // Buscar la heladera
+                Heladera heladera = heladeraRepository.findById(donacionViandaDTO.getHeladeraId())
+                                .orElseThrow(() -> new EntityNotFoundException(
+                                                "Heladera no encontrada con id " + donacionViandaDTO.getHeladeraId()));
 
-        // Crear la vianda con los datos del formulario
-        Vianda vianda = new Vianda();
-        vianda.setComida(donacionViandaDTO.getComida());
-        vianda.setFechaCaducidad(donacionViandaDTO.getFechaCaducidad());
-        vianda.setCalorias(donacionViandaDTO.getCalorias());
-        vianda.setPeso(donacionViandaDTO.getPeso());
-        vianda.setEstado(donacionViandaDTO.isEstado());
-        vianda.setHeladera(heladera);
+                // Crear la vianda con los datos del formulario
+                Vianda vianda = new Vianda();
+                vianda.setComida(donacionViandaDTO.getComida());
+                vianda.setFechaCaducidad(donacionViandaDTO.getFechaCaducidad());
+                vianda.setCalorias(donacionViandaDTO.getCalorias());
+                vianda.setPeso(donacionViandaDTO.getPeso());
+                vianda.setEstado(donacionViandaDTO.isEstado());
+                vianda.setHeladera(heladera);
 
-        // Guardar la vianda en la base de datos
-        viandaRepository.save(vianda);
+                // Guardar la vianda en la base de datos
+                viandaRepository.save(vianda);
 
-        // Crear la donación de vianda
-        DonacionVianda donacionVianda = new DonacionVianda(colaborador, vianda, heladera);
+                // Crear la donación de vianda
+                DonacionVianda donacionVianda = new DonacionVianda(colaborador, vianda, heladera);
 
-        donacionViandaRepository.save(donacionVianda);
+                donacionViandaRepository.save(donacionVianda);
 
-        // Crear la solicitud de apertura automáticamente
-        solicitudAperturaService.crearSolicitud(colaboradorId, donacionViandaDTO.getHeladeraId(),
-                MotivoApertura.DONACION);
-    }
+                // Crear la solicitud de apertura automáticamente
+                solicitudAperturaService.crearSolicitud(colaboradorId, donacionViandaDTO.getHeladeraId(),
+                                MotivoApertura.DONACION);
+        }
 }
