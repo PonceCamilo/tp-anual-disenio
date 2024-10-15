@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) // Utiliza JOINED si Incidente es una clase base para otras entidades
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Incidente {
 
     @Id

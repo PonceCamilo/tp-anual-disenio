@@ -65,8 +65,8 @@ public class ReconocimientosExtraTest {
         when(colaboradorRepository.findAll()).thenReturn(Arrays.asList(colaborador1, colaborador2));
 
         // Mock puntos de colaboradores
-        when(calculadoraPuntosService.calcularPuntos(colaborador1)).thenReturn(150.0);
-        when(calculadoraPuntosService.calcularPuntos(colaborador2)).thenReturn(200.0);
+        when(calculadoraPuntosService.calcularPuntos(colaborador1.getId())).thenReturn(150.0);
+        when(calculadoraPuntosService.calcularPuntos(colaborador2.getId())).thenReturn(200.0);
 
         // Usar instancias reales de DonacionVianda
         DonacionVianda donacion1 = new DonacionVianda(colaborador1, null, null);
@@ -98,8 +98,8 @@ public class ReconocimientosExtraTest {
         when(colaboradorRepository.findAll()).thenReturn(Arrays.asList(colaborador1, colaborador2));
 
         // Mock puntos de colaboradores
-        when(calculadoraPuntosService.calcularPuntos(colaborador1)).thenReturn(50.0); // No alcanza el mínimo
-        when(calculadoraPuntosService.calcularPuntos(colaborador2)).thenReturn(80.0); // No alcanza el mínimo
+        when(calculadoraPuntosService.calcularPuntos(colaborador1.getId())).thenReturn(50.0); // No alcanza el mínimo
+        when(calculadoraPuntosService.calcularPuntos(colaborador2.getId())).thenReturn(80.0); // No alcanza el mínimo
 
         // Mock viandas donadas
         when(colaboracionRepository.findByColaborador(colaborador1)).thenReturn(Collections.emptyList());

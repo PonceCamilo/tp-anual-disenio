@@ -38,7 +38,7 @@ public class CanjesService {
                 .orElseThrow(() -> new EntityNotFoundException("Oferta no encontrada con id " + ofertaId));
 
         // Calcular los puntos disponibles del colaborador
-        double puntosDisponibles = calculadoraPuntosService.calcularPuntos(colaborador);
+        double puntosDisponibles = calculadoraPuntosService.calcularPuntos(colaboradorId);
 
         // Verificar si el colaborador tiene puntos suficientes para canjear la oferta
         if (puntosDisponibles >= oferta.getCantidadPuntosNec()) {
