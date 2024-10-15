@@ -7,7 +7,10 @@ import com.utndds.heladerasApi.models.Colaboraciones.ObtencionHeladera;
 import com.utndds.heladerasApi.models.Colaboraciones.RegistroPersonaVulnerable;
 import com.utndds.heladerasApi.models.Colaboraciones.DonacionViandas.DonacionVianda;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.ColaboracionRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 
@@ -16,11 +19,23 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CalculadoraPuntosService {
+
     @Autowired
     private ColaboracionRepository colaboracionRepository;
 
-    public double calcularPuntos(Colaborador colaborador) {
+    @Autowired
+    private ColaboradorRepository colaboradorRepository;
+
+    // Modificación para recibir colaboradorId
+    public double calcularPuntos(Long colaboradorId) {
+        // Buscar al colaborador por su ID
+        Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Colaborador no encontrado con el ID: " + colaboradorId));
+
+        // Obtener las colaboraciones del colaborador
         List<Colaboracion> colaboraciones = colaboracionRepository.findByColaborador(colaborador);
+
         double puntosTotales = 0;
         puntosTotales += this.pesosDonados(colaboraciones);
         puntosTotales += this.viandasDistribuidas(colaboraciones);

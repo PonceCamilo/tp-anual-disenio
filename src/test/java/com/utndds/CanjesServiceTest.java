@@ -15,9 +15,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -66,7 +65,7 @@ public class CanjesServiceTest {
         when(colaboradorRepository.findById(colaboradorId)).thenReturn(Optional.of(colaborador));
         when(ofertaRepository.findById(ofertaId)).thenReturn(Optional.of(oferta));
         when(oferta.getCantidadPuntosNec()).thenReturn(puntosNecesarios);
-        when(calculadoraPuntosService.calcularPuntos(colaborador)).thenReturn(puntosDisponibles);
+        when(calculadoraPuntosService.calcularPuntos(colaborador.getId())).thenReturn(puntosDisponibles);
 
         // Ejecutar el método
         boolean resultado = canjesService.canjearOferta(colaboradorId, ofertaId);
@@ -88,7 +87,7 @@ public class CanjesServiceTest {
         when(colaboradorRepository.findById(colaboradorId)).thenReturn(Optional.of(colaborador));
         when(ofertaRepository.findById(ofertaId)).thenReturn(Optional.of(oferta));
         when(oferta.getCantidadPuntosNec()).thenReturn(puntosNecesarios);
-        when(calculadoraPuntosService.calcularPuntos(colaborador)).thenReturn(puntosDisponibles);
+        when(calculadoraPuntosService.calcularPuntos(colaborador.getId())).thenReturn(puntosDisponibles);
 
         // Ejecutar el método
         boolean resultado = canjesService.canjearOferta(colaboradorId, ofertaId);

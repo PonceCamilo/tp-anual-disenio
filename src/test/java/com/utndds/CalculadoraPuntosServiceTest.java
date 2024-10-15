@@ -61,7 +61,7 @@ public class CalculadoraPuntosServiceTest {
         when(colaboracionRepository.findByColaborador(colaborador)).thenReturn(colaboraciones);
 
         // Act
-        double puntos = calculadoraPuntosService.calcularPuntos(colaborador);
+        double puntos = calculadoraPuntosService.calcularPuntos(colaborador.getId());
 
         // Assert
         assertEquals(50, puntos);

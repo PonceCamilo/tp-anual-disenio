@@ -34,7 +34,7 @@ public class ReconocimientosExtra {
 
         // Filtrar los colaboradores que cumplen con los requisitos
         for (Colaborador colaborador : colaboradores) {
-            double puntosColaborador = calculadoraPuntosService.calcularPuntos(colaborador);
+            double puntosColaborador = calculadoraPuntosService.calcularPuntos(colaborador.getId());
 
             int viandasDonadasUltimoMes = getViandasDonadas(colaborador, 30);
 
