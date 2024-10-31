@@ -3,6 +3,7 @@ package com.utndds.heladerasApi.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +64,7 @@ public class ColaboracionController {
         }
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/distribucion-viandas")
     public ResponseEntity<String> guardarDistribucionViandas(
             @RequestParam Long colaboradorId,
@@ -78,6 +80,7 @@ public class ColaboracionController {
         }
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/donacion-dinero")
     public ResponseEntity<String> guardarDonacionDinero(
             @RequestParam double monto,
@@ -93,6 +96,7 @@ public class ColaboracionController {
         }
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/donacion-vianda")
     public ResponseEntity<String> guardarDonacionVianda(
             @RequestBody DonacionViandaDTO donacionViandaDTO,
@@ -137,6 +141,7 @@ public class ColaboracionController {
         }
     }
 
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/persona-vulnerable")
     public ResponseEntity<String> crearPersonaVulnerable(
             @RequestBody PersonaVulnerableDTO personaDTO,
