@@ -34,13 +34,21 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Usamos la configuración CORS
                                                                                    // personalizada
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/images/**").permitAll()
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/callback").permitAll()
+                        .requestMatchers("/validar-contraseña").permitAll()
+                        .requestMatchers("/tecnicos/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
+                        .requestMatchers("/reportes/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
+                        .requestMatchers("/suscribir/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR")
                         .requestMatchers(HttpMethod.GET, "/ubicaciones-googlemaps").permitAll()
                         .requestMatchers(HttpMethod.POST, "/heladeras/recomendarPuntos")
                         .hasAuthority("SCOPE_ROLE_COLLABORATOR")
                         .requestMatchers(HttpMethod.GET, "/mockAPI/recomendarPuntos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/colaboraciones/recomendaciones-colaboradores").permitAll()
+                        .requestMatchers( "/aperturas/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR", "SCOPE_ROLE_ADMIN")
+                        .requestMatchers("/canjes/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR", "SCOPE_ROLE_ADMIN")
+                        .requestMatchers("/cargaCSV/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
+                        .requestMatchers("/colaboraciones/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR")
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
@@ -54,7 +62,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Cambia si es necesario
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); 
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

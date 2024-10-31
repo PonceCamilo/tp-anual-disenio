@@ -7,9 +7,8 @@ import com.utndds.heladerasApi.services.Validadores.ValidadorContraseñas.Valida
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 public class PasswordController {
     @Autowired
