@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
   const login = () => {
     const auth0Domain = process.env.REACT_APP_AUTH0_DOMAIN;
     const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-    const redirectUri = process.env.REACT_APP_AUTH0_REDIRECT_URI; 
+    const redirectUri = process.env.REACT_APP_AUTH0_REDIRECT_URI;
     const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
     const scope = 'openid profile email ROLE_ADMIN ROLE_COLLABORATOR ROLE_VULNERABLE ROLE_TECHNICAL';
 

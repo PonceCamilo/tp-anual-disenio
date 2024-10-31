@@ -24,11 +24,11 @@ import { useAuth } from '../config/authContext';
 import UserProfileModal from './UserProfileModal';
 
 function NavApp({ className }) {
-  const { logout, login, isAuthenticated, user } = useAuth();
-  
+  const { logout, login, isAuthenticated, user, accessToken } = useAuth();
+
   // useDisclosure para las opciones de usuario
   const { isOpen: isUserModalOpen, onOpen: onUserModalOpen, onClose: onUserModalClose } = useDisclosure();
-  
+
   // useDisclosure para el menú hamburguesa
   const { isOpen: isHamburgerOpen, onOpen: onHamburgerOpen, onClose: onHamburgerClose } = useDisclosure();
 
@@ -50,7 +50,11 @@ function NavApp({ className }) {
       console.log("Usuario logueado:", {
         nombre: user.name,
         email: user.email,
-        sub: user.sub 
+        sub: user.sub
+      });
+
+      console.log("Token:", {
+        accessToken
       });
     }
   }, [isAuthenticated, user]);
@@ -95,12 +99,12 @@ function NavApp({ className }) {
         >
           {isAuthenticated ? (
             <>
-              <Box 
-                as="li" 
+              <Box
+                as="li"
                 onClick={handleUserClick} // Cambiado para abrir el modal de usuario
-                cursor="pointer" 
-                display="flex" 
-                alignItems="center" 
+                cursor="pointer"
+                display="flex"
+                alignItems="center"
                 mr={4}
               >
                 <Image
@@ -156,11 +160,11 @@ function NavApp({ className }) {
             >
               {isAuthenticated ? (
                 <>
-                  <Box 
+                  <Box
                     onClick={handleUserClick} // Usar la función handleUserClick para abrir el modal
-                    cursor="pointer" 
-                    display="flex" 
-                    alignItems="center" 
+                    cursor="pointer"
+                    display="flex"
+                    alignItems="center"
                     mb={4}
                   >
                     <Image
