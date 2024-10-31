@@ -14,6 +14,7 @@ public class IncidenteController {
 
     @Autowired
     private IncidenteService incidenteService;
+
     @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/reportarFallaTecnica")
     public ResponseEntity<String> reportarFallaTecnica(@RequestParam Long colaboradorId,
@@ -21,6 +22,7 @@ public class IncidenteController {
         incidenteService.reportarFallaTecnica(colaboradorId, fallaTecnicaDTO);
         return ResponseEntity.ok("Falla Técnica reportada con éxito");
     }
+
     @PreAuthorize("hasAuthority('SCOPE_ROLE_TECHNICAL')")
     @PostMapping("/registrarVisita/{tecnicoId}")
     public ResponseEntity<String> registrarVisita(@PathVariable Long tecnicoId,
