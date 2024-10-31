@@ -11,6 +11,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +27,14 @@ public class HeladeraController {
     private RecomendacionPuntosService recomendacionService;
 
     // Endpoint para recomendar puntos de colocación de heladeras
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/recomendarPuntos")
     public List<RecomendacionDTO> recomendarPuntosColocacion(@RequestBody AreaRecomendacionDTO data) {
         return recomendacionService.getRecomendaciones(data.getLatitud(), data.getLongitud(), data.getRadio());
     }
 
     // Alta: Agregar una nueva heladera
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/agregar")
     public ResponseEntity<String> agregarHeladera(@RequestBody HeladeraDTO heladeraDTO) {
         heladeraService.crearHeladera(heladeraDTO);
@@ -39,6 +42,7 @@ public class HeladeraController {
     }
 
     // Baja: Eliminar una heladera por ID
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<String> eliminarHeladera(@PathVariable Long id) {
         try {
@@ -50,6 +54,7 @@ public class HeladeraController {
     }
 
     // Modificación: Actualizar una heladera existente por ID
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<String> actualizarHeladera(@PathVariable Long id, @RequestBody HeladeraDTO heladeraDTO) {
         try {

@@ -6,10 +6,10 @@ import com.utndds.heladerasApi.models.Colaboraciones.DonacionDinero;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.DonacionDineroRepository;
-
+import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import jakarta.persistence.EntityNotFoundException;
-
+@Service
 public class DonacionDineroService {
 
     @Autowired

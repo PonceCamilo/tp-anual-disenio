@@ -5,6 +5,7 @@ import com.utndds.heladerasApi.DTOs.VisitaTecnicoDTO;
 import com.utndds.heladerasApi.services.IncidenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,14 +14,14 @@ public class IncidenteController {
 
     @Autowired
     private IncidenteService incidenteService;
-
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/reportarFallaTecnica")
     public ResponseEntity<String> reportarFallaTecnica(@RequestParam Long colaboradorId,
             @RequestBody FallaTecnicaDTO fallaTecnicaDTO) {
         incidenteService.reportarFallaTecnica(colaboradorId, fallaTecnicaDTO);
         return ResponseEntity.ok("Falla Técnica reportada con éxito");
     }
-
+    @PreAuthorize("hasAuthority('SCOPE_ROLE_TECHNICAL')")
     @PostMapping("/registrarVisita/{tecnicoId}")
     public ResponseEntity<String> registrarVisita(@PathVariable Long tecnicoId,
             @RequestBody VisitaTecnicoDTO visitaDTO) {
