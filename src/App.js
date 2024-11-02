@@ -107,7 +107,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/donacion-vianda" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VULNERABLE']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
             <DonacionViandaPage />
           </RoleProtectedRoute>
         } />

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -16,35 +16,65 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [roles, setRoles] = useState([]);
   const [accessToken, setAccessToken] = useState(null);
+  const [userSub, setUserSub] = useState(null);
 
   useEffect(() => {
-    const storedAccessToken = localStorage.getItem('access_token');
-    const userProfile = localStorage.getItem('user_profile');
-    const userRoles = localStorage.getItem('user_roles');
+    const fetchData = async () => {
+      const storedAccessToken = localStorage.getItem('access_token');
+      const userProfile = localStorage.getItem('user_profile');
+      const userRoles = localStorage.getItem('user_roles');
+      const storedUserSub = localStorage.getItem('sub'); // El UUID del back
 
-    if (storedAccessToken && userProfile) {
-      setIsAuthenticated(true);
-      setAccessToken(storedAccessToken);
-      setUser(JSON.parse(userProfile));
-      setRoles(JSON.parse(userRoles));
+      if (storedAccessToken && userProfile) {
+        setIsAuthenticated(true);
+        setAccessToken(storedAccessToken);
+        setUser(JSON.parse(userProfile));
+        setRoles(JSON.parse(userRoles));
+        setUserSub(storedUserSub);
 
-      // Check token expiration
-      try {
-        const { exp } = jwtDecode(storedAccessToken);
-        const currentTime = Date.now() / 1000;
+        try {
+        const response = await fetch(`http://localhost:8080/roles/buscar-por-uuid/${storedUserSub}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${storedAccessToken}`,
+          }
+        });
+        
+        if (!response.ok) {
+          
+          console.error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+          throw new Error('Error al obtener el usuario');
+        }
 
-        if (exp < currentTime) {
-          // Token has expired, log out
+        // Verifica si el contenido está vacío
+        const content = await response.text();
+
+        const data = JSON.parse(content);
+        console.log('Datos recibidos', data);
+
+      } catch (error) {
+        console.error('Error:', error);
+      }
+
+        try {
+          const { exp } = jwtDecode(storedAccessToken);
+          const currentTime = Date.now() / 1000;
+
+          if (exp < currentTime) {
+            logout();
+          }
+        } catch (error) {
+          console.error('Error decoding token:', error);
           logout();
         }
-      } catch (error) {
-        console.error('Error decoding token:', error);
-        logout();
+      } else {
+        setIsAuthenticated(false);
+        setUser(null);
       }
-    } else {
-      setIsAuthenticated(false);
-      setUser(null);
-    }
+    };
+
+    fetchData();
   }, []);
 
   const login = () => {
@@ -62,7 +92,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('user_profile');
     localStorage.removeItem('user_roles');
+    localStorage.removeItem('sub');
     setIsAuthenticated(false);
+    setUserSub(null);
     setUser(null);
     setAccessToken(null);
     setRoles([]);

@@ -28,7 +28,7 @@ function FormasColaborarGrid() {
       titulo: 'Distribución de Viandas',
       descripcion: 'Ayuda a distribuir viandas entre diferentes puntos.',
       imagen: Heladera,
-      link: '/consulta-canje'
+      link: '/distribucion-viandas'
     },
     {
       id: 4,
