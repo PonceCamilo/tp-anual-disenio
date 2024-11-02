@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
 @Repository
 public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
@@ -19,4 +20,6 @@ public interface TecnicoRepository extends JpaRepository<Tecnico, Long> {
                         + "* sin(radians(t.areaCobertura.latitudCentro)))) ASC")
         Tecnico findTecnicoCercano(@Param("latitudHeladera") double latitudHeladera,
                         @Param("longitudHeladera") double longitudHeladera);
+
+        Optional <Tecnico> findByUUID(String UUID);
 }

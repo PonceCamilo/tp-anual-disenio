@@ -1,19 +1,20 @@
 package com.utndds.heladerasApi.DTOs;
 
+
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Rol.Tecnico.AreaCobertura;
-
-public class TecnicoDTO {
+public class ColaboradorDTO {
+    private String uuid; // UUID del rol
     private String nombre;
     private String apellido;
     private String tipoDocumento;
     private String numeroDocumento;
     private String cuil;
-    private List<String> mediosContacto;
-    private AreaCobertura areaCobertura;
-    private String uuid;
-    
+    private double puntosGastados; // Puntos gastados por el colaborador
+    private List<String> mediosContacto; // Lista de medios de contacto
+    private String tarjeta; // ID o información de la tarjeta
+
+    // Getter y Setter para UUID
     public String getUuid() {
         return uuid;
     }
@@ -22,6 +23,7 @@ public class TecnicoDTO {
         this.uuid = uuid;
     }
 
+    // Getter y Setter para nombre
     public String getNombre() {
         return nombre;
     }
@@ -30,6 +32,7 @@ public class TecnicoDTO {
         this.nombre = nombre;
     }
 
+    // Getter y Setter para apellido
     public String getApellido() {
         return apellido;
     }
@@ -38,6 +41,7 @@ public class TecnicoDTO {
         this.apellido = apellido;
     }
 
+    // Getter y Setter para tipoDocumento
     public String getTipoDocumento() {
         return tipoDocumento;
     }
@@ -46,6 +50,7 @@ public class TecnicoDTO {
         this.tipoDocumento = tipoDocumento;
     }
 
+    // Getter y Setter para numeroDocumento
     public String getNumeroDocumento() {
         return numeroDocumento;
     }
@@ -54,6 +59,7 @@ public class TecnicoDTO {
         this.numeroDocumento = numeroDocumento;
     }
 
+    // Getter y Setter para cuil
     public String getCuil() {
         return cuil;
     }
@@ -62,6 +68,16 @@ public class TecnicoDTO {
         this.cuil = cuil;
     }
 
+    // Getter y Setter para puntosGastados
+    public double getPuntosGastados() {
+        return puntosGastados;
+    }
+
+    public void setPuntosGastados(double puntosGastados) {
+        this.puntosGastados = puntosGastados;
+    }
+
+    // Getter y Setter para mediosContacto
     public List<String> getMediosContacto() {
         return mediosContacto;
     }
@@ -70,11 +86,13 @@ public class TecnicoDTO {
         this.mediosContacto = mediosContacto;
     }
 
-    public AreaCobertura getAreaCobertura() {
-        return areaCobertura;
+    // Getter y Setter para tarjeta
+    public String getTarjeta() {
+        return tarjeta;
     }
 
-    public void setAreaCobertura(AreaCobertura areaCobertura) {
-        this.areaCobertura = areaCobertura;
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
     }
 }
+

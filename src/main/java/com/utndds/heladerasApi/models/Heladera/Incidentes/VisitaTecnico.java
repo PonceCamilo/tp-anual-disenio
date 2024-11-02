@@ -2,6 +2,7 @@ package com.utndds.heladerasApi.models.Heladera.Incidentes;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.models.Rol.Tecnico.Tecnico;
 
@@ -23,6 +24,7 @@ public class VisitaTecnico {
     private LocalDate fecha;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "tecnico")
     private Tecnico tecnico;
 
