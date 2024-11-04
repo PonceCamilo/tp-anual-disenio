@@ -34,7 +34,7 @@ public class RegistroPersVulnService {
 
     // Método que recibe los datos del formulario y crea la persona vulnerable y su
     // tarjeta
-    public void crearPersonaVulnerable(PersonaVulnerableDTO personaDTO, Long colaborador_id) {
+    public void crearPersonaVulnerable(PersonaVulnerableDTO personaDTO, String colaboradorUUID) {
         // Crear la persona vulnerable con los datos del formulario
         PersonaVulnerable persona = new PersonaVulnerable();
         persona.setSituacionCalle(personaDTO.getSituacionCalle());
@@ -50,8 +50,9 @@ public class RegistroPersVulnService {
         tarjetaPersVulnRepository.save(tarjeta);
         personaVulnerableRepository.save(persona);
 
-        Colaborador colaborador = colaboradorRepository.findById(colaborador_id)
-                .orElseThrow(() -> new EntityNotFoundException("Colaborador no encontrado con id " + colaborador_id));
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Colaborador no encontrado con uuid " + colaboradorUUID));
 
         RegistroPersonaVulnerable registro = new RegistroPersonaVulnerable(colaborador, persona, tarjeta);
         registroPersonaVulnerableRepository.save(registro);

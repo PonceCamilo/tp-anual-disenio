@@ -15,13 +15,17 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.utndds.heladerasApi.DTOs.FallaTecnicaDTO;
 import com.utndds.heladerasApi.DTOs.VisitaTecnicoDTO;
 import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Heladera.Punto;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.VisitaTecnico;
+import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.FallaTecnica;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
+import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.Tecnico.Tecnico;
+import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.HeladeraRepository;
 import com.utndds.heladerasApi.repositories.TecnicoRepository;
 import com.utndds.heladerasApi.repositories.VisitaTecnicoRepository;
@@ -48,6 +52,8 @@ public class IncidenteServiceTest {
     private VisitaTecnicoRepository visitaTecnicoRepository;
 
     @Mock
+    private ColaboradorRepository colaboradorRepository;
+    @Mock
     private HeladeraRepository heladeraRepository;
 
     @Mock
@@ -71,46 +77,63 @@ public class IncidenteServiceTest {
     }
 
     @Test
-    public void testReportarIncidente() {
+    public void testReportarFallaTecnica() {
         // Datos de entrada
-        when(incidente.getHeladera()).thenReturn(heladera);
-        when(heladera.getPunto()).thenReturn(new Punto(1.0, 1.0, null, null)); // Suponiendo que tienes una clase Punto
+        String colaboradorUUID = "uuid-colaborador-1";
+        FallaTecnicaDTO fallaTecnicaDTO = new FallaTecnicaDTO();
+        fallaTecnicaDTO.setHeladeraId(1L);
+        fallaTecnicaDTO.setDescripcion("Falla en el compresor");
+        fallaTecnicaDTO.setFoto("foto.jpg");
 
         // Configuración de mocks
-        when(tecnicoRepository.findTecnicoCercano(anyDouble(), anyDouble())).thenReturn(tecnico);
-        when(tecnico.getPersona()).thenReturn(personaHumana); // Cambiar aquí
+        Colaborador colaborador = mock(Colaborador.class);
+        when(colaboradorRepository.findByUUID(colaboradorUUID)).thenReturn(Optional.of(colaborador));
+
+        // Crear un mock de Heladera y Punto
+        Heladera heladera = mock(Heladera.class);
+        Punto punto = mock(Punto.class);
+        when(punto.getLatitud()).thenReturn(1.0);
+        when(punto.getLongitud()).thenReturn(1.0);
+        when(heladera.getPunto()).thenReturn(punto);
+        when(heladeraRepository.findById(fallaTecnicaDTO.getHeladeraId())).thenReturn(Optional.of(heladera));
+
+        // Mock para el técnico más cercano
+        Tecnico tecnicoCercano = mock(Tecnico.class);
+        when(tecnicoRepository.findTecnicoCercano(anyDouble(), anyDouble())).thenReturn(tecnicoCercano);
+        when(tecnicoCercano.getPersona()).thenReturn(personaHumana);
 
         // Ejecutar el método
-        incidenteService.reportarIncidente(incidente);
+        incidenteService.reportarFallaTecnica(colaboradorUUID, fallaTecnicaDTO);
 
         // Verificaciones
-        verify(incidenteRepository, times(1)).save(incidente);
-        verify(personaHumana, times(1)).notificar(anyString()); // Cambiar aquí
-        verify(visitaTecnicoRepository, times(1)).save(any(VisitaTecnico.class));
+        verify(incidenteRepository, times(1)).save(any(FallaTecnica.class)); // Verificar que se guarda la falla técnica
+        verify(tecnicoCercano.getPersona(), times(1)).notificar(anyString()); // Verificar que se llamó al notificar
+        verify(visitaTecnicoRepository, times(1)).save(any(VisitaTecnico.class)); // Verificar que se guarda la visita
+                                                                                  // del técnico
     }
 
     @Test
     public void testRegistrarVisita_TecnicoNoEncontrado() {
         // No es necesario el stub para visitaDTO.getIncidenteId()
-        when(tecnicoRepository.findById(1L)).thenReturn(Optional.empty());
+        when(tecnicoRepository.findByUUID("uuid-tecnico-1")).thenReturn(Optional.empty());
 
         // Verificación de excepción
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
-            incidenteService.registrarVisita(1L, visitaDTO);
+            incidenteService.registrarVisita("uuid-tecnico-1", visitaDTO);
         });
-        assertEquals("Técnico no encontrado con id 1", exception.getMessage());
+        assertEquals("Técnico no encontrado con uuid uuid-tecnico-1", exception.getMessage());
     }
 
     @Test
     public void testRegistrarVisita_IncidenteNoEncontrado() {
         // Datos de entrada
         when(visitaDTO.getIncidenteId()).thenReturn(1L);
-        when(tecnicoRepository.findById(1L)).thenReturn(Optional.of(tecnico));
+        when(tecnicoRepository.findByUUID("uuid-tecnico-1")).thenReturn(Optional.of(tecnico));
         when(incidenteRepository.findById(1L)).thenReturn(Optional.empty());
 
         // Verificación de excepción
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
-            incidenteService.registrarVisita(1L, visitaDTO);
+            incidenteService.registrarVisita("uuid-tecnico-1", visitaDTO);
         });
         assertEquals("Incidente no encontrado con id 1", exception.getMessage());
     }

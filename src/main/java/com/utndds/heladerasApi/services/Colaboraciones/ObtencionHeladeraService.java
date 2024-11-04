@@ -28,12 +28,12 @@ public class ObtencionHeladeraService {
     @Autowired
     private ObtencionHeladeraRepository obtencionHeladeraRepository;
 
-    public void registrarObtencionHeladera(String direccion, Long colaborador_id) {
+    public void registrarObtencionHeladera(String direccion, String colaboradorUUID) {
 
         // Buscar al colaborador
-        Colaborador colaborador = colaboradorRepository.findById(colaborador_id)
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Colaborador no encontrado con id " + colaborador_id));
+                        "Colaborador no encontrado con uuid " + colaboradorUUID));
 
         // Buscar o crear un nuevo Punto basado en la dirección
         Punto punto = puntoRepository.findByDireccion(direccion)

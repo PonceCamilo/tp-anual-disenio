@@ -22,9 +22,9 @@ public class CanjesController {
 
     // Endpoint para canjear una oferta
     @PostMapping("/canjear")
-    public ResponseEntity<String> canjearOferta(@RequestParam Long colaboradorId, @RequestParam Long ofertaId) {
+    public ResponseEntity<String> canjearOferta(@RequestParam String colaboradorUUID, @RequestParam Long ofertaId) {
         try {
-            boolean canjeExitoso = canjesService.canjearOferta(colaboradorId, ofertaId);
+            boolean canjeExitoso = canjesService.canjearOferta(colaboradorUUID, ofertaId);
 
             if (canjeExitoso) {
                 return ResponseEntity.ok("Canje realizado con éxito.");
@@ -42,9 +42,9 @@ public class CanjesController {
 
     // Endpoint para calcular los puntos de un colaborador
     @GetMapping("/calcularPuntos")
-    public ResponseEntity<Double> calcularPuntosColaborador(@RequestParam Long colaboradorId) {
+    public ResponseEntity<Double> calcularPuntosColaborador(@RequestParam String colaboradorUUID) {
         try {
-            double puntos = calculadoraPuntosService.calcularPuntos(colaboradorId);
+            double puntos = calculadoraPuntosService.calcularPuntos(colaboradorUUID);
             return ResponseEntity.ok(puntos);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

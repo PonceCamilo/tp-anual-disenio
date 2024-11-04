@@ -27,18 +27,19 @@ public class CanjesService {
     @Autowired
     private CanjeRepository canjeRepository; // Agregamos el repositorio para Canje
 
-    public boolean canjearOferta(Long colaboradorId, Long ofertaId) {
+    public boolean canjearOferta(String colaboradorUUID, Long ofertaId) {
 
         // Buscar al colaborador
-        Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
-                .orElseThrow(() -> new EntityNotFoundException("Colaborador no encontrado con id " + colaboradorId));
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Colaborador no encontrado con uuid " + colaboradorUUID));
 
         // Buscar la oferta
         Oferta oferta = ofertaRepository.findById(ofertaId)
                 .orElseThrow(() -> new EntityNotFoundException("Oferta no encontrada con id " + ofertaId));
 
         // Calcular los puntos disponibles del colaborador
-        double puntosDisponibles = calculadoraPuntosService.calcularPuntos(colaboradorId);
+        double puntosDisponibles = calculadoraPuntosService.calcularPuntos(colaboradorUUID);
 
         // Verificar si el colaborador tiene puntos suficientes para canjear la oferta
         if (puntosDisponibles >= oferta.getCantidadPuntosNec()) {

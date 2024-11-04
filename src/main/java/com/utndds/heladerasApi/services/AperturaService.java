@@ -37,9 +37,9 @@ public class AperturaService {
         @Autowired
         private TarjetaColaboradorRepository tarjetaColaboradorRepository;
 
-        public SolicitudApertura crearSolicitud(Long colaboradorId, Long heladeraId, MotivoApertura motivo) {
+        public SolicitudApertura crearSolicitud(String colaboradorUUID, Long heladeraId, MotivoApertura motivo) {
                 // Buscar colaborador y heladera por ID
-                Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
+                Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                                 .orElseThrow(() -> new RuntimeException("Colaborador no encontrado"));
                 Heladera heladera = heladeraRepository.findById(heladeraId)
                                 .orElseThrow(() -> new RuntimeException("Heladera no encontrada"));

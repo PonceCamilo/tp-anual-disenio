@@ -43,8 +43,4 @@ public class PersonaHumana extends Persona {
         this.documento = documento;
     }
 
-    @Override
-    public String getNombre() {
-        return nombre;
-    }
 }

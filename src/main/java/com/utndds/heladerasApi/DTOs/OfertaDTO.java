@@ -6,7 +6,7 @@ public class OfertaDTO {
     private String nombre;
     private double cantidadPuntosNec;
     private String imagen;
-    private Long colaboradorId; // El ID de la empresa que está ofreciendo la oferta
+    private String colaboradorUUID; // El ID de la empresa que está ofreciendo la oferta
 
     // Getters y Setters
     public String getRubro() {
@@ -41,11 +41,11 @@ public class OfertaDTO {
         this.imagen = imagen;
     }
 
-    public Long getColaboradorId() {
-        return colaboradorId;
+    public String getColaboradorUUID() {
+        return colaboradorUUID;
     }
 
-    public void setColaboradorId(Long colaboradorId) {
-        this.colaboradorId = colaboradorId;
+    public void setColaboradorUUID(String colaboradorUUID) {
+        this.colaboradorUUID = colaboradorUUID;
     }
 }

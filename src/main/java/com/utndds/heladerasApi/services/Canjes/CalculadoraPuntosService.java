@@ -26,12 +26,12 @@ public class CalculadoraPuntosService {
     @Autowired
     private ColaboradorRepository colaboradorRepository;
 
-    // Modificación para recibir colaboradorId
-    public double calcularPuntos(Long colaboradorId) {
+    // Modificación para recibir colaboradoruuid
+    public double calcularPuntos(String colaboradorUUID) {
         // Buscar al colaborador por su ID
-        Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(
-                        () -> new EntityNotFoundException("Colaborador no encontrado con el ID: " + colaboradorId));
+                        () -> new EntityNotFoundException("Colaborador no encontrado con el ID: " + colaboradorUUID));
 
         // Obtener las colaboraciones del colaborador
         List<Colaboracion> colaboraciones = colaboracionRepository.findByColaborador(colaborador);

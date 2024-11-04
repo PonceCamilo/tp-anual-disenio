@@ -5,7 +5,7 @@ import java.util.List;
 import com.utndds.heladerasApi.models.Enums.*;;;
 
 public class SuscripcionDTO {
-    private Long colaboradorId;
+    private String colaboradorUUID;
     private Long heladeraId;
     private List<TipoEvento> tiposEventosSeleccionados;
     private List<TipoContacto> tiposContactosSeleccionados;
@@ -13,12 +13,12 @@ public class SuscripcionDTO {
 
     // Getters y Setters
 
-    public Long getColaboradorId() {
-        return colaboradorId;
+    public String getColaboradorUUID() {
+        return colaboradorUUID;
     }
 
-    public void setColaboradorId(Long colaboradorId) {
-        this.colaboradorId = colaboradorId;
+    public void setColaboradorUUID(String colaboradorUUID) {
+        this.colaboradorUUID = colaboradorUUID;
     }
 
     public Long getHeladeraId() {

@@ -17,11 +17,11 @@ public class AperturaController {
 
     @PostMapping("/solicitud")
     public ResponseEntity<SolicitudApertura> crearSolicitudApertura(
-            @RequestParam("colaboradorId") Long colaboradorId,
+            @RequestParam("colaboradorUUID") String colaboradorUUID,
             @RequestParam("heladeraId") Long heladeraId,
             @RequestParam("motivo") MotivoApertura motivo) {
 
-        SolicitudApertura solicitudApertura = aperturaService.crearSolicitud(colaboradorId, heladeraId, motivo);
+        SolicitudApertura solicitudApertura = aperturaService.crearSolicitud(colaboradorUUID, heladeraId, motivo);
         return ResponseEntity.ok(solicitudApertura);
     }
 }
