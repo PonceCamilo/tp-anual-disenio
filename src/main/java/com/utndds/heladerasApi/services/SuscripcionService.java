@@ -43,7 +43,7 @@ public class SuscripcionService {
     // medios seleccionados
     public Suscripcion suscribirColaborador(SuscripcionDTO suscripcionDTO) {
         // Buscar colaborador y heladera por ID
-        Colaborador colaborador = colaboradorRepository.findById(suscripcionDTO.getColaboradorId())
+        Colaborador colaborador = colaboradorRepository.findByUUID(suscripcionDTO.getColaboradorUUID())
                 .orElseThrow(() -> new RuntimeException("Colaborador no encontrado"));
         Heladera heladera = heladeraRepository.findById(suscripcionDTO.getHeladeraId())
                 .orElseThrow(() -> new RuntimeException("Heladera no encontrada"));

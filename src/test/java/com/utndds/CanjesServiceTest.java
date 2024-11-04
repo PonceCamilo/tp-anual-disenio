@@ -56,19 +56,19 @@ public class CanjesServiceTest {
 
     @Test
     public void testCanjearOferta_Exitoso() {
-        Long colaboradorId = 1L;
+        String colaboradorUUID = "uuid-12345";
         Long ofertaId = 1L;
         double puntosNecesarios = 10.0;
         double puntosDisponibles = 15.0;
 
         // Configurar los mocks
-        when(colaboradorRepository.findById(colaboradorId)).thenReturn(Optional.of(colaborador));
+        when(colaboradorRepository.findByUUID(colaboradorUUID)).thenReturn(Optional.of(colaborador));
         when(ofertaRepository.findById(ofertaId)).thenReturn(Optional.of(oferta));
         when(oferta.getCantidadPuntosNec()).thenReturn(puntosNecesarios);
-        when(calculadoraPuntosService.calcularPuntos(colaborador.getId())).thenReturn(puntosDisponibles);
+        when(calculadoraPuntosService.calcularPuntos(colaboradorUUID)).thenReturn(puntosDisponibles);
 
         // Ejecutar el método
-        boolean resultado = canjesService.canjearOferta(colaboradorId, ofertaId);
+        boolean resultado = canjesService.canjearOferta(colaboradorUUID, ofertaId);
 
         // Verificaciones
         assertTrue(resultado);
@@ -78,19 +78,19 @@ public class CanjesServiceTest {
 
     @Test
     public void testCanjearOferta_Fallido_SinPuntosSuficientes() {
-        Long colaboradorId = 1L;
+        String colaboradorUUID = "uuid-12345";
         Long ofertaId = 1L;
         double puntosNecesarios = 10.0;
         double puntosDisponibles = 5.0;
 
         // Configurar los mocks
-        when(colaboradorRepository.findById(colaboradorId)).thenReturn(Optional.of(colaborador));
+        when(colaboradorRepository.findByUUID(colaboradorUUID)).thenReturn(Optional.of(colaborador));
         when(ofertaRepository.findById(ofertaId)).thenReturn(Optional.of(oferta));
         when(oferta.getCantidadPuntosNec()).thenReturn(puntosNecesarios);
-        when(calculadoraPuntosService.calcularPuntos(colaborador.getId())).thenReturn(puntosDisponibles);
+        when(calculadoraPuntosService.calcularPuntos(colaboradorUUID)).thenReturn(puntosDisponibles);
 
         // Ejecutar el método
-        boolean resultado = canjesService.canjearOferta(colaboradorId, ofertaId);
+        boolean resultado = canjesService.canjearOferta(colaboradorUUID, ofertaId);
 
         // Verificaciones
         assertFalse(resultado);
@@ -100,31 +100,31 @@ public class CanjesServiceTest {
 
     @Test
     public void testCanjearOferta_ColaboradorNoEncontrado() {
-        Long colaboradorId = 1L;
+        String colaboradorUUID = "uuid-12345";
         Long ofertaId = 1L;
 
         // Configurar el mock
-        when(colaboradorRepository.findById(colaboradorId)).thenReturn(Optional.empty());
+        when(colaboradorRepository.findByUUID(colaboradorUUID)).thenReturn(Optional.empty());
 
         // Verificar que se lance la excepción
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
-            canjesService.canjearOferta(colaboradorId, ofertaId);
+            canjesService.canjearOferta(colaboradorUUID, ofertaId);
         });
-        assertEquals("Colaborador no encontrado con id " + colaboradorId, exception.getMessage());
+        assertEquals("Colaborador no encontrado con uuid " + colaboradorUUID, exception.getMessage());
     }
 
     @Test
     public void testCanjearOferta_OfertaNoEncontrada() {
-        Long colaboradorId = 1L;
+        String colaboradorUUID = "uuid-12345";
         Long ofertaId = 1L;
 
         // Configurar el mock para el colaborador
-        when(colaboradorRepository.findById(colaboradorId)).thenReturn(Optional.of(colaborador));
+        when(colaboradorRepository.findByUUID(colaboradorUUID)).thenReturn(Optional.of(colaborador));
         when(ofertaRepository.findById(ofertaId)).thenReturn(Optional.empty());
 
         // Verificar que se lance la excepción
         Exception exception = assertThrows(EntityNotFoundException.class, () -> {
-            canjesService.canjearOferta(colaboradorId, ofertaId);
+            canjesService.canjearOferta(colaboradorUUID, ofertaId);
         });
         assertEquals("Oferta no encontrada con id " + ofertaId, exception.getMessage());
     }

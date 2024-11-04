@@ -19,10 +19,11 @@ public class DonacionDineroService {
     @Autowired
     private DonacionDineroRepository donacionDineroRepository;
 
-    public void guardarDonacionDinero(double monto, Long colaborador_id) {
+    public void guardarDonacionDinero(double monto, String colaboradorUUID) {
 
-        Colaborador colaborador = colaboradorRepository.findById(colaborador_id)
-                .orElseThrow(() -> new EntityNotFoundException("Colaborador no encontrado con id " + colaborador_id));
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Colaborador no encontrado con uuid " + colaboradorUUID));
         // Crear la persona vulnerable con los datos del formulario
         DonacionDinero donacionDinero = new DonacionDinero();
         donacionDinero.setColaborador(colaborador);

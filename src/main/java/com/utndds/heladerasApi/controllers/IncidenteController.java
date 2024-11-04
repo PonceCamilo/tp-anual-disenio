@@ -17,17 +17,17 @@ public class IncidenteController {
 
     @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/reportarFallaTecnica")
-    public ResponseEntity<String> reportarFallaTecnica(@RequestParam Long colaboradorId,
+    public ResponseEntity<String> reportarFallaTecnica(@RequestParam String colaboradorUUID,
             @RequestBody FallaTecnicaDTO fallaTecnicaDTO) {
-        incidenteService.reportarFallaTecnica(colaboradorId, fallaTecnicaDTO);
+        incidenteService.reportarFallaTecnica(colaboradorUUID, fallaTecnicaDTO);
         return ResponseEntity.ok("Falla Técnica reportada con éxito");
     }
 
     @PreAuthorize("hasAuthority('SCOPE_ROLE_TECHNICAL')")
     @PostMapping("/registrarVisita/{tecnicoId}")
-    public ResponseEntity<String> registrarVisita(@PathVariable Long tecnicoId,
+    public ResponseEntity<String> registrarVisita(@PathVariable String tecnicoUUID,
             @RequestBody VisitaTecnicoDTO visitaDTO) {
-        incidenteService.registrarVisita(tecnicoId, visitaDTO);
+        incidenteService.registrarVisita(tecnicoUUID, visitaDTO);
         return ResponseEntity.ok("Visita del técnico registrada con éxito");
     }
 

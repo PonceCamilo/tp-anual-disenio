@@ -30,10 +30,10 @@ public class DistribucionViandasService {
         @Autowired
         private HeladeraRepository heladeraRepository;
 
-        public void guardarDistribucionViandas(Long colaboradorId, DistribucionViandasDTO distribucionViandasDTO) {
-                Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
+        public void guardarDistribucionViandas(String colaboradorUUID, DistribucionViandasDTO distribucionViandasDTO) {
+                Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                                 .orElseThrow(() -> new EntityNotFoundException(
-                                                "Colaborador no encontrado con id " + colaboradorId));
+                                                "Colaborador no encontrado con uuid " + colaboradorUUID));
 
                 Heladera heladeraOrigen = heladeraRepository.findById(distribucionViandasDTO.getHeladeraOrigenId())
                                 .orElseThrow(() -> new EntityNotFoundException(
@@ -55,7 +55,7 @@ public class DistribucionViandasService {
                 distribucionViandasRepository.save(distribucionViandas);
 
                 // Crear la solicitud de apertura automáticamente
-                solicitudAperturaService.crearSolicitud(colaboradorId, heladeraDestino.getId(),
+                solicitudAperturaService.crearSolicitud(colaboradorUUID, heladeraDestino.getId(),
                                 MotivoApertura.DISTRIBUCION);
         }
 }

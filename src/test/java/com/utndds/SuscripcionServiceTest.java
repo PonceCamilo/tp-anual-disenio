@@ -57,8 +57,6 @@ public class SuscripcionServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-
-        // Configurar el colaborador y su persona
         colaborador = new Colaborador();
         colaborador.setPersona(persona);
     }
@@ -67,20 +65,19 @@ public class SuscripcionServiceTest {
     public void testSuscribirColaborador_SuscripcionExitosa() {
         // Datos de entrada
         SuscripcionDTO suscripcionDTO = new SuscripcionDTO();
-        suscripcionDTO.setColaboradorId(1L);
+        suscripcionDTO.setColaboradorUUID("uuid-colaborador-1");
         suscripcionDTO.setHeladeraId(1L);
         suscripcionDTO.setCantidadViandas(5);
         suscripcionDTO.setTiposContactosSeleccionados(Arrays.asList(TipoContacto.EMAIL, TipoContacto.WHATSAPP));
         suscripcionDTO.setTiposEventosSeleccionados(Arrays.asList(TipoEvento.POCAS_VIANDAS, TipoEvento.MUCHAS_VIANDAS));
 
         // Configuración de mocks
-        when(colaboradorRepository.findById(1L)).thenReturn(Optional.of(colaborador));
+        when(colaboradorRepository.findByUUID("uuid-colaborador-1")).thenReturn(Optional.of(colaborador));
         when(heladeraRepository.findById(1L)).thenReturn(Optional.of(heladera));
 
         // Crear contactos mock
         Contacto emailContacto = mock(Email.class);
         Contacto whatsappContacto = mock(Whatsapp.class);
-
         when(contactoRepository.findByPersonaAndTipoIn(any(), any()))
                 .thenReturn(Arrays.asList(emailContacto, whatsappContacto));
 
@@ -102,11 +99,14 @@ public class SuscripcionServiceTest {
 
     @Test
     public void testSuscribirColaborador_ColaboradorNoEncontrado() {
+        // Datos de entrada
         SuscripcionDTO suscripcionDTO = new SuscripcionDTO();
-        suscripcionDTO.setColaboradorId(1L);
+        suscripcionDTO.setColaboradorUUID("uuid-colaborador-1");
 
-        when(colaboradorRepository.findById(1L)).thenReturn(Optional.empty());
+        // Configurar el mock para no encontrar al colaborador
+        when(colaboradorRepository.findByUUID("uuid-colaborador-1")).thenReturn(Optional.empty());
 
+        // Verificar que se lanza una excepción de RuntimeException
         Exception exception = assertThrows(RuntimeException.class, () -> {
             suscripcionService.suscribirColaborador(suscripcionDTO);
         });
@@ -116,17 +116,41 @@ public class SuscripcionServiceTest {
 
     @Test
     public void testSuscribirColaborador_HeladeraNoEncontrada() {
+        // Datos de entrada
         SuscripcionDTO suscripcionDTO = new SuscripcionDTO();
-        suscripcionDTO.setColaboradorId(1L);
+        suscripcionDTO.setColaboradorUUID("uuid-colaborador-1");
         suscripcionDTO.setHeladeraId(1L);
 
-        when(colaboradorRepository.findById(1L)).thenReturn(Optional.of(colaborador));
+        // Configurar los mocks para no encontrar la heladera
+        when(colaboradorRepository.findByUUID("uuid-colaborador-1")).thenReturn(Optional.of(colaborador));
         when(heladeraRepository.findById(1L)).thenReturn(Optional.empty());
 
+        // Verificar que se lanza una excepción de RuntimeException
         Exception exception = assertThrows(RuntimeException.class, () -> {
             suscripcionService.suscribirColaborador(suscripcionDTO);
         });
 
         assertEquals("Heladera no encontrada", exception.getMessage());
+    }
+
+    @Test
+    public void testSuscribirColaborador_SinContactosDisponibles() {
+        // Datos de entrada
+        SuscripcionDTO suscripcionDTO = new SuscripcionDTO();
+        suscripcionDTO.setColaboradorUUID("uuid-colaborador-1");
+        suscripcionDTO.setHeladeraId(1L);
+        suscripcionDTO.setTiposContactosSeleccionados(Arrays.asList(TipoContacto.EMAIL));
+
+        // Configuración de mocks
+        when(colaboradorRepository.findByUUID("uuid-colaborador-1")).thenReturn(Optional.of(colaborador));
+        when(heladeraRepository.findById(1L)).thenReturn(Optional.of(heladera));
+        when(contactoRepository.findByPersonaAndTipoIn(any(), any())).thenReturn(Arrays.asList()); // Sin contactos
+
+        // Verificar que se lanza una excepción de RuntimeException
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            suscripcionService.suscribirColaborador(suscripcionDTO);
+        });
+
+        assertEquals("No hay contactos disponibles para los tipos seleccionados", exception.getMessage());
     }
 }

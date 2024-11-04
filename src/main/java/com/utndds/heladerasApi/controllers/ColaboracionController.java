@@ -67,10 +67,10 @@ public class ColaboracionController {
     @PreAuthorize("hasAuthority('SCOPE_ROLE_COLLABORATOR')")
     @PostMapping("/distribucion-viandas")
     public ResponseEntity<String> guardarDistribucionViandas(
-            @RequestParam Long colaboradorId,
+            @RequestParam String colaboradorUUID,
             @RequestBody DistribucionViandasDTO distribucionViandasDTO) {
         try {
-            distribucionViandasService.guardarDistribucionViandas(colaboradorId, distribucionViandasDTO);
+            distribucionViandasService.guardarDistribucionViandas(colaboradorUUID, distribucionViandasDTO);
             return ResponseEntity.ok("Distribución de viandas guardada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -84,9 +84,9 @@ public class ColaboracionController {
     @PostMapping("/donacion-dinero")
     public ResponseEntity<String> guardarDonacionDinero(
             @RequestParam double monto,
-            @RequestParam Long colaboradorId) {
+            @RequestParam String colaboradorUUID) {
         try {
-            donacionDineroService.guardarDonacionDinero(monto, colaboradorId);
+            donacionDineroService.guardarDonacionDinero(monto, colaboradorUUID);
             return ResponseEntity.ok("Donación de dinero guardada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -100,9 +100,9 @@ public class ColaboracionController {
     @PostMapping("/donacion-vianda")
     public ResponseEntity<String> guardarDonacionVianda(
             @RequestBody DonacionViandaDTO donacionViandaDTO,
-            @RequestParam Long colaboradorId) {
+            @RequestParam String colaboradorUUID) {
         try {
-            donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorId);
+            donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorUUID);
             return ResponseEntity.ok("Donación de vianda guardada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -115,9 +115,9 @@ public class ColaboracionController {
     @PostMapping("/obtencion-heladera")
     public ResponseEntity<String> registrarObtencionHeladera(
             @RequestParam String direccion,
-            @RequestParam Long colaboradorId) {
+            @RequestParam String colaboradorUUID) {
         try {
-            obtencionHeladeraService.registrarObtencionHeladera(direccion, colaboradorId);
+            obtencionHeladeraService.registrarObtencionHeladera(direccion, colaboradorUUID);
             return ResponseEntity.ok("Obtención de heladera registrada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -130,9 +130,9 @@ public class ColaboracionController {
     @PostMapping("/oferta")
     public ResponseEntity<String> registrarOferta(
             @RequestBody OfertaDTO ofertaDTO,
-            @RequestParam Long colaboradorId) {
+            @RequestParam String colaboradorUUID) {
         try {
-            ofertaService.registrarOferta(ofertaDTO, colaboradorId);
+            ofertaService.registrarOferta(ofertaDTO, colaboradorUUID);
             return ResponseEntity.ok("Oferta registrada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -145,9 +145,9 @@ public class ColaboracionController {
     @PostMapping("/persona-vulnerable")
     public ResponseEntity<String> crearPersonaVulnerable(
             @RequestBody PersonaVulnerableDTO personaDTO,
-            @RequestParam Long colaboradorId) {
+            @RequestParam String colaboradorUUID) {
         try {
-            registroPersVulnService.crearPersonaVulnerable(personaDTO, colaboradorId);
+            registroPersVulnService.crearPersonaVulnerable(personaDTO, colaboradorUUID);
             return ResponseEntity.ok("Persona vulnerable registrada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

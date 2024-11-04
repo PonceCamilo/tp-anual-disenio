@@ -9,6 +9,7 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.PersonaVulnerable;
 import com.utndds.heladerasApi.models.Tarjetas.TarjetaPersVuln;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.ColaboracionRepository;
+import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.services.Canjes.CalculadoraPuntosService;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CalculadoraPuntosServiceTest {
 
@@ -31,7 +33,7 @@ public class CalculadoraPuntosServiceTest {
     private ColaboracionRepository colaboracionRepository;
 
     @Mock
-    private Colaborador colaborador;
+    private ColaboradorRepository colaboradorRepository;
 
     @SuppressWarnings("deprecation")
     @BeforeEach
@@ -47,7 +49,6 @@ public class CalculadoraPuntosServiceTest {
 
         Colaborador colaborador = new Colaborador();
         colaborador.setPersona(persona);
-
         colaborador.setPuntosGastados(9.5);
 
         List<Colaboracion> colaboraciones = new ArrayList<>();
@@ -58,10 +59,14 @@ public class CalculadoraPuntosServiceTest {
         colaboraciones.add(new RegistroPersonaVulnerable(colaborador, new PersonaVulnerable(), new TarjetaPersVuln()));
         colaboraciones.add(new RegistroPersonaVulnerable(colaborador, new PersonaVulnerable(), new TarjetaPersVuln()));
 
+        String mockUUID = "test-uuid";
+
+        // Mock the findByUUID method to return the colaborador for the specific UUID
+        when(colaboradorRepository.findByUUID(mockUUID)).thenReturn(Optional.of(colaborador));
         when(colaboracionRepository.findByColaborador(colaborador)).thenReturn(colaboraciones);
 
         // Act
-        double puntos = calculadoraPuntosService.calcularPuntos(colaborador.getId());
+        double puntos = calculadoraPuntosService.calcularPuntos(mockUUID);
 
         // Assert
         assertEquals(50, puntos);

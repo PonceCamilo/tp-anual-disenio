@@ -20,12 +20,12 @@ public class OfertaService {
     @Autowired
     private OfertaRepository ofertaRepository;
 
-    public void registrarOferta(OfertaDTO ofertaDTO, Long colaborador_id) {
+    public void registrarOferta(OfertaDTO ofertaDTO, String colaboradorUUID) {
 
         // Buscar al colaborador (empresa) que ofrece la oferta
-        Colaborador colaborador = colaboradorRepository.findById(colaborador_id)
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(() -> new EntityNotFoundException(
-                        "Colaborador no encontrado con id " + colaborador_id));
+                        "Colaborador no encontrado con uuid " + colaboradorUUID));
 
         // Crear una nueva oferta usando los datos del DTO
         Oferta oferta = new Oferta();

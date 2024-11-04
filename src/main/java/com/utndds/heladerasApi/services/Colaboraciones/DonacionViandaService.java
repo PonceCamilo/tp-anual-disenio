@@ -34,17 +34,18 @@ public class DonacionViandaService {
         @Autowired
         private AperturaService solicitudAperturaService;
 
-        public void guardarDonacionVianda(DonacionViandaDTO donacionViandaDTO, Long colaboradorId) {
+        public void guardarDonacionVianda(DonacionViandaDTO donacionViandaDTO, String colaboradorUUID) {
 
                 // Buscar al colaborador
-                Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
+                Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                                 .orElseThrow(() -> new EntityNotFoundException(
-                                                "Colaborador no encontrado con id " + colaboradorId));
+                                                "Colaborador no encontrado con uuid " + colaboradorUUID));
 
                 // Buscar la heladera
                 Heladera heladera = heladeraRepository.findById(donacionViandaDTO.getHeladeraId())
                                 .orElseThrow(() -> new EntityNotFoundException(
-                                                "Heladera no encontrada con id " + donacionViandaDTO.getHeladeraId()));
+                                                "Heladera no encontrada con uuid "
+                                                                + donacionViandaDTO.getHeladeraId()));
 
                 // Crear la vianda con los datos del formulario
                 Vianda vianda = new Vianda();
@@ -64,7 +65,7 @@ public class DonacionViandaService {
                 donacionViandaRepository.save(donacionVianda);
 
                 // Crear la solicitud de apertura automáticamente
-                solicitudAperturaService.crearSolicitud(colaboradorId, donacionViandaDTO.getHeladeraId(),
+                solicitudAperturaService.crearSolicitud(colaboradorUUID, donacionViandaDTO.getHeladeraId(),
                                 MotivoApertura.DONACION);
         }
 }

@@ -42,9 +42,9 @@ public class IncidenteService {
         incidenteRepository.save(incidente);
     }
 
-    public void reportarFallaTecnica(Long colaboradorId, FallaTecnicaDTO fallaTecnicaDTO) {
-        Colaborador colaborador = colaboradorRepository.findById(colaboradorId)
-                .orElseThrow(() -> new RuntimeException("Colaborador no encontrado con ID: " + colaboradorId));
+    public void reportarFallaTecnica(String colaboradorUUID, FallaTecnicaDTO fallaTecnicaDTO) {
+        Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
+                .orElseThrow(() -> new RuntimeException("Colaborador no encontrado con uuid: " + colaboradorUUID));
 
         // Find the heladera by ID and handle if not found
         Heladera heladera = heladeraRepository.findById(fallaTecnicaDTO.getHeladeraId())
@@ -84,11 +84,11 @@ public class IncidenteService {
                 heladera.getPunto().getLongitud());
     }
 
-    public void registrarVisita(Long tecnicoId, VisitaTecnicoDTO visitaDTO) {
+    public void registrarVisita(String tecnicoUUID, VisitaTecnicoDTO visitaDTO) {
 
         // Buscar el técnico por ID
-        Tecnico tecnico = tecnicoRepository.findById(tecnicoId)
-                .orElseThrow(() -> new EntityNotFoundException("Técnico no encontrado con id " + tecnicoId));
+        Tecnico tecnico = tecnicoRepository.findByUUID(tecnicoUUID)
+                .orElseThrow(() -> new EntityNotFoundException("Técnico no encontrado con uuid " + tecnicoUUID));
 
         // Buscar el incidente por ID
         Incidente incidente = incidenteRepository.findById(visitaDTO.getIncidenteId())
