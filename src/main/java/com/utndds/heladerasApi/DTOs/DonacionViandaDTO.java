@@ -9,7 +9,6 @@ public class DonacionViandaDTO {
     private Long heladeraId;
     private double calorias;
     private double peso;
-    private boolean estado;
 
     // Constructor vacío
     public DonacionViandaDTO() {
@@ -56,11 +55,4 @@ public class DonacionViandaDTO {
         this.peso = peso;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 }

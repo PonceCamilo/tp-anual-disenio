@@ -1,9 +1,9 @@
 package com.utndds.heladerasApi.DTOs;
 
-
 import java.util.List;
 
 public class ColaboradorDTO {
+    private Long id; // UUID del rol
     private String uuid; // UUID del rol
     private String nombre;
     private String apellido;
@@ -13,6 +13,14 @@ public class ColaboradorDTO {
     private double puntosGastados; // Puntos gastados por el colaborador
     private List<String> mediosContacto; // Lista de medios de contacto
     private String tarjeta; // ID o información de la tarjeta
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 
     // Getter y Setter para UUID
     public String getUuid() {
@@ -94,5 +102,5 @@ public class ColaboradorDTO {
     public void setTarjeta(String tarjeta) {
         this.tarjeta = tarjeta;
     }
-}
 
+}

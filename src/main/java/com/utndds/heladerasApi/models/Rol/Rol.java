@@ -9,13 +9,10 @@ import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
-    @JsonSubTypes.Type(value = Tecnico.class, name = "tecnico"),
-    @JsonSubTypes.Type(value = Colaborador.class, name = "colaborador")
+        @JsonSubTypes.Type(value = Tecnico.class, name = "tecnico"),
+        @JsonSubTypes.Type(value = Colaborador.class, name = "colaborador")
 })
 @Setter
 @Getter
@@ -31,7 +28,7 @@ public abstract class Rol {
     @Column(name = "UUID", unique = true)
     protected String UUID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "persona")
     protected Persona persona;
 

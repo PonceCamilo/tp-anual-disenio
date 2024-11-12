@@ -24,6 +24,7 @@ public class DonacionDineroService {
         Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(
                         () -> new EntityNotFoundException("Colaborador no encontrado con uuid " + colaboradorUUID));
+
         // Crear la persona vulnerable con los datos del formulario
         DonacionDinero donacionDinero = new DonacionDinero();
         donacionDinero.setColaborador(colaborador);

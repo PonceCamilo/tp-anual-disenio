@@ -35,6 +35,7 @@ public class SecurityConfig {
                                                                                    // personalizada
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/roles/**").permitAll()
                         .requestMatchers("/callback").permitAll()
                         .requestMatchers("/validar-contraseña").permitAll()
                         .requestMatchers("/tecnicos/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
@@ -45,7 +46,7 @@ public class SecurityConfig {
                         .hasAuthority("SCOPE_ROLE_COLLABORATOR")
                         .requestMatchers(HttpMethod.GET, "/mockAPI/recomendarPuntos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/colaboraciones/recomendaciones-colaboradores").permitAll()
-                        .requestMatchers( "/aperturas/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR", "SCOPE_ROLE_ADMIN")
+                        .requestMatchers("/aperturas/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR", "SCOPE_ROLE_ADMIN")
                         .requestMatchers("/canjes/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR", "SCOPE_ROLE_ADMIN")
                         .requestMatchers("/cargaCSV/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
                         .requestMatchers("/colaboraciones/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR")
@@ -62,7 +63,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); 
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);
