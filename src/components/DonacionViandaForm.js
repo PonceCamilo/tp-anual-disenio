@@ -26,25 +26,29 @@ const DonacionViandaForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Asegurémonos de que la fecha esté bien formateada
+        const fechaFormateada = new Date(fechaDeCaducidad).toISOString().split('T')[0];
+        console.log('Fecha formateada:', fechaFormateada);
+
         const formData = {
             comida,
-            fechaDeCaducidad,
+            fechaCaducidad: fechaFormateada,  // Asegurándonos de que sea la fecha correcta
             calorias: parseFloat(calorias),
             peso: parseFloat(peso),
-            heladeraId: heladeraId, // No necesitamos convertirlo a long, ya es número
+            heladeraId: heladeraId,
         };
 
+        const colaboradorUUID = localStorage.getItem('sub');
+        const url = `http://localhost:8080/colaboraciones/donacion-vianda?colaboradorUUID=${colaboradorUUID}`;
+
         try {
-            const response = await fetch('http://localhost:8080/colaboraciones/donacion-vianda', {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify(formData),
-                params: {
-                    colaboradorUUID
-                }
             });
 
             if (response.ok) {

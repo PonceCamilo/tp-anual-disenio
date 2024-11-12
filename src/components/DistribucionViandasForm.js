@@ -4,7 +4,7 @@ import { Box, Button, FormControl, FormLabel, Input, VStack } from '@chakra-ui/r
 function DistribucionViandasForm() {
     const [vianda, setVianda] = useState({
         comida: '',
-        fechaDeCaducidad: '',
+        fechaCaducidad: '',
         calorias: '',
         peso: ''
     });
@@ -55,12 +55,12 @@ function DistribucionViandasForm() {
                     />
                 </FormControl>
                 <FormControl isRequired>
-                    <FormLabel htmlFor="fechaDeCaducidad">Fecha de Caducidad:</FormLabel>
+                    <FormLabel htmlFor="fechaCaducidad">Fecha de Caducidad:</FormLabel>
                     <Input
                         type="date"
-                        id="fechaDeCaducidad"
-                        name="fechaDeCaducidad"
-                        value={vianda.fechaDeCaducidad}
+                        id="fechaCaducidad"
+                        name="fechaCaducidad"
+                        value={vianda.fechaCaducidad}
                         onChange={handleChange}
                     />
                 </FormControl>
