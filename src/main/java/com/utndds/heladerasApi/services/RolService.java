@@ -34,12 +34,12 @@ public class RolService {
             return ResponseEntity.ok(colaboradorDTO);
         }
 
-        return ResponseEntity.notFound().build(); 
+        return ResponseEntity.notFound().build();
     }
 
     private TecnicoDTO convertirATecnicoDTO(Tecnico tecnico) {
         TecnicoDTO dto = new TecnicoDTO();
-        
+
         dto.setCuil(tecnico.getCuil());
         dto.setUuid(tecnico.getUUID());
         return dto;
@@ -48,6 +48,7 @@ public class RolService {
     private ColaboradorDTO convertirAColaboradorDTO(Colaborador colaborador) {
         ColaboradorDTO dto = new ColaboradorDTO();
         dto.setPuntosGastados(colaborador.getPuntosGastados());
+        dto.setId(colaborador.getId());
         dto.setUuid(colaborador.getUUID()); // Asegúrate de tener el setter en el DTO
         return dto;
     }

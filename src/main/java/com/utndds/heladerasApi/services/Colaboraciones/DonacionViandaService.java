@@ -53,7 +53,6 @@ public class DonacionViandaService {
                 vianda.setFechaCaducidad(donacionViandaDTO.getFechaCaducidad());
                 vianda.setCalorias(donacionViandaDTO.getCalorias());
                 vianda.setPeso(donacionViandaDTO.getPeso());
-                vianda.setEstado(donacionViandaDTO.isEstado());
                 vianda.setHeladera(heladera);
 
                 // Guardar la vianda en la base de datos

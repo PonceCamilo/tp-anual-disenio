@@ -49,7 +49,7 @@ public class Vianda {
         this.fechaCaducidad = fechaCaducidad;
         this.calorias = calorias;
         this.peso = peso;
-        this.estado = estado;
+        this.estado = false;
         this.heladera = heladera;
     }
 
