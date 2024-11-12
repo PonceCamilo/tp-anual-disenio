@@ -102,6 +102,7 @@ public class ColaboracionController {
             @RequestBody DonacionViandaDTO donacionViandaDTO,
             @RequestParam String colaboradorUUID) {
         try {
+            System.out.println("hola crack la comida es: " + donacionViandaDTO.getComida());
             donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorUUID);
             return ResponseEntity.ok("Donación de vianda guardada con éxito");
         } catch (EntityNotFoundException e) {
