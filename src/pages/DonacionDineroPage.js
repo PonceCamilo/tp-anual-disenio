@@ -8,15 +8,15 @@ import {
     useBreakpointValue
 } from '@chakra-ui/react';
 import DonacionDineroForm from '../components/DonacionDineroForm';
-
+import { Auth0Context } from '@auth0/auth0-react';
 function DonacionDineroPage() {
     const isMobile = useBreakpointValue({ base: true, md: false });
 
     return (
-        <Container 
-            maxW="container.lg" 
-            mb={10} 
-            mx="auto"  
+        <Container
+            maxW="container.lg"
+            mb={10}
+            mx="auto"
             pt="80px"  // Ajuste para que no tape el nav
             minH="100vh"  // Aseguramos que el contenedor tenga al menos el tamaño de la pantalla
         >
@@ -31,10 +31,10 @@ function DonacionDineroPage() {
                 p={8}
                 overflow="hidden"  // Asegura que el contenido no se desborde
             >
-                <Box 
-                    flex="1" 
-                    p={6} 
-                    textAlign="center" 
+                <Box
+                    flex="1"
+                    p={6}
+                    textAlign="center"
                     pr={isMobile ? 0 : 10}
                 >
                     <Heading size="xl" mb={4} color="#8DC77E">

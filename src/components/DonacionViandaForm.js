@@ -7,14 +7,21 @@ import {
     Button,
     VStack,
     NumberInput,
-    NumberInputField
+    NumberInputField,
+    useToast,
+    Select
 } from '@chakra-ui/react';
+import { useAuth } from '../config/authContext';
 
 const DonacionViandaForm = () => {
     const [comida, setComida] = useState('');
     const [fechaDeCaducidad, setFechaDeCaducidad] = useState('');
     const [calorias, setCalorias] = useState('');
     const [peso, setPeso] = useState('');
+    const [heladeraId, setHeladeraId] = useState(1); // Asignamos el valor inicial como número
+    const toast = useToast(); // Usamos el hook useToast de Chakra UI
+    const colaboradorUUID = localStorage.getItem('sub');
+    const { accessToken } = useAuth(); // Asegurarse de tener el accessToken
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,29 +31,58 @@ const DonacionViandaForm = () => {
             fechaDeCaducidad,
             calorias: parseFloat(calorias),
             peso: parseFloat(peso),
+            heladeraId: heladeraId, // No necesitamos convertirlo a long, ya es número
         };
 
         try {
-            const response = await fetch('/api/donate-meal', {
+            const response = await fetch('http://localhost:8080/colaboraciones/donacion-vianda', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`,
                 },
                 body: JSON.stringify(formData),
+                params: {
+                    colaboradorUUID
+                }
             });
+
             if (response.ok) {
-                console.log('Donación enviada con éxito');
+                const data = await response.text();
+                toast({
+                    title: 'Donación de Vianda realizada',
+                    description: data || 'Tu donación de vianda fue procesada exitosamente.',
+                    status: 'success',
+                    duration: 5000,
+                    isClosable: true,
+                });
             } else {
-                console.log('Error al enviar la donación');
+                const errorText = await response.text();
+                toast({
+                    title: 'Error',
+                    description: errorText || 'Ocurrió un error al procesar la donación.',
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                });
             }
         } catch (error) {
             console.error('Error:', error);
+            toast({
+                title: 'Error de conexión',
+                description: 'No se pudo conectar con el servidor para procesar la donación.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
         }
 
+        // Limpiar los campos después de enviar el formulario
         setComida('');
         setFechaDeCaducidad('');
         setCalorias('');
         setPeso('');
+        setHeladeraId(1); // Resetear heladeraId
     };
 
     return (
@@ -99,6 +135,19 @@ const DonacionViandaForm = () => {
                     >
                         <NumberInputField />
                     </NumberInput>
+                </FormControl>
+
+                {/* Nuevo campo para seleccionar el id de la heladera */}
+                <FormControl id="heladeraId" isRequired>
+                    <FormLabel>Seleccionar Heladera</FormLabel>
+                    <Select
+                        value={heladeraId}
+                        onChange={(e) => setHeladeraId(Number(e.target.value))} // Convertimos el valor a número
+                    >
+                        <option value="1">Heladera 1</option>
+                        <option value="2">Heladera 2</option>
+                        <option value="3">Heladera 3</option>
+                    </Select>
                 </FormControl>
 
                 <Button type="submit" colorScheme="green" width="100%">
