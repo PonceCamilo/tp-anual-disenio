@@ -13,10 +13,10 @@ const RegistrarVulnerablePage = () => {
     const isMobile = useBreakpointValue({ base: true, md: false });
 
     return (
-        <Container 
-            maxW="container.lg" 
-            mb={10} 
-            mx="auto"  
+        <Container
+            maxW="container.lg"
+            mb={10}
+            mx="auto"
             pt="80px"  // Ajuste del padding-top para evitar que el navbar tape el contenido
             minH="100vh"  // Aseguramos que el contenedor tenga al menos la altura de la pantalla
         >
