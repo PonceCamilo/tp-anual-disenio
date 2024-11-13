@@ -10,9 +10,9 @@ import {
 import ReportIssueForm from '../components/ReportIssueForm';
 
 const fridges = [
-    { id: 'a', name: 'Heladera A' },
-    { id: 'b', name: 'Heladera B' },
-    // Agrega más heladeras según sea necesario
+    { id: '1', name: 'Heladera 1' },
+    { id: '2', name: 'Heladera 2' },
+    
 ];
 
 const ReportIssuePage = () => {
