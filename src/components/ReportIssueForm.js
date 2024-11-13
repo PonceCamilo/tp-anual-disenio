@@ -19,9 +19,14 @@ const ReportIssueForm = ({ fridges }) => {
   const [heladeraId, setHeladeraId] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [email, setEmail] = useState("");
+  const [file, setFile] = useState(null); // Estado para almacenar el archivo
   const colaboradorUUID = localStorage.getItem('sub');
 
-  const handleReport = async (event) => {
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]); // Guardar el archivo en el estado, pero sin enviarlo
+  };
+
+  const handleDonation = async (event) => {
     event.preventDefault();
 
     // Obtener la fecha actual en el formato "YYYY-MM-DD"
@@ -80,7 +85,7 @@ const ReportIssueForm = ({ fridges }) => {
       borderRadius="md"
       bg="gray.50"
       boxShadow="md"
-      onSubmit={handleReport}
+      onSubmit={handleDonation}
     >
       <Heading as="h2" fontSize="2xl" mb={4}>
         Reportar un problema
@@ -123,6 +128,17 @@ const ReportIssueForm = ({ fridges }) => {
           bg="white"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormControl>
+
+      {/* Input para cargar una foto */}
+      <FormControl mb={4}>
+        <FormLabel htmlFor="photo">Subir una foto</FormLabel>
+        <Input
+          id="photo"
+          type="file"
+          accept="image/*"
+          onChange={handleFileChange} // Guardar el archivo, pero no enviarlo
         />
       </FormControl>
 
