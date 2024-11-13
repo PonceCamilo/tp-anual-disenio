@@ -1,18 +1,20 @@
 package com.utndds.heladerasApi.DTOs;
-
+import java.time.LocalDate;
 public class FallaTecnicaDTO {
     private Long heladeraId; // ID of the refrigerator
     private String descripcion; // Description of the incident
     private String foto; // Path or URL to the photo
+    private LocalDate fecha; // Date of the incident
 
     // Default constructor
     public FallaTecnicaDTO() {
     }
 
     // Constructor with parameters
-    public FallaTecnicaDTO(Long heladeraId, String descripcion, String foto) {
+    public FallaTecnicaDTO(Long heladeraId, String descripcion, String foto, LocalDate fecha) {
         this.heladeraId = heladeraId;
         this.descripcion = descripcion;
+        this.fecha = fecha;
         this.foto = foto;
     }
 
@@ -39,5 +41,11 @@ public class FallaTecnicaDTO {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+    public LocalDate getFecha() {
+        return fecha;
+    }
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 }
