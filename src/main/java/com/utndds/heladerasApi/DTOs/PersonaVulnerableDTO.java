@@ -1,8 +1,13 @@
 package com.utndds.heladerasApi.DTOs;
 
+import java.time.LocalDate;
+
 public class PersonaVulnerableDTO {
     String nombre;
+    String apellido;
+    LocalDate fechaNacimiento;
     boolean situacionCalle;
+    String direccion;
     int cantMenoresAcargo;
 
     public PersonaVulnerableDTO(String nombre, boolean situacionCalle, int cantMenoresAcargo) {
@@ -19,6 +24,14 @@ public class PersonaVulnerableDTO {
         return situacionCalle;
     }
 
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
     public int getCantMenoresAcargo() {
         return cantMenoresAcargo;
     }
@@ -31,8 +44,24 @@ public class PersonaVulnerableDTO {
         this.nombre = nombre;
     }
 
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
     public void setSituacionCalle(boolean situacionCalle) {
         this.situacionCalle = situacionCalle;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
 }
