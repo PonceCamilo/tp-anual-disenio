@@ -87,7 +87,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/registro-vulnerable" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_VULNERABLE']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
             <RegistrarVulnerable />
           </RoleProtectedRoute>
         } />

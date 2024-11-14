@@ -133,7 +133,7 @@ function NavApp({ className }) {
           {isAuthenticated && (
             <Box
               fontSize="lg"
-              onClick={() => logout({ returnTo: window.location.origin })}
+              onClick={logout}
               cursor="pointer"
               display="flex"
               alignItems="center"
@@ -193,7 +193,7 @@ function NavApp({ className }) {
               {isAuthenticated && (
                 <Box
                   fontSize="lg"
-                  onClick={() => logout({ returnTo: window.location.origin })}
+                  onClick={logout}
                   cursor="pointer"
                   display="flex"
                   alignItems="center"

@@ -5,9 +5,10 @@ import LaDonate from '../assets/iconos/LaDonate.svg';
 import Food from '../assets/iconos/Heladera.svg';
 import Heladera from '../assets/iconos/Food.svg';
 import FallaTecnica from '../assets/iconos/FallaTecnica.svg';
+import { useAuth } from '../config/authContext';
 function FormasColaborarGrid() {
   const navigate = useNavigate();
-
+  const { isAuthenticated, login } = useAuth();
   const formasColaborar = [
     {
       id: 1,
@@ -40,7 +41,11 @@ function FormasColaborarGrid() {
   ];
 
   const handleCardClick = (link) => {
-    navigate(link);
+    if (isAuthenticated) {
+      navigate(link); // Navega a la página si el usuario está autenticado
+    } else {
+      login(); // Redirige al login si no está autenticado
+    }
   };
 
   return (

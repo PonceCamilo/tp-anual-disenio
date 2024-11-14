@@ -11,7 +11,8 @@ import {
   Image,
   Text,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../config/authContext'; // Importa el hook de autenticación
 import LaDonate from '../assets/iconos/LaDonate.svg';
 import Form from '../assets/iconos/Form.svg';
 import Vianda from '../assets/iconos/Heladera.svg';
@@ -23,12 +24,33 @@ import Report from '../assets/iconos/Report.svg';
 import Product from '../assets/iconos/Product.svg';
 
 function UserProfileModal({ isOpen, onClose }) {
+  const { roles } = useAuth();
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
     navigate(path);
     onClose();
   };
+
+
+  const options = [
+    { path: '/donacion-dinero', img: LaDonate, label: 'Donar Dinero', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/donacion-vianda', img: Vianda, label: 'Donar Vianda', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/registro-vulnerable', img: Form, label: 'Registrar Persona Vulnerable', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/suscripcion-heladera', img: Suscripcion, label: 'Suscribirse', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/report-issue', img: FallaTecnica, label: 'Reportar Falla Técnica', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/consulta-canje', img: Canje, label: 'Consultar o Canjear productos', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/recomendar-puntos', img: Config, label: 'Configuración', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/reportes', img: Report, label: 'Reportes', allowedRoles: ['ROLE_ADMIN'] },
+    { path: '/publicar-producto', img: Product, label: 'Publicar Producto/Servicio', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+    { path: '/cargar-heladera', img: Product, label: 'Cargar Heladera', allowedRoles: ['ROLE_ADMIN'] },
+    { path: '/distribucion-viandas', img: Product, label: 'Distribución Viandas', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
+  ];
+
+  // Filtra las opciones basándote en los roles del usuario
+  const filteredOptions = options.filter(option =>
+    option.allowedRoles.some(role => roles.includes(role))
+  );
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -38,19 +60,7 @@ function UserProfileModal({ isOpen, onClose }) {
         <ModalCloseButton />
         <ModalBody>
           <SimpleGrid columns={4} spacing={6}>
-            {[
-              { path: '/donacion-dinero', img: LaDonate, label: 'Donar Dinero' },
-              { path: '/donacion-vianda', img: Vianda, label: 'Donar Vianda' },
-              { path: '/registro-vulnerable', img: Form, label: 'Registrar Persona Vulnerable' },
-              { path: '/suscripcion-heladera', img: Suscripcion, label: 'Suscribirse' },
-              { path: '/report-issue', img: FallaTecnica, label: 'Reportar Falla Técnica' },
-              { path: '/consulta-canje', img: Canje, label: 'Consultar o Canjear productos' },
-              { path: '/recomendar-puntos', img: Config, label: 'Configuración' },
-              { path: '/reportes', img: Report, label: 'Reportes' },
-              { path: '/publicar-producto', img: Product, label: 'Publicar Producto/Servicio' },
-              { path: '/cargar-heladera', img: Product, label: 'Cargar Heladera' },
-              { path: '/distribucion-viandas', img: Product, label: 'Distribucion Viandas' },
-            ].map((item, index) => (
+            {filteredOptions.map((item, index) => (
               <Box
                 key={index}
                 onClick={() => handleNavigate(item.path)}
@@ -64,10 +74,10 @@ function UserProfileModal({ isOpen, onClose }) {
                 borderRadius="md"
                 _hover={{ bg: 'gray.100' }}
                 width="130px"
-                minHeight="120px" // Altura mínima para evitar que el texto sobresalga
+                minHeight="120px"
               >
                 <Image src={item.img} alt={item.label} boxSize="60px" />
-                <Text mt={2} textAlign="center">{item.label}</Text> {/* Centrar el texto */}
+                <Text mt={2} textAlign="center">{item.label}</Text>
               </Box>
             ))}
           </SimpleGrid>

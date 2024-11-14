@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {jwtDecode} from 'jwt-decode';
-
 const AuthContext = createContext();
 
 export const useAuth = () => {
@@ -98,6 +97,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setAccessToken(null);
     setRoles([]);
+    window.location.replace('/');
   };
 
   return (
