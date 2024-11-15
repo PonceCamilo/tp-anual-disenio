@@ -8,13 +8,13 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Alerta;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.FallaTecnica;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Rol.Rol;
 import com.utndds.heladerasApi.models.Rol.Tecnico.Tecnico;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.HeladeraRepository;
 import com.utndds.heladerasApi.repositories.TecnicoRepository;
 import com.utndds.heladerasApi.repositories.VisitaTecnicoRepository;
 import com.utndds.heladerasApi.repositories.Incidentes.IncidenteRepository;
-
 import jakarta.persistence.EntityNotFoundException;
 
 import java.time.LocalDate;
@@ -55,7 +55,8 @@ public class IncidenteService {
         FallaTecnica fallaTecnica = new FallaTecnica();
         fallaTecnica.setColaborador(colaborador);
         fallaTecnica.setHeladera(heladera); // Set the Heladera object
-        fallaTecnica.setDescripcion(fallaTecnicaDTO.getDescripcion()); // Set the description
+        fallaTecnica.setDescripcion(fallaTecnicaDTO.getDescripcion());// Set the description
+        fallaTecnica.setFecha(fallaTecnicaDTO.getFecha()); // Set the report date
         fallaTecnica.setFoto(fallaTecnicaDTO.getFoto()); // Set the photo
 
         // Save the technical failure in the incident repository

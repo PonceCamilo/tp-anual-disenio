@@ -6,5 +6,5 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 
 @Repository
 public interface IncidenteRepository extends JpaRepository<Incidente, Long> {
-    // Puedes agregar métodos personalizados aquí si lo deseas
+    
 }
