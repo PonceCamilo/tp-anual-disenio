@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Menu,
   MenuButton,
@@ -12,29 +12,10 @@ import {
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
-const mockData = {
-  "viandas-heladeras": [
-    { nombreHeladera: "Heladera de Buenos Aires", viandasColocadas: 5, viandasRetiradas: 3 },
-    { nombreHeladera: "Heladera de Córdoba", viandasColocadas: 7, viandasRetiradas: 6 },
-    { nombreHeladera: "Heladera de Mendoza", viandasColocadas: 4, viandasRetiradas: 4 },
-  ],
-  "fallas": [
-    { nombreHeladera: "Heladera de Buenos Aires", fallas: 2 },
-    { nombreHeladera: "Heladera de Córdoba", fallas: 1 },
-    { nombreHeladera: "Heladera de Mendoza", fallas: 3 },
-  ],
-  "viandas-colaboradores": [
-    { nombreColaborador: "Juan Pérez", viandasDonadas: 10 },
-    { nombreColaborador: "María López", viandasDonadas: 8 },
-    { nombreColaborador: "Carlos Gómez", viandasDonadas: 15 },
-  ],
-};
-
 const reportTypes = [
   { label: 'Fallas por heladera', section: 'fallas' },
   { label: 'Viandas por heladera', section: 'viandas-heladeras' },
   { label: 'Viandas por colaborador', section: 'viandas-colaboradores' },
-  // Agrega más tipos de reportes aquí si es necesario
 ];
 
 const SeccionReporte = ({ clase, columnas, data, openSection }) => (
@@ -59,10 +40,61 @@ const SeccionReporte = ({ clase, columnas, data, openSection }) => (
 function ReportesPage() {
   const [openSection, setOpenSection] = useState(null);
   const [selectedReport, setSelectedReport] = useState(null);
+  const [reportData, setReportData] = useState({
+    "fallas": [],
+    "viandas-heladeras": [],
+    "viandas-colaboradores": [],
+  });
+
+  // Función para obtener el token desde localStorage
+  const getToken = () => localStorage.getItem('access_token'); // O el lugar donde guardas el token
+
+  const fetchReportData = async (section) => {
+    const urls = {
+      fallas: 'http://localhost:8080/reportes/fallas/ultima-semana',
+      'viandas-heladeras': 'http://localhost:8080/reportes/viandas/heladera/ultima-semana',
+      'viandas-colaboradores': 'http://localhost:8080/reportes/viandas/colaborador/ultima-semana',
+    };
+
+    const token = getToken(); // Obtén el token de localStorage
+
+    if (!token) {
+      console.error('No se encontró el token de autenticación.');
+      return;
+    }
+
+    try {
+      const response = await fetch(urls[section], {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`,  // Incluir el token en la cabecera
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error al obtener los datos: ${response.status} ${response.statusText}`);
+      }
+
+      const contentType = response.headers.get('Content-Type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        setReportData(prevData => ({
+          ...prevData,
+          [section]: data,
+        }));
+      } else {
+        throw new Error('La respuesta no es un JSON');
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos:', error);
+    }
+  };
 
   const handleMenuClick = (section, label) => {
     setOpenSection(prevSection => (prevSection === section ? null : section));
     setSelectedReport(prevSection => (prevSection === label ? null : label));
+    fetchReportData(section); // Fetch data when a section is selected
   };
 
   return (
@@ -90,21 +122,21 @@ function ReportesPage() {
             <SeccionReporte
               clase="fallas"
               columnas={['Heladera', 'Fallas']}
-              data={mockData['fallas']}
+              data={reportData['fallas']}
               openSection={openSection}
             />
 
             <SeccionReporte
               clase="viandas-heladeras"
               columnas={['Heladera', 'Viandas retiradas', 'Viandas colocadas']}
-              data={mockData['viandas-heladeras']}
+              data={reportData['viandas-heladeras']}
               openSection={openSection}
             />
 
             <SeccionReporte
               clase="viandas-colaboradores"
               columnas={['Colaborador', 'Viandas donadas']}
-              data={mockData['viandas-colaboradores']}
+              data={reportData['viandas-colaboradores']}
               openSection={openSection}
             />
           </>

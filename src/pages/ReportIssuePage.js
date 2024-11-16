@@ -12,16 +12,15 @@ import ReportIssueForm from '../components/ReportIssueForm';
 const fridges = [
     { id: '1', name: 'Heladera 1' },
     { id: '2', name: 'Heladera 2' },
-    
 ];
 
 const ReportIssuePage = () => {
     const isMobile = useBreakpointValue({ base: true, md: false });
 
     return (
-        <Container 
-            maxW="container.lg" 
-            mb={10} 
+        <Container
+            maxW="container.lg"
+            mb={10}
             mx="auto"
             pt="80px"  // Ajuste del padding-top para evitar que el navbar tape el contenido
             minH="100vh"  // Aseguramos que el contenedor tenga al menos la altura de la pantalla
@@ -42,7 +41,7 @@ const ReportIssuePage = () => {
                         Reportar Falla Técnica
                     </Heading>
                     <Text fontSize="lg" color="#8DC77E" mb={6}>
-                        Con tu ayuda, podemos mantener nuestras heladeras en óptimas condiciones. 
+                        Con tu ayuda, podemos mantener nuestras heladeras en óptimas condiciones.
                         Reporta cualquier problema técnico para que podamos solucionarlo rápidamente.
                     </Text>
                 </Box>

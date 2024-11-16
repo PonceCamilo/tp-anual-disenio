@@ -7,12 +7,14 @@ import {
   Flex,
   Text,
 } from '@chakra-ui/react';
+import { useAuth } from '../config/authContext'; // Importa el hook de autenticación
 
 function RecomendarPuntosPage() {
   const [puntos, setPuntos] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [radius, setRadius] = useState(0);
   const [direccion, setDireccion] = useState("");
+  const token = localStorage.getItem('access_token'); // Obtén el token de autenticación
 
   const handleDireccionChange = (e) => {
     setDireccion(e.target.value);
@@ -29,6 +31,7 @@ function RecomendarPuntosPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Agrega el Bearer token al encabezado
         },
         body: JSON.stringify({
           latitud: selectedLocation.lat,

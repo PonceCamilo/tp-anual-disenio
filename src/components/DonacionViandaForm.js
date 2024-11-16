@@ -20,7 +20,6 @@ const DonacionViandaForm = () => {
     const [peso, setPeso] = useState('');
     const [heladeraId, setHeladeraId] = useState(1); // Asignamos el valor inicial como número
     const toast = useToast(); // Usamos el hook useToast de Chakra UI
-    const colaboradorUUID = localStorage.getItem('sub');
     const { accessToken } = useAuth(); // Asegurarse de tener el accessToken
 
     const handleSubmit = async (e) => {
