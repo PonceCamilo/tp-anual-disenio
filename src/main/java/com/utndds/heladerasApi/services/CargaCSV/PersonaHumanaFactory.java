@@ -19,6 +19,10 @@ public class PersonaHumanaFactory {
         persona.setDocumento(documento);
         persona.setNombre(registro[2]);
         persona.setApellido(registro[3]);
+        System.out.println(persona.getNombre());
+        System.out.println(persona.getApellido());
+        System.out.println(persona.getDocumento());
+        System.out.println("PERSONA HUMANA CREADA");
         return persona;
     }
 }

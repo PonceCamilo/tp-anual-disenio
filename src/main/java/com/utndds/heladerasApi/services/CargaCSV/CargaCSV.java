@@ -17,7 +17,7 @@ import java.util.List;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
+import java.util.Arrays;
 @Service
 public class CargaCSV {
 
@@ -35,8 +35,14 @@ public class CargaCSV {
     private ColaboracionRepository colaboracionRepository;
 
     public void cargarCSV(InputStream fileInputStream) {
+        System.out.println("ENTRAMO CSV...");
         try (CSVReader reader = new CSVReader(new InputStreamReader(fileInputStream))) {
             List<String[]> registros = reader.readAll();
+            
+            System.out.println("REGISTROS:");
+        for (String[] registro : registros) {
+            System.out.println(Arrays.toString(registro));
+        }
             for (String[] registro : registros) {
                 if (registro.length < 5) {
                     throw new IllegalArgumentException(
@@ -45,8 +51,8 @@ public class CargaCSV {
 
                 // Proceed with creating the PersonaHumana
                 PersonaHumana persona = phFactory.crearPersonaHumana(registro);
-
-                // Buscar la persona en la base de datos por su documento
+                
+                
                 PersonaHumana personaExistente = personaRepository.findByDocumento_TipoAndDocumento_Numero(
                         registro[0], registro[1]);
 
@@ -69,6 +75,7 @@ public class CargaCSV {
                 colaboracionRepository.saveAll(colaboraciones); // Guardar todas las colaboraciones
             }
         } catch (IOException | CsvException e) {
+            System.out.println("Error allllllllllllllllll cargar el archivo CSV: " + e.getMessage());
             e.printStackTrace();
         }
     }
