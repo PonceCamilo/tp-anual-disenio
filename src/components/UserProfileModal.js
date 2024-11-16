@@ -51,7 +51,7 @@ function UserProfileModal({ isOpen, onClose }) {
     { path: '/publicar-producto', img: Product, label: 'Publicar Producto/Servicio', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/cargar-heladera', img: Product, label: 'Cargar Heladera', allowedRoles: ['ROLE_ADMIN'] },
     { path: '/distribucion-viandas', img: Product, label: 'Distribución Viandas', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
-    { path: '', img: Product, label: 'Cargar CSV', allowedRoles: ['ROLE_ADMIN'], action: handleOpenCSVModal }, // Opción para cargar CSV
+    { path: '', img: Product, label: 'Cargar CSV', allowedRoles: ['ROLE_ADMIN'], action: handleOpenCSVModal },
   ];
 
   // Filtra las opciones basándote en los roles del usuario
@@ -94,7 +94,7 @@ function UserProfileModal({ isOpen, onClose }) {
       </Modal>
 
       {/* Modal para cargar CSV */}
-      <LoadCSVModal show={isCSVModalOpen} onHide={() => setIsCSVModalOpen(false)} />
+      <LoadCSVModal isOpen={isCSVModalOpen} onClose={() => setIsCSVModalOpen(false)} />
     </>
   );
 }

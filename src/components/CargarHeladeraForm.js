@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Heading, Input, Text, Link } from '@chakra-ui/react';
+import { Box, Button, FormControl, FormLabel, Heading, Input, Text, Link, useToast } from '@chakra-ui/react';
 import { useAuth } from '../config/authContext';
 
 const CargarHeladeraForm = () => {
     const [direccion, setDireccion] = useState('');
     const colaboradorUUID = localStorage.getItem('sub'); // Obtiene el UUID del usuario
     const { accessToken } = useAuth();
-
+    const toast = useToast();
     const handleSubmit = async (e) => {
         e.preventDefault();
     
@@ -25,17 +25,23 @@ const CargarHeladeraForm = () => {
     
             if (response.ok) {
                 const message = await response.text();
-                console.log('Respuesta del servidor:', message);
+                toast({
+                    title: "Heladera Registrada con éxito",
+                    description:"Tu heladera fue procesada exitosamente.",
+                    status: "success",
+                    duration: 5000,
+                    isClosable: true,
+                  });
                 setDireccion(''); // Limpia el formulario
-            } else if (response.status === 404) {
-                const errorMessage = await response.text();
-                console.error('Error 404:', errorMessage);
-            } else {
-                const errorMessage = await response.text();
-                console.error('Error al consumir el endpoint:', errorMessage);
-            }
+            } 
         } catch (error) {
-            console.error('Error inesperado:', error);
+            toast({
+                title: "Ocurrió un error al procesar la solicitud.",
+                description: error,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
         }
     };
     
