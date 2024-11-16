@@ -11,8 +11,10 @@ import com.utndds.heladerasApi.models.Reportes.FallasPorHeladera;
 @Repository
 public interface ReporteFallasHeladeraRepository extends JpaRepository<FallasPorHeladera, Long> {
 
+    // Buscar reportes generados después de una fecha (última semana, por ejemplo)
     List<FallasPorHeladera> findByFechaGeneracionAfter(LocalDate inicioUltimaSemana);
-    // Puedes agregar métodos personalizados aquí si lo deseas
 
+    // Buscar reportes generados entre un rango de fechas (por ejemplo, semana
+    // específica)
     List<FallasPorHeladera> findByFechaGeneracionBetween(LocalDate inicioSemana, LocalDate finSemana);
 }

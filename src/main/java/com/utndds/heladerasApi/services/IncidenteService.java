@@ -8,7 +8,6 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Alerta;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.FallaTecnica;
 import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
-import com.utndds.heladerasApi.models.Rol.Rol;
 import com.utndds.heladerasApi.models.Rol.Tecnico.Tecnico;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.HeladeraRepository;

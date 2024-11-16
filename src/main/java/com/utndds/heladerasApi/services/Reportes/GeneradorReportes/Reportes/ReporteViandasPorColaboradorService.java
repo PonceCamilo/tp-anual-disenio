@@ -1,5 +1,6 @@
 package com.utndds.heladerasApi.services.Reportes.GeneradorReportes.Reportes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
@@ -22,10 +23,10 @@ public class ReporteViandasPorColaboradorService implements GeneradorReporte {
     private ReporteViandasMovidasColaboradorRepository reporteViandasColaboradorRepository;
 
     @Override
-    public void generar() {
+    public void generar(LocalDate fechaInicial, LocalDate fechaFinal) {
         List<Colaborador> colaboradores = colaboradorRepository.findAll();
         for (Colaborador colaborador : colaboradores) {
-            int cantViandasDistribuidas = this.cantidadViandasDistribuidas(colaborador.getColaboraciones());
+            int cantViandasDistribuidas = this.cantidadViandasDistribuidas(colaborador.getColaboraciones(), fechaInicial, fechaFinal);
 
             // Crear y guardar el reporte en la base de datos
             ViandasMovidasPorColaborador reporte = new ViandasMovidasPorColaborador(colaborador.getId(),
@@ -37,12 +38,15 @@ public class ReporteViandasPorColaboradorService implements GeneradorReporte {
         }
     }
 
-    private int cantidadViandasDistribuidas(List<Colaboracion> colaboraciones) {
+    private int cantidadViandasDistribuidas(List<Colaboracion> colaboraciones, LocalDate fechaInicial, LocalDate fechaFinal) {
         int contador = 0;
         for (Colaboracion colaboracion : colaboraciones) {
             if (colaboracion instanceof DistribucionViandas) {
                 DistribucionViandas distribucion = (DistribucionViandas) colaboracion;
-                contador += distribucion.getCantidadViandasAMover();
+                // Suponiendo que DistribucionViandas tiene una fecha
+                if (distribucion.getFecha().isAfter(fechaInicial) && distribucion.getFecha().isBefore(fechaFinal)) {
+                    contador += distribucion.getCantidadViandasAMover();
+                }
             }
         }
         return contador;

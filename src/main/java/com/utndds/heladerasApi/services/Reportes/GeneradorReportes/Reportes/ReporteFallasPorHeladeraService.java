@@ -26,12 +26,12 @@ public class ReporteFallasPorHeladeraService implements GeneradorReporte {
     private ReporteFallasHeladeraRepository reporteFallaRepository; // Repositorio para guardar los reportes
 
     @Override
-    public void generar() {
-        LocalDate unaSemanaAtras = LocalDate.now().minusWeeks(1);
+    public void generar(LocalDate fechaInicial, LocalDate fechaFinal) {
         List<Heladera> heladeras = heladeraRepository.findAll();
 
         for (Heladera heladera : heladeras) {
-            int cantFallas = fallaTecnicaRepository.findByHeladeraAndFechaAfter(heladera, unaSemanaAtras).size();
+            int cantFallas = fallaTecnicaRepository.findByHeladeraAndFechaBetween(heladera, fechaInicial, fechaFinal)
+                    .size();
 
             // Crear y guardar el reporte en la base de datos
             FallasPorHeladera reporteFalla = new FallasPorHeladera(heladera.getId(), cantFallas);

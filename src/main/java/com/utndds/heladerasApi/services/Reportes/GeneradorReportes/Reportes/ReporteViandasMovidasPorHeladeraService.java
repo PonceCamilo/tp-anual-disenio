@@ -1,5 +1,6 @@
 package com.utndds.heladerasApi.services.Reportes.GeneradorReportes.Reportes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.utndds.heladerasApi.models.Heladera.Heladera;
@@ -17,11 +18,10 @@ public class ReporteViandasMovidasPorHeladeraService implements GeneradorReporte
     private HeladeraRepository heladeraRepository;
 
     @Autowired
-    private ReporteViandasMovidasHeladeraRepository reporteViandasHeladeraRepository; // Repositorio para guardar los
-                                                                                      // reportes
+    private ReporteViandasMovidasHeladeraRepository reporteViandasHeladeraRepository; // Repositorio para guardar los reportes
 
     @Override
-    public void generar() {
+    public void generar(LocalDate fechaInicial, LocalDate fechaFinal) {
         List<Heladera> heladeras = heladeraRepository.findAll();
         for (Heladera heladera : heladeras) {
             int cantViandasMovidas = 0; // falta implementar

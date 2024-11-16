@@ -10,6 +10,10 @@ import com.utndds.heladerasApi.models.Reportes.ViandasMovidasPorColaborador;
 @Repository
 public interface ReporteViandasMovidasColaboradorRepository extends JpaRepository<ViandasMovidasPorColaborador, Long> {
 
+    // Buscar reportes generados después de una fecha (última semana, por ejemplo)
     List<ViandasMovidasPorColaborador> findByFechaGeneracionAfter(LocalDate inicioUltimaSemana);
-    // Puedes agregar métodos personalizados aquí si lo deseas
+
+    // Buscar reportes generados entre un rango de fechas (por ejemplo, semana
+    // específica)
+    List<ViandasMovidasPorColaborador> findByFechaGeneracionBetween(LocalDate inicioFecha, LocalDate finFecha);
 }

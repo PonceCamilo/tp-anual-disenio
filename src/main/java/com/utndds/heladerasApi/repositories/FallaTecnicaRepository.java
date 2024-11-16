@@ -13,4 +13,7 @@ import java.util.List;
 @Repository
 public interface FallaTecnicaRepository extends JpaRepository<FallaTecnica, Long> {
     List<FallaTecnica> findByHeladeraAndFechaAfter(Heladera heladera, LocalDate fecha);
+
+    // Buscar las fallas de una heladera entre dos fechas
+    List<FallaTecnica> findByHeladeraAndFechaBetween(Heladera heladera, LocalDate fechaInicial, LocalDate fechaFinal);
 }

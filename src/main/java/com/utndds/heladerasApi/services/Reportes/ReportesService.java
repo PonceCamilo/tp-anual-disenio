@@ -27,49 +27,27 @@ public class ReportesService {
     private ReporteViandasMovidasColaboradorRepository reporteViandasColaboradorRepository;
 
     /**
-     * Obtener el reporte de fallas por heladera de la última semana
+     * Obtener el reporte de fallas por heladera en un rango de fechas específico
      */
-    public List<FallasPorHeladera> obtenerReporteFallasUltimaSemana() {
-        LocalDate inicioUltimaSemana = LocalDate.now().minusWeeks(1); // Inicio de la última semana
-        return reporteFallasHeladeraRepository.findByFechaGeneracionAfter(inicioUltimaSemana);
+    public List<FallasPorHeladera> obtenerReporteFallasPorRango(LocalDate fechaInicial, LocalDate fechaFinal) {
+        return reporteFallasHeladeraRepository.findByFechaGeneracionBetween(fechaInicial, fechaFinal);
     }
 
     /**
-     * Obtener el reporte de viandas movidas por heladera de la última semana
+     * Obtener el reporte de viandas movidas por heladera en un rango de fechas
+     * específico
      */
-    public List<ViandasMovidasPorHeladera> obtenerReporteViandasHeladeraUltimaSemana() {
-        LocalDate inicioUltimaSemana = LocalDate.now().minusWeeks(1); // Inicio de la última semana
-        return reporteViandasHeladeraRepository.findByFechaGeneracionAfter(inicioUltimaSemana);
+    public List<ViandasMovidasPorHeladera> obtenerReporteViandasHeladeraPorRango(LocalDate fechaInicial,
+            LocalDate fechaFinal) {
+        return reporteViandasHeladeraRepository.findByFechaGeneracionBetween(fechaInicial, fechaFinal);
     }
 
     /**
-     * Obtener el reporte de viandas distribuidas por colaborador de la última
-     * semana
+     * Obtener el reporte de viandas distribuidas por colaborador en un rango de
+     * fechas específico
      */
-    public List<ViandasMovidasPorColaborador> obtenerReporteViandasColaboradorUltimaSemana() {
-        LocalDate inicioUltimaSemana = LocalDate.now().minusWeeks(1); // Inicio de la última semana
-        return reporteViandasColaboradorRepository.findByFechaGeneracionAfter(inicioUltimaSemana);
-    }
-
-    /**
-     * Obtener el reporte de una semana específica
-     * 
-     * param semanasAtras Número de semanas hacia atrás desde la fecha actual
-     */
-    public List<FallasPorHeladera> obtenerReporteFallasSemanaEspecifica(int semanasAtras) {
-        LocalDate inicioSemana = LocalDate.now().minusWeeks(semanasAtras);
-        LocalDate finSemana = inicioSemana.plusWeeks(1); // Fin de la semana
-        return reporteFallasHeladeraRepository.findByFechaGeneracionBetween(inicioSemana, finSemana);
-    }
-
-    /**
-     * Obtener un rango de reportes de viandas movidas por heladera
-     * 
-     * @param inicioFecha Fecha de inicio del rango
-     * @param finFecha    Fecha de fin del rango
-     */
-    public List<ViandasMovidasPorHeladera> obtenerReportesViandasHeladeraPorRango(LocalDate inicioFecha,
-            LocalDate finFecha) {
-        return reporteViandasHeladeraRepository.findByFechaGeneracionBetween(inicioFecha, finFecha);
+    public List<ViandasMovidasPorColaborador> obtenerReporteViandasColaboradorPorRango(LocalDate fechaInicial,
+            LocalDate fechaFinal) {
+        return reporteViandasColaboradorRepository.findByFechaGeneracionBetween(fechaInicial, fechaFinal);
     }
 }
