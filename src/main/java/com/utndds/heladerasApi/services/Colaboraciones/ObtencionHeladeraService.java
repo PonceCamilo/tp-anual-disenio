@@ -34,21 +34,27 @@ public class ObtencionHeladeraService {
         Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Colaborador no encontrado con uuid " + colaboradorUUID));
-
+                        System.out.println("colaboradorrr");
         // Buscar o crear un nuevo Punto basado en la dirección
         Punto punto = puntoRepository.findByDireccion(direccion)
                 .orElseGet(() -> {
                     Punto nuevoPunto = new Punto();
                     nuevoPunto.setDireccion(direccion);
-                    // Asignar valores predeterminados o calcular las coordenadas latitud/longitud
-                    // si es necesario
                     nuevoPunto.setLatitud(0.0); // Placeholder para latitud
                     nuevoPunto.setLongitud(0.0); // Placeholder para longitud
                     return puntoRepository.save(nuevoPunto);
+                    
                 });
+                
 
         // Crear una nueva Heladera asociada al Punto
         Heladera heladera = new Heladera();
+        heladera.setCantViandas(0);
+        heladera.setCapacidad(20);
+        heladera.setFuncionando(true);
+        heladera.setTempMax(16.0);
+        heladera.setTempMin(2.0);
+        heladera.setFechaInicioFuncionamiento(java.time.LocalDate.now());
         heladera.setPunto(punto);
 
         // Guardar la Heladera

@@ -102,7 +102,7 @@ public class ColaboracionController {
             @RequestBody DonacionViandaDTO donacionViandaDTO,
             @RequestParam String colaboradorUUID) {
         try {
-            System.out.println("hola crack la comida es: " + donacionViandaDTO.getComida());
+            
             donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorUUID);
             return ResponseEntity.ok("Donación de vianda guardada con éxito");
         } catch (EntityNotFoundException e) {
@@ -112,11 +112,13 @@ public class ColaboracionController {
                     .body("Error al guardar la donación de vianda");
         }
     }
-
+    
     @PostMapping("/obtencion-heladera")
     public ResponseEntity<String> registrarObtencionHeladera(
             @RequestParam String direccion,
             @RequestParam String colaboradorUUID) {
+                System.out.println("el colaboradorUUID es: " + colaboradorUUID);
+                System.out.println("la direccion es: " + direccion);
         try {
             obtencionHeladeraService.registrarObtencionHeladera(direccion, colaboradorUUID);
             return ResponseEntity.ok("Obtención de heladera registrada con éxito");
