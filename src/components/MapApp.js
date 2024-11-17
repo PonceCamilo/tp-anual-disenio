@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useJsApiLoader, GoogleMap, Marker, InfoWindow } from '@react-google-maps/api';
+import { useJsApiLoader, GoogleMap, Marker, InfoWindow, } from '@react-google-maps/api';
 import SearchMapApp from './SearchMapApp';
 import IcoAlerta from '../assets/iconos/IcoAlerta.svg';
 
