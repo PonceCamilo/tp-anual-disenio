@@ -28,20 +28,19 @@ public class ObtencionHeladeraService {
     @Autowired
     private ObtencionHeladeraRepository obtencionHeladeraRepository;
 
-    public void registrarObtencionHeladera(String direccion, String colaboradorUUID) {
+    public void registrarObtencionHeladera(String direccion,Double lat,Double lng, String colaboradorUUID) {
 
         // Buscar al colaborador
         Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(() -> new EntityNotFoundException(
                         "Colaborador no encontrado con uuid " + colaboradorUUID));
-                        System.out.println("colaboradorrr");
         // Buscar o crear un nuevo Punto basado en la dirección
         Punto punto = puntoRepository.findByDireccion(direccion)
                 .orElseGet(() -> {
                     Punto nuevoPunto = new Punto();
                     nuevoPunto.setDireccion(direccion);
-                    nuevoPunto.setLatitud(0.0); // Placeholder para latitud
-                    nuevoPunto.setLongitud(0.0); // Placeholder para longitud
+                    nuevoPunto.setLatitud(lat); // Placeholder para latitud
+                    nuevoPunto.setLongitud(lng); // Placeholder para longitud
                     return puntoRepository.save(nuevoPunto);
                     
                 });

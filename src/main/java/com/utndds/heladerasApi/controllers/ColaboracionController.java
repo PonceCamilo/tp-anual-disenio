@@ -121,11 +121,11 @@ public class ColaboracionController {
     @PostMapping("/obtencion-heladera")
     public ResponseEntity<String> registrarObtencionHeladera(
             @RequestParam String direccion,
+            @RequestParam Double lat,
+            @RequestParam Double lng,
             @RequestParam String colaboradorUUID) {
-        System.out.println("el colaboradorUUID es: " + colaboradorUUID);
-        System.out.println("la direccion es: " + direccion);
         try {
-            obtencionHeladeraService.registrarObtencionHeladera(direccion, colaboradorUUID);
+            obtencionHeladeraService.registrarObtencionHeladera(direccion,lat,lng, colaboradorUUID);
             return ResponseEntity.ok("Obtención de heladera registrada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
