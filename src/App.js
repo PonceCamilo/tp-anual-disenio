@@ -15,6 +15,7 @@ import DonacionViandaPage from './pages/DonacionViandaPage.js';
 import CargarHeladeraPage from './pages/CargarHeladeraPage.js';
 import DistribucionViandasPage from './pages/DistribucionViandasPage.js';
 import SuscripcionHeladeraPage from './pages/SuscripcionHeladeraPage.js';
+import VisitaTecnicoPage from './pages/VisitaTenicoPage.js';
 import CallbackPage from './pages/CallBackPage.js';
 import AccesoDenegadoPage from './pages/AccesoDenegadoPage';
 import { AuthProvider } from './config/authContext.js';
@@ -31,11 +32,11 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>  {/* Envolviendo la app con ChakraProvider */}
-      <Auth0Provider 
-        domain={domain} 
-        clientId={clientId} 
+      <Auth0Provider
+        domain={domain}
+        clientId={clientId}
         redirectUri={redirectUri}
-      >  
+      >
         <AuthProvider>
           <Router>
             <Main setHeaderHeight={setHeaderHeight} headerHeight={headerHeight} />
@@ -77,7 +78,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/consulta-canje" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_CLIENT']}>
             <ConsultaCanjePage />
           </RoleProtectedRoute>
         } />
@@ -92,7 +93,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/recomendar-puntos" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_CLIENT']}>
             <RecomendarPuntos />
           </RoleProtectedRoute>
         } />
@@ -116,14 +117,22 @@ function Main({ setHeaderHeight, headerHeight }) {
             <CargarHeladeraPage />
           </RoleProtectedRoute>
         } />
+
         <Route path="/distribucion-viandas" element={
           <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
             <DistribucionViandasPage />
           </RoleProtectedRoute>
         } />
         <Route path="/suscripcion-heladera" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN','ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_CLIENT']}>
             <SuscripcionHeladeraPage />
+          </RoleProtectedRoute>
+        } />
+
+        {/* Nueva ruta protegida para "Visita Técnica" */}
+        <Route path="/visita-tecnico" element={
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+            <VisitaTecnicoPage />
           </RoleProtectedRoute>
         } />
       </Routes>

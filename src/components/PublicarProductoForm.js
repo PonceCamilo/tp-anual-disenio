@@ -35,15 +35,12 @@ function PublicarProductoForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const formData = new FormData();
-        formData.append('rubro', product.rubro); // 'rubro' en vez de 'name'
-        formData.append('nombre', product.nombre); // 'nombre' en vez de 'name'
-        formData.append('cantidadPuntosNec', product.cantidadPuntosNec); // 'cantidadPuntosNec' en vez de 'points'
-
-        // Si la imagen es válida, la agregamos al formData
-        if (product.imagen) {
-            formData.append('imagen', product.imagen);
-        }
+        // Datos del producto en formato JSON
+        const productData = {
+            rubro: product.rubro,
+            nombre: product.nombre,
+            cantidadPuntosNec: product.cantidadPuntosNec,
+        };
 
         // URL del endpoint
         const url = `http://localhost:8080/colaboraciones/oferta?colaboradorUUID=${colaboradorUUID}`;
@@ -53,30 +50,37 @@ function PublicarProductoForm() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`, // Bearer token agregado correctamente
+                    'Authorization': `Bearer ${accessToken}`,
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(productData),
             });
 
-            if (response.ok) {
-                const data = await response.json();
+            console.log('Response Status:', response.status); // Verificar el código de estado HTTP
+            const responseText = await response.text();
+            console.log('Response Text:', responseText); // Verificar la respuesta del servidor
+
+            if (!response.ok) {
+                // Si no es una respuesta exitosa, muestra un mensaje de error
                 toast({
-                    title: 'Oferta registrada con éxito',
-                    description: data.message || 'La oferta fue procesada exitosamente.',
-                    status: 'success',
-                    duration: 5000,
-                    isClosable: true,
-                });
-            } else {
-                const errorText = await response.text();
-                toast({
-                    title: 'Error',
-                    description: errorText || 'Ocurrió un error al procesar la oferta.',
+                    title: 'Error al registrar la oferta',
+                    description: responseText || 'Ocurrió un error al procesar la oferta.',
                     status: 'error',
                     duration: 5000,
                     isClosable: true,
                 });
+                return;
             }
+
+            // Si la respuesta fue exitosa, parseamos el cuerpo de la respuesta
+            const data = JSON.parse(responseText); // Esto también puede ser JSON si el servidor devuelve JSON
+            toast({
+                title: 'Oferta registrada con éxito',
+                description: data.message || 'La oferta fue procesada exitosamente.',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+
         } catch (error) {
             console.error('Error:', error);
             toast({
@@ -88,6 +92,7 @@ function PublicarProductoForm() {
             });
         }
     };
+
 
     return (
         <Box as="form" onSubmit={handleSubmit} width="100%">
