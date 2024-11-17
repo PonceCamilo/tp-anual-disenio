@@ -8,6 +8,7 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 public interface ColaboradorRepository extends JpaRepository<Colaborador, Long> {
     Colaborador findByPersona(PersonaHumana persona);
 
+    @SuppressWarnings("null")
     Optional<Colaborador> findById(Long Id);
 
     Optional<Colaborador> findByUUID(String UUID);

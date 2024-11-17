@@ -10,13 +10,12 @@ import com.utndds.heladerasApi.models.Heladera.Incidentes.Incidente.Incidente;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.models.Rol.Tecnico.Tecnico;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
+import com.utndds.heladerasApi.repositories.FallaTecnicaRepository;
 import com.utndds.heladerasApi.repositories.HeladeraRepository;
 import com.utndds.heladerasApi.repositories.TecnicoRepository;
 import com.utndds.heladerasApi.repositories.VisitaTecnicoRepository;
 import com.utndds.heladerasApi.repositories.Incidentes.IncidenteRepository;
 import jakarta.persistence.EntityNotFoundException;
-
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +28,8 @@ public class IncidenteService {
 
     @Autowired
     private IncidenteRepository incidenteRepository;
+    @Autowired
+    private FallaTecnicaRepository fallaTecnicaRepository;
     @Autowired
     private VisitaTecnicoRepository visitaTecnicoRepository; // Repositorio para registrar visitas
 
@@ -73,7 +74,7 @@ public class IncidenteService {
             tecnico.getPersona().notificar(mensaje);
 
             // Relacionamos el incidente con el técnico
-            VisitaTecnico nuevaVisita = new VisitaTecnico(LocalDate.now(), tecnico, fallaTecnica, "Pendiente", null,
+            VisitaTecnico nuevaVisita = new VisitaTecnico(tecnico, fallaTecnica, "Pendiente", null,
                     false);
             visitaTecnicoRepository.save(nuevaVisita);
         }
@@ -85,29 +86,39 @@ public class IncidenteService {
     }
 
     public void registrarVisita(String tecnicoUUID, VisitaTecnicoDTO visitaDTO) {
+        try {
+            // Buscar el técnico por UUID
+            System.out.println("Buscando técnico con UUID: " + tecnicoUUID);
+            Tecnico tecnico = tecnicoRepository.findByUUID(tecnicoUUID)
+                    .orElseThrow(() -> new EntityNotFoundException("Técnico no encontrado con UUID " + tecnicoUUID));
+            System.out.println("Técnico encontrado: " + tecnico);
 
-        // Buscar el técnico por ID
-        Tecnico tecnico = tecnicoRepository.findByUUID(tecnicoUUID)
-                .orElseThrow(() -> new EntityNotFoundException("Técnico no encontrado con uuid " + tecnicoUUID));
+            // Buscar el incidente por ID
+            System.out.println("Buscando incidente con ID: " + visitaDTO.getIncidenteId());
+            FallaTecnica fallaTecnica = fallaTecnicaRepository.findById(visitaDTO.getIncidenteId())
+                    .orElseThrow(() -> new EntityNotFoundException(
+                            "falla tecnica no encontrado con ID " + visitaDTO.getIncidenteId()));
+            System.out.println("falla tecnica encontrado: " + fallaTecnica);
 
-        // Buscar el incidente por ID
-        Incidente incidente = incidenteRepository.findById(visitaDTO.getIncidenteId())
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Incidente no encontrado con id " + visitaDTO.getIncidenteId()));
+            // Crear y guardar la visita del técnico
+            System.out.println("Creando visita del técnico...");
+            VisitaTecnico visitaTecnico = new VisitaTecnico(tecnico, fallaTecnica, visitaDTO.getComentario(),
+                    visitaDTO.getFoto(), visitaDTO.isSolucionado());
+            System.out.println("Visita del técnico creada: " + visitaTecnico);
 
-        // Buscar la heladera asociada al incidente
-        Heladera heladera = incidente.getHeladera();
+            visitaTecnicoRepository.save(visitaTecnico);
+            System.out.println("Visita del técnico guardada con éxito.");
 
-        // Crear una nueva instancia de VisitaTecnico
-        VisitaTecnico visitaTecnico = new VisitaTecnico();
-        visitaTecnico.setTecnico(tecnico);
-        visitaTecnico.setIncidente(incidente);
-        visitaTecnico.setFecha(visitaDTO.getFechaVisita());
-        visitaTecnico.setDescripcion(visitaDTO.getComentario());
-        visitaTecnico.setFoto(visitaDTO.getFoto());
-        visitaTecnicoRepository.save(visitaTecnico); // Guardar la visita
-
-        heladera.setFuncionando(visitaDTO.isSolucionado());
+        } catch (EntityNotFoundException e) {
+            // Capturar errores específicos de entidades no encontradas
+            System.err.println("Error al buscar entidades: " + e.getMessage());
+            throw e; // Re-lanzar la excepción para que sea manejada por el controlador
+        } catch (Exception e) {
+            // Capturar cualquier otro error
+            System.err.println("Error inesperado al registrar la visita técnica: " + e.getMessage());
+            e.printStackTrace();
+            throw e; // Re-lanzar la excepción
+        }
     }
 
     public void generarAlerta(Long heladeraId, String tipoAlerta) {

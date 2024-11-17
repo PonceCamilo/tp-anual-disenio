@@ -13,20 +13,19 @@ import lombok.Setter;
 @Table(name = "falla_tecnica")
 public class FallaTecnica extends Incidente {
     @ManyToOne
-    @JoinColumn(name = "colaborador", nullable = false) // Assuming you want to set up a foreign key relationship
+    @JoinColumn(name = "colaborador")
     private Colaborador colaborador;
 
     @Column(name = "descripcion")
-    private String descripcion; // Description of the incident
+    private String descripcion;
 
     @Column(name = "foto")
-    private String foto; // Path or URL to the photo
+    private String foto;
 
     // Default constructor for JPA
     public FallaTecnica() {
     }
 
-    // Constructor with parameters
     public FallaTecnica(Heladera heladera, Colaborador colaborador, String descripcion, String foto) {
         super(heladera);
         this.colaborador = colaborador;

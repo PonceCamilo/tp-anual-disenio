@@ -34,12 +34,10 @@ public class Tecnico extends Rol {
     public Tecnico() {
     }
 
-    public Tecnico(Persona persona, String cuil, AreaCobertura areaCobertura,
-                   List<VisitaTecnico> visitas) {
+    public Tecnico(Persona persona, String cuil, AreaCobertura areaCobertura) {
         super(persona);
         this.cuil = cuil;
         this.areaCobertura = areaCobertura;
-        this.visitas = visitas;
     }
 
 }

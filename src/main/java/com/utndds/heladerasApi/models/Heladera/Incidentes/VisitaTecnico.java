@@ -45,9 +45,9 @@ public class VisitaTecnico {
     public VisitaTecnico() {
     }
 
-    public VisitaTecnico(LocalDate fecha, Tecnico tecnico, Incidente incidente, String descripcion,
+    public VisitaTecnico(Tecnico tecnico, Incidente incidente, String descripcion,
             String foto, boolean arreglado) {
-        this.fecha = fecha;
+        this.fecha = LocalDate.now();
         this.tecnico = tecnico;
         this.incidente = incidente;
         this.descripcion = descripcion;

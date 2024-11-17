@@ -24,8 +24,8 @@ public class IncidenteController {
     }
 
     @PreAuthorize("hasAuthority('SCOPE_ROLE_TECHNICAL')")
-    @PostMapping("/registrarVisita/{tecnicoId}")
-    public ResponseEntity<String> registrarVisita(@PathVariable String tecnicoUUID,
+    @PostMapping("/registrarVisita")
+    public ResponseEntity<String> registrarVisita(@RequestParam String tecnicoUUID,
             @RequestBody VisitaTecnicoDTO visitaDTO) {
         incidenteService.registrarVisita(tecnicoUUID, visitaDTO);
         return ResponseEntity.ok("Visita del técnico registrada con éxito");

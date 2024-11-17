@@ -1,11 +1,8 @@
 package com.utndds.heladerasApi.DTOs;
 
-import java.time.LocalDate;
-
 public class VisitaTecnicoDTO {
 
     private Long incidenteId;
-    private LocalDate fechaVisita;
     private String comentario;
     private String foto; // Puede ser una URL o base64 para la imagen
     private boolean solucionado;
@@ -18,14 +15,6 @@ public class VisitaTecnicoDTO {
 
     public void setIncidenteId(Long incidenteId) {
         this.incidenteId = incidenteId;
-    }
-
-    public LocalDate getFechaVisita() {
-        return fechaVisita;
-    }
-
-    public void setFechaVisita(LocalDate fechaVisita) {
-        this.fechaVisita = fechaVisita;
     }
 
     public String getComentario() {

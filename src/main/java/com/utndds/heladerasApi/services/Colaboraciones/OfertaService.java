@@ -28,13 +28,8 @@ public class OfertaService {
                         "Colaborador no encontrado con uuid " + colaboradorUUID));
 
         // Crear una nueva oferta usando los datos del DTO
-        Oferta oferta = new Oferta();
-        oferta.setRubro(ofertaDTO.getRubro());
-        oferta.setNombre(ofertaDTO.getNombre());
-        oferta.setCantidadPuntosNec(ofertaDTO.getCantidadPuntosNec());
-        oferta.setImagen(ofertaDTO.getImagen());
-        oferta.setColaborador(colaborador);
-
+        Oferta oferta = new Oferta(colaborador, ofertaDTO.getRubro(), ofertaDTO.getNombre(),
+                ofertaDTO.getCantidadPuntosNec(), ofertaDTO.getImagen());
         // Guardar la oferta en la base de datos
         ofertaRepository.save(oferta);
     }

@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+
 @Service
 public class CargaCSV {
 
@@ -38,45 +39,51 @@ public class CargaCSV {
         System.out.println("ENTRAMO CSV...");
         try (CSVReader reader = new CSVReader(new InputStreamReader(fileInputStream))) {
             List<String[]> registros = reader.readAll();
-            
+
             System.out.println("REGISTROS:");
-        for (String[] registro : registros) {
-            System.out.println(Arrays.toString(registro));
-        }
+            for (String[] registro : registros) {
+                System.out.println(Arrays.toString(registro));
+            }
+
             for (String[] registro : registros) {
                 if (registro.length < 5) {
                     throw new IllegalArgumentException(
                             "Registro debe tener al menos 5 campos. El actual tiene: " + registro.length);
                 }
 
-                // Proceed with creating the PersonaHumana
-                PersonaHumana persona = phFactory.crearPersonaHumana(registro);
-                
-                
-                PersonaHumana personaExistente = personaRepository.findByDocumento_TipoAndDocumento_Numero(
-                        registro[0], registro[1]);
+                // Crear o buscar PersonaHumana
+                PersonaHumana persona = getOrCreatePersonaHumana(registro);
 
-                if (personaExistente == null) {
-                    personaRepository.save(persona); // Guardar nueva persona si no existe
-                } else {
-                    persona = personaExistente; // Usar la persona existente
-                }
+                // Crear o buscar Colaborador
+                Colaborador colaborador = getOrCreateColaborador(persona, registro);
 
-                // Buscar el colaborador en la base de datos por la persona asociada
-                Colaborador colaborador = colaboradorRepository.findByPersona(persona);
-
-                if (colaborador == null) {
-                    colaborador = cFactory.crearColaborador(registro, persona);
-                    colaboradorRepository.save(colaborador); // Guardar nuevo colaborador si no existe
-                }
-
-                // Crear colaboraciones y guardarlas en la base de datos
+                // Crear y guardar Colaboraciones
                 List<Colaboracion> colaboraciones = colaboFactory.crearColaboracion(registro, colaborador);
-                colaboracionRepository.saveAll(colaboraciones); // Guardar todas las colaboraciones
+                colaboracionRepository.saveAll(colaboraciones);
             }
         } catch (IOException | CsvException e) {
-            System.out.println("Error allllllllllllllllll cargar el archivo CSV: " + e.getMessage());
+            System.out.println("Error al cargar el archivo CSV: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private PersonaHumana getOrCreatePersonaHumana(String[] registro) {
+        PersonaHumana persona = personaRepository.findByDocumento_TipoAndDocumento_Numero(registro[0], registro[1]);
+
+        if (persona == null) {
+            persona = phFactory.crearPersonaHumana(registro);
+            persona = personaRepository.save(persona); // Guardar nueva persona
+        }
+        return persona;
+    }
+
+    private Colaborador getOrCreateColaborador(PersonaHumana persona, String[] registro) {
+        Colaborador colaborador = colaboradorRepository.findByPersona(persona);
+
+        if (colaborador == null) {
+            colaborador = cFactory.crearColaborador(registro, persona);
+            colaborador = colaboradorRepository.save(colaborador); // Guardar nuevo colaborador
+        }
+        return colaborador;
     }
 }

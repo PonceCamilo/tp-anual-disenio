@@ -9,11 +9,11 @@ import jakarta.persistence.*;
 @Entity
 public class RegistroPersonaVulnerable extends Colaboracion {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "persona_vulnerable")
     private PersonaVulnerable personaVuln;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "tarjeta_pers_vuln")
     private TarjetaPersVuln tarjeta;
 

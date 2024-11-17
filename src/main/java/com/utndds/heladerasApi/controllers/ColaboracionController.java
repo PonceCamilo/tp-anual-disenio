@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.utndds.heladerasApi.services.ReconocimientosExtra;
 import com.utndds.heladerasApi.services.Colaboraciones.DistribucionViandasService;
 import com.utndds.heladerasApi.services.Colaboraciones.DonacionDineroService;
@@ -102,7 +107,7 @@ public class ColaboracionController {
             @RequestBody DonacionViandaDTO donacionViandaDTO,
             @RequestParam String colaboradorUUID) {
         try {
-            
+
             donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorUUID);
             return ResponseEntity.ok("Donación de vianda guardada con éxito");
         } catch (EntityNotFoundException e) {
@@ -112,13 +117,13 @@ public class ColaboracionController {
                     .body("Error al guardar la donación de vianda");
         }
     }
-    
+
     @PostMapping("/obtencion-heladera")
     public ResponseEntity<String> registrarObtencionHeladera(
             @RequestParam String direccion,
             @RequestParam String colaboradorUUID) {
-                System.out.println("el colaboradorUUID es: " + colaboradorUUID);
-                System.out.println("la direccion es: " + direccion);
+        System.out.println("el colaboradorUUID es: " + colaboradorUUID);
+        System.out.println("la direccion es: " + direccion);
         try {
             obtencionHeladeraService.registrarObtencionHeladera(direccion, colaboradorUUID);
             return ResponseEntity.ok("Obtención de heladera registrada con éxito");
@@ -131,16 +136,19 @@ public class ColaboracionController {
     }
 
     @PostMapping("/oferta")
-    public ResponseEntity<String> registrarOferta(
+    public ResponseEntity<Map<String, String>> registrarOferta(
             @RequestBody OfertaDTO ofertaDTO,
             @RequestParam String colaboradorUUID) {
         try {
             ofertaService.registrarOferta(ofertaDTO, colaboradorUUID);
-            return ResponseEntity.ok("Oferta registrada con éxito");
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Oferta registrada con éxito");
+            return ResponseEntity.ok(response);
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al registrar la oferta");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Collections.singletonMap("error", "Error al registrar la oferta"));
         }
     }
 

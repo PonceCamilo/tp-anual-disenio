@@ -9,7 +9,7 @@ import jakarta.persistence.*;
 @Entity
 public class DonacionVianda extends Colaboracion {
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vianda")
     private Vianda viandaDonada;
 

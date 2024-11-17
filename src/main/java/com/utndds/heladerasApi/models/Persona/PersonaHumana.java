@@ -22,7 +22,7 @@ public class PersonaHumana extends Persona {
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaDeNacimiento;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento")
     private Documento documento;
 
