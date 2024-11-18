@@ -40,7 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/validar-contraseña").permitAll()
                         .requestMatchers("/tecnicos/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
                         .requestMatchers("/reportes/**").hasAnyAuthority("SCOPE_ROLE_ADMIN")
-                        .requestMatchers("/suscribir/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR")
+                        .requestMatchers("/suscripciones/**").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR")
                         .requestMatchers(HttpMethod.GET, "/ubicaciones-googlemaps").permitAll()
                         .requestMatchers(HttpMethod.POST, "/heladeras/recomendarPuntos")
                         .hasAuthority("SCOPE_ROLE_COLLABORATOR")

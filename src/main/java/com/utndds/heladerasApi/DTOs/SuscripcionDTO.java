@@ -2,7 +2,7 @@ package com.utndds.heladerasApi.DTOs;
 
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Enums.*;;;
+import com.utndds.heladerasApi.models.Enums.*;
 
 public class SuscripcionDTO {
     private String colaboradorUUID;
