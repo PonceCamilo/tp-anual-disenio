@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Box,
     FormControl,
@@ -9,7 +9,7 @@ import {
     NumberInput,
     NumberInputField,
     useToast,
-    Select
+    Select,
 } from '@chakra-ui/react';
 import { useAuth } from '../config/authContext';
 
@@ -18,20 +18,45 @@ const DonacionViandaForm = () => {
     const [fechaDeCaducidad, setFechaDeCaducidad] = useState('');
     const [calorias, setCalorias] = useState('');
     const [peso, setPeso] = useState('');
-    const [heladeraId, setHeladeraId] = useState(1); // Asignamos el valor inicial como número
-    const toast = useToast(); // Usamos el hook useToast de Chakra UI
-    const { accessToken } = useAuth(); // Asegurarse de tener el accessToken
+    const [heladeraId, setHeladeraId] = useState(null); // Cambiado a null inicialmente
+    const [heladeras, setHeladeras] = useState([]); // Estado para almacenar la lista de heladeras
+    const toast = useToast();
+    const { accessToken } = useAuth();
+
+    // Cargar las heladeras desde el backend
+    useEffect(() => {
+        const fetchHeladeras = async () => {
+            try {
+                const response = await fetch('http://localhost:8080/heladeras/listaHeladeras', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`,
+                    },
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setHeladeras(data); // Guardar la lista de heladeras en el estado
+                } else {
+                    console.error('Error al obtener las heladeras');
+                }
+            } catch (error) {
+                console.error('Error al obtener las heladeras:', error);
+            }
+        };
+
+        fetchHeladeras();
+    }, [accessToken]); // Ejecutar el efecto al montar el componente
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Asegurémonos de que la fecha esté bien formateada
         const fechaFormateada = new Date(fechaDeCaducidad).toISOString().split('T')[0];
-        console.log('Fecha formateada:', fechaFormateada);
 
         const formData = {
             comida,
-            fechaCaducidad: fechaFormateada,  // Asegurándonos de que sea la fecha correcta
+            fechaCaducidad: fechaFormateada,
             calorias: parseFloat(calorias),
             peso: parseFloat(peso),
             heladeraId: heladeraId,
@@ -80,12 +105,11 @@ const DonacionViandaForm = () => {
             });
         }
 
-        // Limpiar los campos después de enviar el formulario
         setComida('');
         setFechaDeCaducidad('');
         setCalorias('');
         setPeso('');
-        setHeladeraId(1); // Resetear heladeraId
+        setHeladeraId(null);
     };
 
     return (
@@ -140,16 +164,18 @@ const DonacionViandaForm = () => {
                     </NumberInput>
                 </FormControl>
 
-                {/* Nuevo campo para seleccionar el id de la heladera */}
                 <FormControl id="heladeraId" isRequired>
                     <FormLabel>Seleccionar Heladera</FormLabel>
                     <Select
-                        value={heladeraId}
-                        onChange={(e) => setHeladeraId(Number(e.target.value))} // Convertimos el valor a número
+                        placeholder="Seleccione una heladera"
+                        value={heladeraId || ''}
+                        onChange={(e) => setHeladeraId(Number(e.target.value))}
                     >
-                        <option value="1">Heladera 1</option>
-                        <option value="2">Heladera 2</option>
-                        <option value="3">Heladera 3</option>
+                        {heladeras.map((heladera) => (
+                            <option key={heladera.id} value={heladera.id}>
+                                {heladera.nombrePunto}
+                            </option>
+                        ))}
                     </Select>
                 </FormControl>
 
