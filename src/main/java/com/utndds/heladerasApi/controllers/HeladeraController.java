@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import com.utndds.heladerasApi.models.Heladera.Heladera;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,5 +64,9 @@ public class HeladeraController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+    @GetMapping("/listaHeladeras")
+    public List<HeladeraDTO> obtenerHeladeras() {
+        return heladeraService.obtenerHeladerasDTO();
     }
 }

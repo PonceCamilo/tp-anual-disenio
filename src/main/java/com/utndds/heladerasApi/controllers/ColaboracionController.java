@@ -77,6 +77,8 @@ public class ColaboracionController {
         try {
             distribucionViandasService.guardarDistribucionViandas(colaboradorUUID, distribucionViandasDTO);
             return ResponseEntity.ok("Distribución de viandas guardada con éxito");
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
@@ -110,7 +112,8 @@ public class ColaboracionController {
 
             donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorUUID);
             return ResponseEntity.ok("Donación de vianda guardada con éxito");
-        } catch (EntityNotFoundException e) {
+        }
+         catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

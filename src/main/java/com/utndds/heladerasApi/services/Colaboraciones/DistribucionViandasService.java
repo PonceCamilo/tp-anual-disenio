@@ -43,19 +43,30 @@ public class DistribucionViandasService {
                                 .orElseThrow(() -> new EntityNotFoundException(
                                                 "Heladera no encontrada con id "
                                                                 + distribucionViandasDTO.getHeladeraDestinoId()));
+                if (heladeraOrigen.getId().equals(heladeraDestino.getId())) {
+                        throw new IllegalArgumentException("La heladera de origen y destino no pueden ser la misma");
+                }
+                if (heladeraOrigen.getCantViandas() < distribucionViandasDTO.getCantidadViandasAMover()) {
+                        
+                        throw new IllegalArgumentException("La heladera de origen no tiene suficientes viandas");
+                } else {
+                        heladeraOrigen.setCantViandas(heladeraOrigen.getCantViandas()
+                                        - distribucionViandasDTO.getCantidadViandasAMover());
+                        heladeraDestino.setCantViandas(heladeraDestino.getCantViandas()
+                                        + distribucionViandasDTO.getCantidadViandasAMover());
+                        DistribucionViandas distribucionViandas = new DistribucionViandas();
+                        distribucionViandas.setColaborador(colaborador);
+                        distribucionViandas.setHeladeraOrigen(heladeraOrigen);
+                        distribucionViandas.setHeladeraDestino(heladeraDestino);
+                        distribucionViandas.setCantidadViandasAMover(distribucionViandasDTO.getCantidadViandasAMover());
+                        distribucionViandas.setMotivo(distribucionViandasDTO.getMotivo());
 
-                // Crear y guardar la distribución de viandas
-                DistribucionViandas distribucionViandas = new DistribucionViandas();
-                distribucionViandas.setColaborador(colaborador);
-                distribucionViandas.setHeladeraOrigen(heladeraOrigen);
-                distribucionViandas.setHeladeraDestino(heladeraDestino);
-                distribucionViandas.setCantidadViandasAMover(distribucionViandasDTO.getCantidadViandasAMover());
-                distribucionViandas.setMotivo(distribucionViandasDTO.getMotivo());
+                        distribucionViandasRepository.save(distribucionViandas);
 
-                distribucionViandasRepository.save(distribucionViandas);
+                        // Crear la solicitud de apertura automáticamente
+                        solicitudAperturaService.crearSolicitud(colaboradorUUID, heladeraDestino.getId(),
+                                        MotivoApertura.DISTRIBUCION);
+                }
 
-                // Crear la solicitud de apertura automáticamente
-                solicitudAperturaService.crearSolicitud(colaboradorUUID, heladeraDestino.getId(),
-                                MotivoApertura.DISTRIBUCION);
         }
 }

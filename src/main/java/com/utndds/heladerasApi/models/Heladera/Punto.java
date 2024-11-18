@@ -29,6 +29,9 @@ public class Punto {
     public Punto() {
 
     }
+    public  String getNombrePunto() {
+        return direccion;
+    }
 
     public Punto(double latitud, double longitud, String nombre, String direccion) {
         this.latitud = latitud;

@@ -9,7 +9,9 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class HeladeraService {
@@ -46,4 +48,9 @@ public class HeladeraService {
             throw new EntityNotFoundException("Heladera no encontrada con el ID: " + id);
         }
     }
+    public List<HeladeraDTO> obtenerHeladerasDTO() {
+    return heladeraRepository.findAll().stream()
+            .map(heladera -> new HeladeraDTO(heladera.getId(), heladera.getPunto().getNombrePunto()))
+            .collect(Collectors.toList());
+}
 }

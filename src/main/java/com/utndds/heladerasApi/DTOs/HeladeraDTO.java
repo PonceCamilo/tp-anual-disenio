@@ -4,6 +4,25 @@ public class HeladeraDTO {
     private int capacidad;
     private Double temperaturaMaxima;
     private Double temperaturaMinima;
+    private Long id;
+    private String nombrePunto;
+
+    public HeladeraDTO( Long id, String nombrePunto) {
+        this.id = id;
+        this.nombrePunto = nombrePunto;
+    }
+    public String getNombrePunto() {
+        return nombrePunto;
+    }
+    public void setNombrePunto(String nombrePunto) {
+        this.nombrePunto = nombrePunto;
+    }
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getCapacidad() {
         return capacidad;
