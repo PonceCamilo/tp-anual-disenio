@@ -73,7 +73,8 @@ function SuscripcionHeladeraContent() {
     const [selectedHeladera, setSelectedHeladera] = useState(null);
     const [tiposEventosSeleccionados, setTiposEventosSeleccionados] = useState([]);
     const [tiposContactosSeleccionados, setTiposContactosSeleccionados] = useState([]);
-    const [viandasNumber, setViandasNumber] = useState('');
+    const [viandasNumberMax, setViandasNumberMax] = useState('');
+    const [viandasNumberMin, setViandasNumberMin] = useState('');
     const { accessToken } = useAuth();
     const toast = useToast();
 
@@ -126,11 +127,12 @@ function SuscripcionHeladeraContent() {
         e.preventDefault();
 
         const suscripcionDTO = {
-            colaboradorUUID: colaboradorUUID, // Reemplaza con el valor real
+            colaboradorUUID: colaboradorUUID,
             heladeraId: selectedHeladera?.id,
             tiposEventosSeleccionados,
             tiposContactosSeleccionados,
-            cantidadViandas: parseInt(viandasNumber, 10) || 0,
+            cantidadViandasMax: parseInt(viandasNumberMax, 10) || 0,
+            cantidadViandasMin: parseInt(viandasNumberMin, 10) || 0,
         };
 
         try {
@@ -241,18 +243,29 @@ function SuscripcionHeladeraContent() {
                     </CheckboxGroup>
 
                     <FormControl>
-                        <Input
-                            placeholder="Cantidad de viandas"
+                    <Input
+                            placeholder="Cantidad de viandas Mínima"
                             type="number"
-                            value={viandasNumber}
-                            onChange={(e) => setViandasNumber(e.target.value)}
+                            value={viandasNumberMin}
+                            onChange={(e) => setViandasNumberMin(e.target.value)}
                             isDisabled={
-                                !tiposEventosSeleccionados.includes('POCAS_VIANDAS') &&
-                                !tiposEventosSeleccionados.includes('MUCHAS_VIANDAS')
+                                !tiposEventosSeleccionados.includes('POCAS_VIANDAS')
                             }
                         />
                     </FormControl>
-
+                    <FormControl>
+                        <Input
+                            placeholder="Cantidad de viandas Maxima"
+                            type="number"
+                            value={viandasNumberMax}
+                            onChange={(e) => setViandasNumberMax(e.target.value)}
+                            isDisabled={
+                                !tiposEventosSeleccionados.includes('MUCHAS_VIANDAS')
+                            }
+                        />
+                        </FormControl>
+                    
+                    
                     <HStack spacing={4}>
                         <Button type="submit" colorScheme="green">
                             Suscribirse
