@@ -5,6 +5,12 @@ import com.utndds.heladerasApi.services.Canjes.CanjesService;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,4 +58,18 @@ public class CanjesController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+
+    @GetMapping("/ofertasDisponibles")
+    public ResponseEntity<?> ofertasDisponibles() {
+        try {
+            List<Map<String, Object>> ofertas = canjesService.ofertasDisponibles();
+            return ResponseEntity.ok(ofertas); // Devuelve la lista de ofertas en formato JSON
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Collections.singletonMap("error", "Ocurrió un error al obtener las ofertas."));
+        }
+    }
+
 }

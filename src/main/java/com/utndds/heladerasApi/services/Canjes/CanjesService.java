@@ -9,6 +9,11 @@ import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.OfertaRep
 
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,4 +63,24 @@ public class CanjesService {
             return false; // Canje fallido
         }
     }
+    public List<Map<String, Object>> ofertasDisponibles() {
+    // Obtener todas las ofertas
+    Iterable<Oferta> ofertas = ofertaRepository.findAll();
+
+    // Crear una lista para almacenar las ofertas en formato JSON
+    List<Map<String, Object>> ofertasJson = new ArrayList<>();
+
+    // Iterar sobre las ofertas
+    for (Oferta oferta : ofertas) {
+        Map<String, Object> ofertaMap = new HashMap<>();
+        ofertaMap.put("id", oferta.getId());
+        ofertaMap.put("nombre", oferta.getNombre());
+        ofertaMap.put("rubro", oferta.getRubro());
+        ofertaMap.put("cantidadPuntosNecesarios", oferta.getCantidadPuntosNec());
+        ofertaMap.put("imagen", oferta.getImagen());
+        ofertasJson.add(ofertaMap);
+    }
+
+    return ofertasJson;
+}
 }
