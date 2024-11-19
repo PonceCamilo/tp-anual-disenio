@@ -81,12 +81,12 @@ public class SuscripcionService {
             switch (tipo) {
                 case POCAS_VIANDAS:
                     evento = new PocasViandas();
-                    ((PocasViandas) evento).setCantidadMinima(suscripcionDTO.getCantidadViandas());
+                    ((PocasViandas) evento).setCantidadMinima(suscripcionDTO.getCantidadViandasMin());
                     break;
 
                 case MUCHAS_VIANDAS:
                     evento = new MuchasViandas();
-                    ((MuchasViandas) evento).setCantidadMaxima(suscripcionDTO.getCantidadViandas());
+                    ((MuchasViandas) evento).setCantidadMaxima(suscripcionDTO.getCantidadViandasMax());
                     break;
 
                 case FALLA_TECNICA:

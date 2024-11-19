@@ -9,7 +9,8 @@ public class SuscripcionDTO {
     private Long heladeraId;
     private List<TipoEvento> tiposEventosSeleccionados;
     private List<TipoContacto> tiposContactosSeleccionados;
-    private int cantidadViandas;
+    private int cantidadViandasMax;
+    private int cantidadViandasMin;
 
     // Getters y Setters
 
@@ -45,11 +46,17 @@ public class SuscripcionDTO {
         this.tiposContactosSeleccionados = tiposContactosSeleccionados;
     }
 
-    public int getCantidadViandas() {
-        return cantidadViandas;
+    public int getCantidadViandasMax() {
+        return cantidadViandasMax;
+    }
+    public int getCantidadViandasMin() {
+        return cantidadViandasMin;
     }
 
-    public void setCantidadViandas(int cantidadViandas) {
-        this.cantidadViandas = cantidadViandas;
+    public void setCantidadViandasMax(int cantidadViandasMax) {
+        this.cantidadViandasMax = cantidadViandasMax;
+    }
+    public void setCantidadViandasMin(int cantidadViandasMin) {
+        this.cantidadViandasMin = cantidadViandasMin;
     }
 }
