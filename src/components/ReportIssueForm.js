@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useToast } from '@chakra-ui/react';
-import { useAuth } from '../config/authContext';
 import {
   Box,
   FormControl,
@@ -9,69 +7,65 @@ import {
   Select,
   Textarea,
   Button,
-  Heading
+  Heading,
+  useToast,
 } from '@chakra-ui/react';
+import { useAuth } from '../config/authContext';
 
 const ReportIssueForm = ({ fridges }) => {
   const { accessToken } = useAuth();
   const toast = useToast();
-  
-  const [heladeraId, setHeladeraId] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [email, setEmail] = useState("");
-  const [file, setFile] = useState(null); // Estado para almacenar el archivo
   const colaboradorUUID = localStorage.getItem('sub');
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]); // Guardar el archivo en el estado, pero sin enviarlo
+  const [formData, setFormData] = useState({
+    heladeraId: '',
+    descripcion: '',
+    email: '',
+    file: null, // Archivo opcional
+  });
+
+  const handleChange = ({ target: { id, value, files } }) => {
+    setFormData((prev) => ({
+      ...prev,
+      [id]: files ? files[0] : value,
+    }));
   };
 
-  const handleDonation = async (event) => {
-    event.preventDefault();
-
-    // Obtener la fecha actual en el formato "YYYY-MM-DD"
-    const today = new Date().toISOString().split("T")[0];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const today = new Date().toISOString().split('T')[0];
 
     try {
-      const response = await fetch(`http://localhost:8080/incidentes/reportarFallaTecnica?colaboradorUUID=${colaboradorUUID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${accessToken}`,
-        },
-        body: JSON.stringify({
-          heladeraId,
-          descripcion,
-          fecha: today,
-          email,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:8080/incidentes/reportarFallaTecnica?colaboradorUUID=${colaboradorUUID}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            heladeraId: formData.heladeraId,
+            descripcion: formData.descripcion,
+            fecha: today,
+            email: formData.email,
+          }),
+        }
+      );
 
-      if (response.ok) {
-        const data = await response.text();
-        toast({
-          title: "Reporte Exitoso",
-          description: data || "Reporte exitoso, en breve se atenderá.",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-        });
-      } else {
-        const errorText = await response.text();
-        toast({
-          title: "Error",
-          description: errorText || "Ocurrió un error al procesar el reporte.",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
-      }
-    } catch (error) {
-      console.error("Error al realizar el reporte:", error);
+      const message = await response.text();
       toast({
-        title: "Error de conexión",
-        description: "No se pudo conectar con el servidor para procesar el reporte.",
-        status: "error",
+        title: response.ok ? 'Reporte Exitoso' : 'Error',
+        description: message || (response.ok ? 'En breve se atenderá.' : 'Ocurrió un error.'),
+        status: response.ok ? 'success' : 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch {
+      toast({
+        title: 'Error de conexión',
+        description: 'No se pudo conectar con el servidor.',
+        status: 'error',
         duration: 5000,
         isClosable: true,
       });
@@ -79,43 +73,36 @@ const ReportIssueForm = ({ fridges }) => {
   };
 
   return (
-    <Box
-      as="form"
-      p={6}
-      borderRadius="md"
-      bg="gray.50"
-      boxShadow="md"
-      onSubmit={handleDonation}
-    >
+    <Box as="form" p={6} borderRadius="md" bg="gray.50" boxShadow="md" onSubmit={handleSubmit}>
       <Heading as="h2" fontSize="2xl" mb={4}>
         Reportar un problema
       </Heading>
 
       <FormControl mb={4}>
-        <FormLabel htmlFor="fridge">Selecciona una heladera</FormLabel>
+        <FormLabel htmlFor="heladeraId">Selecciona una heladera</FormLabel>
         <Select
-          id="fridge"
+          id="heladeraId"
           placeholder="Selecciona una heladera"
           bg="white"
-          value={heladeraId}
-          onChange={(e) => setHeladeraId(e.target.value)}
+          value={formData.heladeraId}
+          onChange={handleChange}
         >
-          {fridges.map((fridge) => (
-            <option key={fridge.id} value={fridge.id}>
-              {fridge.name}
+          {fridges.map(({ id, nombrePunto }) => (
+            <option key={id} value={id}>
+              {nombrePunto}
             </option>
           ))}
         </Select>
       </FormControl>
 
       <FormControl mb={4}>
-        <FormLabel htmlFor="issue">Descripción del problema</FormLabel>
+        <FormLabel htmlFor="descripcion">Descripción del problema</FormLabel>
         <Textarea
-          id="issue"
+          id="descripcion"
           placeholder="Describe el problema..."
           bg="white"
-          value={descripcion}
-          onChange={(e) => setDescripcion(e.target.value)}
+          value={formData.descripcion}
+          onChange={handleChange}
         />
       </FormControl>
 
@@ -126,27 +113,17 @@ const ReportIssueForm = ({ fridges }) => {
           type="email"
           placeholder="Tu correo electrónico"
           bg="white"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
         />
       </FormControl>
 
-      {/* Input para cargar una foto */}
       <FormControl mb={4}>
-        <FormLabel htmlFor="photo">Subir una foto</FormLabel>
-        <Input
-          id="photo"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange} // Guardar el archivo, pero no enviarlo
-        />
+        <FormLabel htmlFor="file">Subir una foto</FormLabel>
+        <Input id="file" type="file" accept="image/*" onChange={handleChange} />
       </FormControl>
 
-      <Button
-        type="submit"
-        colorScheme="green"
-        width="100%"
-      >
+      <Button type="submit" colorScheme="green" width="100%">
         Enviar Reporte
       </Button>
     </Box>

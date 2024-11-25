@@ -114,7 +114,6 @@ function SuscripcionHeladeraContent() {
         };
 
         fetchHeladeras();
-
         return () => abortController.abort();
     }, [accessToken, toast]);
 
