@@ -49,7 +49,6 @@ function App() {
 
 function Main({ setHeaderHeight, headerHeight }) {
   const location = useLocation();
-  const isMapPage = location.pathname === '/map';
 
   return (
     <>
@@ -78,7 +77,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/consulta-canje" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
             <ConsultaCanjePage />
           </RoleProtectedRoute>
         } />
@@ -93,7 +92,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/recomendar-puntos" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
             <RecomendarPuntos />
           </RoleProtectedRoute>
         } />
@@ -124,7 +123,7 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
         <Route path="/suscripcion-heladera" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_CLIENT']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
             <SuscripcionHeladeraPage />
           </RoleProtectedRoute>
         } />

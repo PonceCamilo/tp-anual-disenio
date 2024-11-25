@@ -7,17 +7,19 @@ import { useAuth } from "../config/authContext";
 
 function DonacionDineroForm() {
   const [monto, setMonto] = useState("");
-  const colaboradorUUID = localStorage.getItem('sub');
+  const [isLoading, setIsLoading] = useState(false); // Estado para manejar el spinner
+  const colaboradorUUID = localStorage.getItem("sub");
   const { accessToken } = useAuth();
-  const toast = useToast(); // Usamos el hook useToast de Chakra UI
+  const toast = useToast();
 
   const handleDonation = async () => {
+    setIsLoading(true); // Activar el spinner
     try {
       const response = await fetch("http://localhost:8080/colaboraciones/donacion-dinero", {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
-          "Authorization": `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: new URLSearchParams({
           monto,
@@ -53,6 +55,8 @@ function DonacionDineroForm() {
         duration: 5000,
         isClosable: true,
       });
+    } finally {
+      setIsLoading(false); // Desactivar el spinner
     }
   };
 
@@ -81,7 +85,14 @@ function DonacionDineroForm() {
         <img src={CreditCard} alt="Tarjeta de Crédito" width="50" />
       </Flex>
 
-      <Button variant="solid" colorScheme="green" width="full" onClick={handleDonation}>
+      <Button
+        variant="solid"
+        colorScheme="green"
+        width="full"
+        onClick={handleDonation}
+        isLoading={isLoading} 
+        loadingText="Procesando" 
+      >
         Donar
       </Button>
     </Box>

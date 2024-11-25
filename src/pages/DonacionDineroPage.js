@@ -8,7 +8,6 @@ import {
     useBreakpointValue
 } from '@chakra-ui/react';
 import DonacionDineroForm from '../components/DonacionDineroForm';
-import { Auth0Context } from '@auth0/auth0-react';
 function DonacionDineroPage() {
     const isMobile = useBreakpointValue({ base: true, md: false });
 

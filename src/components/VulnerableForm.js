@@ -39,16 +39,44 @@ const VulnerableForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
+    
+        // Validación de nombre y apellido: solo letras
+        const nameRegex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+        if (!nameRegex.test(formData.name) || !nameRegex.test(formData.lastName)) {
+            toast({
+                title: "Error en los datos",
+                description: "El nombre y apellido solo deben contener letras.",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+            });
+            return;
+        }
+    
+        // Validación de fecha de nacimiento
+        const birthDate = new Date(formData.birthDate);
+        const today = new Date();
+        if (isNaN(birthDate) || birthDate > today) {
+            toast({
+                title: "Error en la fecha",
+                description: "Por favor, ingresa una fecha de nacimiento válida y no en el futuro.",
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+            });
+            return;
+        }
+    
+        // Transformar datos para enviar
         const dataToSubmit = {
             nombre: formData.name,
             apellido: formData.lastName,
             fechaNacimiento: formData.birthDate,
             situacionCalle: formData.isHomeless,
             direccion: formData.isHomeless ? '' : formData.address,
-            cantMenoresAcargo: formData.hasMinors ? parseInt(formData.minorsCount) : 0
+            cantMenoresAcargo: formData.hasMinors ? parseInt(formData.minorsCount) : 0,
         };
-
+    
         try {
             const url = `http://localhost:8080/colaboraciones/persona-vulnerable?colaboradorUUID=${colaboradorUUID}`;
             const response = await fetch(url, {
@@ -59,9 +87,9 @@ const VulnerableForm = () => {
                 },
                 body: JSON.stringify(dataToSubmit),
             });
-
+    
             if (response.ok) {
-                const responseData = await response.text();  // O usar .json() si es necesario
+                const responseData = await response.text();
                 toast({
                     title: "Registro exitoso",
                     description: responseData || "Los datos de la persona vulnerable se registraron correctamente.",

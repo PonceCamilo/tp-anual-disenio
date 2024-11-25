@@ -14,7 +14,7 @@ function RecomendarPuntosPage() {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [radius, setRadius] = useState(0);
   const [direccion, setDireccion] = useState("");
-  const token = localStorage.getItem('access_token'); // Obtén el token de autenticación
+  const { accessToken } = useAuth();
 
   const handleDireccionChange = (e) => {
     setDireccion(e.target.value);
@@ -22,7 +22,7 @@ function RecomendarPuntosPage() {
 
   const handleBuscarDireccion = () => {
     console.log("Buscar dirección:", direccion);
-    // Aquí puedes agregar la lógica de búsqueda de dirección
+    //terminar de implementar
   };
 
   const handleSubmit = async () => {
@@ -31,7 +31,7 @@ function RecomendarPuntosPage() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`, // Agrega el Bearer token al encabezado
+          'Authorization': `Bearer ${accessToken}`, 
         },
         body: JSON.stringify({
           latitud: selectedLocation.lat,
