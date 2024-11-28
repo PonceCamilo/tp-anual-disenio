@@ -135,7 +135,7 @@ function SuscripcionHeladeraContent() {
         };
 
         try {
-            
+
             const response = await fetch('http://localhost:8080/suscripciones/suscribir', {
                 method: 'POST',
                 headers: {
@@ -206,78 +206,78 @@ function SuscripcionHeladeraContent() {
                 </Grid>
             )}
 
-<Modal isOpen={isOpen} onClose={onClose}>
-    <ModalOverlay />
-    <ModalContent>
-        <ModalHeader>Formulario de Suscripción para {selectedHeladera?.nombrePunto}</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-            <form onSubmit={handleSubmit}>
-                <VStack spacing={4}>
-                    <CheckboxGroup
-                        value={tiposEventosSeleccionados}
-                        onChange={(values) => {
-                            setTiposEventosSeleccionados(values);
-                        }}
-                    >
-                        <VStack align="start">
-                            <Text fontWeight="bold">Tipos de Eventos:</Text>
-                            <Checkbox value="POCAS_VIANDAS">Pocas Viandas</Checkbox>
-                            <Checkbox value="MUCHAS_VIANDAS">Muchas Viandas</Checkbox>
-                            <Checkbox value="FALLA_TECNICA">Falla Técnica</Checkbox>
-                        </VStack>
-                    </CheckboxGroup>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Formulario de Suscripción para {selectedHeladera?.nombrePunto}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <form onSubmit={handleSubmit}>
+                            <VStack spacing={4}>
+                                <CheckboxGroup
+                                    value={tiposEventosSeleccionados}
+                                    onChange={(values) => {
+                                        setTiposEventosSeleccionados(values);
+                                    }}
+                                >
+                                    <VStack align="start">
+                                        <Text fontWeight="bold">Tipos de Eventos:</Text>
+                                        <Checkbox value="POCAS_VIANDAS">Pocas Viandas</Checkbox>
+                                        <Checkbox value="MUCHAS_VIANDAS">Muchas Viandas</Checkbox>
+                                        <Checkbox value="FALLA_TECNICA">Falla Técnica</Checkbox>
+                                    </VStack>
+                                </CheckboxGroup>
 
-                    <CheckboxGroup
-                        value={tiposContactosSeleccionados}
-                        onChange={setTiposContactosSeleccionados}
-                    >
-                        <VStack align="start">
-                            <Text fontWeight="bold">Tipos de Contactos:</Text>
-                            <Checkbox value="EMAIL">Email</Checkbox>
-                            <Checkbox value="TELEFONO">Teléfono</Checkbox>
-                            <Checkbox value="WHATSAPP">WhatsApp</Checkbox>
-                            <Checkbox value="TELEGRAM">Telegram</Checkbox>
-                        </VStack>
-                    </CheckboxGroup>
+                                <CheckboxGroup
+                                    value={tiposContactosSeleccionados}
+                                    onChange={setTiposContactosSeleccionados}
+                                >
+                                    <VStack align="start">
+                                        <Text fontWeight="bold">Tipos de Contactos:</Text>
+                                        <Checkbox value="EMAIL">Email</Checkbox>
+                                        <Checkbox value="TELEFONO">Teléfono</Checkbox>
+                                        <Checkbox value="WHATSAPP">WhatsApp</Checkbox>
+                                        <Checkbox value="TELEGRAM">Telegram</Checkbox>
+                                    </VStack>
+                                </CheckboxGroup>
 
-                    <FormControl>
-                    <Input
-                            placeholder="Cantidad de viandas Mínima"
-                            type="number"
-                            value={viandasNumberMin}
-                            onChange={(e) => setViandasNumberMin(e.target.value)}
-                            isDisabled={
-                                !tiposEventosSeleccionados.includes('POCAS_VIANDAS')
-                            }
-                        />
-                    </FormControl>
-                    <FormControl>
-                        <Input
-                            placeholder="Cantidad de viandas Maxima"
-                            type="number"
-                            value={viandasNumberMax}
-                            onChange={(e) => setViandasNumberMax(e.target.value)}
-                            isDisabled={
-                                !tiposEventosSeleccionados.includes('MUCHAS_VIANDAS')
-                            }
-                        />
-                        </FormControl>
-                    
-                    
-                    <HStack spacing={4}>
-                        <Button type="submit" colorScheme="green">
-                            Suscribirse
-                        </Button>
-                        <Button onClick={onClose} colorScheme="red">
-                            Cancelar
-                        </Button>
-                    </HStack>
-                </VStack>
-            </form>
-        </ModalBody>
-    </ModalContent>
-</Modal>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Cantidad de viandas Mínima"
+                                        type="number"
+                                        value={viandasNumberMin}
+                                        onChange={(e) => setViandasNumberMin(e.target.value)}
+                                        isDisabled={
+                                            !tiposEventosSeleccionados.includes('POCAS_VIANDAS')
+                                        }
+                                    />
+                                </FormControl>
+                                <FormControl>
+                                    <Input
+                                        placeholder="Cantidad de viandas Maxima"
+                                        type="number"
+                                        value={viandasNumberMax}
+                                        onChange={(e) => setViandasNumberMax(e.target.value)}
+                                        isDisabled={
+                                            !tiposEventosSeleccionados.includes('MUCHAS_VIANDAS')
+                                        }
+                                    />
+                                </FormControl>
+
+
+                                <HStack spacing={4}>
+                                    <Button type="submit" colorScheme="green">
+                                        Suscribirse
+                                    </Button>
+                                    <Button onClick={onClose} colorScheme="red">
+                                        Cancelar
+                                    </Button>
+                                </HStack>
+                            </VStack>
+                        </form>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
 
         </Box>
     );
