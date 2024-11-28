@@ -1,5 +1,7 @@
 package com.example.demo.models.Colaboraciones;
 
+import java.time.LocalDate;
+
 import com.example.demo.models.Rol.Colaborador;
 import com.example.demo.models.Rol.PersonaVulnerable;
 import com.example.demo.models.Tarjetas.TarjetaPersVuln;
@@ -19,6 +21,7 @@ public class RegistroPersonaVulnerable extends Colaboracion {
 
     // Constructor vacío para JPA
     public RegistroPersonaVulnerable() {
+        this.fecha = LocalDate.now();
     }
 
     public RegistroPersonaVulnerable(Colaborador colaborador, PersonaVulnerable personaVuln, TarjetaPersVuln tarjeta) {

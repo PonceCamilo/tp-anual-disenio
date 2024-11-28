@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.models.Persona.Contacto.Contacto;
 import com.example.demo.models.Rol.Rol;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,8 @@ public abstract class Persona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "persona")
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore // Marcamos esta como la referencia principal
     private List<Rol> roles = new ArrayList<>();
 
     @Column(name = "direccion")

@@ -1,5 +1,7 @@
 package com.example.demo.models.Colaboraciones.Ofertas;
 
+import java.time.LocalDate;
+
 import com.example.demo.models.Colaboraciones.Colaboracion;
 import com.example.demo.models.Rol.Colaborador;
 
@@ -26,6 +28,7 @@ public class Oferta extends Colaboracion {
 
     // Constructor vacío para JPA
     public Oferta() {
+        this.fecha = LocalDate.now();
     }
 
     // Constructor con los datos necesarios

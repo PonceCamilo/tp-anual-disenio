@@ -1,5 +1,7 @@
 package com.example.demo.models.Colaboraciones;
 
+import java.time.LocalDate;
+
 import com.example.demo.models.Heladera.Heladera;
 
 import com.example.demo.models.Rol.Colaborador;
@@ -16,6 +18,7 @@ public class ObtencionHeladera extends Colaboracion {
 
     // Constructor vacío para JPA
     public ObtencionHeladera() {
+        this.fecha = LocalDate.now();
     }
 
     public ObtencionHeladera(Colaborador colaborador, Heladera heladera) {

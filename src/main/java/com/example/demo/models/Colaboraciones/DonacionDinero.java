@@ -1,5 +1,7 @@
 package com.example.demo.models.Colaboraciones;
 
+import java.time.LocalDate;
+
 import com.example.demo.models.Rol.Colaborador;
 
 import jakarta.persistence.*;
@@ -19,6 +21,7 @@ public class DonacionDinero extends Colaboracion {
 
     // Constructor vacío para JPA
     public DonacionDinero() {
+        this.fecha = LocalDate.now();
     }
 
     public DonacionDinero(Colaborador colaborador, double monto, int frecuencia) {

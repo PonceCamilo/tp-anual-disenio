@@ -1,5 +1,7 @@
 package com.example.demo.models.Colaboraciones.DonacionViandas;
 
+import java.time.LocalDate;
+
 import com.example.demo.models.Colaboraciones.Colaboracion;
 import com.example.demo.models.Heladera.Heladera;
 import com.example.demo.models.Rol.Colaborador;
@@ -19,6 +21,7 @@ public class DonacionVianda extends Colaboracion {
 
     // Constructor vacío para JPA
     public DonacionVianda() {
+        this.fecha = LocalDate.now();
     }
 
     public DonacionVianda(Colaborador colaborador,

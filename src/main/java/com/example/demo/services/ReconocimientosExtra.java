@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.models.Colaboraciones.Colaboracion;
 import com.example.demo.models.Colaboraciones.DonacionViandas.DonacionVianda;
+import com.example.demo.models.Persona.Persona;
 import com.example.demo.models.Rol.Colaborador;
 import com.example.demo.repositories.ColaboradorRepository;
 import com.example.demo.repositories.ColaboracionRepository;
@@ -19,14 +20,13 @@ public class ReconocimientosExtra {
     private CalculadoraPuntosService calculadoraPuntosService;
 
     @Autowired
-    private ColaboradorRepository colaboradorRepository; // Inyección del repositorio
+    private ColaboradorRepository colaboradorRepository;
 
     @Autowired
     private ColaboracionRepository colaboracionRepository;
 
-    public List<Colaborador> recomendarColaboradores(double puntosReq, double viandasDonadasReq,
-            int cantMaxColabs) {
-        List<Colaborador> colaboradoresRecomendados = new ArrayList<>();
+    public List<Persona> recomendarPersonas(double puntosReq, double viandasDonadasReq, int cantMaxColabs) {
+        List<Persona> personasRecomendadas = new ArrayList<>();
 
         // Obtener la lista de todos los colaboradores desde la base de datos
         List<Colaborador> colaboradores = colaboradorRepository.findAll();
@@ -39,15 +39,15 @@ public class ReconocimientosExtra {
                 int viandasDonadasUltimoMes = getViandasDonadas(colaborador, 30);
 
                 if (puntosColaborador >= puntosReq && viandasDonadasUltimoMes >= viandasDonadasReq) {
-                    colaboradoresRecomendados.add(colaborador);
+                    personasRecomendadas.add(colaborador.getPersona());
                 }
-                if (colaboradoresRecomendados.size() >= cantMaxColabs) {
+                if (personasRecomendadas.size() >= cantMaxColabs) {
                     break;
                 }
             }
         }
 
-        return colaboradoresRecomendados;
+        return personasRecomendadas;
     }
 
     public int getViandasDonadas(Colaborador colaborador, int dias) {
@@ -65,5 +65,4 @@ public class ReconocimientosExtra {
         }
         return viandasDonadas;
     }
-
 }

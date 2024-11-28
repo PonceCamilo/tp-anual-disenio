@@ -1,5 +1,7 @@
 package com.example.demo.models.Colaboraciones;
 
+import java.time.LocalDate;
+
 import com.example.demo.models.Heladera.Heladera;
 import com.example.demo.models.Rol.Colaborador;
 import jakarta.persistence.*;
@@ -27,6 +29,7 @@ public class DistribucionViandas extends Colaboracion {
 
     // Constructor vacío para JPA
     public DistribucionViandas() {
+        this.fecha = LocalDate.now();
     }
 
     public DistribucionViandas(Colaborador colaborador, Heladera heladeraOrigen,

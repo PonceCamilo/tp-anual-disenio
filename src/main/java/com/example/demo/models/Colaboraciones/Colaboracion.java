@@ -19,7 +19,7 @@ public abstract class Colaboracion {
     private Long id;
 
     @Column(name = "fecha")
-    private LocalDate fecha;
+    protected LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "colaborador")

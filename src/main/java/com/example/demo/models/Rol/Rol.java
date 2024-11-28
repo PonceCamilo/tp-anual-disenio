@@ -2,19 +2,11 @@ package com.example.demo.models.Rol;
 
 import com.example.demo.models.Persona.Persona;
 import com.example.demo.models.Persona.Contacto.Contacto;
-import com.example.demo.models.Rol.Tecnico.Tecnico;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Tecnico.class, name = "tecnico"),
-        @JsonSubTypes.Type(value = Colaborador.class, name = "colaborador")
-})
 @Setter
 @Getter
 @Entity
@@ -29,9 +21,9 @@ public abstract class Rol {
     @Column(name = "UUID", unique = true)
     protected String UUID;
 
-    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "persona")
+    @JsonBackReference
     protected Persona persona;
 
     // Constructor vacío para JPA

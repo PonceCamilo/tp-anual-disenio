@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import com.example.demo.services.ReconocimientosExtra;
-
-import com.example.demo.models.Rol.Colaborador;
+import com.example.demo.models.Persona.Persona;
 
 @RestController
 @RequestMapping("/service-2")
@@ -22,12 +21,12 @@ public class ColaboracionController {
     private ReconocimientosExtra reconocimientosExtra;
 
     @GetMapping("/recomendaciones-colaboradores")
-    public ResponseEntity<List<Colaborador>> recomendarColaboradores(@RequestParam double puntosReq,
+    public ResponseEntity<List<Persona>> recomendarColaboradores(@RequestParam double puntosReq,
             @RequestParam double viandasDonadasReq, @RequestParam int cantMaxColabs) {
         try {
-            List<Colaborador> colaboradores = reconocimientosExtra.recomendarColaboradores(puntosReq, viandasDonadasReq,
+            List<Persona> personas = reconocimientosExtra.recomendarPersonas(puntosReq, viandasDonadasReq,
                     cantMaxColabs);
-            return ResponseEntity.ok(colaboradores);
+            return ResponseEntity.ok(personas);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
