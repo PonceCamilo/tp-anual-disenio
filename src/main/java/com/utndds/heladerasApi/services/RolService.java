@@ -49,7 +49,7 @@ public class RolService {
         ColaboradorDTO dto = new ColaboradorDTO();
         dto.setPuntosGastados(colaborador.getPuntosGastados());
         dto.setId(colaborador.getId());
-        dto.setUuid(colaborador.getUUID()); // Asegúrate de tener el setter en el DTO
+        dto.setUuid(colaborador.getUUID());
         return dto;
     }
 }
