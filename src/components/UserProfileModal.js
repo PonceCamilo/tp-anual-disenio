@@ -51,12 +51,12 @@ function UserProfileModal({ isOpen, onClose }) {
     { path: '/publicar-producto', img: Product, label: 'Publicar Producto/Servicio', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/cargar-heladera', img: Product, label: 'Cargar Heladera', allowedRoles: ['ROLE_ADMIN'] },
     { path: '/distribucion-viandas', img: Product, label: 'Distribución Viandas', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
-    { path: '', img: Product, label: 'Cargar CSV', allowedRoles: ['ROLE_ADMIN'], action: handleOpenCSVModal },
+    { action: () => setIsCSVModalOpen(true), img: Product, label: 'Cargar CSV', allowedRoles: ['ROLE_ADMIN'] },
   ];
 
-  // Filtra las opciones basándote en los roles del usuario
+  // Filtra las opciones por los roles del usuario
   const filteredOptions = options.filter(option =>
-    option.allowedRoles.some(role => roles.includes(role))
+    roles.some(role => option.allowedRoles.includes(role))
   );
 
   return (
@@ -67,28 +67,40 @@ function UserProfileModal({ isOpen, onClose }) {
           <ModalHeader textAlign="center">Opciones de Usuario</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <SimpleGrid columns={4} spacing={6}>
-              {filteredOptions.map((item, index) => (
-                <Box
-                  key={index}
-                  onClick={() => item.action ? item.action() : handleNavigate(item.path)}
-                  cursor="pointer"
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  p={4}
-                  borderWidth={1}
-                  borderRadius="md"
-                  _hover={{ bg: 'gray.100' }}
-                  width="130px"
-                  minHeight="120px"
-                >
-                  <Image src={item.img} alt={item.label} boxSize="60px" />
-                  <Text mt={2} textAlign="center">{item.label}</Text>
-                </Box>
-              ))}
-            </SimpleGrid>
+            
+              {user?.email_verified ? (
+                filteredOptions.map((item, index) => (
+                  <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
+                  <Box
+                    key={index}
+                    onClick={() =>
+                      item.action ? item.action() : navigate(item.path) && onClose()
+                    }
+                    cursor="pointer"
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="center"
+                    justifyContent="center"
+                    p={4}
+                    borderWidth="1px"
+                    borderRadius="md"
+                    _hover={{ bg: 'gray.100' }}
+                    width="130px"
+                    minHeight="120px"
+                  >
+                    <Image src={item.img} alt={item.label} boxSize="60px" />
+                    <Text mt={2} textAlign="center">
+                      {item.label}
+                    </Text>
+                  </Box>
+                  </SimpleGrid>
+                ))
+              ) : (
+                <Text textAlign="center" fontWeight="bold" color="red.500">
+                  Por favor, verifica tu email para acceder a estas opciones.
+                </Text>
+              )}
+            
           </ModalBody>
         </ModalContent>
       </Modal>

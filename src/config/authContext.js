@@ -24,12 +24,16 @@ export const AuthProvider = ({ children }) => {
       const userRoles = localStorage.getItem('user_roles');
       const storedUserSub = localStorage.getItem('sub'); // El UUID del back
 
+      
       if (storedAccessToken && userProfile) {
         setIsAuthenticated(true);
         setAccessToken(storedAccessToken);
         setUser(JSON.parse(userProfile));
         setRoles(JSON.parse(userRoles));
         setUserSub(storedUserSub);
+        if(user.email_verified === false){
+          window.location.replace('/persona-form');
+        }
 
         try {
         const response = await fetch(`http://localhost:8080/roles/buscar-por-uuid/${storedUserSub}`, {
