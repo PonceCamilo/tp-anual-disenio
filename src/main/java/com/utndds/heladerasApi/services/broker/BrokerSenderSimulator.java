@@ -55,8 +55,9 @@ public class BrokerSenderSimulator {
             channel.queueDeclare(MOVIMIENTO_QUEUE, false, false, false, null);
             channel.queueDeclare(TARJETA_QUEUE, false, false, false, null);
 
-            scheduler.scheduleAtFixedRate(this::enviarTemperaturas, 0, 5, TimeUnit.SECONDS);
-            scheduler.scheduleAtFixedRate(this::enviarSenalMovimiento, 0, 5, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(this::enviarTemperaturas, 0, 500000, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(this::enviarSenalMovimiento, 600000, 5, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(this::enviarSenalApertura, 0, 5, TimeUnit.SECONDS);
             System.out.println("Scheduler iniciado. Enviando datos de sensores.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,6 +119,37 @@ public class BrokerSenderSimulator {
                             e.printStackTrace();
                         }
                     });
+        }
+    }
+
+    public void enviarSenalApertura() {
+        List<Heladera> heladeras = heladeraRepository.findAll();
+        List<Tarjeta> tarjetas = tarjetaRepository.findAll();
+
+        if (heladeras.isEmpty()) {
+            System.out.println("No hay heladeras registradas.");
+            return;
+        }
+        if (tarjetas.isEmpty()) {
+            System.out.println("No hay tarjetas registradas.");
+            return;
+        }
+
+        // Pick a random Heladera
+        Heladera heladera = heladeras.get(random.nextInt(heladeras.size()));
+        Long heladeraId = heladera.getId();
+
+        Tarjeta tarjeta = tarjetas.get(random.nextInt(tarjetas.size()));
+        Long tarjetaId = tarjeta.getId(); // Random tarjeta ID for simulation
+
+        String mensaje = String.format("{\"heladeraId\":%d,\"tarjetaId\":%d}", heladeraId, tarjetaId);
+
+        try {
+            channel.basicPublish("", TARJETA_QUEUE, null, mensaje.getBytes(StandardCharsets.UTF_8));
+            System.out.println("Tarjeta enviada al broker: " + mensaje);
+        } catch (Exception e) {
+            System.err.println("Error al enviar la tarjeta: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

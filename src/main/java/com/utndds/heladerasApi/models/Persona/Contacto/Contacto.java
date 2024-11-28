@@ -12,7 +12,7 @@ public abstract class Contacto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "valor")
     protected String valor;
 
     @ManyToOne(fetch = FetchType.LAZY)
