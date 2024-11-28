@@ -39,7 +39,10 @@ public class ReconocimientosExtra {
                 int viandasDonadasUltimoMes = getViandasDonadas(colaborador, 30);
 
                 if (puntosColaborador >= puntosReq && viandasDonadasUltimoMes >= viandasDonadasReq) {
-                    personasRecomendadas.add(colaborador.getPersona());
+                    Persona persona = colaborador.getPersona();
+                    if (persona != null) {
+                        personasRecomendadas.add(persona);
+                    }
                 }
                 if (personasRecomendadas.size() >= cantMaxColabs) {
                     break;

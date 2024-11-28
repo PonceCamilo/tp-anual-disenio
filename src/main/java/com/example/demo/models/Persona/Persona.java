@@ -29,7 +29,7 @@ public abstract class Persona {
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "persona")
+    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
     private List<Contacto> mediosContacto = new ArrayList<>();
 
     // Constructor vacío para JPA
