@@ -1,16 +1,17 @@
 package com.utndds.heladerasApi.DTOs;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import com.utndds.heladerasApi.models.Persona.Documento;
+import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 public class PersonaHumanaDTO {
     private Long id;
     private String nombre;
     private String apellido;
-    //private Contribuir
-    private List<String> mediosContacto;
-    private Date  fechaNacimiento;
+    private List<Contacto> mediosContacto;
+    private LocalDate  fechaNacimiento;
     private String direccion;
     private Documento documento;
 
@@ -45,21 +46,21 @@ public class PersonaHumanaDTO {
 
     // Getter y Setter para mediosContacto
 
-    public List<String> getMediosContacto() {
+    public List<Contacto> getMediosContacto() {
         return mediosContacto;
     }
 
-    public void setMediosContacto(List<String> mediosContacto) {
+    public void setMediosContacto(List<Contacto> mediosContacto) {
         this.mediosContacto = mediosContacto;
     }
 
     // Getter y Setter para fechaNacimiento
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -83,7 +84,7 @@ public class PersonaHumanaDTO {
         this.documento = documento;
     }
 
-    public PersonaHumanaDTO(Long id, String nombre, String apellido, List<String> mediosContacto, Date fechaNacimiento, String direccion, Documento documento) {
+    public PersonaHumanaDTO(Long id, String nombre, String apellido, List<Contacto> mediosContacto, LocalDate fechaNacimiento, String direccion, Documento documento) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

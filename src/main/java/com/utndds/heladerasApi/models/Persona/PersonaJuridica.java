@@ -22,8 +22,11 @@ public class PersonaJuridica extends Persona {
     public PersonaJuridica() {
     }
 
-    public PersonaJuridica(String direccion, List<Contacto> mediosContacto, String razonSocial, String tipo,
-            String rubro) {
+    public PersonaJuridica(String direccion ,List<Contacto> mediosContacto) {
+        super(direccion, mediosContacto);
+    }
+
+    public PersonaJuridica(String direccion, List<Contacto> mediosContacto, String razonSocial, String tipo, String rubro) {
         super(direccion, mediosContacto);
         this.razonSocial = razonSocial;
         this.tipo = tipo;

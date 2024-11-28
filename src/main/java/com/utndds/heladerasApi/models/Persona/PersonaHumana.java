@@ -34,8 +34,7 @@ public class PersonaHumana extends Persona {
         super(direccion, mediosContacto);
     }
 
-    public PersonaHumana(String direccion, List<Contacto> mediosContacto, String nombre, String apellido,
-            LocalDate fechaDeNacimiento, Documento documento) {
+    public PersonaHumana(String direccion, List<Contacto> mediosContacto, String nombre, String apellido, LocalDate fechaDeNacimiento, Documento documento) {
         super(direccion, mediosContacto);
         this.nombre = nombre;
         this.apellido = apellido;
