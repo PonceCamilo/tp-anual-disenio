@@ -6,9 +6,7 @@ import com.utndds.heladerasApi.services.Canjes.CanjesService;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

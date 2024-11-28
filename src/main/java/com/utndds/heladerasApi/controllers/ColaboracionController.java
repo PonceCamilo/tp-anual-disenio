@@ -30,7 +30,7 @@ import com.utndds.heladerasApi.DTOs.DistribucionViandasDTO;
 import com.utndds.heladerasApi.DTOs.DonacionViandaDTO;
 import com.utndds.heladerasApi.DTOs.OfertaDTO;
 import com.utndds.heladerasApi.DTOs.PersonaVulnerableDTO;
-import com.utndds.heladerasApi.models.Rol.Colaborador;
+import com.utndds.heladerasApi.models.Persona.Persona;
 
 @RestController
 @RequestMapping("/colaboraciones")
@@ -58,12 +58,12 @@ public class ColaboracionController {
     private RegistroPersVulnService registroPersVulnService; // Add RegistroPersVulnService
 
     @GetMapping("/recomendaciones-colaboradores")
-    public ResponseEntity<List<Colaborador>> recomendarColaboradores(@RequestParam double puntosReq,
+    public ResponseEntity<List<Persona>> recomendarColaboradores(@RequestParam double puntosReq,
             @RequestParam double viandasDonadasReq, @RequestParam int cantMaxColabs) {
         try {
-            List<Colaborador> colaboradores = reconocimientosExtra.recomendarColaboradores(puntosReq, viandasDonadasReq,
+            List<Persona> personas = reconocimientosExtra.recomendarColaboradores(puntosReq, viandasDonadasReq,
                     cantMaxColabs);
-            return ResponseEntity.ok(colaboradores);
+            return ResponseEntity.ok(personas);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
@@ -77,7 +77,7 @@ public class ColaboracionController {
         try {
             distribucionViandasService.guardarDistribucionViandas(colaboradorUUID, distribucionViandasDTO);
             return ResponseEntity.ok("Distribución de viandas guardada con éxito");
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -112,8 +112,7 @@ public class ColaboracionController {
 
             donacionViandaService.guardarDonacionVianda(donacionViandaDTO, colaboradorUUID);
             return ResponseEntity.ok("Donación de vianda guardada con éxito");
-        }
-         catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -128,7 +127,7 @@ public class ColaboracionController {
             @RequestParam Double lng,
             @RequestParam String colaboradorUUID) {
         try {
-            obtencionHeladeraService.registrarObtencionHeladera(direccion,lat,lng, colaboradorUUID);
+            obtencionHeladeraService.registrarObtencionHeladera(direccion, lat, lng, colaboradorUUID);
             return ResponseEntity.ok("Obtención de heladera registrada con éxito");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
