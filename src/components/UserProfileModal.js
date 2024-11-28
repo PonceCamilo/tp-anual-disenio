@@ -12,7 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../config/authContext'; // Importa el hook de autenticación
+import { useAuth } from '../config/authContext'; // Hook de autenticación
 import LaDonate from '../assets/iconos/LaDonate.svg';
 import Form from '../assets/iconos/Form.svg';
 import Vianda from '../assets/iconos/Heladera.svg';
@@ -22,23 +22,14 @@ import Canje from '../assets/iconos/Canje.svg';
 import Config from '../assets/iconos/Config.svg';
 import Report from '../assets/iconos/Report.svg';
 import Product from '../assets/iconos/Product.svg';
-import LoadCSVModal from './LoadCSVModal'; // Importa el modal para cargar CSV
+import LoadCSVModal from './LoadCSVModal'; // Modal para cargar CSV
 
 function UserProfileModal({ isOpen, onClose }) {
-  const { roles } = useAuth();
+  const { user, roles } = useAuth();
   const navigate = useNavigate();
-  const [isCSVModalOpen, setIsCSVModalOpen] = useState(false); // Estado para controlar la apertura del modal
+  const [isCSVModalOpen, setIsCSVModalOpen] = useState(false);
 
-  const handleNavigate = (path) => {
-    navigate(path);
-    onClose();
-  };
-
-  const handleOpenCSVModal = () => {
-    setIsCSVModalOpen(true); // Abre el modal para cargar CSV
-    onClose(); // Cierra el modal de perfil de usuario
-  };
-
+  // Opciones disponibles según roles
   const options = [
     { path: '/donacion-dinero', img: LaDonate, label: 'Donar Dinero', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/donacion-vianda', img: Vianda, label: 'Donar Vianda', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
@@ -51,17 +42,7 @@ function UserProfileModal({ isOpen, onClose }) {
     { path: '/publicar-producto', img: Product, label: 'Publicar Producto/Servicio', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/cargar-heladera', img: Product, label: 'Cargar Heladera', allowedRoles: ['ROLE_ADMIN'] },
     { path: '/distribucion-viandas', img: Product, label: 'Distribución Viandas', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
-<<<<<<< HEAD
     { action: () => setIsCSVModalOpen(true), img: Product, label: 'Cargar CSV', allowedRoles: ['ROLE_ADMIN'] },
-=======
-    {
-      path: '/visita-tecnico', img: Config, label: 'Visita Tecnico', allowedRoles: ['ROLE_ADMIN', 'ROLE_TECHNICAL']
-    },
-    {
-      path: '/reconocimientos-extra', img: Form, label: 'Reconocimientos Extra', allowedRoles: ['ROLE_ADMIN', 'ROLE_TECHNICAL']
-    },
-    { path: '', img: Product, label: 'Cargar CSV', allowedRoles: ['ROLE_ADMIN'], action: handleOpenCSVModal },
->>>>>>> 5f6334c55cdd4a9be8245b807d42110de0c8ecc4
   ];
 
   // Filtra las opciones por los roles del usuario
@@ -77,10 +58,10 @@ function UserProfileModal({ isOpen, onClose }) {
           <ModalHeader textAlign="center">Opciones de Usuario</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            
+          <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
               {user?.email_verified ? (
                 filteredOptions.map((item, index) => (
-                  <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
+                 
                   <Box
                     key={index}
                     onClick={() =>
@@ -103,21 +84,20 @@ function UserProfileModal({ isOpen, onClose }) {
                       {item.label}
                     </Text>
                   </Box>
-                  </SimpleGrid>
+                  
                 ))
               ) : (
                 <Text textAlign="center" fontWeight="bold" color="red.500">
                   Por favor, verifica tu email para acceder a estas opciones.
                 </Text>
               )}
-            
+              </SimpleGrid>
           </ModalBody>
         </ModalContent>
       </Modal>
 
       {/* Modal para cargar CSV */}
-      < LoadCSVModal isOpen={isCSVModalOpen} onClose={() => setIsCSVModalOpen(false)
-      } />
+      <LoadCSVModal isOpen={isCSVModalOpen} onClose={() => setIsCSVModalOpen(false)} />
     </>
   );
 }

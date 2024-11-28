@@ -51,10 +51,9 @@ function NavApp({ className }) {
         nombre: user.name,
         email: user.email,
         sub: user.sub,
-        fecha: user.created_at,
         emailVerificado: user.email_verified,
         nickname: user.nickname,
-        cantidadLogins: user.logins_count,
+        
       });
 
       console.log("Token:", {

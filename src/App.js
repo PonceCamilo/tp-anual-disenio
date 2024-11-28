@@ -17,6 +17,7 @@ import DistribucionViandasPage from './pages/DistribucionViandasPage.js';
 import SuscripcionHeladeraPage from './pages/SuscripcionHeladeraPage.js';
 import VisitaTecnicoPage from './pages/VisitaTenicoPage.js';
 import ReconocimientosExtraPage from './pages/ReconocimientosExtraPage.js';
+import PersonaPage from './pages/PersonaPage.js';
 import CallbackPage from './pages/CallBackPage.js';
 import AccesoDenegadoPage from './pages/AccesoDenegadoPage';
 import { AuthProvider } from './config/authContext.js';
@@ -70,7 +71,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/map" element={<MapApp />} />
         <Route path="/callback" element={<CallbackPage />} />
         <Route path="/acceso-denegado" element={<AccesoDenegadoPage />} />
-
+        <Route path="/persona-form" element={<PersonaPage/>} />
         {/* Rutas protegidas con roles */}
         <Route path="/report-issue" element={
           <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
@@ -138,6 +139,11 @@ function Main({ setHeaderHeight, headerHeight }) {
 
         <Route path="/reconocimientos-extra" element={
           <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
+            <ReconocimientosExtraPage />
+          </RoleProtectedRoute>
+        } />
+        <Route path="/persona-form" element={
+          <RoleProtectedRoute allowedRoles={['']}>
             <ReconocimientosExtraPage />
           </RoleProtectedRoute>
         } />

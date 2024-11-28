@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
         setUser(JSON.parse(userProfile));
         setRoles(JSON.parse(userRoles));
         setUserSub(storedUserSub);
-        if(user.email_verified === false){
+        if(userProfile.email_verified === false){
           window.location.replace('/persona-form');
         }
 
