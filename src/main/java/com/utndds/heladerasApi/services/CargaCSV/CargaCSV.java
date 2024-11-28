@@ -6,7 +6,7 @@ import com.utndds.heladerasApi.models.Colaboraciones.Colaboracion;
 import com.utndds.heladerasApi.models.Persona.PersonaHumana;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
-import com.utndds.heladerasApi.repositories.PersonaHumanaRepository;
+import com.utndds.heladerasApi.repositories.PersonaRepository;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.ColaboracionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class CargaCSV {
     private ColaboradorRepository colaboradorRepository;
 
     @Autowired
-    private PersonaHumanaRepository personaHumanaRepository;
+    private PersonaRepository personaRepository;
 
     @Autowired
     private ColaboracionRepository colaboracionRepository;
@@ -68,11 +68,11 @@ public class CargaCSV {
     }
 
     private PersonaHumana getOrCreatePersonaHumana(String[] registro) {
-        PersonaHumana persona = personaHumanaRepository.findByDocumento_TipoAndDocumento_Numero(registro[0], registro[1]);
+        PersonaHumana persona = personaRepository.findByDocumento_TipoAndDocumento_Numero(registro[0], registro[1]);
 
         if (persona == null) {
             persona = phFactory.crearPersonaHumana(registro);
-            persona = personaHumanaRepository.save(persona); // Guardar nueva persona
+            persona = personaRepository.save(persona); // Guardar nueva persona
         }
         return persona;
     }
