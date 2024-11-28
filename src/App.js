@@ -16,6 +16,7 @@ import CargarHeladeraPage from './pages/CargarHeladeraPage.js';
 import DistribucionViandasPage from './pages/DistribucionViandasPage.js';
 import SuscripcionHeladeraPage from './pages/SuscripcionHeladeraPage.js';
 import VisitaTecnicoPage from './pages/VisitaTenicoPage.js';
+import ReconocimientosExtraPage from './pages/ReconocimientosExtraPage.js';
 import CallbackPage from './pages/CallBackPage.js';
 import AccesoDenegadoPage from './pages/AccesoDenegadoPage';
 import { AuthProvider } from './config/authContext.js';
@@ -128,10 +129,16 @@ function Main({ setHeaderHeight, headerHeight }) {
           </RoleProtectedRoute>
         } />
 
-        {/* Nueva ruta protegida para "Visita Técnica" */}
         <Route path="/visita-tecnico" element={
           <RoleProtectedRoute allowedRoles={['ROLE_ADMIN']}>
             <VisitaTecnicoPage />
+          </RoleProtectedRoute>
+        } />
+
+
+        <Route path="/reconocimientos-extra" element={
+          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>
+            <ReconocimientosExtraPage />
           </RoleProtectedRoute>
         } />
       </Routes>
