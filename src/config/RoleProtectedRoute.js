@@ -5,7 +5,7 @@ import { Center, Spinner } from '@chakra-ui/react';
 import { useState } from 'react';
 
 const RoleProtectedRoute = ({ children, allowedRoles }) => {
-  const { isAuthenticated, roles, login } = useAuth();
+  const { isAuthenticated, roles, login,user } = useAuth();
   const [isLoading] = useState(true);
   if (isAuthenticated === null) {
     return (
@@ -17,6 +17,9 @@ const RoleProtectedRoute = ({ children, allowedRoles }) => {
           )}
       </Center>
   ); //  spinner de carga
+  }
+  if (user.email_verified === false) {  
+    return <Navigate to="/Verificar-email" replace />;
   }
   if (!isAuthenticated) {
     login(); // Redirige al usuario al inicio de sesión si no está autenticado

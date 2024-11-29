@@ -61,7 +61,6 @@ function UserProfileModal({ isOpen, onClose }) {
           <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
               {user?.email_verified ? (
                 filteredOptions.map((item, index) => (
-                 
                   <Box
                     key={index}
                     onClick={() =>

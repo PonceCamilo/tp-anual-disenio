@@ -17,6 +17,7 @@ import DistribucionViandasPage from './pages/DistribucionViandasPage.js';
 import SuscripcionHeladeraPage from './pages/SuscripcionHeladeraPage.js';
 import VisitaTecnicoPage from './pages/VisitaTenicoPage.js';
 import ReconocimientosExtraPage from './pages/ReconocimientosExtraPage.js';
+import VerificarEmailPage from './pages/VerificarEmailPage.js';
 import PersonaPage from './pages/PersonaPage.js';
 import CallbackPage from './pages/CallBackPage.js';
 import AccesoDenegadoPage from './pages/AccesoDenegadoPage';
@@ -72,6 +73,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         <Route path="/callback" element={<CallbackPage />} />
         <Route path="/acceso-denegado" element={<AccesoDenegadoPage />} />
         <Route path="/persona-form" element={<PersonaPage/>} />
+        <Route path="/Verificar-email" element={<VerificarEmailPage/>} />
         {/* Rutas protegidas con roles */}
         <Route path="/report-issue" element={
           <RoleProtectedRoute allowedRoles={['ROLE_ADMIN', 'ROLE_COLLABORATOR']}>

@@ -17,7 +17,7 @@ function MapApp() {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [mapCenter, setMapCenter] = useState(center);
   const [zoom, setZoom] = useState(15);
-
+  const accessToken = localStorage.getItem('accessToken');
   useEffect(() => {
     const fetchLocations = async () => {
       try {
@@ -25,7 +25,6 @@ function MapApp() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-           
           },
           credentials: 'include' 
         });
