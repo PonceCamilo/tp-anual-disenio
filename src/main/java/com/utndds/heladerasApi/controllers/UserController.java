@@ -18,14 +18,15 @@ public class UserController {
 
     @PostMapping("/personaHumana")
     public ResponseEntity<String> personaHumana(@RequestBody PersonaHumanaDTO personaHumanaDTO) {
-        UserService.crearPersonaHumana(personaHumanaDTO);
-        return ResponseEntity.ok("Alta exitosa.");
+        Long id = UserService.crearPersonaHumana(personaHumanaDTO);
+        return ResponseEntity.ok("Alta exitosa. ID: " + id);
     }
 
     @PostMapping("/personaJuridica")
     public ResponseEntity<String> personaJuridica(@RequestBody PersonaJuridicaDTO personaJuridicaDTO) {
-        UserService.crearPersonaJuridica(personaJuridicaDTO);
-        return ResponseEntity.ok("Alta exitosa.");
+        Long id = UserService.crearPersonaJuridica(personaJuridicaDTO);
+        return ResponseEntity.ok("Alta exitosa." + id);
     }
+    
     
 }

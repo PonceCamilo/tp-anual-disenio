@@ -1,19 +1,20 @@
 package com.utndds.heladerasApi.DTOs;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import com.utndds.heladerasApi.models.Persona.Documento;
-import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 
 public class PersonaHumanaDTO {
     private Long id;
     private String nombre;
     private String apellido;
-    private List<Contacto> mediosContacto;
+    private List<String> mediosContacto;
+    private String email;
+    private String whatsapp;
+    private String telegram;
     private LocalDate  fechaNacimiento;
     private String direccion;
-    private Documento documento;
+    private String documento;
+    private String tipo;
 
     
 
@@ -46,14 +47,39 @@ public class PersonaHumanaDTO {
 
     // Getter y Setter para mediosContacto
 
-    public List<Contacto> getMediosContacto() {
+    public List<String> getMediosContacto() {
         return mediosContacto;
     }
 
-    public void setMediosContacto(List<Contacto> mediosContacto) {
+    public void setMediosContacto(List<String> mediosContacto) {
         this.mediosContacto = mediosContacto;
     }
 
+    // Getter y Setter para email
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWhatsapp() {
+        return whatsapp;
+    }
+
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
+    }
+
+    public String getTelegram() {
+        return telegram;
+    }
+
+    public void setTelegram(String telegram) {
+        this.telegram = telegram;
+    }
     // Getter y Setter para fechaNacimiento
 
     public LocalDate getFechaNacimiento() {
@@ -75,16 +101,23 @@ public class PersonaHumanaDTO {
     }
 
     // Getter y Setter para documento
+    public String getTipo() {
+        return tipo;
+    }
 
-    public Documento getDocumento() {
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Documento documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 
-    public PersonaHumanaDTO(Long id, String nombre, String apellido, List<Contacto> mediosContacto, LocalDate fechaNacimiento, String direccion, Documento documento) {
+    public PersonaHumanaDTO(Long id, String nombre, String apellido, List<String> mediosContacto, LocalDate fechaNacimiento, String direccion, String documento) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

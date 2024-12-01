@@ -46,4 +46,7 @@ public abstract class Persona {
             medio.notificar(message);
         }
     }
+    public long getId() {
+        return id;
+    }
 }

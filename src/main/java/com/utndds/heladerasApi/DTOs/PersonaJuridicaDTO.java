@@ -1,14 +1,16 @@
 package com.utndds.heladerasApi.DTOs;
 import java.util.List;
 
-import com.utndds.heladerasApi.models.Persona.Contacto.Contacto;
 public class PersonaJuridicaDTO {
     
     private String razonSocial;
     private String tipo;
     private String rubro;
     private String direccion;
-    private List<Contacto> mediosContacto;
+    private List<String> mediosContacto;
+    private String email;
+    private String whatsapp;
+    private String telegram;
 
     public void setRazonSocial(String razonSocial) {
         this.razonSocial = razonSocial;
@@ -24,6 +26,30 @@ public class PersonaJuridicaDTO {
 
     public String getTipo() {
         return tipo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWhatsapp() {
+        return whatsapp;
+    }
+
+    public void setWhatsapp(String whatsapp) {
+        this.whatsapp = whatsapp;
+    }
+
+    public String getTelegram() {
+        return telegram;
+    }
+
+    public void setTelegram(String telegram) {
+        this.telegram = telegram;
     }
 
     public void setRubro(String rubro) {
@@ -42,15 +68,15 @@ public class PersonaJuridicaDTO {
         return direccion;
     }
 
-    public void setMediosContacto(List<Contacto> mediosContacto) {
+    public void setMediosContacto(List<String> mediosContacto) {
         this.mediosContacto = mediosContacto;
     }
 
-    public List<Contacto> getMediosContacto() {
+    public List<String> getMediosContacto() {
         return mediosContacto;
     }
 
-    public PersonaJuridicaDTO(String direccion, List<Contacto> mediosContacto, String razonSocial, String tipo, String rubro) {
+    public PersonaJuridicaDTO(String direccion, List<String> mediosContacto, String razonSocial, String tipo, String rubro) {
         this.razonSocial = razonSocial;
         this.tipo = tipo;
         this.rubro = rubro;
