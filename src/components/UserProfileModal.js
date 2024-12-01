@@ -10,6 +10,7 @@ import {
   SimpleGrid,
   Image,
   Text,
+  Flex,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../config/authContext'; // Hook de autenticación
@@ -53,47 +54,49 @@ function UserProfileModal({ isOpen, onClose }) {
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose} size="xl">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader textAlign="center">Opciones de Usuario</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-          <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
-              {user?.email_verified ? (
-                filteredOptions.map((item, index) => (
-                  <Box
-                    key={index}
-                    onClick={() =>
-                      item.action ? item.action() : navigate(item.path) && onClose()
-                    }
-                    cursor="pointer"
-                    display="flex"
-                    flexDirection="column"
-                    alignItems="center"
-                    justifyContent="center"
-                    p={4}
-                    borderWidth="1px"
-                    borderRadius="md"
-                    _hover={{ bg: 'gray.100' }}
-                    width="130px"
-                    minHeight="120px"
-                  >
-                    <Image src={item.img} alt={item.label} boxSize="60px" />
-                    <Text mt={2} textAlign="center">
-                      {item.label}
-                    </Text>
-                  </Box>
-                  
-                ))
-              ) : (
-                <Text textAlign="center" fontWeight="bold" color="red.500">
-                  Por favor, verifica tu email para acceder a estas opciones.
-                </Text>
-              )}
-              </SimpleGrid>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+  <ModalOverlay />
+  <ModalContent>
+    <ModalHeader textAlign="center">Opciones de Usuario</ModalHeader>
+    <ModalCloseButton />
+    <ModalBody>
+      {user?.email_verified ? (
+        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={6}>
+          {filteredOptions.map((item, index) => (
+            <Box
+              key={index}
+              onClick={() =>
+                item.action ? item.action() : (navigate(item.path), onClose())
+              }
+              cursor="pointer"
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              p={4}
+              borderWidth="1px"
+              borderRadius="md"
+              _hover={{ bg: 'gray.100' }}
+              width="130px"
+              minHeight="120px"
+            >
+              <Image src={item.img} alt={item.label} boxSize="60px" />
+              <Text mt={2} textAlign="center">
+                {item.label}
+              </Text>
+            </Box>
+          ))}
+        </SimpleGrid>
+      ) : (
+        <Flex justify="center" align="center" minHeight="150px">
+          <Text textAlign="center" fontWeight="bold" color="red.500">
+            Por favor, verifica tu email para acceder a estas opciones.
+          </Text>
+        </Flex>
+      )}
+    </ModalBody>
+  </ModalContent>
+</Modal>
+
 
       {/* Modal para cargar CSV */}
       <LoadCSVModal isOpen={isCSVModalOpen} onClose={() => setIsCSVModalOpen(false)} />

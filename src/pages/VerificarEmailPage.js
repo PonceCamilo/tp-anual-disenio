@@ -22,7 +22,7 @@ const EmailNoVerificadoPage = () => {
     >
       <VStack spacing={5}>
         <Heading as="h1" fontSize="3rem" color="black">
-          ¡Espera un momento! 📧
+        📧¡Espera un momento! 📧
         </Heading>
         <Text fontWeight="bold" fontSize="1.5rem" marginTop="1rem">
           Parece que tu correo aún no está verificado...
@@ -31,8 +31,9 @@ const EmailNoVerificadoPage = () => {
           🔒📨🕒
         </Text>
         <Text fontWeight="bold" fontSize="1.5rem">
-          Por favor, revisa tu bandeja de entrada y sigue el enlace para verificarlo.
+          Por favor, revisa tu bandeja de mail y sigue el enlace para verificarlo.
         </Text>
+        
         <Button
           colorScheme="green"
           onClick={() => navigate('/')}

@@ -18,9 +18,8 @@ const RoleProtectedRoute = ({ children, allowedRoles }) => {
       </Center>
   ); //  spinner de carga
   }
-  if (user.email_verified === false) {  
-    return <Navigate to="/Verificar-email" replace />;
-  }
+  
+  
   if (!isAuthenticated) {
     login(); // Redirige al usuario al inicio de sesión si no está autenticado
     return null
@@ -29,6 +28,9 @@ const RoleProtectedRoute = ({ children, allowedRoles }) => {
   const hasRequiredRole = roles.some(role => allowedRoles.includes(role));
   if (!hasRequiredRole) {
     return <Navigate to="/acceso-denegado" replace />;
+  }
+  if (user.email_verified === false) {  
+    return <Navigate to="/Verificar-email" replace />;
   }
   return children; // Permite el acceso si tiene el rol adecuado
 };

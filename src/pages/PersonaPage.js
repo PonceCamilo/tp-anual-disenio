@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Heading,
@@ -10,15 +10,24 @@ import {
 } from "@chakra-ui/react";
 import LegalForm from "../components/LegalForm"; // Importa tu componente LegalForm
 import HumanForm from "../components/HumanForm"; // Importa tu componente HumanForm
+import { useAuth } from "../config/authContext"; // Importa el hook useAuth0
+import { Navigate } from 'react-router-dom';
+const data = localStorage.getItem('cached_roles');
 
 const PersonaPage = () => {
   const [personaType, setPersonaType] = useState(null); // Estado para tipo de persona seleccionada
-
   // Función para volver a la selección de tipo de persona
+  const {isAuthenticated, login} = useAuth();
+  if (!isAuthenticated){
+    login(); // Redirige al usuario al inicio de sesión si no está autenticado
+    return null
+  }
   const handleBack = () => {
     setPersonaType(null);
   };
-
+  if(data){
+    return <Navigate to="/" replace />;
+  }
   return (
     <Container
       maxW="container.md"

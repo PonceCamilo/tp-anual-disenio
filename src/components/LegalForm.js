@@ -10,18 +10,46 @@ import {
   VStack,
   Heading,
   useToast,
+  CheckboxGroup,
+  Checkbox,
+  HStack,
 } from "@chakra-ui/react";
-import ContactMethod from "./ContactMethod";
+import { useAuth } from "../config/authContext";
+import { useNavigate } from "react-router-dom";
 
 function LegalForm({ onBack }) {
+  const { accessToken, userSub } = useAuth();
+  const navigate = useNavigate();
+  const [id , setDd] = useState("");
+  const colaboradorUUID = userSub;
   const [formData, setFormData] = useState({
     companyName: "",
     organizationType: "",
     category: "",
-    contactMethod: "",
+    contactMethods: [],
+    email: "",
+    whatsapp: "",
+    telegram: "",
     contactInfo: "",
     address: "",
   });
+  const dto = {
+    razonSocial: formData.companyName,
+    tipo: formData.organizationType,
+    rubro: formData.category,
+    email: formData.email,
+    mediosContacto: formData.contactMethods,
+    whatsapp: formData.whatsapp,
+    telegram: formData.telegram,
+    direccion: formData.address,
+  };
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
 
   const [contactMethod, setContactMethod] = useState("");
   const toast = useToast();
@@ -43,9 +71,7 @@ function LegalForm({ onBack }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Validación básica
-    if (!formData.companyName || !formData.organizationType || !contactMethod || !formData.contactInfo) {
+    if (!formData.companyName || !formData.organizationType) {
       toast({
         title: "Error",
         description: "Por favor, completa todos los campos obligatorios.",
@@ -55,49 +81,70 @@ function LegalForm({ onBack }) {
       });
       return;
     }
+    if (formData.contactMethods.length <= 0) {
+      toast({
+        title: "Error",
+        description: "Por favor, selecciona al menos un método de contacto.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
 
     try {
-      const response = await fetch("/api/legal-registrations", {
+      // Realizar la solicitud POST
+      console.log("Enviando formulario:", dto);
+      const response = await fetch("http://localhost:8080/users/personaJuridica", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dto),
       });
-
-      if (response.ok) {
-        toast({
-          title: "¡Registro exitoso!",
-          description: "La información ha sido enviada correctamente.",
-          status: "success",
-          duration: 5000,
-          isClosable: true,
-        });
-        setFormData({
-          companyName: "",
-          organizationType: "",
-          category: "",
-          contactMethod: "",
-          contactInfo: "",
-          address: "",
-        });
-        setContactMethod("");
-      } else {
-        const errorData = await response.json();
-        console.error("Error al registrar:", errorData);
-        toast({
-          title: "Error",
-          description: "Hubo un problema al registrar. Por favor, inténtalo nuevamente.",
-          status: "error",
-          duration: 5000,
-          isClosable: true,
-        });
+  
+      // Manejar la respuesta
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.statusText}`);
       }
+    const message = await response.text();
+    const idMatch = message.match(/ID: (\d+)/);
+    if (idMatch && idMatch[1]) {
+    const id = idMatch[1]; // Aquí tienes el ID extraído
+    console.log("ID de la persona Juridica creada:", id);
+    setDd(id);
+  } else {
+    throw new Error("No se pudo extraer el ID de la respuesta.");
+  }
+      console.log("enviando crear colaborador con uuid ", colaboradorUUID);
+      const rta = await fetch(`http://localhost:8080/roles/crear-colaborador?colaboradorUUID=${colaboradorUUID}&id=${id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      if (!rta.ok) {
+        throw new Error(`Error en la solicitud: ${rta.statusText}`);
+      }
+      toast({
+        title: "Formulario enviado",
+        description: "Alta exitosa. Redirigiendo...",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 3000);
     } catch (error) {
-      console.error("Error al enviar los datos:", error);
+      // Manejar errores
+      console.error("Error al enviar el formulario:", error);
+  
       toast({
         title: "Error",
-        description: "Hubo un problema al registrar. Por favor, inténtalo nuevamente.",
+        description: "Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.",
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -137,7 +184,7 @@ function LegalForm({ onBack }) {
           </Select>
         </FormControl>
 
-        <FormControl>
+        <FormControl isRequired>
           <FormLabel>Rubro</FormLabel>
           <Input
             type="text"
@@ -148,30 +195,56 @@ function LegalForm({ onBack }) {
           />
         </FormControl>
 
-        <FormControl isRequired>
-          <FormLabel>Método de Contacto</FormLabel>
-          <Select
-            placeholder="Seleccione un método de contacto"
-            name="contactMethod"
-            value={contactMethod}
-            onChange={(e) => {
-              handleInputChange(e);
-              setContactMethod(e.target.value);
-            }}
+        
+        <FormLabel>Métodos de Contacto</FormLabel>
+          <CheckboxGroup
+            value={formData.contactMethods}
+            onChange={(values) => setFormData({ ...formData, contactMethods: values })}
           >
-            <option value="email">Email</option>
-            <option value="telefono">Teléfono</option>
-            <option value="whatsapp">WhatsApp</option>
-          </Select>
-        </FormControl>
+            <HStack align="start">
+              
+              <Checkbox value="EMAIL">Email</Checkbox>
+              <Checkbox value="WHATSAPP">WhatsApp</Checkbox>
+              <Checkbox value="TELEGRAM">Telegram</Checkbox>
+            </HStack>
+          </CheckboxGroup>
+      
 
-        {contactMethod && (
-          <FormControl>
-            <FormLabel>Información de Contacto</FormLabel>
-            <ContactMethod
-              type={contactMethod}
-              value={formData.contactInfo}
-              onChange={handleContactInfoChange}
+        {formData.contactMethods.includes("EMAIL") && (
+          <FormControl isRequired>
+            <FormLabel>Correo Electrónico</FormLabel>
+            <Input
+              type="email"
+              placeholder="Ingrese su correo electrónico"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </FormControl>
+        )}
+
+        {formData.contactMethods.includes("TELEGRAM") && (
+          <FormControl isRequired>
+            <FormLabel>Telegram</FormLabel>
+            <Input
+              type="text"
+              placeholder="Ingrese su chat ID de Telegram"
+              name="telegram"
+              value={formData.telegram}
+              onChange={handleChange}
+            />
+          </FormControl>
+        )}
+
+        {formData.contactMethods.includes("WHATSAPP") && (
+          <FormControl isRequired>
+            <FormLabel>WhatsApp</FormLabel>
+            <Input
+              type="tel"
+              placeholder="Ingrese su número de WhatsApp"
+              name="whatsapp"
+              value={formData.whatsapp}
+              onChange={handleChange}
             />
           </FormControl>
         )}

@@ -1,12 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 import { Box, Flex, Heading, Text, Button, Image, useBreakpointValue } from '@chakra-ui/react';
 import HeaderImage from '../assets/imgs/Header.png';
-
+import { useAuth } from '../config/authContext';
 function HeaderApp() {
   const headerRef = useRef(null);
+  const navigate = useNavigate();
   const isMobile = useBreakpointValue({ base: true, md: false });
-
+  const { user, isAuthenticated } = useAuth();
+  const dato = localStorage.getItem('cached_roles');
+  if(!dato && isAuthenticated){
+    navigate("/persona-form");
+  }
+  
   return (
     <Flex
       ref={headerRef}

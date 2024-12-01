@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Center } from '@chakra-ui/react';
+import { useAuth } from '../config/authContext';
 
 const CallbackPage = () => {
     const navigate = useNavigate();  
     const [isLoading, setIsLoading] = useState(true); // Estado de carga
-
+    const { user }= useAuth();
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
@@ -13,7 +14,6 @@ const CallbackPage = () => {
         if (code) {
             // Inicia el spinner al comenzar la carga
             setIsLoading(true);
-
             // Hacer el fetch al backend con el código de autorización
             fetch('http://localhost:8080/callback?code=' + code, {
                 method: 'GET',
@@ -25,11 +25,9 @@ const CallbackPage = () => {
             .then(data => {
                 const accessToken = data.access_token;
                 localStorage.setItem('access_token', accessToken);
-
                 const tokenPayload = JSON.parse(atob(accessToken.split('.')[1]));
                 const userRoles = tokenPayload['scope'] ? tokenPayload['scope'].split(' ').filter(role => role) : [];
                 localStorage.setItem('user_roles', JSON.stringify(userRoles));
-
                 return fetch(process.env.REACT_APP_AUTH0_DOMAIN + '/userinfo', {
                     headers: {
                         Authorization: `Bearer ${accessToken}`
@@ -43,6 +41,7 @@ const CallbackPage = () => {
                 localStorage.setItem('user_profile', JSON.stringify(userProfile));
                 //guardo el sub en localStorage
                 localStorage.setItem('sub', sanitizedSub);
+                
                 navigate('/');
                 window.location.reload();
             })

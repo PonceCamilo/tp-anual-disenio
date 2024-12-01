@@ -69,10 +69,10 @@ function Main({ setHeaderHeight, headerHeight }) {
       <Routes>
         {/* Rutas públicas */}
         <Route path="/" element={<></>} />
+        <Route path="/persona-form" element={<PersonaPage />} />
         <Route path="/map" element={<MapApp />} />
         <Route path="/callback" element={<CallbackPage />} />
         <Route path="/acceso-denegado" element={<AccesoDenegadoPage />} />
-        <Route path="/persona-form" element={<PersonaPage/>} />
         <Route path="/Verificar-email" element={<VerificarEmailPage/>} />
         {/* Rutas protegidas con roles */}
         <Route path="/report-issue" element={
@@ -144,12 +144,9 @@ function Main({ setHeaderHeight, headerHeight }) {
             <ReconocimientosExtraPage />
           </RoleProtectedRoute>
         } />
-        <Route path="/persona-form" element={
-          <RoleProtectedRoute allowedRoles={['']}>
-            <ReconocimientosExtraPage />
-          </RoleProtectedRoute>
-        } />
+        
       </Routes>
+      
     </>
   );
 }
