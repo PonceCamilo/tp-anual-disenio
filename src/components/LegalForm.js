@@ -18,7 +18,7 @@ import { useAuth } from "../config/authContext";
 import { useNavigate } from "react-router-dom";
 
 function LegalForm({ onBack }) {
-  const { accessToken, userSub } = useAuth();
+  const { accessToken, userSub, logout } = useAuth();
   const navigate = useNavigate();
   const [id , setDd] = useState("");
   const colaboradorUUID = userSub;
@@ -129,14 +129,14 @@ function LegalForm({ onBack }) {
         throw new Error(`Error en la solicitud: ${rta.statusText}`);
       }
       toast({
-        title: "Formulario enviado",
-        description: "Alta exitosa. Redirigiendo...",
+        title: "Alta Exitosa",
+        description: "Porfavor vuelve a iniciar sesión, no olvides verificar tu email",
         status: "success",
         duration: 5000,
         isClosable: true,
       });
       setTimeout(() => {
-        window.location.href = "/";
+        logout();
       }, 3000);
     } catch (error) {
       // Manejar errores

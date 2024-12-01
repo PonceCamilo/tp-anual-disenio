@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Box, VStack, Heading, Select, FormControl, FormLabel, Input, CheckboxGroup, Checkbox, HStack, Button, ButtonGroup, Text, useToast } from '@chakra-ui/react';
 import { useAuth } from '../config/authContext';
 function HumanForm({ onBack }) {
-  const { accessToken, userSub }= useAuth();
+  const { accessToken, userSub, logout }= useAuth();
   const [id , setId] = useState("");
   const colaboradorUUID = userSub;
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,7 +36,7 @@ function HumanForm({ onBack }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    
     // Validación de campos
     if (!formData.name || !formData.lastName) {
       toast({
@@ -58,6 +58,22 @@ function HumanForm({ onBack }) {
       });
       return;
     }
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); 
+
+  if (formData.birthdate) {
+    const birthdate = new Date(formData.birthdate);
+    if (birthdate >= today) {
+      toast({
+        title: "Error",
+        description: "La fecha de nacimiento no puede ser hoy ni una fecha futura.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+  }
   
     // Crear el DTO
     const dto = {
@@ -116,14 +132,15 @@ function HumanForm({ onBack }) {
         throw new Error(`Error en la solicitud: ${rta.statusText}`);
       }
       toast({
-        title: "Formulario enviado",
-        description: "Alta exitosa. Redirigiendo...",
+        title: "Alta Exitosa",
+        description: "Porfavor vuelve a iniciar sesión, no olvides verificar tu email",
         status: "success",
         duration: 5000,
         isClosable: true,
       });
+      
       setTimeout(() => {
-        window.location.href = "/";
+        logout();
       }, 3000);
     } catch (error) {
       // Manejar errores
@@ -290,13 +307,13 @@ function HumanForm({ onBack }) {
           </CheckboxGroup>
 
         <FormControl>
-          <FormLabel>Fecha de Nacimiento (opcional)</FormLabel>
-          <Input
-            type="date"
-            name="birthdate"
-            value={formData.birthdate}
-            onChange={handleChange}
-          />
+        <FormLabel>Fecha de Nacimiento (opcional)</FormLabel>
+  <Input
+    type="date"
+    name="birthdate"
+    value={formData.birthdate}
+    onChange={handleChange}
+  />
         </FormControl>
 
         <FormControl>

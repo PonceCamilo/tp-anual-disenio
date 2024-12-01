@@ -88,7 +88,7 @@ function UserProfileModal({ isOpen, onClose }) {
       ) : (
         <Flex justify="center" align="center" minHeight="150px">
           <Text textAlign="center" fontWeight="bold" color="red.500">
-            Por favor, verifica tu email para acceder a estas opciones.
+            Por favor, verifica tu email para acceder a estas opciones, si ya lo hiciste por favor vuelve a iniciar sesion.
           </Text>
         </Flex>
       )}

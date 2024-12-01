@@ -9,10 +9,19 @@ function HeaderApp() {
   const navigate = useNavigate();
   const isMobile = useBreakpointValue({ base: true, md: false });
   const { user, isAuthenticated } = useAuth();
-  const dato = localStorage.getItem('cached_roles');
-  if(!dato && isAuthenticated){
-    navigate("/persona-form");
-  }
+  useEffect(() => {
+    const checkRoles = async () => {
+      // Retrasa ligeramente la ejecución para asegurar que `cached_roles` esté disponible
+      await new Promise((resolve) => setTimeout(resolve, 1000)); 
+      const dato = localStorage.getItem("cached_roles");
+
+      if (!dato && isAuthenticated) {
+        navigate("/persona-form");
+      }
+    };
+
+    checkRoles();
+  }, [isAuthenticated, navigate]);
   
   return (
     <Flex
