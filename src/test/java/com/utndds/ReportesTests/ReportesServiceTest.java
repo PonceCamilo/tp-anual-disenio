@@ -3,7 +3,9 @@ package com.utndds.ReportesTests;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,91 +43,106 @@ public class ReportesServiceTest {
         }
 
         @Test
-        public void testObtenerReporteFallasUltimaSemana() {
+        public void testObtenerReporteFallasPorRangoUltimaSemana() {
                 // Datos de prueba
                 FallasPorHeladera reporte1 = new FallasPorHeladera(1L, 3);
                 FallasPorHeladera reporte2 = new FallasPorHeladera(2L, 5);
-                when(reporteFallasHeladeraRepository.findByFechaGeneracionAfter(any(LocalDate.class)))
+                LocalDate fechaInicio = LocalDate.now().minusDays(7);
+                LocalDate fechaFin = LocalDate.now();
+
+                when(reporteFallasHeladeraRepository.findByFechaGeneracionBetween(fechaInicio, fechaFin))
                                 .thenReturn(Arrays.asList(reporte1, reporte2));
 
                 // Llamar al método
-                List<FallasPorHeladera> reportes = reportesService.obtenerReporteFallasUltimaSemana();
+                List<FallasPorHeladera> reportes = reportesService.obtenerReporteFallasPorRango(fechaInicio, fechaFin);
 
                 // Verificar resultados
                 assertNotNull(reportes);
                 assertEquals(2, reportes.size());
-                verify(reporteFallasHeladeraRepository).findByFechaGeneracionAfter(any(LocalDate.class));
+                verify(reporteFallasHeladeraRepository).findByFechaGeneracionBetween(fechaInicio, fechaFin);
         }
 
         @Test
-        public void testObtenerReporteViandasHeladeraUltimaSemana() {
+        public void testObtenerReporteViandasHeladeraPorRangoUltimaSemana() {
                 // Datos de prueba
                 ViandasMovidasPorHeladera reporte1 = new ViandasMovidasPorHeladera(1L, 10);
                 ViandasMovidasPorHeladera reporte2 = new ViandasMovidasPorHeladera(2L, 15);
-                when(reporteViandasHeladeraRepository.findByFechaGeneracionAfter(any(LocalDate.class)))
+                LocalDate fechaInicio = LocalDate.now().minusDays(7);
+                LocalDate fechaFin = LocalDate.now();
+
+                when(reporteViandasHeladeraRepository.findByFechaGeneracionBetween(fechaInicio, fechaFin))
                                 .thenReturn(Arrays.asList(reporte1, reporte2));
 
                 // Llamar al método
-                List<ViandasMovidasPorHeladera> reportes = reportesService.obtenerReporteViandasHeladeraUltimaSemana();
+                List<ViandasMovidasPorHeladera> reportes = reportesService
+                                .obtenerReporteViandasHeladeraPorRango(fechaInicio, fechaFin);
 
                 // Verificar resultados
                 assertNotNull(reportes);
                 assertEquals(2, reportes.size());
-                verify(reporteViandasHeladeraRepository).findByFechaGeneracionAfter(any(LocalDate.class));
+                verify(reporteViandasHeladeraRepository).findByFechaGeneracionBetween(fechaInicio, fechaFin);
         }
 
         @Test
-        public void testObtenerReporteViandasColaboradorUltimaSemana() {
+        public void testObtenerReporteViandasColaboradorPorRangoUltimaSemana() {
                 // Datos de prueba
                 ViandasMovidasPorColaborador reporte1 = new ViandasMovidasPorColaborador(1L, 7);
                 ViandasMovidasPorColaborador reporte2 = new ViandasMovidasPorColaborador(2L, 9);
-                when(reporteViandasColaboradorRepository.findByFechaGeneracionAfter(any(LocalDate.class)))
+                LocalDate fechaInicio = LocalDate.now().minusDays(7);
+                LocalDate fechaFin = LocalDate.now();
+
+                when(reporteViandasColaboradorRepository.findByFechaGeneracionBetween(fechaInicio, fechaFin))
                                 .thenReturn(Arrays.asList(reporte1, reporte2));
 
                 // Llamar al método
                 List<ViandasMovidasPorColaborador> reportes = reportesService
-                                .obtenerReporteViandasColaboradorUltimaSemana();
+                                .obtenerReporteViandasColaboradorPorRango(fechaInicio, fechaFin);
 
                 // Verificar resultados
                 assertNotNull(reportes);
                 assertEquals(2, reportes.size());
-                verify(reporteViandasColaboradorRepository).findByFechaGeneracionAfter(any(LocalDate.class));
+                verify(reporteViandasColaboradorRepository).findByFechaGeneracionBetween(fechaInicio, fechaFin);
         }
 
         @Test
-        public void testObtenerReporteFallasSemanaEspecifica() {
+        public void testObtenerReporteFallasPorRangoSemanaEspecifica() {
                 // Datos de prueba
                 FallasPorHeladera reporte1 = new FallasPorHeladera(1L, 3);
-                when(reporteFallasHeladeraRepository.findByFechaGeneracionBetween(any(LocalDate.class),
-                                any(LocalDate.class)))
+                int numeroSemana = 1; // Semana actual
+                LocalDate inicioSemana = LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
+                                .minusWeeks(numeroSemana - 1);
+                LocalDate finSemana = inicioSemana.plusDays(6);
+
+                when(reporteFallasHeladeraRepository.findByFechaGeneracionBetween(inicioSemana, finSemana))
                                 .thenReturn(Arrays.asList(reporte1));
 
                 // Llamar al método
-                List<FallasPorHeladera> reportes = reportesService.obtenerReporteFallasSemanaEspecifica(1);
+                List<FallasPorHeladera> reportes = reportesService.obtenerReporteFallasPorRango(inicioSemana,
+                                finSemana);
 
                 // Verificar resultados
                 assertNotNull(reportes);
                 assertEquals(1, reportes.size());
-                verify(reporteFallasHeladeraRepository).findByFechaGeneracionBetween(any(LocalDate.class),
-                                any(LocalDate.class));
+                verify(reporteFallasHeladeraRepository).findByFechaGeneracionBetween(inicioSemana, finSemana);
         }
 
         @Test
-        public void testObtenerReportesViandasHeladeraPorRango() {
+        public void testObtenerReporteViandasHeladeraPorRango() {
                 // Datos de prueba
                 ViandasMovidasPorHeladera reporte1 = new ViandasMovidasPorHeladera(1L, 10);
-                when(reporteViandasHeladeraRepository.findByFechaGeneracionBetween(any(LocalDate.class),
-                                any(LocalDate.class)))
+                LocalDate fechaInicio = LocalDate.now().minusDays(7);
+                LocalDate fechaFin = LocalDate.now();
+
+                when(reporteViandasHeladeraRepository.findByFechaGeneracionBetween(fechaInicio, fechaFin))
                                 .thenReturn(Arrays.asList(reporte1));
 
                 // Llamar al método
-                List<ViandasMovidasPorHeladera> reportes = reportesService.obtenerReportesViandasHeladeraPorRango(
-                                LocalDate.now().minusDays(7), LocalDate.now());
+                List<ViandasMovidasPorHeladera> reportes = reportesService
+                                .obtenerReporteViandasHeladeraPorRango(fechaInicio, fechaFin);
 
                 // Verificar resultados
                 assertNotNull(reportes);
                 assertEquals(1, reportes.size());
-                verify(reporteViandasHeladeraRepository).findByFechaGeneracionBetween(any(LocalDate.class),
-                                any(LocalDate.class));
+                verify(reporteViandasHeladeraRepository).findByFechaGeneracionBetween(fechaInicio, fechaFin);
         }
 }

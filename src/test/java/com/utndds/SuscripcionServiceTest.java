@@ -67,7 +67,7 @@ public class SuscripcionServiceTest {
         SuscripcionDTO suscripcionDTO = new SuscripcionDTO();
         suscripcionDTO.setColaboradorUUID("uuid-colaborador-1");
         suscripcionDTO.setHeladeraId(1L);
-        suscripcionDTO.setCantidadViandas(5);
+        suscripcionDTO.setCantidadViandasMax(5);
         suscripcionDTO.setTiposContactosSeleccionados(Arrays.asList(TipoContacto.EMAIL, TipoContacto.WHATSAPP));
         suscripcionDTO.setTiposEventosSeleccionados(Arrays.asList(TipoEvento.POCAS_VIANDAS, TipoEvento.MUCHAS_VIANDAS));
 
