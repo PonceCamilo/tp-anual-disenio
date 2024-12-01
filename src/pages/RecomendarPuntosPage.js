@@ -6,8 +6,9 @@ import {
   Button,
   Flex,
   Text,
+  useToast,
 } from '@chakra-ui/react';
-import { useAuth } from '../config/authContext'; // Importa el hook de autenticación
+import { useAuth } from '../config/authContext';
 
 function RecomendarPuntosPage() {
   const [puntos, setPuntos] = useState([]);
@@ -15,6 +16,8 @@ function RecomendarPuntosPage() {
   const [radius, setRadius] = useState(0);
   const [direccion, setDireccion] = useState("");
   const { accessToken } = useAuth();
+  const toast = useToast();
+  const colaboradorUUID = localStorage.getItem('sub');
 
   const handleDireccionChange = (e) => {
     setDireccion(e.target.value);
@@ -22,16 +25,84 @@ function RecomendarPuntosPage() {
 
   const handleBuscarDireccion = () => {
     console.log("Buscar dirección:", direccion);
-    //terminar de implementar
+    // Lógica de búsqueda de dirección (a implementar si es necesario).
+  };
+
+  const handleAceptar = async () => {
+    // Validación solo para el botón Aceptar.
+    if (!selectedLocation || !direccion) {
+      toast({
+        title: 'Error',
+        description: 'Por favor, selecciona una ubicación en el mapa y completa la dirección.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        'http://localhost:8080/colaboraciones/obtencion-heladera',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: new URLSearchParams({
+            direccion,
+            lat: selectedLocation.lat?.toString() || '',
+            lng: selectedLocation.lng?.toString() || '',
+            colaboradorUUID,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        toast({
+          title: 'Éxito',
+          description: 'Heladera registrada correctamente.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        setDireccion('');
+        setSelectedLocation(null);
+      } else {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: `No se pudo registrar la heladera: ${error.message}`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   const handleSubmit = async () => {
+    // Método original para "Obtener recomendación".
+    if (!selectedLocation) {
+      toast({
+        title: 'Error',
+        description: 'Por favor, selecciona una ubicación en el mapa.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/heladeras/recomendarPuntos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`, 
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           latitud: selectedLocation.lat,
@@ -44,6 +115,13 @@ function RecomendarPuntosPage() {
       setPuntos(data);
     } catch (error) {
       console.error('Error al obtener las recomendaciones:', error);
+      toast({
+        title: 'Error',
+        description: 'No se pudieron obtener las recomendaciones. Inténtalo nuevamente.',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
@@ -73,7 +151,7 @@ function RecomendarPuntosPage() {
           borderColor="gray.300"
           bg={"white"}
         />
-        <Button flex={1} onClick={handleBuscarDireccion} colorScheme="green">
+        <Button flex={1} onClick={handleAceptar} colorScheme="green">
           Aceptar
         </Button>
       </Box>
@@ -121,6 +199,7 @@ function RecomendarPuntosPage() {
             setSelectedLocation={setSelectedLocation}
             puntos={puntos}
             setPuntos={setPuntos}
+            setDireccion={setDireccion}
           />
         </Box>
       </Flex>

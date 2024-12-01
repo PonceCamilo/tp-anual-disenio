@@ -4,13 +4,21 @@ import { Input } from '@chakra-ui/react';
 
 const center = {
   lat: -34.5994039,
-  lng: -58.435489
+  lng: -58.435489,
 };
 
-function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedLocation, puntos, setPuntos }) {
+function RecomendarPuntosApp({
+  radius,
+  selectedLocation,
+  setRadius,
+  setSelectedLocation,
+  puntos,
+  setPuntos,
+  setDireccion, // Permite actualizar la dirección en el buscador
+}) {
 
   const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   const [locations, setLocations] = useState([]);
@@ -37,6 +45,21 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
     return <div>Loading...</div>;
   }
 
+  const handleMarkerClick = async (lat, lng) => {
+    try {
+      const geocodeResponse = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`
+      );
+      const geocodeData = await geocodeResponse.json();
+      if (geocodeData.results && geocodeData.results.length > 0) {
+        const address = geocodeData.results[0].formatted_address;
+        setDireccion(address); // Actualiza la dirección en el buscador
+      }
+    } catch (error) {
+      console.error('Error al obtener la dirección:', error);
+    }
+  };
+
   const handleMapClick = (event) => {
     if (!selectingRadius) {
       setSelectedLocation({
@@ -52,7 +75,6 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
   };
 
   function getDistance(center, point) {
-    // Calcula la distancia entre dos puntos para obtener el radio del círculo
     function toRadians(degrees) {
       return degrees * (Math.PI / 180);
     }
@@ -67,7 +89,8 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
       const deltaLat = lat2 - lat1;
       const deltaLon = lon2 - lon1;
 
-      const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      const a =
+        Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
         Math.cos(lat1) * Math.cos(lat2) *
         Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
 
@@ -92,7 +115,6 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
         onClick={handleMapClick}
         onMouseMove={handleMovement}
       >
-
         {/* Marca en el mapa las heladeras existentes */}
         {locations.map((location) => (
           <Marker
@@ -116,9 +138,9 @@ function RecomendarPuntosApp({ radius, selectedLocation, setRadius, setSelectedL
           <Marker
             key={punto.nombre}
             position={{ lat: punto.latitud, lng: punto.longitud }}
+            onClick={() => handleMarkerClick(punto.latitud, punto.longitud)}
           />
         ))}
-
       </GoogleMap>
 
       {selectedLocation && (

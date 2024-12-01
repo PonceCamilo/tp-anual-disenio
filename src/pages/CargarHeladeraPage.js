@@ -37,13 +37,13 @@ function CargarHeladeraPage() {
                     display="flex"
                     flexDirection="column" // Garantiza que el texto respete el display
                 >
-                    Otra forma de colaborar con la comunidad es haciéndote responsable de una heladera. 
-                    Si no posees un espacio físico para instalarla, podes utilizar nuestro recomendador de puntos 
+                    Otra forma de colaborar con la comunidad es haciéndote responsable de una heladera.
+                    Si no posees un espacio físico para instalarla, podes utilizar nuestro recomendador de puntos
                     para que sea instalada en un lugar público.
                 </Text>
             </Box>
 
-            <VStack spacing={4} mt={8} w="full" maxW="500px"> 
+            <VStack spacing={4} mt={8} w="full" maxW="500px">
                 <CargarHeladeraForm />
             </VStack>
         </Box>

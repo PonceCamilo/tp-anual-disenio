@@ -38,7 +38,6 @@ function UserProfileModal({ isOpen, onClose }) {
     { path: '/suscripcion-heladera', img: Suscripcion, label: 'Suscribirse', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/report-issue', img: FallaTecnica, label: 'Reportar Falla Técnica', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/consulta-canje', img: Canje, label: 'Consultar o Canjear productos', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
-    { path: '/recomendar-puntos', img: Config, label: 'Configuración', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/reportes', img: Report, label: 'Reportes', allowedRoles: ['ROLE_ADMIN'] },
     { path: '/publicar-producto', img: Product, label: 'Publicar Producto/Servicio', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/cargar-heladera', img: Product, label: 'Cargar Heladera', allowedRoles: ['ROLE_ADMIN'] },

@@ -29,8 +29,8 @@ const CargarHeladeraForm = () => {
           },
           body: new URLSearchParams({
             direccion,
-            lat: lat?.toString() || '', 
-            lng: lng?.toString() || '', 
+            lat: lat?.toString() || '',
+            lng: lng?.toString() || '',
             colaboradorUUID,
           }),
         }
@@ -72,7 +72,7 @@ const CargarHeladeraForm = () => {
         setLat(selectedLat); // Guarda la latitud en el estado
         setLng(selectedLng); // Guarda la longitud en el estado
         setDireccion(place.formatted_address || '');
-        
+
         console.log('Latitud:', selectedLat);
         console.log('Longitud:', selectedLng);
       } else {
