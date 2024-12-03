@@ -1,20 +1,23 @@
 package com.utndds.heladerasApi.models.Persona.Contacto;
 
 import jakarta.persistence.*;
-
+import com.utndds.heladerasApi.services.NotificacionApis.TelegramApi;
 @Entity
 @DiscriminatorValue("TELEGRAM")
 public class Telegram extends Contacto {
 
+    private String chatId;
+
     public Telegram() {
     }
 
-    public Telegram(String numero) {
-        this.valor = numero;
+    public Telegram(String chatId) {
+        this.chatId = chatId;
     }
 
     @Override
     public void notificar(String mensaje) {
-        System.out.println("SE NOTIFICO CON EXITO AL TELEGRAM: " + this.valor);
+        String userId = this.chatId;
+        TelegramApi.sendTextMessage(mensaje , userId);
     }
 }

@@ -19,6 +19,9 @@ public abstract class Contacto {
     @JoinColumn(name = "persona") // Nombre de la columna que se refiere a la ONG
     private Persona persona;
 
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
     // Métodos y atributos comunes si los hay
     public abstract void notificar(String mensaje);
 }

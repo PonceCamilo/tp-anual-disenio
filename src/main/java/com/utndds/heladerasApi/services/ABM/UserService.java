@@ -15,6 +15,8 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 import java.util.ArrayList;
 import java.util.List;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
+import com.utndds.heladerasApi.repositories.ContactoRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,41 +29,47 @@ public class UserService {
     @Autowired
     private ColaboradorRepository colaboradorRepository;
 
+    @Autowired
+    private ContactoRepository contactoRepository;
+
     public Long crearPersonaHumana(PersonaHumanaDTO personaHumanaDTO) {
-        // Crear los contactos a partir de los datos del DTO
-        List<Contacto> mediosContacto = UserService.crearContactos(
+        validarDTOHumano(personaHumanaDTO);
+    
+        // Crear instancia de PersonaHumana sin contactos por ahora
+        PersonaHumana personaHumana = new PersonaHumana(
+                personaHumanaDTO.getDireccion(),
+                new ArrayList<>(), // Lista vacía inicialmente
+                personaHumanaDTO.getNombre(),
+                personaHumanaDTO.getApellido(),
+                personaHumanaDTO.getFechaNacimiento(),
+                crearDocumento(personaHumanaDTO.getTipo(), personaHumanaDTO.getDocumento())
+        );
+    
+        // Crear contactos y asociarlos con la persona
+        List<Contacto> mediosContacto = crearContactos(
                 personaHumanaDTO.getMediosContacto(),
                 personaHumanaDTO.getEmail(),
                 personaHumanaDTO.getWhatsapp(),
                 personaHumanaDTO.getTelegram());
-
-        // Crear el documento solo si ambos campos están presentes
-        Documento documento = null; // Inicializar como null
-        if (personaHumanaDTO.getTipo() != null && !personaHumanaDTO.getTipo().isEmpty() &&
-                personaHumanaDTO.getDocumento() != null && !personaHumanaDTO.getDocumento().isEmpty()) {
-            documento = UserService.crearDocumento(personaHumanaDTO.getTipo(), personaHumanaDTO.getDocumento());
+    
+        for (Contacto contacto : mediosContacto) {
+            contacto.setPersona(personaHumana); // Asociar el contacto con la persona
         }
-
-        // Crear la instancia de PersonaHumana con el documento (puede ser null)
-        PersonaHumana personaHumana = new PersonaHumana(
-                personaHumanaDTO.getDireccion(),
-                mediosContacto,
-                personaHumanaDTO.getNombre(),
-                personaHumanaDTO.getApellido(),
-                personaHumanaDTO.getFechaNacimiento(),
-                documento // Se pasa el documento (puede ser null)
-        );
-
-        // Guardar en el repositorio
+    
+        // Asignar los contactos a la persona
+        personaHumana.setMediosContacto(mediosContacto);
+    
+        // Guardar la persona y sus contactos
         personaRepository.save(personaHumana);
-        Long id = personaHumana.getId();
-        System.out.println("PersonaHumana guardada exitosamente");
-        return id;
+    
+        return personaHumana.getId();
     }
+    
 
     public Long crearPersonaJuridica(PersonaJuridicaDTO personaJuridicaDTO) {
+        validarDTOJuridico(personaJuridicaDTO);
 
-        List<Contacto> mediosContacto = UserService.crearContactos(
+        List<Contacto> mediosContacto = crearContactos(
                 personaJuridicaDTO.getMediosContacto(),
                 personaJuridicaDTO.getEmail(),
                 personaJuridicaDTO.getWhatsapp(),
@@ -72,67 +80,75 @@ public class UserService {
                 mediosContacto,
                 personaJuridicaDTO.getRazonSocial(),
                 personaJuridicaDTO.getTipo(),
-                personaJuridicaDTO.getRubro());
+                personaJuridicaDTO.getRubro()
+        );
 
         personaRepository.save(personaJuridica);
-        Long id = personaJuridica.getId();
-        System.out.println("PersonaJuridica guardada exitosamente");
-        return id;
+        return personaJuridica.getId();
     }
 
     public void crearColaborador(String uuid, String id) {
-        // Buscar persona por ID
-        Persona persona = personaRepository.findById(Long.parseLong(id))
-                .orElseThrow(() -> new IllegalArgumentException("La persona no existe."));
-        System.out.println("---------------la persona encontrada tiene el id--------------- " + persona.getId());
-
-        // Crear nuevo colaborador
-        Colaborador colaborador = new Colaborador(persona);
-        colaborador.setUUID(uuid);
-        // Guardar el colaborador en la base de datos (asumiendo que tienes un
-        // repositorio para eso)
-        colaboradorRepository.save(colaborador);
+        try {
+            Long personaId = Long.parseLong(id);
+            Persona persona = personaRepository.findById(personaId)
+                    .orElseThrow(() -> new IllegalArgumentException("La persona no existe."));
+            
+            Colaborador colaborador = new Colaborador(persona);
+            colaborador.setUUID(uuid);
+            colaboradorRepository.save(colaborador);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("El ID proporcionado no es válido.", e);
+        }
     }
 
-    public static List<Contacto> crearContactos(List<String> mediosContacto, String valorEmail, String valorWhatsapp,
-            String valorTelegram) {
+    private List<Contacto> crearContactos(List<String> mediosContacto, String valorEmail, String valorWhatsapp,
+                                          String valorTelegram) {
         List<Contacto> contactos = new ArrayList<>();
-
         for (String medio : mediosContacto) {
-            switch (medio.toUpperCase()) {
-                case "EMAIL":
-                    contactos.add(new Email(valorEmail));
-                    break;
-                case "WHATSAPP":
-                    contactos.add(new Whatsapp(valorWhatsapp));
-                    break;
-                case "TELEGRAM":
-                    contactos.add(new Telegram(valorTelegram));
-                    break;
-                default:
-                    throw new IllegalArgumentException("Medio de contacto no soportado: " + medio);
+            if (medio != null) {
+                switch (medio.toUpperCase()) {
+                    case "EMAIL":
+                        if (valorEmail != null) contactos.add(new Email(valorEmail));
+                        break;
+                    case "WHATSAPP":
+                        if (valorWhatsapp != null) contactos.add(new Whatsapp(valorWhatsapp));
+                        break;
+                    case "TELEGRAM":
+                        if (valorTelegram != null) contactos.add(new Telegram(valorTelegram));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("Medio de contacto no soportado: " + medio);
+                }
             }
         }
-
         return contactos;
     }
 
-    public static Documento crearDocumento(String tipo, String numero) {
-        // Validar tipo
+    private Documento crearDocumento(String tipo, String numero) {
         if (tipo == null || tipo.isEmpty()) {
             throw new IllegalArgumentException("El tipo de documento no puede estar vacío.");
         }
 
-        // Validar número
-        if (numero == null || numero.isEmpty()) {
-            throw new IllegalArgumentException("El número de documento no puede estar vacío.");
+        if (numero == null || numero.isEmpty() || !numero.matches("\\d{1,10}")) {
+            throw new IllegalArgumentException("El número de documento debe ser válido y contener entre 1 y 10 dígitos.");
         }
 
-        if (!numero.matches("\\d{1,10}")) {
-            throw new IllegalArgumentException("El número de documento debe contener entre 1 y 10 dígitos.");
-        }
-
-        // Crear y devolver el documento
         return new Documento(tipo.toUpperCase(), numero);
     }
+
+    private void validarDTOHumano(PersonaHumanaDTO dto) {
+        if (dto.getNombre() == null || dto.getNombre().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede estar vacío.");
+        }
+        if (dto.getApellido() == null || dto.getApellido().isEmpty()) {
+            throw new IllegalArgumentException("El apellido no puede estar vacío.");
+        }
+    }
+
+    private void validarDTOJuridico(PersonaJuridicaDTO dto) {
+        if (dto.getRazonSocial() == null || dto.getRazonSocial().isEmpty()) {
+            throw new IllegalArgumentException("La razón social no puede estar vacía.");
+        }
+    }
 }
+

@@ -27,7 +27,7 @@ public abstract class Persona {
     @Column(name = "direccion")
     private String direccion;
 
-    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER , cascade = CascadeType.ALL)
     private List<Contacto> mediosContacto = new ArrayList<>();
 
     // Constructor vacío para JPA
@@ -46,6 +46,10 @@ public abstract class Persona {
             medio.notificar(message);
         }
     }
+    public List<Contacto> getMediosContacto() {
+        return mediosContacto;
+    }
+    
     public long getId() {
         return id;
     }

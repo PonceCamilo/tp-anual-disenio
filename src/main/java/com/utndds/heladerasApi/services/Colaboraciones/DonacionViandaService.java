@@ -56,7 +56,7 @@ public class DonacionViandaService {
                 vianda.setHeladera(heladera);
 
                 // Guardar la vianda en la base de datos
-                viandaRepository.save(vianda);
+                //viandaRepository.save(vianda);
 
                 // Crear la donación de vianda
                 DonacionVianda donacionVianda = new DonacionVianda(colaborador, vianda, heladera);
