@@ -21,7 +21,7 @@ const ReportIssueForm = ({ fridges }) => {
     heladeraId: '',
     descripcion: '',
     email: '',
-    file: null, // Archivo opcional
+    foto: null, // Archivo opcional
   });
 
   const handleChange = ({ target: { id, value, files } }) => {
@@ -35,6 +35,57 @@ const ReportIssueForm = ({ fridges }) => {
     e.preventDefault();
     const today = new Date().toISOString().split('T')[0];
 
+    const toastId = toast({
+      title: 'Procesando...',
+      description: 'Estamos subiendo la imagen y enviando tu reporte.',
+      status: 'info',
+      duration: 5000,
+      isClosable: true,
+    });
+
+    let imageUrl = null; // Guardará la URL de la imagen si es subida correctamente
+
+    // Subir la imagen si se proporcionó una
+    if (formData.file) {
+      const formDataToUpload = new FormData();
+      formDataToUpload.append('file', formData.file);
+
+      try {
+        const imageResponse = await fetch('http://localhost:8080/api/storage/upload', {
+          method: 'POST',
+          body: formDataToUpload,
+        });
+
+        if (!imageResponse.ok) {
+          throw new Error('Error al subir la imagen');
+        }
+
+        // Obtener la URL de la imagen subida
+        const responseText = await imageResponse.text();
+        imageUrl = responseText; // Suponemos que la URL es el cuerpo de la respuesta
+
+      } catch (error) {
+        console.error('Error al subir la imagen:', error);
+        toast.update(toastId, {
+          title: 'Error al subir la imagen',
+          description: 'No se pudo subir la imagen al servidor.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+        return; // Salir del flujo si la subida de la imagen falla
+      }
+    }
+
+    // Enviar los datos del reporte, incluyendo la URL de la imagen (si fue subida correctamente)
+    const reportData = {
+      heladeraId: formData.heladeraId,
+      descripcion: formData.descripcion,
+      fecha: today,
+      email: formData.email,
+      foto: imageUrl, // Incluir la URL de la imagen (si existe)
+    };
+
     try {
       const response = await fetch(
         `http://localhost:8080/incidentes/reportarFallaTecnica?colaboradorUUID=${colaboradorUUID}`,
@@ -44,17 +95,12 @@ const ReportIssueForm = ({ fridges }) => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
-          body: JSON.stringify({
-            heladeraId: formData.heladeraId,
-            descripcion: formData.descripcion,
-            fecha: today,
-            email: formData.email,
-          }),
+          body: JSON.stringify(reportData),
         }
       );
 
       const message = await response.text();
-      toast({
+      toast.update(toastId, {
         title: response.ok ? 'Reporte Exitoso' : 'Error',
         description: message || (response.ok ? 'En breve se atenderá.' : 'Ocurrió un error.'),
         status: response.ok ? 'success' : 'error',
@@ -62,7 +108,7 @@ const ReportIssueForm = ({ fridges }) => {
         isClosable: true,
       });
     } catch {
-      toast({
+      toast.update(toastId, {
         title: 'Error de conexión',
         description: 'No se pudo conectar con el servidor.',
         status: 'error',
@@ -131,3 +177,4 @@ const ReportIssueForm = ({ fridges }) => {
 };
 
 export default ReportIssueForm;
+

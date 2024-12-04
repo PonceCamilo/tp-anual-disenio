@@ -12,7 +12,7 @@ function PublicarProductoForm() {
     const toast = useToast(); // Hook de Chakra UI para mostrar mensajes
     const colaboradorUUID = localStorage.getItem('sub'); // Obtengo el UUID del colaborador del localStorage
     const { accessToken } = useAuth();
-    console.log('AccessToken:', accessToken); // Verifica que el token esté presente
+  
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,20 +33,65 @@ function PublicarProductoForm() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        // Datos del producto en formato JSON
+        e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    
+        const toastId = toast({
+            title: 'Procesando...',
+            description: 'Estamos subiendo la imagen y creando la oferta.',
+            status: 'info',
+            duration: 5000,
+            isClosable: true,
+        });
+    
+        // URL del endpoint para subir la imagen
+        const imageUploadUrl = 'http://localhost:8080/api/storage/upload';
+        let imageUrl = null; // Guardará la URL pública de la imagen
+    
+        // 1. Subir la imagen si se proporcionó una
+        if (product.imagen) {
+            const formData = new FormData();
+            formData.append('file', product.imagen);
+    
+            try {
+                const imageResponse = await fetch(imageUploadUrl, {
+                    method: 'POST',
+                    body: formData,
+                });
+    
+                if (!imageResponse.ok) {
+                    throw new Error('Error al subir la imagen');
+                }
+    
+                // Obtener la URL pública de la imagen
+                const responseText = await imageResponse.text(); // Suponiendo que el backend devuelve la URL como texto
+                imageUrl = responseText;
+    
+            } catch (error) {
+                console.error('Error al subir la imagen:', error);
+                toast.update(toastId, {
+                    title: 'Error al subir la imagen',
+                    description: 'No se pudo subir la imagen al servidor.',
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                });
+                return; // Salir del flujo si la subida de la imagen falla
+            }
+        }
+    
+        // 2. Crear la oferta con la imagen si fue subida correctamente
         const productData = {
             rubro: product.rubro,
             nombre: product.nombre,
             cantidadPuntosNec: product.cantidadPuntosNec,
+            imagen: imageUrl, // Incluye la URL de la imagen en los datos
         };
-
-        // URL del endpoint
-        const url = `http://localhost:8080/colaboraciones/oferta?colaboradorUUID=${colaboradorUUID}`;
-
+        console.log('imagenUrl:', imageUrl);
+        // URL del endpoint para crear la oferta
+        const offerCreateUrl = `http://localhost:8080/colaboraciones/oferta?colaboradorUUID=${colaboradorUUID}`;
+    
         try {
-            const response = await fetch(url, {
+            const offerResponse = await fetch(offerCreateUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -54,44 +99,34 @@ function PublicarProductoForm() {
                 },
                 body: JSON.stringify(productData),
             });
-
-            console.log('Response Status:', response.status); // Verificar el código de estado HTTP
-            const responseText = await response.text();
-            console.log('Response Text:', responseText); // Verificar la respuesta del servidor
-
-            if (!response.ok) {
-                // Si no es una respuesta exitosa, muestra un mensaje de error
-                toast({
-                    title: 'Error al registrar la oferta',
-                    description: responseText || 'Ocurrió un error al procesar la oferta.',
-                    status: 'error',
-                    duration: 5000,
-                    isClosable: true,
-                });
-                return;
+    
+            if (!offerResponse.ok) {
+                throw new Error('Error al crear la oferta');
             }
-
-            // Si la respuesta fue exitosa, parseamos el cuerpo de la respuesta
-            const data = JSON.parse(responseText); // Esto también puede ser JSON si el servidor devuelve JSON
-            toast({
-                title: 'Oferta registrada con éxito',
+    
+            const responseText = await offerResponse.text();
+            const data = JSON.parse(responseText);
+    
+            toast.update(toastId, {
+                title: 'Oferta creada con éxito',
                 description: data.message || 'La oferta fue procesada exitosamente.',
                 status: 'success',
                 duration: 5000,
                 isClosable: true,
             });
-
+    
         } catch (error) {
-            console.error('Error:', error);
-            toast({
-                title: 'Error de conexión',
-                description: 'No se pudo conectar con el servidor para procesar la oferta.',
+            console.error('Error al crear la oferta:', error);
+            toast.update(toastId, {
+                title: 'Error al crear la oferta',
+                description: 'No se pudo procesar la oferta en el servidor.',
                 status: 'error',
                 duration: 5000,
                 isClosable: true,
             });
         }
     };
+    
 
 
     return (
