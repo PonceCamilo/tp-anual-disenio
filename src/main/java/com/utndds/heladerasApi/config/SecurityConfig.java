@@ -35,6 +35,7 @@ public class SecurityConfig {
                                                                                    // personalizada
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/api/storage/upload").hasAnyAuthority("SCOPE_ROLE_COLLABORATOR")
                         .requestMatchers("/roles/**").permitAll()
                         .requestMatchers("/callback").permitAll()
                         .requestMatchers("/validar-contraseña").permitAll()

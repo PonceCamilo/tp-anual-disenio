@@ -21,7 +21,7 @@ public class OfertaService {
     private OfertaRepository ofertaRepository;
 
     public void registrarOferta(OfertaDTO ofertaDTO, String colaboradorUUID) {
-
+        
         // Buscar al colaborador (empresa) que ofrece la oferta
         Colaborador colaborador = colaboradorRepository.findByUUID(colaboradorUUID)
                 .orElseThrow(() -> new EntityNotFoundException(

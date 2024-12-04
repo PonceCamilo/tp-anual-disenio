@@ -21,6 +21,7 @@ public class FallaTecnica extends Incidente {
 
     @Column(name = "foto")
     private String foto;
+    
 
     // Default constructor for JPA
     public FallaTecnica() {
