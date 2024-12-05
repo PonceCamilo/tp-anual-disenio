@@ -66,6 +66,8 @@ function HeaderApp() {
             Doná
           </Button>
           <Button
+            as={RouterLink}
+            to="/distribucion-viandas"
             colorScheme="gray"
             bg="gray.800"
             size="lg"

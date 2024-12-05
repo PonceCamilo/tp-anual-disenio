@@ -133,7 +133,7 @@ function Main({ setHeaderHeight, headerHeight }) {
         } />
 
         <Route path="/visita-tecnico" element={
-          <RoleProtectedRoute allowedRoles={['ROLE_ADMIN']}>
+          <RoleProtectedRoute allowedRoles={['ROLE_TECHNICAL']}>
             <VisitaTecnicoPage />
           </RoleProtectedRoute>
         } />

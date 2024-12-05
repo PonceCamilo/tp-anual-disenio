@@ -209,33 +209,54 @@ function ConsultaCanjeForm() {
 
             {!loadingProductos && !error && (
                 <Grid templateColumns="repeat(auto-fill, minmax(180px, 1fr))" gap={4}>
-                    {filteredProducts.map((producto) => (
-                        <Box
-                            key={producto.id}
-                            p={3}
-                            bg="gray.50"
-                            borderRadius="lg"
-                            boxShadow="md"
-                            textAlign="center"
-                            transition="transform 0.3s, box-shadow 0.3s"
-                            _hover={{ transform: 'scale(1.05)', boxShadow: 'lg' }}
-                        >
-                            <Image src={producto.imagen} alt={producto.nombre} borderRadius="md" mb={3} />
-                            <Heading size="sm" mb={2}>{producto.nombre}</Heading>
-                            <Text fontSize="md" color="gray.600">Puntos: {producto.puntos}</Text>
-                            <Text fontSize="sm" color="gray.500">{producto.rubro}</Text>
-                            <Button
-                                mt={3}
-                                size="sm"
-                                colorScheme="green"
-                                onClick={() => handleCanjear(producto.id)}
-                                disabled={loadingCanje === producto.id}
-                            >
-                                {loadingCanje === producto.id ? <Spinner size="sm" /> : 'Canjear'}
-                            </Button>
-                        </Box>
-                    ))}
-                </Grid>
+                {filteredProducts.map((producto) => (
+                  <Box
+                    key={producto.id}
+                    p={3}
+                    bg="gray.50"
+                    borderRadius="lg"
+                    boxShadow="md"
+                    textAlign="center"
+                    transition="transform 0.3s, box-shadow 0.3s"
+                    _hover={{ transform: 'scale(1.05)', boxShadow: 'lg' }}
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="space-between"
+                    minH="320px" // Ajusta este valor según tus necesidades
+                  >
+                    <Box>
+                      {/* Contenedor de Imagen */}
+                      <Box display="flex" justifyContent="center" alignItems="center" minH="150px" mb={3}>
+                        <Image 
+                          src={producto.imagen} 
+                          alt={producto.nombre} 
+                          borderRadius="md" 
+                          maxH="150px" 
+                          objectFit="contain" 
+                        />
+                      </Box>
+              
+                      {/* Contenedor de texto */}
+                      <Box>
+                        <Heading size="sm" mb={2}>{producto.nombre}</Heading>
+                        <Text fontSize="md" color="gray.600" mb={1}>Puntos: {producto.puntos}</Text>
+                        <Text fontSize="sm" color="gray.500">{producto.rubro}</Text>
+                      </Box>
+                    </Box>
+              
+                    {/* Botón */}
+                    <Button
+                      mt={3}
+                      size="sm"
+                      colorScheme="green"
+                      onClick={() => handleCanjear(producto.id)}
+                      disabled={loadingCanje === producto.id}
+                    >
+                      {loadingCanje === producto.id ? <Spinner size="sm" /> : 'Canjear'}
+                    </Button>
+                  </Box>
+                ))}
+              </Grid>    
             )}
         </Box>
     );

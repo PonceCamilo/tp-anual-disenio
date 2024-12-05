@@ -21,7 +21,7 @@ const AccesoDenegadoPage = () => {
       textAlign="center"
     >
       <VStack spacing={5}>
-        <Heading as="h1" fontSize="3rem" color="blue">
+        <Heading as="h1" fontSize="3rem" color="green">
           ¿Te perdiste compañero?
         </Heading>
         <Text fontWeight="bold" fontSize="1.5rem" marginTop="1rem">
@@ -34,11 +34,11 @@ const AccesoDenegadoPage = () => {
           Dejame que te muestre la salida, por acá porfavor 👇
         </Text>
         <Button
-          colorScheme="blue"
+          colorScheme="green"
           onClick={() => navigate('/')}
           padding="0.75rem 2rem"
           marginTop="1.5rem"
-          _hover={{ bg: '#215fef' }} // Color de fondo en hover
+          _hover={{ bg: "green.400" }} // Color de fondo en hover
         >
           Volver a lo seguro
         </Button>

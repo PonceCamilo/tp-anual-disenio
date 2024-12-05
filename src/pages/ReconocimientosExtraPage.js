@@ -71,8 +71,15 @@ const RecomendarPersonasPage = () => {
     };
 
     return (
-        <Container maxW="container.lg" mt={10}>
-            <Heading mb={6} textAlign="center" color="green.500">
+        <Container 
+            maxW="container.lg" 
+            mb={10} 
+            mx="auto"
+            bg="transparent"
+            pt="80px"  // Ajuste del padding-top para evitar que el navbar tape el contenido
+            minH="100vh"  // Aseguramos que el contenedor tenga al menos la altura de la pantalla
+        >
+            <Heading mb={6} textAlign="center" color="black">
                 Recomendación de Personas
             </Heading>
 
@@ -84,7 +91,7 @@ const RecomendarPersonasPage = () => {
                 mb={10}
             >
                 <FormControl mb={4}>
-                    <FormLabel>Puntos Requeridos</FormLabel>
+                    <FormLabel fontWeight={'bold'}>Puntos Requeridos</FormLabel>
                     <Input
                         type="number"
                         placeholder="Ingresa los puntos requeridos"
@@ -94,7 +101,7 @@ const RecomendarPersonasPage = () => {
                 </FormControl>
 
                 <FormControl mb={4}>
-                    <FormLabel>Viandas Donadas Requeridas</FormLabel>
+                    <FormLabel fontWeight={'bold'}>Viandas Donadas Requeridas</FormLabel>
                     <Input
                         type="number"
                         placeholder="Ingresa las viandas donadas requeridas"
@@ -104,7 +111,7 @@ const RecomendarPersonasPage = () => {
                 </FormControl>
 
                 <FormControl mb={4}>
-                    <FormLabel>Cantidad Máxima de Colaboradores</FormLabel>
+                    <FormLabel fontWeight={'bold'}>Cantidad Máxima de Colaboradores</FormLabel>
                     <Input
                         type="number"
                         placeholder="Ingresa la cantidad máxima de colaboradores"

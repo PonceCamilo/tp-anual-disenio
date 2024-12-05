@@ -24,7 +24,7 @@ import Config from '../assets/iconos/Config.svg';
 import Report from '../assets/iconos/Report.svg';
 import Product from '../assets/iconos/Product.svg';
 import LoadCSVModal from './LoadCSVModal'; // Modal para cargar CSV
-
+import VisitaTecnico from '../assets/iconos/VisitaTecnico.svg';
 function UserProfileModal({ isOpen, onClose }) {
   const { user, roles } = useAuth();
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ function UserProfileModal({ isOpen, onClose }) {
 
   // Opciones disponibles según roles
   const options = [
+    { path: '/visita-tecnico', img: VisitaTecnico, label: 'Registrar Visita', allowedRoles: ['ROLE_TECHNICAL'] },
     { path: '/donacion-dinero', img: LaDonate, label: 'Donar Dinero', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/donacion-vianda', img: Vianda, label: 'Donar Vianda', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },
     { path: '/registro-vulnerable', img: Form, label: 'Registrar Persona Vulnerable', allowedRoles: ['ROLE_ADMIN', 'ROLE_COLLABORATOR'] },

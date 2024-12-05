@@ -328,6 +328,7 @@ function HumanForm({ onBack }) {
         </FormControl>
 
         <ButtonGroup justifyContent="center" mt={4}>
+        <Button type="button" colorScheme="blue" onClick={onBack}>Volver atrás</Button>
         <Button
         type="submit"
         colorScheme="blue"
@@ -336,7 +337,7 @@ function HumanForm({ onBack }) {
       >
         Enviar
       </Button>
-          <Button type="button" colorScheme="blue" onClick={onBack}>Volver atrás</Button>
+          
         </ButtonGroup>
       </VStack>
     </Box>

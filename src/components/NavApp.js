@@ -24,7 +24,7 @@ import { useAuth } from '../config/authContext';
 import UserProfileModal from './UserProfileModal';
 
 function NavApp({ className }) {
-  const { logout, login, isAuthenticated, user, accessToken } = useAuth();
+  const { logout, login, isAuthenticated, user, accessToken, roles } = useAuth();
 
   // useDisclosure para las opciones de usuario
   const { isOpen: isUserModalOpen, onOpen: onUserModalOpen, onClose: onUserModalClose } = useDisclosure();
@@ -58,6 +58,9 @@ function NavApp({ className }) {
 
       console.log("Token:", {
         accessToken
+      });
+      console.log("Roles:", {
+        roles
       });
     }
   }, [isAuthenticated, user]);
