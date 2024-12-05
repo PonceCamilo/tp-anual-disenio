@@ -25,7 +25,7 @@ public class UserController {
     @PostMapping("/personaJuridica")
     public ResponseEntity<String> personaJuridica(@RequestBody PersonaJuridicaDTO personaJuridicaDTO) {
         Long id = UserService.crearPersonaJuridica(personaJuridicaDTO);
-        return ResponseEntity.ok("Alta exitosa." + id);
+        return ResponseEntity.ok("Alta exitosa. ID: " + id);
     }
     
     
