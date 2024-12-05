@@ -17,7 +17,7 @@ import { useAuth } from '../config/authContext';
 function ConsultaCanjeForm() {
     const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedRubro, setSelectedRubro] = useState('');
+    const [selectedRubro, setSelectedRubro] = useState(''); // Estado para el filtro de rubro
     const [loadingCanje, setLoadingCanje] = useState(null);
     const [loadingProductos, setLoadingProductos] = useState(true);
     const [loadingPuntos, setLoadingPuntos] = useState(true);
@@ -89,12 +89,76 @@ function ConsultaCanjeForm() {
         fetchPuntos();
     }, [accessToken, colaboradorUUID]);
 
-    // Filtrar productos
+    // Canje de un producto
+    const handleCanjear = async (productoId) => {
+        const producto = productos.find((p) => p.id === productoId);
+
+        if (!producto) {
+            toast({
+                title: 'Producto no encontrado',
+                description: 'El producto seleccionado no está disponible.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+            return;
+        }
+
+        if (puntosActuales < producto.puntos) {
+            toast({
+                title: 'Puntos insuficientes',
+                description: 'No tienes suficientes puntos para canjear esta oferta.',
+                status: 'warning',
+                duration: 5000,
+                isClosable: true,
+            });
+            return;
+        }
+
+        try {
+            setLoadingCanje(productoId);
+            const response = await fetch(
+                `http://localhost:8080/canjes/canjear?colaboradorUUID=${colaboradorUUID}&ofertaId=${producto.ofertaID}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                    },
+                }
+            );
+
+            if (!response.ok) throw new Error('Error al canjear la oferta.');
+
+            toast({
+                title: 'Oferta canjeada',
+                description: 'Tu canje fue procesado exitosamente.',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            });
+
+            setPuntosActuales((prev) => prev - producto.puntos);
+        } catch (err) {
+            toast({
+                title: 'Error al canjear',
+                description: 'Ocurrió un problema, inténtalo más tarde.',
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
+        } finally {
+            setLoadingCanje(null);
+        }
+    };
+
+    // Filtrado de productos
     const filteredProducts = productos.filter((producto) => {
-        const matchesName = (producto.nombre || '').toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesRubro = selectedRubro ? producto.rubro === selectedRubro : true;
+        const matchesName = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesRubro = selectedRubro === '' || producto.rubro === selectedRubro;
         return matchesName && matchesRubro;
     });
+
+    const rubrosDisponibles = [...new Set(productos.map((producto) => producto.rubro))];
 
     return (
         <Box
@@ -119,28 +183,25 @@ function ConsultaCanjeForm() {
                 )}
             </Box>
 
-            <Flex justifyContent="center" mb={6}>
+            <Flex justifyContent="center" gap={4} mb={6} flexWrap="wrap">
                 <Input
                     placeholder="Buscar producto..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     width="250px"
-                    mr={2}
                 />
                 <Select
-                    placeholder="Seleccionar rubro"
+                    placeholder="Filtrar por rubro"
                     value={selectedRubro}
                     onChange={(e) => setSelectedRubro(e.target.value)}
-                    width="250px"
-                    mr={2}
+                    width="200px"
                 >
-                    {[...new Set(productos.map((p) => p.rubro))].map((rubro) => (
+                    {rubrosDisponibles.map((rubro) => (
                         <option key={rubro} value={rubro}>
                             {rubro}
                         </option>
                     ))}
                 </Select>
-                <Button colorScheme="green" onClick={() => { }}>Filtrar</Button>
             </Flex>
 
             {loadingProductos && <Text textAlign="center">Cargando ofertas...</Text>}
@@ -163,6 +224,15 @@ function ConsultaCanjeForm() {
                             <Heading size="sm" mb={2}>{producto.nombre}</Heading>
                             <Text fontSize="md" color="gray.600">Puntos: {producto.puntos}</Text>
                             <Text fontSize="sm" color="gray.500">{producto.rubro}</Text>
+                            <Button
+                                mt={3}
+                                size="sm"
+                                colorScheme="green"
+                                onClick={() => handleCanjear(producto.id)}
+                                disabled={loadingCanje === producto.id}
+                            >
+                                {loadingCanje === producto.id ? <Spinner size="sm" /> : 'Canjear'}
+                            </Button>
                         </Box>
                     ))}
                 </Grid>
