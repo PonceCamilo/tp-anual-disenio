@@ -22,6 +22,7 @@ public abstract class Contacto {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
     // Métodos y atributos comunes si los hay
     public abstract void notificar(String mensaje);
 }

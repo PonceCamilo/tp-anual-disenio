@@ -11,7 +11,6 @@ import com.utndds.heladerasApi.models.Heladera.Heladera;
 import com.utndds.heladerasApi.models.Rol.Colaborador;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
 import com.utndds.heladerasApi.repositories.HeladeraRepository;
-import com.utndds.heladerasApi.repositories.ViandaRepository;
 import com.utndds.heladerasApi.repositories.ColaboracionesRepositories.DonacionViandaRepository;
 import com.utndds.heladerasApi.services.AperturaService;
 
@@ -29,8 +28,6 @@ public class DonacionViandaService {
         @Autowired
         private DonacionViandaRepository donacionViandaRepository;
 
-        @Autowired
-        private ViandaRepository viandaRepository;
         @Autowired
         private AperturaService solicitudAperturaService;
 
@@ -56,7 +53,7 @@ public class DonacionViandaService {
                 vianda.setHeladera(heladera);
 
                 // Guardar la vianda en la base de datos
-                //viandaRepository.save(vianda);
+                // viandaRepository.save(vianda);
 
                 // Crear la donación de vianda
                 DonacionVianda donacionVianda = new DonacionVianda(colaborador, vianda, heladera);

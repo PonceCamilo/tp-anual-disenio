@@ -15,8 +15,6 @@ import com.utndds.heladerasApi.models.Rol.Colaborador;
 import java.util.ArrayList;
 import java.util.List;
 import com.utndds.heladerasApi.repositories.ColaboradorRepository;
-import com.utndds.heladerasApi.repositories.ContactoRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +27,9 @@ public class UserService {
     @Autowired
     private ColaboradorRepository colaboradorRepository;
 
-    @Autowired
-    private ContactoRepository contactoRepository;
-
     public Long crearPersonaHumana(PersonaHumanaDTO personaHumanaDTO) {
         validarDTOHumano(personaHumanaDTO);
-    
+
         // Crear instancia de PersonaHumana sin contactos por ahora
         PersonaHumana personaHumana = new PersonaHumana(
                 personaHumanaDTO.getDireccion(),
@@ -42,29 +37,27 @@ public class UserService {
                 personaHumanaDTO.getNombre(),
                 personaHumanaDTO.getApellido(),
                 personaHumanaDTO.getFechaNacimiento(),
-                crearDocumento(personaHumanaDTO.getTipo(), personaHumanaDTO.getDocumento())
-        );
-    
+                crearDocumento(personaHumanaDTO.getTipo(), personaHumanaDTO.getDocumento()));
+
         // Crear contactos y asociarlos con la persona
         List<Contacto> mediosContacto = crearContactos(
                 personaHumanaDTO.getMediosContacto(),
                 personaHumanaDTO.getEmail(),
                 personaHumanaDTO.getWhatsapp(),
                 personaHumanaDTO.getTelegram());
-    
+
         for (Contacto contacto : mediosContacto) {
             contacto.setPersona(personaHumana); // Asociar el contacto con la persona
         }
-    
+
         // Asignar los contactos a la persona
         personaHumana.setMediosContacto(mediosContacto);
-    
+
         // Guardar la persona y sus contactos
         personaRepository.save(personaHumana);
-    
+
         return personaHumana.getId();
     }
-    
 
     public Long crearPersonaJuridica(PersonaJuridicaDTO personaJuridicaDTO) {
         validarDTOJuridico(personaJuridicaDTO);
@@ -80,8 +73,7 @@ public class UserService {
                 mediosContacto,
                 personaJuridicaDTO.getRazonSocial(),
                 personaJuridicaDTO.getTipo(),
-                personaJuridicaDTO.getRubro()
-        );
+                personaJuridicaDTO.getRubro());
 
         personaRepository.save(personaJuridica);
         return personaJuridica.getId();
@@ -92,7 +84,7 @@ public class UserService {
             Long personaId = Long.parseLong(id);
             Persona persona = personaRepository.findById(personaId)
                     .orElseThrow(() -> new IllegalArgumentException("La persona no existe."));
-            
+
             Colaborador colaborador = new Colaborador(persona);
             colaborador.setUUID(uuid);
             colaboradorRepository.save(colaborador);
@@ -102,19 +94,22 @@ public class UserService {
     }
 
     private List<Contacto> crearContactos(List<String> mediosContacto, String valorEmail, String valorWhatsapp,
-                                          String valorTelegram) {
+            String valorTelegram) {
         List<Contacto> contactos = new ArrayList<>();
         for (String medio : mediosContacto) {
             if (medio != null) {
                 switch (medio.toUpperCase()) {
                     case "EMAIL":
-                        if (valorEmail != null) contactos.add(new Email(valorEmail));
+                        if (valorEmail != null)
+                            contactos.add(new Email(valorEmail));
                         break;
                     case "WHATSAPP":
-                        if (valorWhatsapp != null) contactos.add(new Whatsapp(valorWhatsapp));
+                        if (valorWhatsapp != null)
+                            contactos.add(new Whatsapp(valorWhatsapp));
                         break;
                     case "TELEGRAM":
-                        if (valorTelegram != null) contactos.add(new Telegram(valorTelegram));
+                        if (valorTelegram != null)
+                            contactos.add(new Telegram(valorTelegram));
                         break;
                     default:
                         throw new IllegalArgumentException("Medio de contacto no soportado: " + medio);
@@ -130,7 +125,8 @@ public class UserService {
         }
 
         if (numero == null || numero.isEmpty() || !numero.matches("\\d{1,10}")) {
-            throw new IllegalArgumentException("El número de documento debe ser válido y contener entre 1 y 10 dígitos.");
+            throw new IllegalArgumentException(
+                    "El número de documento debe ser válido y contener entre 1 y 10 dígitos.");
         }
 
         return new Documento(tipo.toUpperCase(), numero);
@@ -151,4 +147,3 @@ public class UserService {
         }
     }
 }
-
