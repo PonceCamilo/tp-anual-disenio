@@ -8,6 +8,7 @@ import {
     Image,
     Heading,
     Flex,
+    Select,
     useToast,
     Spinner,
 } from '@chakra-ui/react';
@@ -16,6 +17,7 @@ import { useAuth } from '../config/authContext';
 function ConsultaCanjeForm() {
     const [productos, setProductos] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedRubro, setSelectedRubro] = useState('');
     const [loadingCanje, setLoadingCanje] = useState(null);
     const [loadingProductos, setLoadingProductos] = useState(true);
     const [loadingPuntos, setLoadingPuntos] = useState(true);
@@ -41,7 +43,7 @@ function ConsultaCanjeForm() {
                 const data = await response.json();
                 setProductos(
                     data.map((oferta, index) => ({
-                        id: index, // Generar un ID único si el backend no lo proporciona
+                        id: index,
                         ofertaID: oferta.id,
                         nombre: oferta.nombre,
                         puntos: oferta.cantidadPuntosNecesarios,
@@ -87,72 +89,12 @@ function ConsultaCanjeForm() {
         fetchPuntos();
     }, [accessToken, colaboradorUUID]);
 
-    // Canje de un producto
-    const handleCanjear = async (productoId) => {
-        const producto = productos.find((p) => p.id === productoId);
-        
-        if (!producto) {
-            toast({
-                title: 'Producto no encontrado',
-                description: 'El producto seleccionado no está disponible.',
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
-            return;
-        }
-
-        if (puntosActuales < producto.puntos) {
-            toast({
-                title: 'Puntos insuficientes',
-                description: 'No tienes suficientes puntos para canjear esta oferta.',
-                status: 'warning',
-                duration: 5000,
-                isClosable: true,
-            });
-            return;
-        }
-
-        try {
-            setLoadingCanje(productoId);
-            const response = await fetch(
-                `http://localhost:8080/canjes/canjear?colaboradorUUID=${colaboradorUUID}&ofertaId=${producto.ofertaID}`,
-                {
-                    method: 'POST',
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
-                }
-            );
-
-            if (!response.ok) throw new Error('Error al canjear la oferta.');
-
-            toast({
-                title: 'Oferta canjeada',
-                description: 'Tu canje fue procesado exitosamente.',
-                status: 'success',
-                duration: 5000,
-                isClosable: true,
-            });
-
-            // Actualiza los puntos restantes
-            setPuntosActuales((prev) => prev - producto.puntos);
-        } catch (err) {
-            toast({
-                title: 'Error al canjear',
-                description: 'Ocurrió un problema, inténtalo más tarde.',
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            });
-        }finally {
-            setLoadingCanje(null);
-        }
-    };
-
-    const filteredProducts = productos.filter((producto) =>
-        (producto.nombre ||'').toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // Filtrar productos
+    const filteredProducts = productos.filter((producto) => {
+        const matchesName = (producto.nombre || '').toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesRubro = selectedRubro ? producto.rubro === selectedRubro : true;
+        return matchesName && matchesRubro;
+    });
 
     return (
         <Box
@@ -176,7 +118,7 @@ function ConsultaCanjeForm() {
                     </Text>
                 )}
             </Box>
-    
+
             <Flex justifyContent="center" mb={6}>
                 <Input
                     placeholder="Buscar producto..."
@@ -185,12 +127,25 @@ function ConsultaCanjeForm() {
                     width="250px"
                     mr={2}
                 />
-                <Button colorScheme="green">Buscar</Button>
+                <Select
+                    placeholder="Seleccionar rubro"
+                    value={selectedRubro}
+                    onChange={(e) => setSelectedRubro(e.target.value)}
+                    width="250px"
+                    mr={2}
+                >
+                    {[...new Set(productos.map((p) => p.rubro))].map((rubro) => (
+                        <option key={rubro} value={rubro}>
+                            {rubro}
+                        </option>
+                    ))}
+                </Select>
+                <Button colorScheme="green" onClick={() => { }}>Filtrar</Button>
             </Flex>
-    
+
             {loadingProductos && <Text textAlign="center">Cargando ofertas...</Text>}
             {error && <Text textAlign="center" color="red.500">{error}</Text>}
-    
+
             {!loadingProductos && !error && (
                 <Grid templateColumns="repeat(auto-fill, minmax(180px, 1fr))" gap={4}>
                     {filteredProducts.map((producto) => (
@@ -208,25 +163,12 @@ function ConsultaCanjeForm() {
                             <Heading size="sm" mb={2}>{producto.nombre}</Heading>
                             <Text fontSize="md" color="gray.600">Puntos: {producto.puntos}</Text>
                             <Text fontSize="sm" color="gray.500">{producto.rubro}</Text>
-                            <Button
-                                mt={3}
-                                size="sm"
-                                colorScheme="green"
-                                onClick={() => handleCanjear(producto.id)}
-                                disabled={loadingCanje === producto.id} // Desactiva el botón si está procesando
-                            >
-                                {loadingCanje === producto.id ? (
-                                    <Spinner size="sm" /> // Muestra el Spinner mientras está en progreso
-                                ) : (
-                                    'Canjear'
-                                )}
-                            </Button>
                         </Box>
                     ))}
                 </Grid>
             )}
         </Box>
-    );    
+    );
 }
 
 export default ConsultaCanjeForm;
