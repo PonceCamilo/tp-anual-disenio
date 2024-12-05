@@ -9,15 +9,15 @@ import okhttp3.Response;
 
 
 public class WhatsappApi {
-   private static final String BASE_URL = "https://api.ultramsg.com/100015/messages/chat";//cambiar esto 
-    private static final String API_TOKEN = "kj35lw02kue0fdtr"; // cambiar esto
+   private static final String BASE_URL = "https://api.ultramsg.com/instance101132/messages/chat";//cambiar esto 
+    private static final String API_TOKEN = "n1fxbmpplr55ay0m"; // cambiar esto
     private static final OkHttpClient CLIENT = new OkHttpClient();
 
     public static void sendTextMessage(String mensaje ,String numero) {
         RequestBody body = new FormBody.Builder()
                 .add("token", API_TOKEN)
-                .add("to", numero) // numero del receptor
-                .add("body", "Hola, soy el BOT de Diseño de Sistemas") //agregar el msj que necesitemos 
+                .add("to", "+549"+ numero) // numero del receptor
+                .add("body", mensaje) //agregar el msj que necesitemos 
                 .build();
 
         // Crear la solicitud HTTP

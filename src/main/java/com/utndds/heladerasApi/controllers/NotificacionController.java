@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.utndds.heladerasApi.services.NotificacionService;
 
 @RestController
-@RequestMapping("/notifiacion")
+@RequestMapping("/notificacion")
 public class NotificacionController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class NotificacionController {
     }
 
     @PostMapping("/enviarNotificacion")
-    public void sendNotification(@RequestParam String message) {
+    public void sendNotification(@RequestParam("mensaje") String message) {
         notificacionService.sendNotification(message);
     }
 
