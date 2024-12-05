@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    private static final String HOST = "localhost";
+    // Utiliza la URL AMQP proporcionada por CloudAMQP
+    private static final String HOST = "jackal.rmq.cloudamqp.com";
     private static final int PORT = 5672;
-    private static final String USERNAME = "grupoDDS";
-    private static final String PASSWORD = "grupoDDS";
-    public static final String QUEUE_NAME = null;
+    private static final String USERNAME = "beqoxnod";
+    private static final String PASSWORD = "VvPUHlc3GShdRUTQ-YOUuWGa4yHC1ZPI";
+    private static final String VIRTUAL_HOST = "beqoxnod";
 
     @Bean
     public Connection crearConexion() {
@@ -26,6 +27,7 @@ public class RabbitMQConfig {
             factory.setPort(PORT);
             factory.setUsername(USERNAME);
             factory.setPassword(PASSWORD);
+            factory.setVirtualHost(VIRTUAL_HOST); // Configura el virtual host
 
             return factory.newConnection();
         } catch (IOException | TimeoutException e) {
