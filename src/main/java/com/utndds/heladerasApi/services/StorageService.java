@@ -6,11 +6,14 @@ import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
+import com.utndds.heladerasApi.config.FirebaseConfig;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 @Service
 public class StorageService {
@@ -19,12 +22,28 @@ public class StorageService {
 
     private final Storage storage;
 
-    public StorageService() throws IOException {
-        // Inicializa el cliente de Google Cloud Storage
+    private final FirebaseConfig firebaseConfig;
+
+    public StorageService(FirebaseConfig firebaseConfig) throws IOException {
+        this.firebaseConfig = firebaseConfig;
+
+        String jsonCredentials = String.format(
+                "{\"type\":\"%s\",\"project_id\":\"%s\",\"private_key_id\":\"%s\",\"private_key\":\"%s\",\"client_email\":\"%s\",\"client_id\":\"%s\",\"auth_uri\":\"%s\",\"token_uri\":\"%s\",\"auth_provider_x509_cert_url\":\"%s\",\"client_x509_cert_url\":\"%s\",\"universe_domain\":\"%s\"}",
+                "service_account", // Usa 'service_account' si este es el tipo, o usa el valor que necesites
+                firebaseConfig.getProjectId(),
+                firebaseConfig.getPrivateKeyId(),
+                firebaseConfig.getPrivateKey(),
+                firebaseConfig.getClientEmail(),
+                firebaseConfig.getClientId(),
+                firebaseConfig.getAuthUri(),
+                firebaseConfig.getTokenUri(),
+                firebaseConfig.getCertUrl(),
+                firebaseConfig.getClientCertUrl(),
+                firebaseConfig.getUniverseDomain());
+
         storage = StorageOptions.newBuilder()
                 .setCredentials(ServiceAccountCredentials.fromStream(
-                        new FileInputStream("leafy-respect-443713-n1-1d09a8beb458.json") // Ruta al archivo JSON
-                ))
+                        new ByteArrayInputStream(jsonCredentials.getBytes(StandardCharsets.UTF_8))))
                 .build()
                 .getService();
     }
