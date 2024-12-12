@@ -107,6 +107,7 @@ public class IncidenteService {
             System.out.println("Visita del técnico creada: " + visitaTecnico);
 
             visitaTecnicoRepository.save(visitaTecnico);
+            fallaTecnicaRepository.save(fallaTecnica);
             System.out.println("Visita del técnico guardada con éxito.");
 
         } catch (EntityNotFoundException e) {

@@ -1,166 +1,166 @@
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Observer\Observer.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\ABM\TecnicoService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\ReconocimientosExtra.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\AperturaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Sensores\SensorMovimiento.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Telegram.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\ObtencionHeladera.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\NotificacionApis\WhatsappApi.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\DistribucionViandasDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\IncidenteController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\VisitaTecnicoDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\DonacionDineroService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseÃ±as\Condiciones\CaracteresEspeciales.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\OfertaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboradorRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\Ofertas\Oferta.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Punto.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\NotificacionController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\NotificacionService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\TecnicoController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Enums\TipoEvento.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Rol\PersonaVulnerable.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Reportes\ViandasMovidasPorColaborador.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\StorageService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ContactoRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\DonacionViandaService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\ABM\UserService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\RolRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\RolController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\PasswordController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\SolicitudAperturaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\CargaCSVController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\TecnicoDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\ReporteFallasPorHeladeraService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\RecomendacionDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\SuscripcionesRepositories\EventoRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\AreaRecomendacionDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\PersonaHumanaDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\VisitaTecnicoRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\HeladerasApiApplication.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Documento.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\config\FirebaseConfig.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\PersonaVulnerableDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\ReporteViandasMovidasPorHeladeraService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\TarjetasRepositories\TarjetaColaboradorRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Observer\ObservadorHeladera.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseÃ±as\Condiciones\Condicion.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Sensores\SensorTemperatura.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Rol\Colaborador.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Telefono.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\ColaboracionRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\SuscripcionService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\PersonaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DonacionViandas\DonacionVianda.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\SensoresRepositories\SensorTemperaturaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Reportes\ReportesService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\TecnicoRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\Desperfecto.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ViandaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\PuntoMapaDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\PocasViandas.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\Incidentes\IncidenteRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\UserController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\DistribucionViandasService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Whatsapp.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\PuntoRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\AperturaService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\PersonaVulnerableRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\OfertaService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Persona.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Solicitudes\SolicitudApertura.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\PersonaJuridicaDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\Evento.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\RegistrationDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\TarjetasRepositories\TarjetaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Reportes\ViandasMovidasPorHeladera.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\RecomendacionPuntosService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Reportes\Reporte.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\StorageController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\SuscripcionController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Observer\ObservadorSuscripcion.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\NotificacionApis\MailApi.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\NotificacionApis\TelegramApi.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\OfertaDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Enums\MotivoApertura.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Heladera.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Sensores\Sensor.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Canjes\CalculadoraPuntosService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\UbicacionGoogleMaps.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\ReporteViandasPorColaboradorService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\ColaboradorDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\config\SecurityConfig.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\broker\BrokerSenderSimulator.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Tarjetas\TarjetaColaborador.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\GoogleMapsService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\SensoresRepositories\SensoresRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\MuchasViandas.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Tarjetas\TarjetaPersVuln.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\DonacionDineroRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\CargaCSV\PersonaHumanaFactory.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\FallaTecnicaDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\PersonaHumana.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Tarjetas\Apertura.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\ObtencionHeladeraRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Rol\Rol.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\VisitaTecnico.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\DistribucionViandasRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\config\AppConfig.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseÃ±as\Condiciones\PeoresContraseÃ±as.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\DonacionViandaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Email.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\ObtencionHeladeraService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\PersonaJuridica.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\HeladeraController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\GeneradorReporte.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\SuscripcionesRepositories\SuscripcionRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Rol\Tecnico\AreaCobertura.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Canjes\CanjesService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\CargaCSV\CargaCSV.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\FallaTecnicaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DonacionViandas\Vianda.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\Incidente\Incidente.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\AuthController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Suscripcion.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\AreaCoberturaRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\AperturaController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\GoogleMapsController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\reportesRepositories\ReporteViandasMovidasHeladeraRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DistribucionViandas.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\CargaCSV\ColaboracionFactory.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\Incidente\FallaTecnica.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\IncidenteService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\SuscripcionDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\RegistroPersonaVulnerableRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\CargaCSV\ColaboradorFactory.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DonacionDinero.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\RolService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Sensores\SensorTemperaturaService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Tarjetas\Tarjeta.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\CanjesController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\DonacionViandaDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Sensores\SensorMovimientoService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Enums\TipoContacto.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\SensoresRepositories\SensorMovimientoRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\RegistroPersVulnService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\reportesRepositories\ReporteViandasMovidasColaboradorRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\ColaboracionController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\ReporteController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\HeladeraRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\Ofertas\Canje.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\GeneradorReportesService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseÃ±as\Condiciones\LongitudMinima.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\Colaboracion.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\Incidente\Alerta.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\reportesRepositories\ReporteFallasHeladeraRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\ABM\HeladeraService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\broker\BrokerReceiverService.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\DTOs\HeladeraDTO.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\TarjetasRepositories\TarjetaPersVulRepository.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\controllers\HomeController.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Rol\Tecnico\Tecnico.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Contacto.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseÃ±as\ValidadorContraseÃ±a.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Reportes\FallasPorHeladera.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\RegistroPersonaVulnerable.java
-D:\Users\User\Desktop\backend posta\Heladeras-DDS-Back\src\main\java\com\utndds\heladerasApi\repositories\CanjeRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\ObtencionHeladera.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\RegistroPersonaVulnerable.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Observer\Observer.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseñas\Condiciones\Condicion.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\PersonaVulnerableRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DonacionDinero.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\NotificacionApis\TelegramApi.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\StorageController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\HeladerasApiApplication.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\AperturaService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\AreaCoberturaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Sensores\SensorMovimientoService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\FallaTecnicaDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\StorageService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\RegistroPersVulnService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Sensores\SensorTemperatura.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Enums\TipoEvento.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Telefono.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\ABM\HeladeraService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\OfertaService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\IncidenteService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\ObtencionHeladeraService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\DistribucionViandasService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\Incidente\Incidente.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Tarjetas\TarjetaPersVuln.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Sensores\SensorMovimiento.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\SuscripcionesRepositories\SuscripcionRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\CanjesController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\UserController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\PersonaHumanaDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\ReporteViandasMovidasPorHeladeraService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\ObtencionHeladeraRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\ABM\UserService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\DonacionDineroRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Sensores\Sensor.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\RolService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\DonacionViandaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Observer\ObservadorSuscripcion.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\RolRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\CargaCSVController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\SensoresRepositories\SensorMovimientoRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\RolController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\Incidente\Alerta.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\config\AppConfig.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\OfertaDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Suscripcion.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\PuntoRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboradorRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\PersonaJuridica.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\GoogleMapsController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseñas\Condiciones\LongitudMinima.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\Incidente\FallaTecnica.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\RegistrationDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Reportes\ViandasMovidasPorColaborador.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\TecnicoController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ContactoRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\PasswordController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\PersonaHumana.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Observer\ObservadorHeladera.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\TarjetasRepositories\TarjetaPersVulRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseñas\Condiciones\CaracteresEspeciales.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Canjes\CanjesService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\CargaCSV\ColaboracionFactory.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Enums\MotivoApertura.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Tarjetas\Tarjeta.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\ReporteViandasPorColaboradorService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\DonacionViandaDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DonacionViandas\Vianda.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\ABM\TecnicoService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\SuscripcionController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Rol\Tecnico\AreaCobertura.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\ReporteFallasPorHeladeraService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Punto.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Solicitudes\SolicitudApertura.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\TarjetasRepositories\TarjetaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\NotificacionApis\MailApi.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\DonacionDineroService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Incidentes\VisitaTecnico.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Reportes\ReportesService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\SensoresRepositories\SensorTemperaturaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DistribucionViandas.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\DonacionViandas\DonacionVianda.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Rol\Rol.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\GoogleMapsService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Sensores\SensorTemperaturaService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\ColaboracionController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\Ofertas\Canje.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\CanjeRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\TecnicoRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Reportes\Reporte.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\DistribucionViandasRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\SuscripcionService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\PersonaJuridicaDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\ReporteController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\Evento.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\CargaCSV\ColaboradorFactory.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Enums\TipoContacto.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\RecomendacionDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Rol\PersonaVulnerable.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\FallaTecnicaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\reportesRepositories\ReporteViandasMovidasHeladeraRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\TecnicoDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\HeladeraController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\CargaCSV\PersonaHumanaFactory.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\ReconocimientosExtra.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\AreaRecomendacionDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\VisitaTecnicoRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\NotificacionService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Tarjetas\Apertura.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\broker\BrokerSenderSimulator.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\AperturaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\RegistroPersonaVulnerableRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Canjes\CalculadoraPuntosService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\AperturaController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\AuthController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\PuntoMapaDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Colaboraciones\DonacionViandaService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\PersonaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\ColaboradorDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\Desperfecto.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\SuscripcionDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\CargaCSV\CargaCSV.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Whatsapp.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\Ofertas\Oferta.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Telegram.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\HeladeraRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Colaboraciones\Colaboracion.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Contacto.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\config\SecurityConfig.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\reportesRepositories\ReporteViandasMovidasColaboradorRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\ColaboracionRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\Incidentes\IncidenteRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Rol\Colaborador.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\HeladeraDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\PocasViandas.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ViandaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\RecomendacionPuntosService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Documento.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Rol\Tecnico\Tecnico.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\PersonaVulnerableDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\VisitaTecnicoDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Reportes\ViandasMovidasPorHeladera.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\broker\BrokerReceiverService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\config\FirebaseConfig.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\NotificacionController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Contacto\Email.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\HomeController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\TarjetasRepositories\TarjetaColaboradorRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\reportesRepositories\ReporteFallasHeladeraRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\DTOs\DistribucionViandasDTO.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\UbicacionGoogleMaps.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\SensoresRepositories\SensoresRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Tarjetas\TarjetaColaborador.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\SolicitudAperturaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\Reportes\GeneradorReporte.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\SuscripcionesRepositories\EventoRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseñas\ValidadorContraseña.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Persona\Persona.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Reportes\GeneradorReportes\GeneradorReportesService.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\NotificacionApis\WhatsappApi.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Suscripciones\Evento\MuchasViandas.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\controllers\IncidenteController.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Reportes\FallasPorHeladera.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\models\Heladera\Heladera.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\repositories\ColaboracionesRepositories\OfertaRepository.java
+C:\Eti\DDS\Backend\tp-anual-disenio\src\main\java\com\utndds\heladerasApi\services\Validadores\ValidadorContraseñas\Condiciones\PeoresContraseñas.java
